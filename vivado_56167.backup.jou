@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:47:01 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Jan 18 04:39:02 2023
+# Process ID: 56167
+# Current directory: /sim2/akashl/ember-fpga
+# Command line: vivado ember-genesys2.xpr
+# Log file: /sim2/akashl/ember-fpga/vivado.log
+# Journal file: /sim2/akashl/ember-fpga/vivado.jou
+# Running On: r7cad-tsmc40r, OS: Linux, CPU Frequency: 2249.998 MHz, CPU Physical cores: 32, Host memory: 811430 MB
+#-----------------------------------------------------------
+start_gui
+open_project ember-genesys2.xpr
+update_compile_order -fileset sources_1
