@@ -1,0 +1,33 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.861538",
+   "Default View_TopLeft":"-238,0",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port cpu_resetn -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace port rram_busy -pg 1 -lvl 2 -x 380 -y 60 -defaultsOSRD
+preplace port sclk -pg 1 -lvl 0 -x 0 -y 240 -defaultsOSRD
+preplace port sc_in -pg 1 -lvl 0 -x 0 -y 260 -defaultsOSRD
+preplace port mosi_in -pg 1 -lvl 0 -x 0 -y 280 -defaultsOSRD
+preplace port miso -pg 1 -lvl 2 -x 380 -y 80 -defaultsOSRD
+preplace port sa_rdy -pg 1 -lvl 0 -x 0 -y 320 -defaultsOSRD
+preplace port mclk_pause -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
+preplace port sa_clk -pg 1 -lvl 2 -x 380 -y 320 -defaultsOSRD
+preplace portBus sa_do -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
+preplace inst rram_top_wrapper_0 -pg 1 -lvl 1 -x 190 -y 260 -defaultsOSRD
+preplace netloc cpu_resetn_1 1 0 1 NJ 220
+preplace netloc sclk_1 1 0 1 NJ 240
+preplace netloc sc_in_1 1 0 1 NJ 260
+preplace netloc mosi_in_1 1 0 1 NJ 280
+preplace netloc sa_do_1 1 0 1 NJ 300
+preplace netloc sa_rdy_1 1 0 1 NJ 320
+preplace netloc rram_top_wrapper_0_miso 1 1 1 NJ 80
+preplace netloc rram_top_wrapper_0_rram_busy 1 1 1 NJ 60
+preplace netloc mclk_pause_0_1 1 0 1 N 200
+preplace netloc rram_top_wrapper_0_sa_clk 1 1 1 N 320
+levelinfo -pg 1 0 190 380
+pagesize -pg 1 -db -bbox -sgen -140 0 510 520
+"
+}
+0

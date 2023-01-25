@@ -1,0 +1,357 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Jan 25 04:38:48 2023
+# Process ID: 75478
+# Current directory: /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_rram_top_wrapper_0_0_synth_1
+# Command line: vivado -log ember_fpga_rram_top_wrapper_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_rram_top_wrapper_0_0.tcl
+# Log file: /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_rram_top_wrapper_0_0_synth_1/ember_fpga_rram_top_wrapper_0_0.vds
+# Journal file: /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_rram_top_wrapper_0_0_synth_1/vivado.jou
+#-----------------------------------------------------------
+source ember_fpga_rram_top_wrapper_0_0.tcl -notrace
+Command: synth_design -top ember_fpga_rram_top_wrapper_0_0 -part xc7k325tffg900-2 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t'
+INFO: [Common 17-1540] The version limit for your license is '2020.12' and has expired for new software. A version limit expiration means that, although you may be able to continue to use the current version of tools or IP with this license, you will not be eligible for any updates or new releases.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 80451
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 2527.078 ; gain = 0.004 ; free physical = 669977 ; free virtual = 750812
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_rram_top_wrapper_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/synth/ember_fpga_rram_top_wrapper_0_0.v:58]
+INFO: [Synth 8-6157] synthesizing module 'rram_top_wrapper' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/new/rram_top_wrapper.v:53]
+INFO: [Synth 8-6157] synthesizing module 'rram_top' [/sim2/akashl/emblem-digital/rtl/rram_top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'spi_slave_rram' [/sim2/akashl/emblem-digital/rtl/spi_slave_rram.v:3]
+	Parameter ADDR_BITS_N bound to: 5 - type: integer 
+	Parameter DATA_BITS_M bound to: 160 - type: integer 
+	Parameter PCLK_DIV bound to: 1 - type: integer 
+	Parameter APB_RST_ADDR bound to: 31 - type: integer 
+	Parameter APB_RST_DATA bound to: 5390669 - type: integer 
+	Parameter APB_RST_RO bound to: 1 - type: integer 
+	Parameter CPOL_MODE bound to: 0 - type: integer 
+	Parameter CPHA_MODE bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'itrx_apbm_spi' [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi.v:29]
+	Parameter ADDR_BITS_N bound to: 5 - type: integer 
+	Parameter DATA_BITS_M bound to: 160 - type: integer 
+	Parameter PCLK_DIV bound to: 1 - type: integer 
+	Parameter APB_RST_ADDR bound to: 31 - type: integer 
+	Parameter APB_RST_DATA bound to: 5390669 - type: integer 
+	Parameter APB_RST_RO bound to: 1 - type: integer 
+	Parameter CPOL_MODE bound to: 0 - type: integer 
+	Parameter CPHA_MODE bound to: 1 - type: integer 
+	Parameter PCLK_WR_PHA bound to: 0 - type: integer 
+	Parameter PCLK_RD_PHA bound to: 0 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'itrx_apbm_spi_fsm' [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi_fsm.v:29]
+	Parameter ADDR_BITS_N bound to: 5 - type: integer 
+	Parameter DATA_BITS_M bound to: 160 - type: integer 
+	Parameter APB_RST_ADDR bound to: 31 - type: integer 
+	Parameter APB_RST_DATA bound to: 5390669 - type: integer 
+	Parameter APB_RST_RO bound to: 1 - type: integer 
+	Parameter CPHA_MODE bound to: 1 - type: integer 
+	Parameter ADDR_BIT_CTR_WIDTH bound to: 3 - type: integer 
+	Parameter DATA_BIT_CTR_WIDTH bound to: 8 - type: integer 
+	Parameter SPI_FSM_BITS bound to: 3 - type: integer 
+	Parameter SPI_FSM_IDLE bound to: 3'b000 
+	Parameter SPI_FSM_RW_SAMP bound to: 3'b001 
+	Parameter SPI_FSM_ADDR bound to: 3'b010 
+	Parameter SPI_FSM_TRANS_START bound to: 3'b011 
+	Parameter SPI_FSM_TRANS_WAIT bound to: 3'b100 
+	Parameter SPI_FSM_DATA bound to: 3'b101 
+	Parameter SPI_FSM_DONE bound to: 3'b110 
+	Parameter SPI_NUM_STATES bound to: 3'b111 
+INFO: [Synth 8-6155] done synthesizing module 'itrx_apbm_spi_fsm' (1#1) [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi_fsm.v:29]
+INFO: [Synth 8-6157] synthesizing module 'itrx_apbm_fsm' [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_fsm.v:29]
+	Parameter ADDR_BITS_N bound to: 5 - type: integer 
+	Parameter DATA_BITS_M bound to: 160 - type: integer 
+	Parameter APB_FSM_BITS bound to: 2 - type: integer 
+	Parameter APB_FSM_IDLE bound to: 2'b00 
+	Parameter APB_FSM_SETUP bound to: 2'b01 
+	Parameter APB_FSM_ACCESS bound to: 2'b10 
+	Parameter APB_NUM_STATES bound to: 2'b11 
+INFO: [Synth 8-6155] done synthesizing module 'itrx_apbm_fsm' (2#1) [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_fsm.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'itrx_apbm_spi' (3#1) [/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'spi_slave_rram' (4#1) [/sim2/akashl/emblem-digital/rtl/spi_slave_rram.v:3]
+INFO: [Synth 8-6157] synthesizing module 'fsm' [/sim2/akashl/emblem-digital/rtl/fsm.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'fsm' (5#1) [/sim2/akashl/emblem-digital/rtl/fsm.v:1]
+INFO: [Synth 8-6157] synthesizing module 'clock_gen' [/sim2/akashl/emblem-digital/rtl/clock_gen.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'clock_gen' (6#1) [/sim2/akashl/emblem-digital/rtl/clock_gen.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'rram_top' (7#1) [/sim2/akashl/emblem-digital/rtl/rram_top.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'rram_top_wrapper' (8#1) [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/new/rram_top_wrapper.v:53]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_rram_top_wrapper_0_0' (9#1) [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/synth/ember_fpga_rram_top_wrapper_0_0.v:58]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 2527.090 ; gain = 0.016 ; free physical = 670736 ; free virtual = 751573
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 2527.090 ; gain = 0.016 ; free physical = 670739 ; free virtual = 751576
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7k325tffg900-2
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:08 . Memory (MB): peak = 2535.086 ; gain = 8.012 ; free physical = 670739 ; free virtual = 751576
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'spi_st_reg' in module 'itrx_apbm_spi_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'apb_st_reg' in module 'itrx_apbm_fsm'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+            SPI_FSM_IDLE |                              000 |                              000
+         SPI_FSM_RW_SAMP |                              001 |                              001
+            SPI_FSM_ADDR |                              010 |                              010
+     SPI_FSM_TRANS_START |                              011 |                              011
+      SPI_FSM_TRANS_WAIT |                              100 |                              100
+            SPI_FSM_DATA |                              101 |                              101
+            SPI_FSM_DONE |                              110 |                              110
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'spi_st_reg' using encoding 'sequential' in module 'itrx_apbm_spi_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+            APB_FSM_IDLE |                              001 |                               00
+           APB_FSM_SETUP |                              010 |                               01
+          APB_FSM_ACCESS |                              100 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'apb_st_reg' using encoding 'one-hot' in module 'itrx_apbm_fsm'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE9 |                            00000 |                            00000
+                 iSTATE7 |                            00001 |                            00001
+                 iSTATE5 |                            00010 |                            00010
+                 iSTATE3 |                            00011 |                            00011
+                iSTATE16 |                            00100 |                            00100
+                iSTATE15 |                            00101 |                            00101
+                iSTATE12 |                            00110 |                            00110
+                iSTATE11 |                            00111 |                            00111
+                iSTATE14 |                            01000 |                            01000
+                iSTATE13 |                            01001 |                            01001
+                  iSTATE |                            01010 |                            01110
+                iSTATE17 |                            01011 |                            01111
+                 iSTATE6 |                            01100 |                            10000
+                 iSTATE4 |                            01101 |                            10001
+                 iSTATE2 |                            01110 |                            10010
+                iSTATE10 |                            01111 |                            01010
+                 iSTATE8 |                            10000 |                            01011
+                 iSTATE0 |                            10001 |                            01101
+                 iSTATE1 |                            10010 |                            01100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'fsm'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2535.098 ; gain = 8.023 ; free physical = 670436 ; free virtual = 751297
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 1     
+	   2 Input   16 Bit       Adders := 1     
+	   2 Input   14 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 4     
+	   2 Input    5 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 1     
++---XORs : 
+	   2 Input     48 Bit         XORs := 1     
++---Registers : 
+	              160 Bit    Registers := 18    
+	              148 Bit    Registers := 1     
+	               48 Bit    Registers := 9     
+	               16 Bit    Registers := 1     
+	               14 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                5 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 10    
++---Muxes : 
+	   2 Input  160 Bit        Muxes := 2     
+	   7 Input  160 Bit        Muxes := 1     
+	   2 Input  159 Bit        Muxes := 5     
+	   4 Input   48 Bit        Muxes := 2     
+	   2 Input   48 Bit        Muxes := 13    
+	  19 Input   48 Bit        Muxes := 7     
+	   2 Input   23 Bit        Muxes := 1     
+	  19 Input   16 Bit        Muxes := 1     
+	   2 Input   14 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 34    
+	  19 Input    8 Bit        Muxes := 4     
+	   2 Input    6 Bit        Muxes := 2     
+	  19 Input    6 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 43    
+	   3 Input    5 Bit        Muxes := 1     
+	  19 Input    5 Bit        Muxes := 4     
+	  65 Input    5 Bit        Muxes := 1     
+	   8 Input    4 Bit        Muxes := 1     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 10    
+	  19 Input    4 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 15    
+	   3 Input    3 Bit        Muxes := 3     
+	   7 Input    3 Bit        Muxes := 3     
+	   2 Input    2 Bit        Muxes := 3     
+	   3 Input    2 Bit        Muxes := 1     
+	   7 Input    1 Bit        Muxes := 6     
+	   8 Input    1 Bit        Muxes := 3     
+	   4 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 301   
+	   6 Input    1 Bit        Muxes := 2     
+	  19 Input    1 Bit        Muxes := 25    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 840 (col length:140)
+BRAMs: 890 (col length: RAMB18 140 RAMB36 70)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:39 . Memory (MB): peak = 2622.461 ; gain = 95.387 ; free physical = 670368 ; free virtual = 751237
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:39 ; elapsed = 00:00:40 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670377 ; free virtual = 751246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:43 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670374 ; free virtual = 751244
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670384 ; free virtual = 751253
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:44 ; elapsed = 00:00:46 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670384 ; free virtual = 751253
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670382 ; free virtual = 751252
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:46 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670383 ; free virtual = 751252
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670382 ; free virtual = 751252
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670376 ; free virtual = 751245
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    57|
+|2     |LUT1   |     5|
+|3     |LUT2   |   276|
+|4     |LUT3   |   128|
+|5     |LUT4   |   258|
+|6     |LUT5   |   495|
+|7     |LUT6   |  2727|
+|8     |MUXF7  |   615|
+|9     |MUXF8  |   222|
+|10    |FDCE   |  3670|
+|11    |FDPE   |     9|
+|12    |LD     |     1|
++------+-------+------+
+
+Report Instance Areas: 
++------+------------------------+------------------+------+
+|      |Instance                |Module            |Cells |
++------+------------------------+------------------+------+
+|1     |top                     |                  |  8463|
+|2     |  inst                  |rram_top_wrapper  |  8463|
+|3     |    inst                |rram_top          |  8463|
+|4     |      u_clock_gen       |clock_gen         |     4|
+|5     |      u_fsm             |fsm               |  1739|
+|6     |      u_spi_slave_rram  |spi_slave_rram    |  6717|
+|7     |        u_itrx_apbm_spi |itrx_apbm_spi     |  2321|
+|8     |          u_apb_fsm     |itrx_apbm_fsm     |    17|
+|9     |          u_spi_fsm     |itrx_apbm_spi_fsm |  2304|
++------+------------------------+------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670378 ; free virtual = 751247
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 2622.465 ; gain = 95.391 ; free physical = 670381 ; free virtual = 751250
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 2622.469 ; gain = 95.391 ; free physical = 670381 ; free virtual = 751250
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.08 . Memory (MB): peak = 2622.492 ; gain = 0.000 ; free physical = 670476 ; free virtual = 751345
+INFO: [Netlist 29-17] Analyzing 895 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 1 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2678.492 ; gain = 0.000 ; free physical = 670395 ; free virtual = 751274
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 1 instances were transformed.
+  LD => LDCE (inverted pins: G): 1 instance 
+
+INFO: [Common 17-83] Releasing license: Synthesis
+37 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:53 ; elapsed = 00:00:50 . Memory (MB): peak = 2678.492 ; gain = 159.621 ; free physical = 670540 ; free virtual = 751419
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Common 17-1381] The checkpoint '/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_rram_top_wrapper_0_0_synth_1/ember_fpga_rram_top_wrapper_0_0.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 3113.695 ; gain = 435.203 ; free physical = 670099 ; free virtual = 751002
+INFO: [Coretcl 2-1174] Renamed 8 cell refs.
+INFO: [Common 17-1381] The checkpoint '/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_rram_top_wrapper_0_0_synth_1/ember_fpga_rram_top_wrapper_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file ember_fpga_rram_top_wrapper_0_0_utilization_synth.rpt -pb ember_fpga_rram_top_wrapper_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 25 04:40:11 2023...

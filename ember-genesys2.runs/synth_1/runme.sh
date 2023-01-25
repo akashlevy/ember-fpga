@@ -3,13 +3,13 @@
 # 
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
-# Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+# Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 # 
 
 if [ -z "$PATH" ]; then
-  PATH=/cad/xilinx/Vitis/2022.1/bin:/cad/xilinx/Vivado/2022.1/ids_lite/ISE/bin/lin64:/cad/xilinx/Vivado/2022.1/bin
+  PATH=/cad/xilinx/vivado/2020.2/Vivado/2020.2/ids_lite/ISE/bin/lin64:/cad/xilinx/vivado/2020.2/Vivado/2020.2/bin
 else
-  PATH=/cad/xilinx/Vitis/2022.1/bin:/cad/xilinx/Vivado/2022.1/ids_lite/ISE/bin/lin64:/cad/xilinx/Vivado/2022.1/bin:$PATH
+  PATH=/cad/xilinx/vivado/2020.2/Vivado/2020.2/ids_lite/ISE/bin/lin64:/cad/xilinx/vivado/2020.2/Vivado/2020.2/bin:$PATH
 fi
 export PATH
 
@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log rram_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source rram_top.tcl
+EAStep vivado -log ember_fpga_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_wrapper.tcl

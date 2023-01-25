@@ -1,7 +1,7 @@
 //
 // Vivado(TM)
 // rundef.js: a Vivado-generated Runs Script for WSH 5.1/5.6
-// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //
 
 echo "This script was generated under a different operating system."
@@ -12,9 +12,9 @@ var WshShell = new ActiveXObject( "WScript.Shell" );
 var ProcEnv = WshShell.Environment( "Process" );
 var PathVal = ProcEnv("PATH");
 if ( PathVal.length == 0 ) {
-  PathVal = "/cad/xilinx/Vitis/2022.1/bin:/cad/xilinx/Vivado/2022.1/ids_lite/ISE/bin/lin64;/cad/xilinx/Vivado/2022.1/bin;";
+  PathVal = "/cad/xilinx/vivado/2020.2/Vivado/2020.2/ids_lite/ISE/bin/lin64;/cad/xilinx/vivado/2020.2/Vivado/2020.2/bin;";
 } else {
-  PathVal = "/cad/xilinx/Vitis/2022.1/bin:/cad/xilinx/Vivado/2022.1/ids_lite/ISE/bin/lin64;/cad/xilinx/Vivado/2022.1/bin;" + PathVal;
+  PathVal = "/cad/xilinx/vivado/2020.2/Vivado/2020.2/ids_lite/ISE/bin/lin64;/cad/xilinx/vivado/2020.2/Vivado/2020.2/bin;" + PathVal;
 }
 
 ProcEnv("PATH") = PathVal;
@@ -27,7 +27,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log rram_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source rram_top.tcl" );
+         "-log ember_fpga_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_wrapper.tcl" );
 
 
 

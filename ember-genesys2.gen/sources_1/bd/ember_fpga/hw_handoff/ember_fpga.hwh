@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jan 25 07:09:35 2023" VIVADOVERSION="2020.2">
+
+  <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="O" NAME="rram_busy_fpga_led" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_busy"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sc_in" SIGIS="undef" SIGNAME="External_Ports_sc_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sc_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="sc_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sc"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="mosi_in" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mosi_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="mosi_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="mosi"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="cpu_resetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_cpu_resetn">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="cpu_resetn_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_rdy"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="50000000" DIR="I" NAME="sclk_in" SIGIS="clk" SIGNAME="External_Ports_sclk_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sclk_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="sclk_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sclk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="cpu_resetn_led" POLARITY="ACTIVE_LOW" SIGIS="undef" SIGNAME="External_Ports_cpu_resetn">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="cpu_resetn"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="mclk_pause_in" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="mclk_pause"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sclk_led" SIGIS="undef" SIGNAME="External_Ports_sclk_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sclk_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sc_led" SIGIS="undef" SIGNAME="External_Ports_sc_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sc_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="mosi_led" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mosi_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="miso_led" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="mclk_pause_led" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_do"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="mosi_out" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mosi_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sc_out" SIGIS="undef" SIGNAME="External_Ports_sc_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sc_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="sclk_out" SIGIS="undef" SIGNAME="External_Ports_sclk_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="sclk_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="mclk_pause_out" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="rst_n_out" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_cpu_resetn">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="cpu_resetn"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="rram_busy_in" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_ember_led"/>
+        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="rram_busy_ember_led" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="rram_busy_out" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/rram_top_wrapper_0" HWVERSION="1.0" INSTANCE="rram_top_wrapper_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="rram_top_wrapper" VLNV="xilinx.com:module_ref:rram_top_wrapper:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_rram_top_wrapper_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="mclk_pause" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_cpu_resetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="cpu_resetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="rram_busy" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_fpga_led"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="50000000" DIR="I" NAME="sclk" SIGIS="clk" SIGNAME="External_Ports_sclk_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sclk_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sc" SIGIS="undef" SIGNAME="External_Ports_sc_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sc_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="mosi" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="mosi_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="miso"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="miso_led"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="aclk" SIGIS="clk"/>
+        <PORT DIR="O" NAME="bl_en" SIGIS="undef"/>
+        <PORT DIR="O" NAME="bleed_en" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="4" NAME="bsl_dac_config" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="bsl_dac_en" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="5" NAME="clamp_ref" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="47" NAME="di" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="3" NAME="read_dac_config" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="read_dac_en" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="5" NAME="read_ref" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef"/>
+        <PORT CLKFREQUENCY="50000000" DIR="O" NAME="sa_clk" SIGIS="clk"/>
+        <PORT DIR="O" NAME="sa_en" SIGIS="undef"/>
+        <PORT DIR="O" NAME="set_rst" POLARITY="ACTIVE_LOW" SIGIS="rst"/>
+        <PORT DIR="O" NAME="sl_en" SIGIS="undef"/>
+        <PORT DIR="O" NAME="we" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="7" NAME="wl_dac_config" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="wl_dac_en" SIGIS="undef"/>
+        <PORT DIR="O" NAME="wl_en" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_do"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

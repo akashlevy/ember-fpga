@@ -1,0 +1,119 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+| Date         : Wed Jan 25 13:47:52 2023
+| Host         : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
+| Command      : report_control_sets -verbose -file ember_fpga_wrapper_control_sets_placed.rpt
+| Design       : ember_fpga_wrapper
+| Device       : xc7k325t
+-----------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    41 |
+|    Minimum number of control sets                        |    41 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    47 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    41 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |     4 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     2 |
+| >= 16              |    30 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               1 |            1 |
+| No           | No                    | Yes                    |             237 |          125 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |            3443 |         1462 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|                            Clock Signal                            |                                                Enable Signal                                               |                                           Set/Reset Signal                                          | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+| ~sclk_in_IBUF_BUFG                                                 |                                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |                1 |              1 |         1.00 |
+| ~sclk_in_IBUF_BUFG                                                 |                                                                                                            |                                                                                                     |                1 |              1 |         1.00 |
+|  sclk_in_IBUF_BUFG                                                 |                                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |                1 |              1 |         1.00 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_1[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |                1 |              4 |         4.00 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/E[0]                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                3 |              5 |         1.67 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/wl_loop[7]_i_1_n_0                                         | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                8 |              8 |         1.00 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/data_bit_ctr_d        | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |                3 |              8 |         2.67 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/attempts_counter[7]_i_1_n_0                                | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                2 |              8 |         4.00 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/set_rst_loop_reg_2[0]                           | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                5 |              8 |         1.60 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/counter[13]_i_1_n_0                                        | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                2 |             14 |         7.00 |
+|  sclk_in_IBUF_BUFG                                                 |                                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |                6 |             14 |         2.33 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/failure_counter[0]_i_1_n_0                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                4 |             16 |         4.00 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rram_addr[15]_i_1_n_0                                      | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                5 |             16 |         3.20 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/success_counter[0]_i_1_n_0                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |                4 |             16 |         4.00 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_d               | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |                4 |             23 |         5.75 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask[47]_i_1_n_0                                           | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |               39 |             48 |         1.23 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_2[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               27 |             48 |         1.78 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_3[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               15 |             48 |         3.20 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_6[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               15 |             48 |         3.20 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_5[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               22 |             48 |         2.18 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_3[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               29 |             48 |         1.66 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/penable_reg_0[0]      | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               53 |            148 |         2.79 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[1]_rep_2[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               53 |            160 |         3.02 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[1]_rep_3[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               58 |            160 |         2.76 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_1[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               62 |            160 |         2.58 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_9[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               55 |            160 |         2.91 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_8[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               69 |            160 |         2.32 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[1]_rep_5[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |              103 |            160 |         1.55 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_0[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               64 |            160 |         2.50 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_10[0]    | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               84 |            160 |         1.90 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_5[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               88 |            160 |         1.82 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_6[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               74 |            160 |         2.16 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[1]_rep_1[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               69 |            160 |         2.32 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/pwdata_d              | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |               40 |            160 |         4.00 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/E[0]                  | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               74 |            160 |         2.16 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[1]_rep_4[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               69 |            160 |         2.32 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_7[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               62 |            160 |         2.58 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[4]_rep_4[0] | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               60 |            160 |         2.67 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/paddr_reg[2]_4[0]     | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_apb_fsm/preset_n_reg_0 |               75 |            160 |         2.13 |
+|  sclk_in_IBUF_BUFG                                                 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_d_0         | ember_fpga_i/rram_top_wrapper_0/inst/inst/prdata_sr[159]_i_3_n_0                                    |               62 |            161 |         2.60 |
+|  ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/sclk_0_BUFG |                                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/rram_addr[15]_i_3_n_0                                     |              117 |            221 |         1.89 |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

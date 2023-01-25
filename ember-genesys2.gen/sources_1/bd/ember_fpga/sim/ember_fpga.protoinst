@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"ember_fpga": {
+			"proto_instances": {
+			}
+		}
+	}
+}
