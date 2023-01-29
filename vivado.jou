@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Jan 25 13:42:19 2023
-# Process ID: 22154
+# Start of session at: Sun Jan 29 09:52:11 2023
+# Process ID: 23775
 # Current directory: /sim2/akashl/ember-fpga
 # Command line: vivado ember-genesys2.xpr
 # Log file: /sim2/akashl/ember-fpga/vivado.log
@@ -13,7 +13,160 @@ start_gui
 open_project ember-genesys2.xpr
 update_compile_order -fileset sources_1
 open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+delete_bd_objs [get_bd_intf_nets sys_diff_clock_1] [get_bd_intf_ports sys_diff_clock]
+apply_bd_automation -rule xilinx.com:bd_rule:board -config { Board_Interface {Custom} Manual_Source {Auto}}  [get_bd_intf_pins clk_wiz/CLK_IN1_D]
+startgroup
+create_bd_port -dir I -type clk -freq_hz 200000000 sysclk_n
+connect_bd_net [get_bd_pins /clk_wiz/clk_in1_n] [get_bd_ports sysclk_n]
+endgroup
+startgroup
+create_bd_port -dir I -type clk -freq_hz 200000000 sysclk_p
+connect_bd_net [get_bd_pins /clk_wiz/clk_in1_p] [get_bd_ports sysclk_p]
+endgroup
+regenerate_bd_layout
+save_bd_design
 reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+reset_run synth_1
+startgroup
+set_property -dict [list CONFIG.CLK_IN1_BOARD_INTERFACE {Custom} CONFIG.PRIM_SOURCE {Single_ended_clock_capable_pin}] [get_bd_cells clk_wiz]
+delete_bd_objs [get_bd_nets sysclk_p_1] [get_bd_nets sysclk_n_1]
+endgroup
+startgroup
+set_property -dict [list CONFIG.FEEDBACK_SOURCE {FDBK_AUTO_OFFCHIP} CONFIG.CLKFB_IN_SIGNALING {DIFF} CONFIG.MMCM_COMPENSATION {EXTERNAL}] [get_bd_cells clk_wiz]
+endgroup
+connect_bd_net [get_bd_ports sc_in] [get_bd_pins clk_wiz/clkfb_in_n]
+undo
+startgroup
+set_property -dict [list CONFIG.CLK_IN1_BOARD_INTERFACE {sys_diff_clock} CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} CONFIG.CLKFB_IN_SIGNALING {SINGLE} CONFIG.MMCM_COMPENSATION {ZHOLD}] [get_bd_cells clk_wiz]
+endgroup
+delete_bd_objs [get_bd_ports sysclk_n]
+delete_bd_objs [get_bd_ports sysclk_p]
+startgroup
+create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 CLK_IN1_D
+set_property CONFIG.FREQ_HZ [get_property CONFIG.FREQ_HZ [get_bd_intf_pins clk_wiz/CLK_IN1_D]] [get_bd_intf_ports CLK_IN1_D]
+connect_bd_intf_net [get_bd_intf_pins clk_wiz/CLK_IN1_D] [get_bd_intf_ports CLK_IN1_D]
+endgroup
+set_property name sysclk [get_bd_intf_nets CLK_IN1_D_1]
+set_property name sysclk [get_bd_intf_ports CLK_IN1_D]
+regenerate_bd_layout
+save_bd_design
+validate_bd_design
+save_bd_design
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+regenerate_bd_layout
+startgroup
+set_property -dict [list CONFIG.CLK_IN1_BOARD_INTERFACE {Custom} CONFIG.USE_INCLK_SWITCHOVER {false} CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} CONFIG.SECONDARY_IN_FREQ {120.001} CONFIG.CLKIN2_JITTER_PS {83.33} CONFIG.MMCM_CLKIN2_PERIOD {8.333}] [get_bd_cells clk_wiz]
+endgroup
+regenerate_bd_layout
+save_bd_design
+regenerate_bd_layout
+reset_run ember_fpga_clk_wiz_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+delete_bd_objs [get_bd_intf_nets sysclk]
+delete_bd_objs [get_bd_intf_ports sysclk]
+create_bd_port -dir I -type clk -freq_hz 200000000 sysclk_p
+create_bd_port -dir I -type clk -freq_hz 200000000 sysclk_n
+connect_bd_net [get_bd_ports sysclk_p] [get_bd_pins clk_wiz/clk_in1_p]
+connect_bd_net [get_bd_ports sysclk_n] [get_bd_pins clk_wiz/clk_in1_n]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+validate_bd_design -force
+close_design
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+set_msg_config -suppress -id {Project 1-478} 
+open_run impl_1
+current_design synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_2
+report_methodology -name ultrafast_methodology_2
+close_design
+report_methodology -name ultrafast_methodology_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+delete_bd_objs [get_bd_ports clk_locked]
+save_bd_design
+regenerate_bd_layout
+regenerate_bd_layout
+delete_bd_objs [get_bd_nets ila_0_trig_in_ack] [get_bd_ports trig_in_ack_led]
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+close_design
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+startgroup
+create_bd_port -dir O trig_in_ack
+connect_bd_net [get_bd_pins /ila_0/trig_in_ack] [get_bd_ports trig_in_ack]
+endgroup
+set_property location {-34 199} [get_bd_ports trig_in_ack]
+regenerate_bd_layout
+set_property location {955 589} [get_bd_ports trig_in_ack]
+regenerate_bd_layout
+regenerate_bd_layout
+set_property location {902 193} [get_bd_ports trig_in_ack]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+set_property location {-57 495} [get_bd_ports trig_in_ack]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]} } 
+report_methodology -name ultrafast_methodology_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+close_design
+close_design
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+close_design
 open_run impl_1
+report_methodology -name ultrafast_methodology_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1

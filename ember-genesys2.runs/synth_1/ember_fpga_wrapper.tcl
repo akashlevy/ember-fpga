@@ -70,13 +70,58 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 24
 set_msg_config  -id {Common 17-576}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1029 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'jtag_axi_v1_2_12_jtag_axi' has 41 connections declared, but only 39 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/synth/ember_fpga_jtag_axi_0_1.v:137]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sl_iport0' of module 'jtag_axi_v1_2_12_jtag_axi' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/synth/ember_fpga_jtag_axi_0_1.v:137]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sl_oport0' of module 'jtag_axi_v1_2_12_jtag_axi' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/synth/ember_fpga_jtag_axi_0_1.v:137]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_0' of module 'ember_fpga_proc_sys_reset_0_0' has 10 connections declared, but only 8 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
 set_msg_config  -id {IP_Flow 19-3571}  -string {{WARNING: [IP_Flow 19-3571] IP 'ember_fpga_rram_top_wrapper_0_0' is restricted:
 * Module reference is stale and needs refreshing.}}  -suppress 
+set_msg_config  -id {IP_Flow 19-3571}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 8 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
 set_msg_config  -id {Synth 8-327}  -string {{WARNING: [Synth 8-327] inferring latch for variable 'clk_en_latch_reg' [/sim2/akashl/emblem-digital/rtl/clock_gen.v:10]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
+set_msg_config  -id {Timing 38-436}  -suppress 
+set_msg_config  -id {Vivado_Tcl 4-921}  -string {{WARNING: [Vivado_Tcl 4-921] Waiver ID 'CDC-10' -to list should not be empty. [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila_impl.xdc:22]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:156]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:156]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:176]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:176]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:176]}}  -suppress 
 set_msg_config  -id {IP_Flow 19-3571}  -string {{WARNING: [IP_Flow 19-3571] IP 'ember_fpga_clock_gen_0_2' is restricted:
 * Module reference is stale and needs refreshing.}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:156]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:176]}}  -suppress 
+set_msg_config  -id {Project 1-478}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:159]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:179]}}  -suppress 
 set_msg_config  -id {Board 49-67}  -string {{CRITICAL WARNING: [Board 49-67] The board_part definition was not found for digilentinc.com:genesys2:part0:1.1. This can happen sometimes when you use custom board part. You can resolve this issue by setting 'board.repoPaths' parameter, pointing to the location of custom board files. Valid board_part values can be retrieved with the 'get_board_parts' Tcl command.}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7k325tffg900-2
 
@@ -86,6 +131,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /sim2/akashl/ember-fpga/ember-genesys2.cache/wt [current_project]
 set_property parent.project_path /sim2/akashl/ember-fpga/ember-genesys2.xpr [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {/home/akashl/.Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
@@ -94,11 +140,22 @@ set_property ip_output_repo /sim2/akashl/ember-fpga/ember-genesys2.cache/ip [cur
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog /sim2/akashl/emblem-digital/rtl/globals.v
-set_property file_type "Verilog Header" [get_files /sim2/akashl/emblem-digital/rtl/globals.v]
-set_property is_global_include true [get_files /sim2/akashl/emblem-digital/rtl/globals.v]
 read_verilog -library xil_defaultlib /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/hdl/ember_fpga_wrapper.v
 add_files /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_board.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/constraints/jtag_axi.xdc]
+set_property used_in_synthesis false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/constraints/ember_fpga_jtag_axi_0_1_impl.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/constraints/ember_fpga_jtag_axi_0_1_impl.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/ember_fpga_jtag_axi_0_1_ooc.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0_board.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0_ooc.xdc]
+set_property used_in_synthesis false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila_impl.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila_impl.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ember_fpga_ooc.xdc]
 
 OPTRACE "Adding files" END { }

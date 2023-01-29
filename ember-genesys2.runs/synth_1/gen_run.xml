@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1674683144">
+<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1675018928">
   <File Type="VDS-TIMING-PB" Name="ember_fpga_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="ember_fpga_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="ember_fpga_wrapper.dcp"/>
@@ -11,72 +11,10 @@
   <File Type="PA-TCL" Name="ember_fpga_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PPRDIR/../emblem-digital/rtl/clock_gen.v">
+    <File Path="$PSRCDIR/sources_1/new/clkmux.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_fsm.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/ip/itrx_common/rtl/itrx_clog2.vh">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi_fsm.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/rtl/fsm.v">
-      <FileInfo SFType="SVerilog">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/rtl/rram_top.v">
-      <FileInfo SFType="SVerilog">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/rtl/spi_slave_rram.v">
-      <FileInfo SFType="SVerilog">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/rram_top_wrapper.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../emblem-digital/rtl/globals.v">
-      <FileInfo SFType="VHeader">
-        <Attr Name="IsGlobalInclude" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
@@ -126,5 +64,8 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
     <Step Id="synth_design"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_rram_top_wrapper_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clkmux_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_ila_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clk_wiz_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_jtag_axi_0_1"/>
 </GenRun>
