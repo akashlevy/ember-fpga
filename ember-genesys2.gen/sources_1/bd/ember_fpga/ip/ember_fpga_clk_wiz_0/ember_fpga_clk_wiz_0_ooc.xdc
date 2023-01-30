@@ -56,5 +56,4 @@
 ############################################################
 # Differential clock only needs one constraint
 #create_clock -period 5.000 [get_ports clk_in1_p]
-create_clock -period 10 [get_ports s_axi_aclk]
 

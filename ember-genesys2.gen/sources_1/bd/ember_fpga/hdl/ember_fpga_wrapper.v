@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Jan 29 10:59:28 2023
+//Date        : Mon Jan 30 02:51:08 2023
 //Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga_wrapper.bd
 //Design      : ember_fpga_wrapper
@@ -13,6 +13,7 @@ module ember_fpga_wrapper
    (mclk_pause_in,
     mclk_pause_led,
     mclk_pause_out,
+    miso,
     mosi_in,
     mosi_led,
     mosi_out,
@@ -39,6 +40,7 @@ module ember_fpga_wrapper
   input mclk_pause_in;
   output mclk_pause_led;
   output mclk_pause_out;
+  output miso;
   input mosi_in;
   output mosi_led;
   output mosi_out;
@@ -66,6 +68,7 @@ module ember_fpga_wrapper
   wire mclk_pause_in;
   wire mclk_pause_led;
   wire mclk_pause_out;
+  wire miso;
   wire mosi_in;
   wire mosi_led;
   wire mosi_out;
@@ -94,6 +97,7 @@ module ember_fpga_wrapper
        (.mclk_pause_in(mclk_pause_in),
         .mclk_pause_led(mclk_pause_led),
         .mclk_pause_out(mclk_pause_out),
+        .miso(miso),
         .mosi_in(mosi_in),
         .mosi_led(mosi_led),
         .mosi_out(mosi_out),

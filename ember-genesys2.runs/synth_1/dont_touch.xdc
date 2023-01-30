@@ -9,9 +9,6 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga 
 # IP: bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_clk_wiz_0 || ORIG_REF_NAME==ember_fpga_clk_wiz_0} -quiet] -quiet
 
-# IP: bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/ember_fpga_jtag_axi_0_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_jtag_axi_0_1 || ORIG_REF_NAME==ember_fpga_jtag_axi_0_1} -quiet] -quiet
-
 # IP: bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_proc_sys_reset_1_0 || ORIG_REF_NAME==ember_fpga_proc_sys_reset_1_0} -quiet] -quiet
 

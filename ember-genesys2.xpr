@@ -93,12 +93,6 @@
         <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0.xci">
           <Proxy FileSetName="ember_fpga_clk_wiz_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_jtag_axi_0_1/ember_fpga_jtag_axi_0_1.xci">
-          <Proxy FileSetName="ember_fpga_jtag_axi_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0.xci">
-          <Proxy FileSetName="ember_fpga_ila_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0.xci">
           <Proxy FileSetName="ember_fpga_clkmux_0_0"/>
         </CompFileExtendedInfo>
@@ -152,21 +146,9 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
-    <FileSet Name="ember_fpga_jtag_axi_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ember_fpga_jtag_axi_0_1" RelGenDir="$PGENDIR/ember_fpga_jtag_axi_0_1">
-      <Config>
-        <Option Name="TopModule" Val="ember_fpga_jtag_axi_0_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
     <FileSet Name="ember_fpga_clk_wiz_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ember_fpga_clk_wiz_0" RelGenDir="$PGENDIR/ember_fpga_clk_wiz_0">
       <Config>
         <Option Name="TopModule" Val="ember_fpga_clk_wiz_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="ember_fpga_ila_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ember_fpga_ila_0_0" RelGenDir="$PGENDIR/ember_fpga_ila_0_0">
-      <Config>
-        <Option Name="TopModule" Val="ember_fpga_ila_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -212,27 +194,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="ember_fpga_jtag_axi_0_1_synth_1" Type="Ft3:Synth" SrcSet="ember_fpga_jtag_axi_0_1" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_jtag_axi_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ember_fpga_jtag_axi_0_1_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_jtag_axi_0_1_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="ember_fpga_clk_wiz_0_synth_1" Type="Ft3:Synth" SrcSet="ember_fpga_clk_wiz_0" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_clk_wiz_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ember_fpga_clk_wiz_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_clk_wiz_0_synth_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="ember_fpga_ila_0_0_synth_1" Type="Ft3:Synth" SrcSet="ember_fpga_ila_0_0" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_ila_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ember_fpga_ila_0_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_ila_0_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020"/>
         <Step Id="synth_design"/>
@@ -270,41 +232,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="ember_fpga_jtag_axi_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_jtag_axi_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ember_fpga_jtag_axi_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_jtag_axi_0_1_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
     <Run Id="ember_fpga_clk_wiz_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_clk_wiz_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ember_fpga_clk_wiz_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_clk_wiz_0_impl_1">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="ember_fpga_ila_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_ila_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ember_fpga_ila_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_ila_0_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
         <Step Id="init_design"/>
@@ -1011,6 +939,156 @@
     <MsgAttr Name="Author" Val=""/>
     <MsgAttr Name="CreatedTimestamp" Val=""/>
     <MsgAttr Name="StringsToMatch" Val="CRITICAL WARNING: [Board 49-67] The board_part definition was not found for digilentinc.com:genesys2:part0:1.1. This can happen sometimes when you use custom board part. You can resolve this issue by setting &apos;board.repoPaths&apos; parameter, pointing to the location of custom board files. Valid board_part values can be retrieved with the &apos;get_board_parts&apos; Tcl command."/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="50"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;mb_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:126]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="51"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;bus_struct_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:126]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="52"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;peripheral_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:126]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="53"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;interconnect_aresetn&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:126]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7023"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="54"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7023] instance &apos;proc_sys_reset_1&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; has 10 connections declared, but only 6 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:126]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="55"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;mb_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:129]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="56"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;bus_struct_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:129]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="57"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;peripheral_reset&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:129]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7071"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="58"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7071] port &apos;interconnect_aresetn&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; is unconnected for instance &apos;proc_sys_reset_1&apos; [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:129]"/>
+  </MsgRule>
+  <MsgRule>
+    <MsgAttr Name="RuleType" Val="0"/>
+    <MsgAttr Name="Limit" Val="-1"/>
+    <MsgAttr Name="NewSeverity" Val="ANY"/>
+    <MsgAttr Name="Id" Val="Synth 8-7023"/>
+    <MsgAttr Name="Severity" Val="ANY"/>
+    <MsgAttr Name="ShowRule" Val="1"/>
+    <MsgAttr Name="RuleSource" Val="8"/>
+    <MsgAttr Name="StringIsRegExp" Val="0"/>
+    <MsgAttr Name="RuleId" Val="59"/>
+    <MsgAttr Name="Note" Val=""/>
+    <MsgAttr Name="Author" Val=""/>
+    <MsgAttr Name="CreatedTimestamp" Val=""/>
+    <MsgAttr Name="StringsToMatch" Val="WARNING: [Synth 8-7023] instance &apos;proc_sys_reset_1&apos; of module &apos;ember_fpga_proc_sys_reset_1_0&apos; has 10 connections declared, but only 6 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:129]"/>
   </MsgRule>
   <MsgRule>
     <MsgAttr Name="RuleType" Val="0"/>

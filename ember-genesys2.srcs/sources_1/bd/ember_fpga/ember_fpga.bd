@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x1E8F34F14FBED083",
+      "boundary_crc": "0x8C89B5F56296BC8B",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -12,7 +12,6 @@
     },
     "design_tree": {
       "clk_wiz": "",
-      "jtag_axi_0": "",
       "proc_sys_reset_1": "",
       "ila_0": "",
       "clkmux_0": ""
@@ -42,7 +41,7 @@
         "direction": "O",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "ember_fpga_sclk_in",
+            "value": "ember_fpga_clk_wiz_0_clk_out1",
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
@@ -50,8 +49,8 @@
             "value_src": "user_prop"
           },
           "PHASE": {
-            "value": "0.000",
-            "value_src": "default_prop"
+            "value": "0.0",
+            "value_src": "ip_prop"
           }
         }
       },
@@ -87,8 +86,8 @@
             "value_src": "user_prop"
           },
           "PHASE": {
-            "value": "0.000",
-            "value_src": "default_prop"
+            "value": "0.0",
+            "value_src": "ip_prop"
           }
         }
       },
@@ -247,6 +246,23 @@
             "value_src": "ip_prop"
           }
         }
+      },
+      "miso": {
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "ember_fpga_sclk_in",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "5000000",
+            "value_src": "user_prop"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default_prop"
+          }
+        }
       }
     },
     "components": {
@@ -257,46 +273,70 @@
         "inst_hier_path": "clk_wiz",
         "parameters": {
           "AXI_DRP": {
-            "value": "true"
+            "value": "false"
           },
           "CLKFB_IN_SIGNALING": {
             "value": "SINGLE"
           },
           "CLKIN1_JITTER_PS": {
-            "value": "50.0"
+            "value": "50"
+          },
+          "CLKIN1_UI_JITTER": {
+            "value": "50"
           },
           "CLKIN2_JITTER_PS": {
-            "value": "83.33"
+            "value": "100.000"
+          },
+          "CLKIN2_UI_JITTER": {
+            "value": "100.000"
           },
           "CLKOUT1_DRIVES": {
             "value": "BUFG"
           },
           "CLKOUT1_JITTER": {
-            "value": "112.316"
+            "value": "136.686"
           },
           "CLKOUT1_PHASE_ERROR": {
-            "value": "89.971"
+            "value": "105.461"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "100.000"
+            "value": "100"
           },
           "CLKOUT2_DRIVES": {
             "value": "BUFG"
           },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
+          },
           "CLKOUT3_DRIVES": {
             "value": "BUFG"
+          },
+          "CLKOUT3_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
           },
           "CLKOUT4_DRIVES": {
             "value": "BUFG"
           },
+          "CLKOUT4_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
+          },
           "CLKOUT5_DRIVES": {
             "value": "BUFG"
+          },
+          "CLKOUT5_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
           },
           "CLKOUT6_DRIVES": {
             "value": "BUFG"
           },
+          "CLKOUT6_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
+          },
           "CLKOUT7_DRIVES": {
             "value": "BUFG"
+          },
+          "CLKOUT7_REQUESTED_OUT_FREQ": {
+            "value": "100.000"
           },
           "CLK_IN1_BOARD_INTERFACE": {
             "value": "Custom"
@@ -310,11 +350,14 @@
           "INTERFACE_SELECTION": {
             "value": "Enable_AXI"
           },
+          "JITTER_OPTIONS": {
+            "value": "PS"
+          },
           "MMCM_BANDWIDTH": {
             "value": "OPTIMIZED"
           },
           "MMCM_CLKFBOUT_MULT_F": {
-            "value": "5.000"
+            "value": "9"
           },
           "MMCM_CLKIN1_PERIOD": {
             "value": "5.000"
@@ -323,19 +366,22 @@
             "value": "10.0"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "10.000"
+            "value": "9"
           },
           "MMCM_COMPENSATION": {
             "value": "ZHOLD"
           },
           "MMCM_DIVCLK_DIVIDE": {
-            "value": "1"
+            "value": "2"
+          },
+          "MMCM_REF_JITTER2": {
+            "value": "0.010"
           },
           "PHASE_DUTY_CONFIG": {
             "value": "false"
           },
           "PRIMITIVE": {
-            "value": "MMCM"
+            "value": "PLL"
           },
           "PRIM_SOURCE": {
             "value": "Differential_clock_capable_pin"
@@ -344,10 +390,10 @@
             "value": "Custom"
           },
           "RESET_PORT": {
-            "value": "reset"
+            "value": "resetn"
           },
           "RESET_TYPE": {
-            "value": "ACTIVE_HIGH"
+            "value": "ACTIVE_LOW"
           },
           "SECONDARY_IN_FREQ": {
             "value": "100.000"
@@ -359,6 +405,9 @@
             "value": "true"
           },
           "USE_DYN_RECONFIG": {
+            "value": "false"
+          },
+          "USE_FREQ_SYNTH": {
             "value": "true"
           },
           "USE_INCLK_SWITCHOVER": {
@@ -366,6 +415,9 @@
           },
           "USE_LOCKED": {
             "value": "true"
+          },
+          "USE_PHASE_ALIGNMENT": {
+            "value": "false"
           },
           "USE_RESET": {
             "value": "true"
@@ -382,42 +434,6 @@
                   "usage": "register"
                 }
               }
-            }
-          }
-        },
-        "interface_ports": {
-          "s_axi_lite": {
-            "mode": "Slave",
-            "memory_map_ref": "s_axi_lite"
-          }
-        }
-      },
-      "jtag_axi_0": {
-        "vlnv": "xilinx.com:ip:jtag_axi:1.2",
-        "xci_name": "ember_fpga_jtag_axi_0_1",
-        "xci_path": "ip/ember_fpga_jtag_axi_0_1/ember_fpga_jtag_axi_0_1.xci",
-        "inst_hier_path": "jtag_axi_0",
-        "parameters": {
-          "PROTOCOL": {
-            "value": "2"
-          }
-        },
-        "addressing": {
-          "address_spaces": {
-            "Data": {
-              "range": "4G",
-              "width": "32"
-            }
-          }
-        },
-        "interface_ports": {
-          "M_AXI": {
-            "mode": "Master",
-            "address_space_ref": "Data",
-            "base_address": {
-              "minimum": "0x00000000",
-              "maximum": "0xFFFFFFFF",
-              "width": "32"
             }
           }
         }
@@ -538,20 +554,12 @@
                 "value_src": "user_prop"
               },
               "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
+                "value": "0.0",
+                "value_src": "ip_prop"
               }
             }
           }
         }
-      }
-    },
-    "interface_nets": {
-      "jtag_axi_0_M_AXI": {
-        "interface_ports": [
-          "jtag_axi_0/M_AXI",
-          "clk_wiz/s_axi_lite"
-        ]
       }
     },
     "nets": {
@@ -592,8 +600,6 @@
       "clk_wiz_clk_out1": {
         "ports": [
           "clk_wiz/clk_out1",
-          "clk_wiz/s_axi_aclk",
-          "jtag_axi_0/aclk",
           "proc_sys_reset_1/slowest_sync_clk",
           "ila_0/clk",
           "clkmux_0/mmcm_clk"
@@ -616,7 +622,6 @@
       "proc_sys_reset_0_interconnect_aresetn": {
         "ports": [
           "proc_sys_reset_1/peripheral_aresetn",
-          "clk_wiz/s_axi_aresetn",
           "rst_n_led",
           "rst_n_out"
         ]
@@ -625,19 +630,15 @@
         "ports": [
           "reset",
           "proc_sys_reset_1/ext_reset_in",
-          "reset_led"
-        ]
-      },
-      "proc_sys_reset_1_interconnect_aresetn": {
-        "ports": [
-          "proc_sys_reset_1/interconnect_aresetn",
-          "jtag_axi_0/aresetn"
+          "reset_led",
+          "clk_wiz/resetn"
         ]
       },
       "sclk_in_1": {
         "ports": [
           "sclk_in",
-          "clkmux_0/sclk_in"
+          "clkmux_0/sclk_in",
+          "miso"
         ]
       },
       "sa_rdy_1": {
@@ -669,21 +670,6 @@
           "ila_0/trig_in_ack",
           "trig_in_ack"
         ]
-      }
-    },
-    "addressing": {
-      "/jtag_axi_0": {
-        "address_spaces": {
-          "Data": {
-            "segments": {
-              "SEG_clk_wiz_Reg": {
-                "address_block": "/clk_wiz/s_axi_lite/Reg",
-                "offset": "0x44A00000",
-                "range": "64K"
-              }
-            }
-          }
-        }
       }
     }
   }

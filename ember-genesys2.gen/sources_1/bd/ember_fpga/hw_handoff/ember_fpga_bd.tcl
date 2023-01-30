@@ -168,6 +168,7 @@ proc create_root_design { parentCell } {
   set mclk_pause_in [ create_bd_port -dir I mclk_pause_in ]
   set mclk_pause_led [ create_bd_port -dir O mclk_pause_led ]
   set mclk_pause_out [ create_bd_port -dir O mclk_pause_out ]
+  set miso [ create_bd_port -dir O miso ]
   set mosi_in [ create_bd_port -dir I mosi_in ]
   set mosi_led [ create_bd_port -dir O mosi_led ]
   set mosi_out [ create_bd_port -dir O mosi_out ]
@@ -198,43 +199,55 @@ proc create_root_design { parentCell } {
   # Create instance: clk_wiz, and set properties
   set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
   set_property -dict [ list \
-   CONFIG.AXI_DRP {true} \
+   CONFIG.AXI_DRP {false} \
    CONFIG.CLKFB_IN_SIGNALING {SINGLE} \
-   CONFIG.CLKIN1_JITTER_PS {50.0} \
-   CONFIG.CLKIN2_JITTER_PS {83.33} \
+   CONFIG.CLKIN1_JITTER_PS {50} \
+   CONFIG.CLKIN1_UI_JITTER {50} \
+   CONFIG.CLKIN2_JITTER_PS {100.000} \
+   CONFIG.CLKIN2_UI_JITTER {100.000} \
    CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {112.316} \
-   CONFIG.CLKOUT1_PHASE_ERROR {89.971} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {100.000} \
+   CONFIG.CLKOUT1_JITTER {136.686} \
+   CONFIG.CLKOUT1_PHASE_ERROR {105.461} \
+   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {100} \
    CONFIG.CLKOUT2_DRIVES {BUFG} \
+   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT3_DRIVES {BUFG} \
+   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT4_DRIVES {BUFG} \
+   CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT5_DRIVES {BUFG} \
+   CONFIG.CLKOUT5_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT6_DRIVES {BUFG} \
+   CONFIG.CLKOUT6_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT7_DRIVES {BUFG} \
+   CONFIG.CLKOUT7_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLK_IN1_BOARD_INTERFACE {Custom} \
    CONFIG.ENABLE_CLOCK_MONITOR {false} \
    CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
    CONFIG.INTERFACE_SELECTION {Enable_AXI} \
+   CONFIG.JITTER_OPTIONS {PS} \
    CONFIG.MMCM_BANDWIDTH {OPTIMIZED} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {9} \
    CONFIG.MMCM_CLKIN1_PERIOD {5.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {10.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {9} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {2} \
+   CONFIG.MMCM_REF_JITTER2 {0.010} \
    CONFIG.PHASE_DUTY_CONFIG {false} \
-   CONFIG.PRIMITIVE {MMCM} \
+   CONFIG.PRIMITIVE {PLL} \
    CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} \
    CONFIG.RESET_BOARD_INTERFACE {Custom} \
-   CONFIG.RESET_PORT {reset} \
-   CONFIG.RESET_TYPE {ACTIVE_HIGH} \
+   CONFIG.RESET_PORT {resetn} \
+   CONFIG.RESET_TYPE {ACTIVE_LOW} \
    CONFIG.SECONDARY_IN_FREQ {100.000} \
    CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} \
    CONFIG.USE_BOARD_FLOW {true} \
-   CONFIG.USE_DYN_RECONFIG {true} \
+   CONFIG.USE_DYN_RECONFIG {false} \
+   CONFIG.USE_FREQ_SYNTH {true} \
    CONFIG.USE_INCLK_SWITCHOVER {false} \
    CONFIG.USE_LOCKED {true} \
+   CONFIG.USE_PHASE_ALIGNMENT {false} \
    CONFIG.USE_RESET {true} \
  ] $clk_wiz
 
@@ -265,12 +278,6 @@ proc create_root_design { parentCell } {
    CONFIG.C_TRIGIN_EN {true} \
  ] $ila_0
 
-  # Create instance: jtag_axi_0, and set properties
-  set jtag_axi_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:jtag_axi:1.2 jtag_axi_0 ]
-  set_property -dict [ list \
-   CONFIG.PROTOCOL {2} \
- ] $jtag_axi_0
-
   # Create instance: proc_sys_reset_1, and set properties
   set proc_sys_reset_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_1 ]
   set_property -dict [ list \
@@ -278,30 +285,25 @@ proc create_root_design { parentCell } {
    CONFIG.USE_BOARD_FLOW {true} \
  ] $proc_sys_reset_1
 
-  # Create interface connections
-  connect_bd_intf_net -intf_net jtag_axi_0_M_AXI [get_bd_intf_pins clk_wiz/s_axi_lite] [get_bd_intf_pins jtag_axi_0/M_AXI]
-
   # Create port connections
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clk_wiz/s_axi_aclk] [get_bd_pins clkmux_0/mmcm_clk] [get_bd_pins ila_0/clk] [get_bd_pins jtag_axi_0/aclk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/mmcm_clk] [get_bd_pins ila_0/clk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
   connect_bd_net -net clk_wiz_locked [get_bd_pins clk_wiz/locked] [get_bd_pins proc_sys_reset_1/dcm_locked]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out]
   connect_bd_net -net ila_0_trig_in_ack [get_bd_ports trig_in_ack] [get_bd_pins ila_0/trig_in_ack]
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_led] [get_bd_ports mclk_pause_out]
   connect_bd_net -net mosi_in [get_bd_ports mosi_in] [get_bd_ports mosi_led] [get_bd_ports mosi_out]
-  connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins clk_wiz/s_axi_aresetn] [get_bd_pins proc_sys_reset_1/peripheral_aresetn]
-  connect_bd_net -net proc_sys_reset_1_interconnect_aresetn [get_bd_pins jtag_axi_0/aresetn] [get_bd_pins proc_sys_reset_1/interconnect_aresetn]
-  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_ports reset_led] [get_bd_pins proc_sys_reset_1/ext_reset_in]
+  connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins proc_sys_reset_1/peripheral_aresetn]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_ports reset_led] [get_bd_pins clk_wiz/resetn] [get_bd_pins proc_sys_reset_1/ext_reset_in]
   connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_ember_led] [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_out]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0]
   connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/trig_in]
   connect_bd_net -net sc_in [get_bd_ports sc_in] [get_bd_ports sc_led] [get_bd_ports sc_out]
-  connect_bd_net -net sclk_in_1 [get_bd_ports sclk_in] [get_bd_pins clkmux_0/sclk_in]
+  connect_bd_net -net sclk_in_1 [get_bd_ports miso] [get_bd_ports sclk_in] [get_bd_pins clkmux_0/sclk_in]
   connect_bd_net -net sysclk_n_1 [get_bd_ports sysclk_n] [get_bd_pins clk_wiz/clk_in1_n]
   connect_bd_net -net sysclk_p_1 [get_bd_ports sysclk_p] [get_bd_pins clk_wiz/clk_in1_p]
   connect_bd_net -net use_mmcm_1 [get_bd_ports use_mmcm] [get_bd_ports use_mmcm_led] [get_bd_pins clkmux_0/clksel]
 
   # Create address segments
-  assign_bd_address -offset 0x44A00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces jtag_axi_0/Data] [get_bd_addr_segs clk_wiz/s_axi_lite/Reg] -force
 
 
   # Restore current instance

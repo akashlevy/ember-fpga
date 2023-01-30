@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Jan 29 10:59:28 2023
+//Date        : Mon Jan 30 02:51:08 2023
 //Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -9,11 +9,12 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=5,numReposBlks=5,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_board_cnt=4,da_clkrst_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
+(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=4,numReposBlks=4,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_board_cnt=4,da_clkrst_cnt=4,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
 module ember_fpga
    (mclk_pause_in,
     mclk_pause_led,
     mclk_pause_out,
+    miso,
     mosi_in,
     mosi_led,
     mosi_out,
@@ -40,6 +41,7 @@ module ember_fpga
   input mclk_pause_in;
   output mclk_pause_led;
   output mclk_pause_out;
+  output miso;
   input mosi_in;
   output mosi_led;
   output mosi_out;
@@ -68,27 +70,9 @@ module ember_fpga
   wire clk_wiz_locked;
   wire clkmux_0_sclk_out;
   wire ila_0_trig_in_ack;
-  wire [31:0]jtag_axi_0_M_AXI_ARADDR;
-  wire jtag_axi_0_M_AXI_ARREADY;
-  wire jtag_axi_0_M_AXI_ARVALID;
-  wire [31:0]jtag_axi_0_M_AXI_AWADDR;
-  wire jtag_axi_0_M_AXI_AWREADY;
-  wire jtag_axi_0_M_AXI_AWVALID;
-  wire jtag_axi_0_M_AXI_BREADY;
-  wire [1:0]jtag_axi_0_M_AXI_BRESP;
-  wire jtag_axi_0_M_AXI_BVALID;
-  wire [31:0]jtag_axi_0_M_AXI_RDATA;
-  wire jtag_axi_0_M_AXI_RREADY;
-  wire [1:0]jtag_axi_0_M_AXI_RRESP;
-  wire jtag_axi_0_M_AXI_RVALID;
-  wire [31:0]jtag_axi_0_M_AXI_WDATA;
-  wire jtag_axi_0_M_AXI_WREADY;
-  wire [3:0]jtag_axi_0_M_AXI_WSTRB;
-  wire jtag_axi_0_M_AXI_WVALID;
   wire mclk_pause_in;
   wire mosi_in;
   wire [0:0]proc_sys_reset_0_interconnect_aresetn;
-  wire [0:0]proc_sys_reset_1_interconnect_aresetn;
   wire reset_1;
   wire rram_busy_in_1;
   wire [47:0]sa_do_1;
@@ -101,6 +85,7 @@ module ember_fpga
 
   assign mclk_pause_led = mclk_pause_in;
   assign mclk_pause_out = mclk_pause_in;
+  assign miso = sclk_in_1;
   assign mosi_led = mosi_in;
   assign mosi_out = mosi_in;
   assign reset_1 = reset;
@@ -127,25 +112,7 @@ module ember_fpga
         .clk_in1_p(sysclk_p_1),
         .clk_out1(clk_wiz_clk_out1),
         .locked(clk_wiz_locked),
-        .s_axi_aclk(clk_wiz_clk_out1),
-        .s_axi_araddr(jtag_axi_0_M_AXI_ARADDR[10:0]),
-        .s_axi_aresetn(proc_sys_reset_0_interconnect_aresetn),
-        .s_axi_arready(jtag_axi_0_M_AXI_ARREADY),
-        .s_axi_arvalid(jtag_axi_0_M_AXI_ARVALID),
-        .s_axi_awaddr(jtag_axi_0_M_AXI_AWADDR[10:0]),
-        .s_axi_awready(jtag_axi_0_M_AXI_AWREADY),
-        .s_axi_awvalid(jtag_axi_0_M_AXI_AWVALID),
-        .s_axi_bready(jtag_axi_0_M_AXI_BREADY),
-        .s_axi_bresp(jtag_axi_0_M_AXI_BRESP),
-        .s_axi_bvalid(jtag_axi_0_M_AXI_BVALID),
-        .s_axi_rdata(jtag_axi_0_M_AXI_RDATA),
-        .s_axi_rready(jtag_axi_0_M_AXI_RREADY),
-        .s_axi_rresp(jtag_axi_0_M_AXI_RRESP),
-        .s_axi_rvalid(jtag_axi_0_M_AXI_RVALID),
-        .s_axi_wdata(jtag_axi_0_M_AXI_WDATA),
-        .s_axi_wready(jtag_axi_0_M_AXI_WREADY),
-        .s_axi_wstrb(jtag_axi_0_M_AXI_WSTRB),
-        .s_axi_wvalid(jtag_axi_0_M_AXI_WVALID));
+        .resetn(reset_1));
   ember_fpga_clkmux_0_0 clkmux_0
        (.clk_out(clkmux_0_sclk_out),
         .clksel(use_mmcm_1),
@@ -156,31 +123,10 @@ module ember_fpga
         .probe0(sa_do_1),
         .trig_in(sa_rdy_1),
         .trig_in_ack(ila_0_trig_in_ack));
-  ember_fpga_jtag_axi_0_1 jtag_axi_0
-       (.aclk(clk_wiz_clk_out1),
-        .aresetn(proc_sys_reset_1_interconnect_aresetn),
-        .m_axi_araddr(jtag_axi_0_M_AXI_ARADDR),
-        .m_axi_arready(jtag_axi_0_M_AXI_ARREADY),
-        .m_axi_arvalid(jtag_axi_0_M_AXI_ARVALID),
-        .m_axi_awaddr(jtag_axi_0_M_AXI_AWADDR),
-        .m_axi_awready(jtag_axi_0_M_AXI_AWREADY),
-        .m_axi_awvalid(jtag_axi_0_M_AXI_AWVALID),
-        .m_axi_bready(jtag_axi_0_M_AXI_BREADY),
-        .m_axi_bresp(jtag_axi_0_M_AXI_BRESP),
-        .m_axi_bvalid(jtag_axi_0_M_AXI_BVALID),
-        .m_axi_rdata(jtag_axi_0_M_AXI_RDATA),
-        .m_axi_rready(jtag_axi_0_M_AXI_RREADY),
-        .m_axi_rresp(jtag_axi_0_M_AXI_RRESP),
-        .m_axi_rvalid(jtag_axi_0_M_AXI_RVALID),
-        .m_axi_wdata(jtag_axi_0_M_AXI_WDATA),
-        .m_axi_wready(jtag_axi_0_M_AXI_WREADY),
-        .m_axi_wstrb(jtag_axi_0_M_AXI_WSTRB),
-        .m_axi_wvalid(jtag_axi_0_M_AXI_WVALID));
   ember_fpga_proc_sys_reset_1_0 proc_sys_reset_1
        (.aux_reset_in(1'b1),
         .dcm_locked(clk_wiz_locked),
         .ext_reset_in(reset_1),
-        .interconnect_aresetn(proc_sys_reset_1_interconnect_aresetn),
         .mb_debug_sys_rst(1'b0),
         .peripheral_aresetn(proc_sys_reset_0_interconnect_aresetn),
         .slowest_sync_clk(clk_wiz_clk_out1));
