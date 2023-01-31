@@ -271,11 +271,12 @@ proc create_root_design { parentCell } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_EN_STRG_QUAL {0} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {1} \
+   CONFIG.C_NUM_OF_PROBES {2} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE0_TYPE {1} \
    CONFIG.C_PROBE0_WIDTH {48} \
-   CONFIG.C_TRIGIN_EN {true} \
+   CONFIG.C_PROBE1_MU_CNT {2} \
+   CONFIG.C_TRIGIN_EN {false} \
  ] $ila_0
 
   # Create instance: proc_sys_reset_1, and set properties
@@ -300,7 +301,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports mmcm_led] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/mmcm_clk] [get_bd_pins ila_0/clk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
   connect_bd_net -net clk_wiz_locked [get_bd_pins clk_wiz/locked] [get_bd_pins proc_sys_reset_1/dcm_locked]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out]
-  connect_bd_net -net ila_0_trig_in_ack [get_bd_ports trig_in_ack] [get_bd_pins ila_0/trig_in_ack]
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
   connect_bd_net -net mosi_in [get_bd_ports mosi_in] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
   connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_ports rst_n_out] [get_bd_pins proc_sys_reset_1/interconnect_aresetn]
@@ -310,7 +310,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports miso] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
-  connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/trig_in] [get_bd_pins rram_top_wrapper_0/sa_rdy]
+  connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/probe1] [get_bd_pins rram_top_wrapper_0/sa_rdy]
   connect_bd_net -net sc_in [get_bd_ports sc_in] [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc]
   connect_bd_net -net sclk_in_1 [get_bd_ports sclk_in] [get_bd_pins clkmux_0/sclk_in] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net sysclk_n_1 [get_bd_ports sysclk_n] [get_bd_pins clk_wiz/clk_in1_n]

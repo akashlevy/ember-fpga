@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Mon Jan 30 22:03:59 2023
+//Date        : Mon Jan 30 23:26:54 2023
 //Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -69,7 +69,6 @@ module ember_fpga
   wire clk_wiz_clk_out1;
   wire clk_wiz_locked;
   wire clkmux_0_sclk_out;
-  wire ila_0_trig_in_ack;
   wire mclk_pause_in;
   wire mosi_in;
   wire [0:0]proc_sys_reset_0_interconnect_aresetn;
@@ -107,7 +106,6 @@ module ember_fpga
   assign sclk_out = clkmux_0_sclk_out;
   assign sysclk_n_1 = sysclk_n;
   assign sysclk_p_1 = sysclk_p;
-  assign trig_in_ack = ila_0_trig_in_ack;
   assign use_mmcm_1 = use_mmcm;
   assign use_mmcm_led = use_mmcm_1;
   ember_fpga_clk_wiz_0 clk_wiz
@@ -125,8 +123,7 @@ module ember_fpga
   ember_fpga_ila_0_0 ila_0
        (.clk(clk_wiz_clk_out1),
         .probe0(sa_do_1),
-        .trig_in(sa_rdy_1),
-        .trig_in_ack(ila_0_trig_in_ack));
+        .probe1(sa_rdy_1));
   ember_fpga_proc_sys_reset_1_0 proc_sys_reset_1
        (.aux_reset_in(1'b1),
         .dcm_locked(clk_wiz_locked),

@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Mon Jan 30 22:12:43 2023
-# Process ID: 41825
+# Start of session at: Tue Jan 31 00:51:24 2023
+# Process ID: 14297
 # Current directory: /sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1
 # Command line: vivado -log ember_fpga_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_wrapper.tcl
 # Log file: /sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/ember_fpga_wrapper.vds
@@ -13,7 +13,7 @@ source ember_fpga_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/cad/xilinx/vivado/2020.2/Vivado/2020.2/data/ip'.
-add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 2612.004 ; gain = 104.043 ; free physical = 438123 ; free virtual = 748285
+add_files: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2609.039 ; gain = 104.043 ; free physical = 443204 ; free virtual = 753248
 Command: synth_design -top ember_fpga_wrapper -part xc7k325tffg900-2
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
@@ -22,39 +22,39 @@ INFO: [Common 17-1540] The version limit for your license is '2020.12' and has e
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 42038
+INFO: [Synth 8-7075] Helper process launched with PID 14474
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2612.004 ; gain = 0.000 ; free physical = 436746 ; free virtual = 746908
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2609.039 ; gain = 0.000 ; free physical = 441830 ; free virtual = 751874
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ember_fpga_wrapper' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/hdl/ember_fpga_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'ember_fpga' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:13]
-INFO: [Synth 8-6157] synthesizing module 'ember_fpga_clk_wiz_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_clk_wiz_0' (1#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_clk_wiz_0_stub.v:5]
-INFO: [Synth 8-6157] synthesizing module 'ember_fpga_clkmux_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_clkmux_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_clkmux_0_0' (2#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_clkmux_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'ember_fpga_ila_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_ila_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_ila_0_0' (3#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_ila_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'ember_fpga_proc_sys_reset_1_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_proc_sys_reset_1_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_proc_sys_reset_1_0' (4#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_proc_sys_reset_1_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'ember_fpga_rram_top_wrapper_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_rram_top_wrapper_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_rram_top_wrapper_0_0' (5#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-41825-r7cad-tsmc40r/realtime/ember_fpga_rram_top_wrapper_0_0_stub.v:6]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'rram_top_wrapper_0'. This will prevent further optimization [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:138]
-INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:125]
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_clk_wiz_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_clk_wiz_0' (1#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_clk_wiz_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_clkmux_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_clkmux_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_clkmux_0_0' (2#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_clkmux_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_ila_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_ila_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_ila_0_0' (3#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_ila_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_proc_sys_reset_1_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_proc_sys_reset_1_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_proc_sys_reset_1_0' (4#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_proc_sys_reset_1_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'ember_fpga_rram_top_wrapper_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_rram_top_wrapper_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_rram_top_wrapper_0_0' (5#1) [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/.Xil/Vivado-14297-r7cad-tsmc40r/realtime/ember_fpga_rram_top_wrapper_0_0_stub.v:6]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'rram_top_wrapper_0'. This will prevent further optimization [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:135]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'ila_0'. This will prevent further optimization [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:123]
 INFO: [Synth 8-6155] done synthesizing module 'ember_fpga' (6#1) [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_wrapper' (7#1) [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/hdl/ember_fpga_wrapper.v:12]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2612.004 ; gain = 0.000 ; free physical = 437541 ; free virtual = 747703
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2609.039 ; gain = 0.000 ; free physical = 442628 ; free virtual = 752672
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2612.004 ; gain = 0.000 ; free physical = 437535 ; free virtual = 747697
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2609.039 ; gain = 0.000 ; free physical = 442620 ; free virtual = 752664
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2612.004 ; gain = 0.000 ; free physical = 437535 ; free virtual = 747697
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2609.039 ; gain = 0.000 ; free physical = 442620 ; free virtual = 752664
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2612.004 ; gain = 0.000 ; free physical = 437528 ; free virtual = 747690
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2609.039 ; gain = 0.000 ; free physical = 442612 ; free virtual = 752657
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -65,19 +65,13 @@ Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_0_0_in_context.xdc] for cell 'ember_fpga_i/proc_sys_reset_1'
 Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0/ember_fpga_ila_0_0_in_context.xdc] for cell 'ember_fpga_i/ila_0'
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0/ember_fpga_ila_0_0_in_context.xdc] for cell 'ember_fpga_i/ila_0'
-Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0_in_context.xdc] for cell 'ember_fpga_i/clkmux_0'
-Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0_in_context.xdc] for cell 'ember_fpga_i/clkmux_0'
 Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0_in_context.xdc] for cell 'ember_fpga_i/rram_top_wrapper_0'
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0_in_context.xdc] for cell 'ember_fpga_i/rram_top_wrapper_0'
+Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0_in_context.xdc] for cell 'ember_fpga_i/clkmux_0'
+Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0_in_context.xdc] for cell 'ember_fpga_i/clkmux_0'
 Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:609]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:610]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:611]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:612]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:613]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:614]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:615]
-INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:616]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:605]
+INFO: [Vivado 12-626] No clocks found. Please use 'create_clock' or 'create_generated_clock' command to create clocks. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:606]
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/ember_fpga_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/ember_fpga_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
@@ -85,20 +79,20 @@ Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/dont_touch
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2654.832 ; gain = 0.000 ; free physical = 437435 ; free virtual = 747598
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2653.836 ; gain = 0.000 ; free physical = 442523 ; free virtual = 752567
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2654.832 ; gain = 0.000 ; free physical = 437435 ; free virtual = 747597
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2653.836 ; gain = 0.000 ; free physical = 442523 ; free virtual = 752567
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437510 ; free virtual = 747673
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442596 ; free virtual = 752640
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437510 ; free virtual = 747673
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442596 ; free virtual = 752640
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -111,13 +105,13 @@ Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i. (constraint file  a
 Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/clk_wiz. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/proc_sys_reset_1. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/ila_0. (constraint file  auto generated constraint).
-Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/clkmux_0. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/rram_top_wrapper_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for ember_fpga_i/clkmux_0. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437510 ; free virtual = 747673
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442599 ; free virtual = 752643
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437509 ; free virtual = 747672
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442598 ; free virtual = 752643
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -139,25 +133,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:15 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437496 ; free virtual = 747662
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442584 ; free virtual = 752633
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437376 ; free virtual = 747542
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442465 ; free virtual = 752513
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2654.832 ; gain = 42.828 ; free physical = 437376 ; free virtual = 747542
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2653.836 ; gain = 44.797 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2663.836 ; gain = 51.832 ; free physical = 437375 ; free virtual = 747541
+Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2662.840 ; gain = 53.801 ; free physical = 442463 ; free virtual = 752511
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -175,37 +169,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -232,26 +226,27 @@ Report Cell Usage:
 |4     |ember_fpga_proc_sys_reset_1   |     1|
 |5     |ember_fpga_rram_top_wrapper_0 |     1|
 |6     |IBUF                          |    56|
-|7     |OBUF                          |    16|
+|7     |OBUF                          |    15|
+|8     |OBUFT                         |     1|
 +------+------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.777 ; gain = 57.773 ; free physical = 437376 ; free virtual = 747542
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.781 ; gain = 59.742 ; free physical = 442464 ; free virtual = 752512
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2669.777 ; gain = 14.945 ; free physical = 437431 ; free virtual = 747597
-Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2669.781 ; gain = 57.773 ; free physical = 437431 ; free virtual = 747597
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:20 . Memory (MB): peak = 2668.781 ; gain = 14.945 ; free physical = 442519 ; free virtual = 752567
+Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 2668.785 ; gain = 59.742 ; free physical = 442519 ; free virtual = 752567
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2669.781 ; gain = 0.000 ; free physical = 437517 ; free virtual = 747683
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2668.785 ; gain = 0.000 ; free physical = 442603 ; free virtual = 752651
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2678.684 ; gain = 0.000 ; free physical = 437446 ; free virtual = 747612
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2677.688 ; gain = 0.000 ; free physical = 442546 ; free virtual = 752594
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-41 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+35 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 2678.684 ; gain = 66.680 ; free physical = 437597 ; free virtual = 747763
+synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:30 . Memory (MB): peak = 2677.688 ; gain = 68.648 ; free physical = 442682 ; free virtual = 752731
 INFO: [Common 17-1381] The checkpoint '/sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/ember_fpga_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ember_fpga_wrapper_utilization_synth.rpt -pb ember_fpga_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Jan 30 22:13:34 2023...
+INFO: [Common 17-206] Exiting Vivado at Tue Jan 31 00:52:17 2023...

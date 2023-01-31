@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date                      : Mon Jan 30 22:15:39 2023
+| Date                      : Tue Jan 31 00:54:21 2023
 | Host                      : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command                   : report_io -file ember_fpga_wrapper_io_placed.rpt
 | Design                    : ember_fpga_wrapper
@@ -871,7 +871,7 @@ Table of Contents
 | V24        |                     | High Range       | IO_L23N_T3_A02_D18_14        | User IO       |             |      14 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
 | V25        | mclk_pause_out      | High Range       | IO_L18P_T2_A12_D28_14        | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | V26        | rram_busy_fpga_led  | High Range       | IO_L16P_T2_CSI_B_14          | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
-| V27        | trig_in_ack         | High Range       | IO_L16N_T2_A15_D31_14        | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
+| V27        | trig_in_ack         | High Range       | IO_L16N_T2_A15_D31_14        | TRISTATE      | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | V28        |                     | High Range       | VCCO_14                      | VCCO          |             |      14 |            |      |                     |                      |      3.30 |            |           |          |      |                  |              |                   |              |
 | V29        | rst_n_out[0]        | High Range       | IO_L17P_T2_A14_D30_14        | OUTPUT        | LVCMOS33    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | V30        | rram_busy_in        | High Range       | IO_L17N_T2_A13_D29_14        | INPUT         | LVCMOS33    |      14 |            |      |                     |                 NONE |           | FIXED      |           |          |      | NONE             |              |                   |              |

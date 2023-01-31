@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 30 22:04:01 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 30 23:26:55 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -106,14 +106,14 @@
     </PORT>
     <PORT CLKFREQUENCY="25000000" DIR="I" NAME="sclk_in" SIGIS="clk" SIGNAME="External_Ports_sclk_in">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="clkmux_0" PORT="sclk_in"/>
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sclk"/>
+        <CONNECTION INSTANCE="clkmux_0" PORT="sclk_in"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_0" PORT="trig_in"/>
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_rdy"/>
+        <CONNECTION INSTANCE="ila_0" PORT="probe1"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="200000000" DIR="I" NAME="sysclk_p" SIGIS="clk" SIGNAME="External_Ports_sysclk_p">
@@ -126,11 +126,7 @@
         <CONNECTION INSTANCE="clk_wiz" PORT="clk_in1_n"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="trig_in_ack" SIGIS="undef" SIGNAME="ila_0_trig_in_ack">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="ila_0" PORT="trig_in_ack"/>
-      </CONNECTIONS>
-    </PORT>
+    <PORT DIR="O" NAME="trig_in_ack" SIGIS="undef"/>
     <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
       <CONNECTIONS>
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="miso"/>
@@ -753,8 +749,8 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="proc_sys_reset_1" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="ila_0" PORT="clk"/>
-            <CONNECTION INSTANCE="clkmux_0" PORT="mmcm_clk"/>
             <CONNECTION INSTANCE="External_Ports" PORT="mmcm_led"/>
+            <CONNECTION INSTANCE="clkmux_0" PORT="mmcm_clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="clk_wiz_locked">
@@ -830,7 +826,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="1"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="2"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="1024"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -844,7 +840,7 @@
         <PARAMETER NAME="C_PIPE_IFACE" VALUE="1"/>
         <PARAMETER NAME="C_RAM_STYLE" VALUE="SUBCORE"/>
         <PARAMETER NAME="C_TRIGOUT_EN" VALUE="0"/>
-        <PARAMETER NAME="C_TRIGIN_EN" VALUE="1"/>
+        <PARAMETER NAME="C_TRIGIN_EN" VALUE="0"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="1"/>
@@ -2903,7 +2899,7 @@
         <PARAMETER NAME="C_PROBE1022_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE1023_TYPE" VALUE="0"/>
         <PARAMETER NAME="C_PROBE0_MU_CNT" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE1_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE1_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE3_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE4_MU_CNT" VALUE="1"/>
@@ -3955,30 +3951,18 @@
             <CONNECTION INSTANCE="clk_wiz" PORT="clk_out1"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="trig_in" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="trig_in_ack" SIGIS="undef" SIGNAME="ila_0_trig_in_ack">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="trig_in_ack"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="47" NAME="probe0" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_do"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="0" NAME="probe1" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
-      <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="__NOC__" NAME="TRIG_IN" TYPE="TARGET" VLNV="xilinx.com:interface:trigger:1.0">
-          <PORTMAPS>
-            <PORTMAP LOGICAL="ACK" PHYSICAL="trig_in_ack"/>
-            <PORTMAP LOGICAL="TRIG" PHYSICAL="trig_in"/>
-          </PORTMAPS>
-        </BUSINTERFACE>
-      </BUSINTERFACES>
+      <BUSINTERFACES/>
     </MODULE>
     <MODULE COREREVISION="13" FULLNAME="/proc_sys_reset_1" HWVERSION="5.0" INSTANCE="proc_sys_reset_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="proc_sys_reset" VLNV="xilinx.com:ip:proc_sys_reset:5.0">
       <DOCUMENTS>

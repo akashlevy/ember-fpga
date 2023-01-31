@@ -49,16 +49,16 @@
 module ember_fpga_ila_0_0 (
 clk,
 
-trig_in,
-trig_in_ack,
-probe0
+
+probe0,
+probe1
 );
 
 input clk;
 
-input trig_in;
-output trig_in_ack;
+
 input [47 : 0] probe0;
+input [0 : 0] probe1;
 
 
 endmodule
