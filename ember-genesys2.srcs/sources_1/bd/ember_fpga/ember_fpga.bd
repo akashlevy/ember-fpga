@@ -402,6 +402,9 @@
           "C_ADV_TRIGGER": {
             "value": "false"
           },
+          "C_DATA_DEPTH": {
+            "value": "131072"
+          },
           "C_ENABLE_ILA_AXI_MON": {
             "value": "false"
           },

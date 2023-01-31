@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Tue Jan 31 04:36:42 2023
-# Process ID: 3307
+# Start of session at: Tue Jan 31 15:10:44 2023
+# Process ID: 48490
 # Current directory: /sim2/akashl/ember-fpga
 # Command line: vivado ember-genesys2.xpr
 # Log file: /sim2/akashl/ember-fpga/vivado.log
@@ -12,53 +12,12 @@
 start_gui
 open_project ember-genesys2.xpr
 update_compile_order -fileset sources_1
-open_run impl_1
-startgroup 
-set_property is_bel_fixed true [get_cells [list ember_fpga_i/clk_wiz/inst/mmcm_adv_inst]]
-set_property is_loc_fixed true [get_cells [list ember_fpga_i/clk_wiz/inst/mmcm_adv_inst]]
-endgroup
-startgroup 
-set_property is_bel_fixed false [get_cells [list ember_fpga_i/clk_wiz/inst/mmcm_adv_inst]]
-set_property is_loc_fixed false [get_cells [list ember_fpga_i/clk_wiz/inst/mmcm_adv_inst]]
-endgroup
 open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
-save_constraints -force
+startgroup
+set_property -dict [list CONFIG.C_DATA_DEPTH {131072} CONFIG.C_PROBE1_MU_CNT {2} CONFIG.C_PROBE0_MU_CNT {2} CONFIG.ALL_PROBE_SAME_MU_CNT {2}] [get_bd_cells ila_0]
+endgroup
+save_bd_design
 reset_run synth_1
-launch_runs synth_1 -jobs 48
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 48
-wait_on_run synth_1
-open_run synth_1 -name synth_1
-report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+reset_run ember_fpga_ila_0_0_synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
-close_design
-reset_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 48
-wait_on_run synth_1
-close_design
-open_run synth_1 -name synth_1
-check_timing -verbose -name timing_1
-report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
-report_methodology -name ultrafast_methodology_1
-report_drc -name drc_1 -ruledecks {default}
-launch_runs impl_1 -jobs 48
-wait_on_run impl_1
-close_design
-open_run impl_1
-report_methodology -name ultrafast_methodology_1
-report_drc -name drc_1 -ruledecks {default}
-launch_runs impl_1 -to_step write_bitstream -jobs 48
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 48
-wait_on_run impl_1
-reset_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 48
-wait_on_run impl_1
-set_msg_config -suppress -id {Vivado 12-646} -string {{WARNING: [Vivado 12-646] clock 'clk_out1_ember_fpga_clk_wiz_0' not found. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:612]} } 
-report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
-report_methodology -name ultrafast_methodology_2
-report_drc -name drc_2 -ruledecks {default}
