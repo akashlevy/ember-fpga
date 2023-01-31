@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Sun Jan 29 09:21:58 2023
+// Date        : Mon Jan 30 18:09:14 2023
 // Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ ember_fpga_clkmux_0_0_sim_netlist.v
@@ -16,15 +16,19 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux
    (clk_out,
     sclk_in,
     mmcm_clk,
-    clksel);
+    clksel,
+    rram_busy);
   output clk_out;
   input sclk_in;
   input mmcm_clk;
   input clksel;
+  input rram_busy;
 
+  wire S0;
   wire clk_out;
   wire clksel;
   wire mmcm_clk;
+  wire rram_busy;
   wire sclk_in;
 
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -37,8 +41,8 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux
     .PRESELECT_I1("FALSE"),
     .SIM_DEVICE("7SERIES")) 
     BUFGMUX_inst
-       (.CE0(clksel),
-        .CE1(clksel),
+       (.CE0(S0),
+        .CE1(S0),
         .I0(sclk_in),
         .I1(mmcm_clk),
         .IGNORE0(1'b0),
@@ -46,6 +50,12 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux
         .O(clk_out),
         .S0(1'b1),
         .S1(1'b1));
+  LUT2 #(
+    .INIT(4'h8)) 
+    BUFGMUX_inst_i_1
+       (.I0(clksel),
+        .I1(rram_busy),
+        .O(S0));
 endmodule
 
 (* CHECK_LICENSE_TYPE = "ember_fpga_clkmux_0_0,clkmux,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
@@ -55,21 +65,25 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
    (sclk_in,
     mmcm_clk,
     clksel,
+    rram_busy,
     clk_out);
   input sclk_in;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 mmcm_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME mmcm_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN ember_fpga_clk_wiz_0_clk_out1, INSERT_VIP 0" *) input mmcm_clk;
   input clksel;
+  input rram_busy;
   output clk_out;
 
   wire clk_out;
   wire clksel;
   wire mmcm_clk;
+  wire rram_busy;
   wire sclk_in;
 
   decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux inst
        (.clk_out(clk_out),
         .clksel(clksel),
         .mmcm_clk(mmcm_clk),
+        .rram_busy(rram_busy),
         .sclk_in(sclk_in));
 endmodule
 `ifndef GLBL

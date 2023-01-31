@@ -3,6 +3,8 @@
 
 # XDC: imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc
 
+# XDC: new/Genesys2_EMBER_Impl.xdc
+
 # Block Designs: bd/ember_fpga/ember_fpga.bd
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga || ORIG_REF_NAME==ember_fpga} -quiet] -quiet
 
@@ -17,5 +19,8 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_
 
 # IP: bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_clkmux_0_0 || ORIG_REF_NAME==ember_fpga_clkmux_0_0} -quiet] -quiet
+
+# IP: bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_rram_top_wrapper_0_0 || ORIG_REF_NAME==ember_fpga_rram_top_wrapper_0_0} -quiet] -quiet
 
 # XDC: /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ember_fpga_ooc.xdc

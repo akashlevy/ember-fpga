@@ -1,61 +1,65 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.467568",
-   "Default View_TopLeft":"-379,0",
+   "Default View_ScaleFactor":"0.455435",
+   "Default View_TopLeft":"-358,-11",
    "ExpandedHierarchyInLayout":"",
    "PinnedBlocks":"",
    "PinnedPorts":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port sc_in -pg 1 -lvl 0 -x 0 -y 360 -defaultsOSRD
-preplace port mosi_in -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
-preplace port mclk_pause_in -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
-preplace port sclk_led -pg 1 -lvl 3 -x 660 -y 620 -defaultsOSRD
-preplace port sc_led -pg 1 -lvl 3 -x 660 -y 340 -defaultsOSRD
-preplace port mosi_led -pg 1 -lvl 3 -x 660 -y 60 -defaultsOSRD
-preplace port mclk_pause_led -pg 1 -lvl 3 -x 660 -y 20 -defaultsOSRD
-preplace port mosi_out -pg 1 -lvl 3 -x 660 -y 80 -defaultsOSRD
-preplace port sc_out -pg 1 -lvl 3 -x 660 -y 360 -defaultsOSRD
-preplace port sclk_out -pg 1 -lvl 3 -x 660 -y 640 -defaultsOSRD
-preplace port mclk_pause_out -pg 1 -lvl 3 -x 660 -y 40 -defaultsOSRD
-preplace port rram_busy_in -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
-preplace port rram_busy_ember_led -pg 1 -lvl 3 -x 660 -y 100 -defaultsOSRD
-preplace port rram_busy_out -pg 1 -lvl 3 -x 660 -y 120 -defaultsOSRD
-preplace port use_mmcm -pg 1 -lvl 0 -x 0 -y 660 -defaultsOSRD
-preplace port use_mmcm_led -pg 1 -lvl 3 -x 660 -y 720 -defaultsOSRD
-preplace port reset_led -pg 1 -lvl 3 -x 660 -y 140 -defaultsOSRD
-preplace port reset -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
-preplace port sclk_in -pg 1 -lvl 0 -x 0 -y 560 -defaultsOSRD
-preplace port sa_rdy -pg 1 -lvl 0 -x 0 -y 460 -defaultsOSRD
-preplace port sysclk_p -pg 1 -lvl 0 -x 0 -y 280 -defaultsOSRD
-preplace port sysclk_n -pg 1 -lvl 0 -x 0 -y 260 -defaultsOSRD
-preplace port trig_in_ack -pg 1 -lvl 0 -x 0 -y 440 -defaultsOSRD -left
-preplace port miso -pg 1 -lvl 3 -x 660 -y 560 -defaultsOSRD
-preplace portBus rst_n_led -pg 1 -lvl 3 -x 660 -y 260 -defaultsOSRD
-preplace portBus sa_do -pg 1 -lvl 0 -x 0 -y 500 -defaultsOSRD
-preplace portBus rst_n_out -pg 1 -lvl 3 -x 660 -y 280 -defaultsOSRD
-preplace inst clk_wiz -pg 1 -lvl 1 -x 140 -y 270 -defaultsOSRD
-preplace inst proc_sys_reset_1 -pg 1 -lvl 2 -x 460 -y 240 -defaultsOSRD
-preplace inst ila_0 -pg 1 -lvl 2 -x 460 -y 460 -defaultsOSRD
-preplace inst clkmux_0 -pg 1 -lvl 2 -x 460 -y 640 -defaultsOSRD
-preplace netloc mosi_in 1 0 3 NJ 60 NJ 60 640J
-preplace netloc sc_in 1 0 3 NJ 360 NJ 360 640J
-preplace netloc mclk_pause_in 1 0 3 NJ 20 NJ 20 640J
-preplace netloc rram_busy_in_1 1 0 3 NJ 100 NJ 100 640J
-preplace netloc clk_wiz_locked 1 1 1 N 280
-preplace netloc clk_wiz_clk_out1 1 1 1 270 200n
-preplace netloc use_mmcm_1 1 0 3 NJ 660 270 720 NJ
-preplace netloc clkmux_0_sclk_out 1 2 1 640 620n
-preplace netloc proc_sys_reset_0_interconnect_aresetn 1 2 1 640 260n
-preplace netloc reset_1 1 0 3 20 180 280 140 NJ
-preplace netloc sclk_in_1 1 0 3 NJ 560 260 560 NJ
-preplace netloc sa_rdy_1 1 0 2 NJ 460 NJ
-preplace netloc sa_do_1 1 0 2 NJ 500 NJ
-preplace netloc sysclk_p_1 1 0 1 NJ 280
-preplace netloc sysclk_n_1 1 0 1 NJ 260
-preplace netloc ila_0_trig_in_ack 1 0 2 NJ 440 NJ
-levelinfo -pg 1 0 140 460 660
-pagesize -pg 1 -db -bbox -sgen -160 0 870 740
+preplace port sc_in -pg 1 -lvl 0 -x 0 -y 330 -defaultsOSRD
+preplace port mosi_in -pg 1 -lvl 0 -x 0 -y 350 -defaultsOSRD
+preplace port mclk_pause_in -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
+preplace port sclk_led -pg 1 -lvl 3 -x 760 -y 540 -defaultsOSRD
+preplace port sc_led -pg 1 -lvl 3 -x 760 -y 420 -defaultsOSRD
+preplace port mosi_led -pg 1 -lvl 3 -x 760 -y 210 -defaultsOSRD
+preplace port mclk_pause_led -pg 1 -lvl 3 -x 760 -y 170 -defaultsOSRD
+preplace port mosi_out -pg 1 -lvl 3 -x 760 -y 230 -defaultsOSRD
+preplace port sc_out -pg 1 -lvl 3 -x 760 -y 440 -defaultsOSRD
+preplace port sclk_out -pg 1 -lvl 3 -x 760 -y 560 -defaultsOSRD
+preplace port mclk_pause_out -pg 1 -lvl 3 -x 760 -y 190 -defaultsOSRD
+preplace port rram_busy_in -pg 1 -lvl 0 -x 0 -y 530 -defaultsOSRD
+preplace port rram_busy_ember_led -pg 1 -lvl 3 -x 760 -y 480 -defaultsOSRD
+preplace port rram_busy_out -pg 1 -lvl 3 -x 760 -y 500 -defaultsOSRD
+preplace port use_mmcm -pg 1 -lvl 0 -x 0 -y 730 -defaultsOSRD
+preplace port use_mmcm_led -pg 1 -lvl 3 -x 760 -y 670 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 860 -defaultsOSRD
+preplace port sclk_in -pg 1 -lvl 0 -x 0 -y 310 -defaultsOSRD
+preplace port sa_rdy -pg 1 -lvl 0 -x 0 -y 390 -defaultsOSRD
+preplace port sysclk_p -pg 1 -lvl 0 -x 0 -y 840 -defaultsOSRD
+preplace port sysclk_n -pg 1 -lvl 0 -x 0 -y 820 -defaultsOSRD
+preplace port trig_in_ack -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD -left
+preplace port miso -pg 1 -lvl 3 -x 760 -y 340 -defaultsOSRD
+preplace port rram_busy_fpga_led -pg 1 -lvl 3 -x 760 -y 320 -defaultsOSRD
+preplace port mmcm_led -pg 1 -lvl 3 -x 760 -y 460 -defaultsOSRD
+preplace portBus sa_do -pg 1 -lvl 0 -x 0 -y 370 -defaultsOSRD
+preplace portBus rst_n_out -pg 1 -lvl 3 -x 760 -y 650 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -x 210 -y 830 -defaultsOSRD
+preplace inst proc_sys_reset_1 -pg 1 -lvl 1 -x 210 -y 630 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 2 -x 610 -y 100 -defaultsOSRD
+preplace inst clkmux_0 -pg 1 -lvl 2 -x 610 -y 560 -defaultsOSRD
+preplace inst rram_top_wrapper_0 -pg 1 -lvl 2 -x 610 -y 330 -defaultsOSRD
+preplace netloc mosi_in 1 0 3 NJ 350 470 210 740J
+preplace netloc sc_in 1 0 3 NJ 330 430 450 740J
+preplace netloc mclk_pause_in 1 0 3 NJ 200 480 200 740J
+preplace netloc rram_busy_in_1 1 0 3 NJ 530 430 470 740J
+preplace netloc clk_wiz_locked 1 0 2 30 740 390
+preplace netloc clk_wiz_clk_out1 1 0 3 20 520 400 460 NJ
+preplace netloc use_mmcm_1 1 0 3 NJ 730 420 670 NJ
+preplace netloc clkmux_0_sclk_out 1 2 1 740 540n
+preplace netloc proc_sys_reset_0_interconnect_aresetn 1 1 2 NJ 650 NJ
+preplace netloc reset_1 1 0 1 20 610n
+preplace netloc sclk_in_1 1 0 2 NJ 310 440
+preplace netloc sa_rdy_1 1 0 2 NJ 390 450
+preplace netloc sa_do_1 1 0 2 NJ 370 460
+preplace netloc sysclk_p_1 1 0 1 NJ 840
+preplace netloc sysclk_n_1 1 0 1 NJ 820
+preplace netloc ila_0_trig_in_ack 1 0 2 NJ 80 NJ
+preplace netloc rram_top_wrapper_0_miso 1 2 1 NJ 340
+preplace netloc proc_sys_reset_1_peripheral_aresetn 1 1 1 410 290n
+preplace netloc rram_top_wrapper_0_rram_busy 1 2 1 NJ 320
+levelinfo -pg 1 0 210 610 760
+pagesize -pg 1 -db -bbox -sgen -160 0 970 920
 "
 }
 {

@@ -58,6 +58,7 @@ module ember_fpga_clkmux_0_0 (
   sclk_in,
   mmcm_clk,
   clksel,
+  rram_busy,
   clk_out
 );
 
@@ -66,12 +67,14 @@ input wire sclk_in;
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 mmcm_clk CLK" *)
 input wire mmcm_clk;
 input wire clksel;
+input wire rram_busy;
 output wire clk_out;
 
   clkmux inst (
     .sclk_in(sclk_in),
     .mmcm_clk(mmcm_clk),
     .clksel(clksel),
+    .rram_busy(rram_busy),
     .clk_out(clk_out)
   );
 endmodule

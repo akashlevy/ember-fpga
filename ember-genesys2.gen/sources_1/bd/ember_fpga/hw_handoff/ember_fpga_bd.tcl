@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# clkmux
+# clkmux, rram_top_wrapper
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -166,9 +166,10 @@ proc create_root_design { parentCell } {
 
   # Create ports
   set mclk_pause_in [ create_bd_port -dir I mclk_pause_in ]
-  set mclk_pause_led [ create_bd_port -dir O mclk_pause_led ]
   set mclk_pause_out [ create_bd_port -dir O mclk_pause_out ]
   set miso [ create_bd_port -dir O miso ]
+  set miso_led [ create_bd_port -dir O miso_led ]
+  set mmcm_led [ create_bd_port -dir O -type clk mmcm_led ]
   set mosi_in [ create_bd_port -dir I mosi_in ]
   set mosi_led [ create_bd_port -dir O mosi_led ]
   set mosi_out [ create_bd_port -dir O mosi_out ]
@@ -176,18 +177,17 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_LOW} \
  ] $reset
-  set reset_led [ create_bd_port -dir O -type rst reset_led ]
   set rram_busy_ember_led [ create_bd_port -dir O rram_busy_ember_led ]
+  set rram_busy_fpga_led [ create_bd_port -dir O rram_busy_fpga_led ]
   set rram_busy_in [ create_bd_port -dir I rram_busy_in ]
   set rram_busy_out [ create_bd_port -dir O rram_busy_out ]
-  set rst_n_led [ create_bd_port -dir O -from 0 -to 0 rst_n_led ]
   set rst_n_out [ create_bd_port -dir O -from 0 -to 0 -type rst rst_n_out ]
   set sa_do [ create_bd_port -dir I -from 47 -to 0 sa_do ]
   set sa_rdy [ create_bd_port -dir I sa_rdy ]
   set sc_in [ create_bd_port -dir I sc_in ]
   set sc_led [ create_bd_port -dir O sc_led ]
   set sc_out [ create_bd_port -dir O sc_out ]
-  set sclk_in [ create_bd_port -dir I -type clk -freq_hz 5000000 sclk_in ]
+  set sclk_in [ create_bd_port -dir I -type clk -freq_hz 25000000 sclk_in ]
   set sclk_led [ create_bd_port -dir O sclk_led ]
   set sclk_out [ create_bd_port -dir O sclk_out ]
   set sysclk_n [ create_bd_port -dir I -type clk -freq_hz 200000000 sysclk_n ]
@@ -206,8 +206,8 @@ proc create_root_design { parentCell } {
    CONFIG.CLKIN2_JITTER_PS {100.000} \
    CONFIG.CLKIN2_UI_JITTER {100.000} \
    CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {136.686} \
-   CONFIG.CLKOUT1_PHASE_ERROR {105.461} \
+   CONFIG.CLKOUT1_JITTER {112.316} \
+   CONFIG.CLKOUT1_PHASE_ERROR {89.971} \
    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {100} \
    CONFIG.CLKOUT2_DRIVES {BUFG} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {100.000} \
@@ -227,15 +227,15 @@ proc create_root_design { parentCell } {
    CONFIG.INTERFACE_SELECTION {Enable_AXI} \
    CONFIG.JITTER_OPTIONS {PS} \
    CONFIG.MMCM_BANDWIDTH {OPTIMIZED} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {9} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} \
    CONFIG.MMCM_CLKIN1_PERIOD {5.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {9} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {10.000} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {2} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.MMCM_REF_JITTER2 {0.010} \
    CONFIG.PHASE_DUTY_CONFIG {false} \
-   CONFIG.PRIMITIVE {PLL} \
+   CONFIG.PRIMITIVE {MMCM} \
    CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} \
    CONFIG.RESET_BOARD_INTERFACE {Custom} \
    CONFIG.RESET_PORT {resetn} \
@@ -285,20 +285,34 @@ proc create_root_design { parentCell } {
    CONFIG.USE_BOARD_FLOW {true} \
  ] $proc_sys_reset_1
 
+  # Create instance: rram_top_wrapper_0, and set properties
+  set block_name rram_top_wrapper
+  set block_cell_name rram_top_wrapper_0
+  if { [catch {set rram_top_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $rram_top_wrapper_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create port connections
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/mmcm_clk] [get_bd_pins ila_0/clk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports mmcm_led] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/mmcm_clk] [get_bd_pins ila_0/clk] [get_bd_pins proc_sys_reset_1/slowest_sync_clk]
   connect_bd_net -net clk_wiz_locked [get_bd_pins clk_wiz/locked] [get_bd_pins proc_sys_reset_1/dcm_locked]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out]
   connect_bd_net -net ila_0_trig_in_ack [get_bd_ports trig_in_ack] [get_bd_pins ila_0/trig_in_ack]
-  connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_led] [get_bd_ports mclk_pause_out]
-  connect_bd_net -net mosi_in [get_bd_ports mosi_in] [get_bd_ports mosi_led] [get_bd_ports mosi_out]
-  connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins proc_sys_reset_1/peripheral_aresetn]
-  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_ports reset_led] [get_bd_pins clk_wiz/resetn] [get_bd_pins proc_sys_reset_1/ext_reset_in]
-  connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_ember_led] [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_out]
-  connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0]
-  connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/trig_in]
-  connect_bd_net -net sc_in [get_bd_ports sc_in] [get_bd_ports sc_led] [get_bd_ports sc_out]
-  connect_bd_net -net sclk_in_1 [get_bd_ports miso] [get_bd_ports sclk_in] [get_bd_pins clkmux_0/sclk_in]
+  connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
+  connect_bd_net -net mosi_in [get_bd_ports mosi_in] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
+  connect_bd_net -net proc_sys_reset_0_interconnect_aresetn [get_bd_ports rst_n_out] [get_bd_pins proc_sys_reset_1/interconnect_aresetn]
+  connect_bd_net -net proc_sys_reset_1_peripheral_aresetn [get_bd_pins proc_sys_reset_1/peripheral_aresetn] [get_bd_pins rram_top_wrapper_0/rst_n]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz/resetn] [get_bd_pins proc_sys_reset_1/ext_reset_in]
+  connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_ember_led] [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_out] [get_bd_pins clkmux_0/rram_busy]
+  connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports miso] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
+  connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
+  connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
+  connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/trig_in] [get_bd_pins rram_top_wrapper_0/sa_rdy]
+  connect_bd_net -net sc_in [get_bd_ports sc_in] [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc]
+  connect_bd_net -net sclk_in_1 [get_bd_ports sclk_in] [get_bd_pins clkmux_0/sclk_in] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net sysclk_n_1 [get_bd_ports sysclk_n] [get_bd_pins clk_wiz/clk_in1_n]
   connect_bd_net -net sysclk_p_1 [get_bd_ports sysclk_p] [get_bd_pins clk_wiz/clk_in1_p]
   connect_bd_net -net use_mmcm_1 [get_bd_ports use_mmcm] [get_bd_ports use_mmcm_led] [get_bd_pins clkmux_0/clksel]

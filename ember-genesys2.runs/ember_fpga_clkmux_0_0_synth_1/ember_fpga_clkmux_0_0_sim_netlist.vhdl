@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Sun Jan 29 09:21:58 2023
+-- Date        : Mon Jan 30 18:09:14 2023
 -- Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 -- Command     : write_vhdl -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ ember_fpga_clkmux_0_0_sim_netlist.vhdl
@@ -19,11 +19,13 @@ entity decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux is
     clk_out : out STD_LOGIC;
     sclk_in : in STD_LOGIC;
     mmcm_clk : in STD_LOGIC;
-    clksel : in STD_LOGIC
+    clksel : in STD_LOGIC;
+    rram_busy : in STD_LOGIC
   );
 end decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux;
 
 architecture STRUCTURE of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux is
+  signal S0 : STD_LOGIC;
   attribute BOX_TYPE : string;
   attribute BOX_TYPE of BUFGMUX_inst : label is "PRIMITIVE";
   attribute XILINX_LEGACY_PRIM : string;
@@ -40,8 +42,8 @@ BUFGMUX_inst: unisim.vcomponents.BUFGCTRL
       SIM_DEVICE => "7SERIES"
     )
         port map (
-      CE0 => clksel,
-      CE1 => clksel,
+      CE0 => S0,
+      CE1 => S0,
       I0 => sclk_in,
       I1 => mmcm_clk,
       IGNORE0 => '0',
@@ -49,6 +51,15 @@ BUFGMUX_inst: unisim.vcomponents.BUFGCTRL
       O => clk_out,
       S0 => '1',
       S1 => '1'
+    );
+BUFGMUX_inst_i_1: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"8"
+    )
+        port map (
+      I0 => clksel,
+      I1 => rram_busy,
+      O => S0
     );
 end STRUCTURE;
 library IEEE;
@@ -60,6 +71,7 @@ entity decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix is
     sclk_in : in STD_LOGIC;
     mmcm_clk : in STD_LOGIC;
     clksel : in STD_LOGIC;
+    rram_busy : in STD_LOGIC;
     clk_out : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -85,6 +97,7 @@ inst: entity work.decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_clkmux
       clk_out => clk_out,
       clksel => clksel,
       mmcm_clk => mmcm_clk,
+      rram_busy => rram_busy,
       sclk_in => sclk_in
     );
 end STRUCTURE;

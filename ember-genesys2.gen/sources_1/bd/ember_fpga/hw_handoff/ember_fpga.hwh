@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 30 02:51:09 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jan 30 22:04:01 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -8,23 +8,20 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="sc_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="sc_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sc"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="mosi_in" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="mosi_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="mosi_out"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="O" LEFT="0" NAME="rst_n_led" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="mosi"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="mclk_pause_in" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="mclk_pause"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="sclk_led" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
@@ -42,14 +39,10 @@
         <CONNECTION INSTANCE="External_Ports" PORT="mosi_in"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="mclk_pause_led" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_0" PORT="probe0"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_do"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="mosi_out" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
@@ -72,15 +65,16 @@
         <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="0" NAME="rst_n_out" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+    <PORT DIR="O" LEFT="0" NAME="rst_n_out" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+        <CONNECTION INSTANCE="proc_sys_reset_1" PORT="interconnect_aresetn"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="rram_busy_in" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_ember_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
+        <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="rram_busy_ember_led" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
@@ -104,27 +98,22 @@
         <CONNECTION INSTANCE="External_Ports" PORT="use_mmcm"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="reset_led" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
-      </CONNECTIONS>
-    </PORT>
     <PORT DIR="I" NAME="reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
       <CONNECTIONS>
         <CONNECTION INSTANCE="proc_sys_reset_1" PORT="ext_reset_in"/>
-        <CONNECTION INSTANCE="External_Ports" PORT="reset_led"/>
         <CONNECTION INSTANCE="clk_wiz" PORT="resetn"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="5000000" DIR="I" NAME="sclk_in" SIGIS="clk" SIGNAME="External_Ports_sclk_in">
+    <PORT CLKFREQUENCY="25000000" DIR="I" NAME="sclk_in" SIGIS="clk" SIGNAME="External_Ports_sclk_in">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clkmux_0" PORT="sclk_in"/>
-        <CONNECTION INSTANCE="External_Ports" PORT="miso"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sclk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
       <CONNECTIONS>
         <CONNECTION INSTANCE="ila_0" PORT="trig_in"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_rdy"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="200000000" DIR="I" NAME="sysclk_p" SIGIS="clk" SIGNAME="External_Ports_sysclk_p">
@@ -142,9 +131,24 @@
         <CONNECTION INSTANCE="ila_0" PORT="trig_in_ack"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="External_Ports_sclk_in">
+    <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="sclk_in"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="miso"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="rram_busy_fpga_led" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_busy"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="mmcm_led" SIGIS="clk" SIGNAME="clk_wiz_clk_out1">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="clk_wiz" PORT="clk_out1"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="miso_led" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="miso"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -229,7 +233,7 @@
         <PARAMETER NAME="C_INCLK_SUM_ROW2" VALUE="no_secondary_input_clock"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0A" VALUE="Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW0B" VALUE="Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)"/>
-        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="clk_out1__100.00000______0.000______50.0______136.686____105.461"/>
+        <PARAMETER NAME="C_OUTCLK_SUM_ROW1" VALUE="clk_out1__100.00000______0.000______50.0______112.316_____89.971"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW2" VALUE="no_CLK_OUT2_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW3" VALUE="no_CLK_OUT3_output"/>
         <PARAMETER NAME="C_OUTCLK_SUM_ROW4" VALUE="no_CLK_OUT4_output"/>
@@ -289,17 +293,17 @@
         <PARAMETER NAME="C_CLKOUT7_SEQUENCE_NUMBER" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_NOTES" VALUE="None"/>
         <PARAMETER NAME="C_MMCM_BANDWIDTH" VALUE="OPTIMIZED"/>
-        <PARAMETER NAME="C_MMCM_CLKFBOUT_MULT_F" VALUE="9.000"/>
+        <PARAMETER NAME="C_MMCM_CLKFBOUT_MULT_F" VALUE="5.000"/>
         <PARAMETER NAME="C_MMCM_CLKIN1_PERIOD" VALUE="5.000"/>
         <PARAMETER NAME="C_MMCM_CLKIN2_PERIOD" VALUE="10.0"/>
         <PARAMETER NAME="C_MMCM_CLKOUT4_CASCADE" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_CLOCK_HOLD" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_COMPENSATION" VALUE="ZHOLD"/>
-        <PARAMETER NAME="C_MMCM_DIVCLK_DIVIDE" VALUE="2"/>
+        <PARAMETER NAME="C_MMCM_DIVCLK_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_REF_JITTER1" VALUE="0.010"/>
         <PARAMETER NAME="C_MMCM_REF_JITTER2" VALUE="0.010"/>
         <PARAMETER NAME="C_MMCM_STARTUP_WAIT" VALUE="FALSE"/>
-        <PARAMETER NAME="C_MMCM_CLKOUT0_DIVIDE_F" VALUE="9.000"/>
+        <PARAMETER NAME="C_MMCM_CLKOUT0_DIVIDE_F" VALUE="10.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT1_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_CLKOUT2_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="C_MMCM_CLKOUT3_DIVIDE" VALUE="1"/>
@@ -395,7 +399,7 @@
         <PARAMETER NAME="C_CLKFB_STOPPED_PORT" VALUE="clkfb_stopped"/>
         <PARAMETER NAME="C_CLKIN1_JITTER_PS" VALUE="50"/>
         <PARAMETER NAME="C_CLKIN2_JITTER_PS" VALUE="100.000"/>
-        <PARAMETER NAME="C_PRIMITIVE" VALUE="PLL"/>
+        <PARAMETER NAME="C_PRIMITIVE" VALUE="MMCM"/>
         <PARAMETER NAME="C_SS_MODE" VALUE="CENTER_HIGH"/>
         <PARAMETER NAME="C_SS_MOD_PERIOD" VALUE="4000"/>
         <PARAMETER NAME="C_SS_MOD_TIME" VALUE="0.004"/>
@@ -466,12 +470,12 @@
         <PARAMETER NAME="C_CLKOUT6_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_M_MAX" VALUE="64.000"/>
         <PARAMETER NAME="C_M_MIN" VALUE="2.000"/>
-        <PARAMETER NAME="C_D_MAX" VALUE="49.000"/>
+        <PARAMETER NAME="C_D_MAX" VALUE="93.000"/>
         <PARAMETER NAME="C_D_MIN" VALUE="1.000"/>
         <PARAMETER NAME="C_O_MAX" VALUE="128.000"/>
         <PARAMETER NAME="C_O_MIN" VALUE="1.000"/>
-        <PARAMETER NAME="C_VCO_MIN" VALUE="800.000"/>
-        <PARAMETER NAME="C_VCO_MAX" VALUE="1866.000"/>
+        <PARAMETER NAME="C_VCO_MIN" VALUE="600.000"/>
+        <PARAMETER NAME="C_VCO_MAX" VALUE="1440.000"/>
         <PARAMETER NAME="Component_Name" VALUE="ember_fpga_clk_wiz_0"/>
         <PARAMETER NAME="USER_CLK_FREQ0" VALUE="100.0"/>
         <PARAMETER NAME="USER_CLK_FREQ1" VALUE="100.0"/>
@@ -486,7 +490,7 @@
         <PARAMETER NAME="Enable_PLL1" VALUE="false"/>
         <PARAMETER NAME="REF_CLK_FREQ" VALUE="100.0"/>
         <PARAMETER NAME="PRECISION" VALUE="1"/>
-        <PARAMETER NAME="PRIMITIVE" VALUE="PLL"/>
+        <PARAMETER NAME="PRIMITIVE" VALUE="MMCM"/>
         <PARAMETER NAME="PRIMTYPE_SEL" VALUE="mmcm_adv"/>
         <PARAMETER NAME="CLOCK_MGR_TYPE" VALUE="auto"/>
         <PARAMETER NAME="USE_FREQ_SYNTH" VALUE="true"/>
@@ -618,9 +622,9 @@
         <PARAMETER NAME="SS_MOD_TIME" VALUE="0.004"/>
         <PARAMETER NAME="OVERRIDE_MMCM" VALUE="false"/>
         <PARAMETER NAME="MMCM_NOTES" VALUE="None"/>
-        <PARAMETER NAME="MMCM_DIVCLK_DIVIDE" VALUE="2"/>
+        <PARAMETER NAME="MMCM_DIVCLK_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="MMCM_BANDWIDTH" VALUE="OPTIMIZED"/>
-        <PARAMETER NAME="MMCM_CLKFBOUT_MULT_F" VALUE="9"/>
+        <PARAMETER NAME="MMCM_CLKFBOUT_MULT_F" VALUE="5.000"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_USE_FINE_PS" VALUE="false"/>
         <PARAMETER NAME="MMCM_CLKIN1_PERIOD" VALUE="5.000"/>
@@ -631,7 +635,7 @@
         <PARAMETER NAME="MMCM_REF_JITTER1" VALUE="0.010"/>
         <PARAMETER NAME="MMCM_REF_JITTER2" VALUE="0.010"/>
         <PARAMETER NAME="MMCM_STARTUP_WAIT" VALUE="false"/>
-        <PARAMETER NAME="MMCM_CLKOUT0_DIVIDE_F" VALUE="9"/>
+        <PARAMETER NAME="MMCM_CLKOUT0_DIVIDE_F" VALUE="10.000"/>
         <PARAMETER NAME="MMCM_CLKOUT0_DUTY_CYCLE" VALUE="0.500"/>
         <PARAMETER NAME="MMCM_CLKOUT0_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="MMCM_CLKOUT0_USE_FINE_PS" VALUE="false"/>
@@ -709,8 +713,8 @@
         <PARAMETER NAME="CDDCREQ_PORT" VALUE="cddcreq"/>
         <PARAMETER NAME="ENABLE_CLKOUTPHY" VALUE="false"/>
         <PARAMETER NAME="CLKOUTPHY_REQUESTED_FREQ" VALUE="600.000"/>
-        <PARAMETER NAME="CLKOUT1_JITTER" VALUE="136.686"/>
-        <PARAMETER NAME="CLKOUT1_PHASE_ERROR" VALUE="105.461"/>
+        <PARAMETER NAME="CLKOUT1_JITTER" VALUE="112.316"/>
+        <PARAMETER NAME="CLKOUT1_PHASE_ERROR" VALUE="89.971"/>
         <PARAMETER NAME="CLKOUT2_JITTER" VALUE="0.0"/>
         <PARAMETER NAME="CLKOUT2_PHASE_ERROR" VALUE="0.0"/>
         <PARAMETER NAME="CLKOUT3_JITTER" VALUE="0.0"/>
@@ -750,6 +754,7 @@
             <CONNECTION INSTANCE="proc_sys_reset_1" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="clkmux_0" PORT="mmcm_clk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="mmcm_led"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="clk_wiz_locked">
@@ -789,6 +794,11 @@
         <PORT DIR="I" NAME="clksel" SIGIS="undef" SIGNAME="External_Ports_use_mmcm">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="use_mmcm"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rram_busy" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
@@ -4010,11 +4020,70 @@
         <PORT DIR="O" NAME="mb_reset" POLARITY="ACTIVE_HIGH" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="bus_struct_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
         <PORT DIR="O" LEFT="0" NAME="peripheral_reset" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst"/>
+        <PORT DIR="O" LEFT="0" NAME="interconnect_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_interconnect_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
-            <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/rram_top_wrapper_0" HWVERSION="1.0" INSTANCE="rram_top_wrapper_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="rram_top_wrapper" VLNV="xilinx.com:module_ref:rram_top_wrapper:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_rram_top_wrapper_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="mclk_pause" SIGIS="undef" SIGNAME="External_Ports_mclk_pause_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="proc_sys_reset_1_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="proc_sys_reset_1" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="rram_busy" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_fpga_led"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sclk" SIGIS="undef" SIGNAME="External_Ports_sclk_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sclk_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sc" SIGIS="undef" SIGNAME="External_Ports_sc_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sc_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="mosi" SIGIS="undef" SIGNAME="External_Ports_mosi_in">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="mosi_in"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="miso" SIGIS="undef" SIGNAME="rram_top_wrapper_0_miso">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="miso"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="miso_led"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_do"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
