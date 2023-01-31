@@ -63,25 +63,6 @@ module ember_fpga_rram_top_wrapper_0_0 (
   sc,
   mosi,
   miso,
-  aclk,
-  bl_en,
-  bleed_en,
-  bsl_dac_config,
-  bsl_dac_en,
-  clamp_ref,
-  di,
-  read_dac_config,
-  read_dac_en,
-  read_ref,
-  rram_addr,
-  sa_clk,
-  sa_en,
-  set_rst,
-  sl_en,
-  we,
-  wl_dac_config,
-  wl_dac_en,
-  wl_en,
   sa_do,
   sa_rdy
 );
@@ -91,37 +72,10 @@ input wire mclk_pause;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *)
 input wire rst_n;
 output wire rram_busy;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME sclk, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0, CLK_DOMAIN ember_fpga_sclk_in" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 sclk CLK" *)
 input wire sclk;
 input wire sc;
 input wire mosi;
 output wire miso;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME aclk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN ember_fpga_rram_top_wrapper_0_0_aclk, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 aclk CLK" *)
-output wire aclk;
-output wire bl_en;
-output wire bleed_en;
-output wire [4 : 0] bsl_dac_config;
-output wire bsl_dac_en;
-output wire [5 : 0] clamp_ref;
-output wire [47 : 0] di;
-output wire [3 : 0] read_dac_config;
-output wire read_dac_en;
-output wire [5 : 0] read_ref;
-output wire [15 : 0] rram_addr;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME sa_clk, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, INSERT_VIP 0, CLK_DOMAIN ember_fpga_rram_top_wrapper_0_0_sa_clk" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 sa_clk CLK" *)
-output wire sa_clk;
-output wire sa_en;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME set_rst, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 set_rst RST" *)
-output wire set_rst;
-output wire sl_en;
-output wire we;
-output wire [7 : 0] wl_dac_config;
-output wire wl_dac_en;
-output wire wl_en;
 input wire [47 : 0] sa_do;
 input wire sa_rdy;
 
@@ -133,25 +87,6 @@ input wire sa_rdy;
     .sc(sc),
     .mosi(mosi),
     .miso(miso),
-    .aclk(aclk),
-    .bl_en(bl_en),
-    .bleed_en(bleed_en),
-    .bsl_dac_config(bsl_dac_config),
-    .bsl_dac_en(bsl_dac_en),
-    .clamp_ref(clamp_ref),
-    .di(di),
-    .read_dac_config(read_dac_config),
-    .read_dac_en(read_dac_en),
-    .read_ref(read_ref),
-    .rram_addr(rram_addr),
-    .sa_clk(sa_clk),
-    .sa_en(sa_en),
-    .set_rst(set_rst),
-    .sl_en(sl_en),
-    .we(we),
-    .wl_dac_config(wl_dac_config),
-    .wl_dac_en(wl_dac_en),
-    .wl_en(wl_en),
     .sa_do(sa_do),
     .sa_rdy(sa_rdy)
   );

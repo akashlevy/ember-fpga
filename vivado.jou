@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Wed Jan 25 13:42:19 2023
-# Process ID: 22154
+# Start of session at: Mon Jan 30 14:55:14 2023
+# Process ID: 28342
 # Current directory: /sim2/akashl/ember-fpga
 # Command line: vivado ember-genesys2.xpr
 # Log file: /sim2/akashl/ember-fpga/vivado.log
@@ -13,7 +13,418 @@ start_gui
 open_project ember-genesys2.xpr
 update_compile_order -fileset sources_1
 open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+add_files -norecurse -scan_for_includes /sim2/akashl/emblem-digital/ip/itrx_common/rtl/itrx_clog2.vh
+add_files -norecurse -scan_for_includes {/sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi.v /sim2/akashl/emblem-digital/rtl/fsm.v /sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_fsm.v /sim2/akashl/emblem-digital/ip/itrx_apbm_spi/rtl/itrx_apbm_spi_fsm.v /sim2/akashl/emblem-digital/rtl/rram_top.v /sim2/akashl/emblem-digital/rtl/globals.v /sim2/akashl/emblem-digital/rtl/spi_slave_rram.v}
+update_compile_order -fileset sources_1
+set_property file_type SystemVerilog [get_files  /sim2/akashl/emblem-digital/rtl/fsm.v]
+set_property is_global_include true [get_files  /sim2/akashl/emblem-digital/rtl/globals.v]
+update_module_reference ember_fpga_clkmux_0_0
+update_compile_order -fileset sources_1
+add_files -norecurse -scan_for_includes /sim2/akashl/emblem-digital/rtl/clock_gen.v
+update_compile_order -fileset sources_1
+add_files -norecurse -scan_for_includes /sim2/akashl/ember-fpga2/ember-genesys2.srcs/sources_1/new/rram_top_wrapper.v
+import_files -norecurse /sim2/akashl/ember-fpga2/ember-genesys2.srcs/sources_1/new/rram_top_wrapper.v
+update_compile_order -fileset sources_1
+create_bd_cell -type module -reference rram_top_wrapper rram_top_wrapper_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+update_compile_order -fileset sources_1
+disconnect_bd_net /sclk_in_1 [get_bd_ports miso]
+connect_bd_net [get_bd_ports miso] [get_bd_pins rram_top_wrapper_0/miso]
+connect_bd_net [get_bd_ports sa_do] [get_bd_pins rram_top_wrapper_0/sa_do]
+connect_bd_net [get_bd_ports sa_rdy] [get_bd_pins rram_top_wrapper_0/sa_rdy]
+connect_bd_net [get_bd_ports mosi_in] [get_bd_pins rram_top_wrapper_0/mosi]
+connect_bd_net [get_bd_ports sclk_in] [get_bd_pins rram_top_wrapper_0/sclk]
+connect_bd_net [get_bd_ports sc_in] [get_bd_pins rram_top_wrapper_0/sc]
+disconnect_bd_net /proc_sys_reset_0_interconnect_aresetn [get_bd_pins proc_sys_reset_1/peripheral_aresetn]
+connect_bd_net [get_bd_ports rst_n_led] [get_bd_pins proc_sys_reset_1/interconnect_aresetn]
+connect_bd_net [get_bd_pins proc_sys_reset_1/peripheral_aresetn] [get_bd_pins rram_top_wrapper_0/rst_n]
+disconnect_bd_net /reset_1 [get_bd_ports reset_led]
+delete_bd_objs [get_bd_ports reset_led]
+create_bd_port -dir O rram_busy_fpga_led
+startgroup
+connect_bd_net [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
+endgroup
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+update_module_reference ember_fpga_clkmux_0_0
+connect_bd_net [get_bd_ports rram_busy_in] [get_bd_pins clkmux_0/rram_busy]
+connect_bd_net [get_bd_ports mclk_pause_in] [get_bd_pins rram_top_wrapper_0/mclk_pause]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+regenerate_bd_layout
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+set_property CONFIG.FREQ_HZ 25000000 [get_bd_ports sclk_in]
+save_bd_design
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_property is_enabled false [get_files  /sim2/akashl/emblem-digital/rtl/globals.v]
+set_property is_enabled true [get_files  /sim2/akashl/emblem-digital/rtl/globals.v]
+update_compile_order -fileset sources_1
+set_property file_type {Verilog Header} [get_files  /sim2/akashl/emblem-digital/rtl/globals.v]
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_property file_type SystemVerilog [get_files  /sim2/akashl/emblem-digital/rtl/rram_top.v]
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+reset_run synth_1
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_property file_type SystemVerilog [get_files  /sim2/akashl/emblem-digital/rtl/spi_slave_rram.v]
+update_compile_order -fileset sources_1
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'aclk' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'rram_top' has 28 connections declared, but only 9 given [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bleed_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bsl_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bsl_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'clamp_ref' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'di' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'read_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'read_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'read_ref' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'rram_addr' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'sa_clk' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'sa_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'set_rst' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'sl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'wl_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'wl_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'wl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'we' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:115]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:130]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:130]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:130]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:130]} } 
+file mkdir /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/new
+close [ open /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/new/Genesys2_EMBER_Impl.xdc w ]
+add_files -fileset constrs_1 /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/new/Genesys2_EMBER_Impl.xdc
+set_property used_in_synthesis false [get_files  /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/new/Genesys2_EMBER_Impl.xdc]
+report_compile_order -constraints.
+report_compile_order -constraints
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+regenerate_bd_layout
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+close_design
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_2
+report_methodology -name ultrafast_methodology_1
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {CKLD-2#1}] -user akashl -description {Signal sclk comes straight from I/O intentionally}
+report_cdc -name cdc_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+get_ports ember_fpga_i/*
+get_ports *
+get_ports -hier
+get_ports -hier *
+get_ports -hierarchical *
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {CKLD-2#1}] -user akashl -description {Signal sclk_in is direct IO intentionally, since it does not need to go very fast}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {LUTAR-1#1}] -user akashl -description {Signal fsm_go triggers async reset (should have been synchronous...)}
+save_constraints
+close_design
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+regenerate_bd_layout
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+get_pins clk_wiz.clk_out1
+get_pins clk_wiz.*
+get_pins ember_fpga_clk_wiz_0.*
+get_pins ember_fpga_clk_wiz_0
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+get_nets clk_wiz_clk_out1
+get_nets /clk_wiz_clk_out1
+get_nets clk_wiz.clk_out1
+get_pins clk_wiz.clk_out1
+get_pins clk_wiz/clk_out1
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+update_module_reference ember_fpga_clkmux_0_0
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+update_module_reference ember_fpga_clkmux_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+validate_bd_design
+save_bd_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_msg_config -suppress -id {Netlist 29-345} 
+close_design
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+close_design
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+get_pins ember_fpga_clk_wiz_0/clk_out1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+get_pins ember_fpga_clk_wiz_0
+get_pins ember_fpga/*
+get_pins ember_fpga_wrapper/*
+get_pins *
+get_pins ember_fpga_i/ember_clk_wiz_0
+get_pins ember_fpga_i/ember_clk_wiz_0/*
+get_pins ember_fpga_i/inst/ember_clk_wiz_0/*
+get_pins ember_fpga_i/*
+get_pins ember_fpga_i/*
+get_pins ember_fpga_i/ember_fpga
+get_pins ember_fpga_i/ember_fpga/*
+get_pins ember_fpga_i/* -hierarchical
+get_pins ember_fpga_i/*/* -hierarchical
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+create_bd_port -dir O -type clk mmcm_led
+connect_bd_net [get_bd_ports mmcm_led] [get_bd_pins clk_wiz/clk_out1]
+save_bd_design
+startgroup
+set_property -dict [list CONFIG.PRIMITIVE {MMCM} CONFIG.USE_PHASE_ALIGNMENT {false} CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} CONFIG.CLKOUT1_DRIVES {BUFG} CONFIG.CLKOUT2_DRIVES {BUFG} CONFIG.CLKOUT3_DRIVES {BUFG} CONFIG.CLKOUT4_DRIVES {BUFG} CONFIG.CLKOUT5_DRIVES {BUFG} CONFIG.CLKOUT6_DRIVES {BUFG} CONFIG.CLKOUT7_DRIVES {BUFG} CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} CONFIG.MMCM_DIVCLK_DIVIDE {1} CONFIG.MMCM_BANDWIDTH {OPTIMIZED} CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} CONFIG.MMCM_COMPENSATION {ZHOLD} CONFIG.MMCM_CLKOUT0_DIVIDE_F {10.000} CONFIG.CLKOUT1_JITTER {112.316} CONFIG.CLKOUT1_PHASE_ERROR {89.971}] [get_bd_cells clk_wiz]
+endgroup
+save_bd_design
+reset_run ember_fpga_clk_wiz_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'mb_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:133]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:133]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:133]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_1_0' is unconnected for instance 'proc_sys_reset_1' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:133]} } 
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+get_clocks -of_objects [get_ports sclk_led]
+get_clocks -of_objects [get_ports mmcm_led]
+get_clocks -of_objects [get_ports ember_fpga_i]
+get_clocks -of_objects [get_ports ember_fpga_i/*]
+get_clocks -of_objects [get_ports *]
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+get_clocks -of_objects [get_ports mmcm_led]
+get_clocks -of_objects [get_nets mmcm_led]
+get_clocks
+get_pins ember_fpga_i/*
+get_pins ember_fpga_i/ember_fpga_clk_wiz_0/*
+get_pins ember_fpga_i/ember_fpga_clk_wiz_0/*
+get_pins ember_fpga_i/ember_fpga_clk_wiz_0/*
+get_pins ember_fpga_i/ember_fpga_clk_wiz_0/
+get_pins ember_fpga_i/ember_fpga_clk_wiz_0/ -hierarchical
+get_pins ember_fpga_i/* -hierarchical
+close_design
+get_nets clk_wiz_clk_out1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+get_nets clk_wiz_clk_out1
+open_run synth_1 -name synth_1
+get_nets clk_wiz_clk_out1
+get_nets
+get_nets -hierarchical
+get_nets -hierarchical ember_fpga_i/clk_wiz/inst/*
+get_nets -hierarchical ember_fpga_i/clk_wiz/*
+get_nets ember_fpga_i/clk_wiz/clk_in1_p
+get_nets ember_fpga_i/clk_wiz/*
+get_nets ember_fpga_i/clk_wiz/clk_out1
+get_clocks -of_objects [get_nets ember_fpga_i/clk_wiz/clk_out1]
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+get_nets ember_fpga_i/clk_wiz/clk_out1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+get_pins ember_fpga_i/clk_wiz/inst/mmcm_adv_inst/CLKOUT0
+get_pins mmcm_adv_inst.CLKOUT0]
+get_pins mmcm_adv_inst.CLKOUT0
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+get_pins ember_fpga_i/clk_wiz/inst/mmcm_adv_inst/CLKOUT0
+get_clocks -of_objects [get_pins ember_fpga_i/clk_wiz/inst/mmcm_adv_inst/CLKOUT0]
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+close_design
+open_run synth_1 -name synth_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+report_clocks
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#1}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#2}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#3}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#4}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#5}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#6}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#7}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#8}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+create_waiver -of_objects [get_methodology_violations -name ultrafast_methodology_1 {TIMING-28#9}] -user akashl -description {Xilinx does not like referencing auto-derived clock}
+report_methodology -name ultrafast_methodology_1
+save_constraints -force
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:609]} } 
+set_msg_config -suppress -id {Vivado 12-646} -string {{WARNING: [Vivado 12-646] clock 'clk_out1_ember_fpga_clk_wiz_0' not found. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:618]} } 
+set_msg_config -suppress -id {Project 1-498} -string {{WARNING: [Project 1-498] One or more constraints failed evaluation while reading constraint file [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc] and the design contains unresolved black boxes. These constraints will be read post-synthesis (as long as their source constraint file is marked as used_in_implementation) and should be applied correctly then. You should review the constraints listed in the file [.Xil/ember_fpga_wrapper_propImpl.xdc] and check the run log file to verify that these constraints were correctly applied.} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:610]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:611]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:612]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:613]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:614]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:615]} } 
+set_msg_config -suppress -id {Vivado 12-627} -string {{WARNING: [Vivado 12-627] No clocks matched 'clk_out1_ember_fpga_clk_wiz_0'. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:616]} } 
+reset_run synth_1
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+close_design
+open_run synth_1 -name synth_1
+report_methodology -name ultrafast_methodology_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+set_msg_config -suppress -id {Place 30-574} 
+close_design
+open_run impl_1
+get_ports sa_do[*]
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+report_methodology -name ultrafast_methodology_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+close_design
+open_run impl_1
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#1}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#6}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#7}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#8}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#2}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#3}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#4}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#5}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#9}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {PDRC-190#10}] -user akashl -description {Chip level problems with debug}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {LUTAR-1#1}] -user akashl -description {Asynchronous RESET driven by LUT, probably fine}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {LUTAR-1#2}] -user akashl -description {Asynchronous RESET driven by LUT, probably fine}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {LUTAR-1#3}] -user akashl -description {Asynchronous RESET driven by LUT, probably fine}
+create_waiver -of_objects [get_methodology_violations -name ember_fpga_wrapper_methodology_drc_routed.rpx {LUTAR-1#4}] -user akashl -description {Asynchronous RESET driven by LUT, probably fine}
+save_constraints -force
+set_msg_config -suppress -id {DRC RTSTAT-10} -string {{WARNING: [DRC RTSTAT-10] No routable loads: 25 net(s) have no routable loads. The problem bus(es) and/or net(s) are dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg[2:0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD1/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_capture[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_drck[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_runtest[0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/s_bscan_tms, ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[13], ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[14]... and (the first 15 of 23 listed).} } 
+set_msg_config -suppress -id {DRC PLCK-12} 
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+delete_bd_objs [get_bd_ports rst_n_led]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+regenerate_bd_layout
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+set_msg_config -suppress -id {DRC RTSTAT-10} -string {{WARNING: [DRC RTSTAT-10] No routable loads: 25 net(s) have no routable loads. The problem bus(es) and/or net(s) are dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg[2:0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD1/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_capture[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_drck[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_runtest[0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/s_bscan_tms, ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[13], ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[14]... and (the first 15 of 23 listed).} } 
+get_cells dbg_hub/*
+report_methodology -name ultrafast_methodology_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+close_design
+close_design
+set_msg_config -suppress -id {DRC RTSTAT-10} 
+open_run synth_1 -name synth_1
+report_methodology -name ultrafast_methodology_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+open_run impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+report_drc -name drc_1 -ruledecks {default}
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+delete_bd_objs [get_bd_ports mclk_pause_led]
+create_bd_port -dir O miso_led
+connect_bd_net [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
+create_waiver -of_objects [get_drc_violations -name drc_1 {RTSTAT-10#1}] -user akashl -description {No routable loads on some debug core stuff}
+create_waiver -of_objects [get_drc_violations -name drc_1 {PLCK-12#1}] -user akashl -description {CLOCK_DEDICATED_ROUTE false warning}
+report_drc -name drc_1 -ruledecks default
+save_constraints_as constrs_2
+delete_fileset [ get_filesets constrs_2 ]
+file delete -force /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_2
+close_design
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
 open_run impl_1
+set_msg_config -suppress -id {DRC 23-412} 
+report_methodology -name ultrafast_methodology_1
+report_drc -name drc_1 -ruledecks {default}
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
