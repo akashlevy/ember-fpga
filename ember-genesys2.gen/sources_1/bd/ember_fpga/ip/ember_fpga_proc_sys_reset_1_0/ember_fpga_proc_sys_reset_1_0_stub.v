@@ -1,11 +1,11 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Sun Jan 29 03:02:44 2023
+// Date        : Sun Jan 29 15:38:34 2023
 // Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode synth_stub -rename_top ember_fpga_proc_sys_reset_1_0 -prefix
-//               ember_fpga_proc_sys_reset_1_0_ ember_fpga_proc_sys_reset_0_0_stub.v
-// Design      : ember_fpga_proc_sys_reset_0_0
+//               ember_fpga_proc_sys_reset_1_0_ ember_fpga_proc_sys_reset_1_0_stub.v
+// Design      : ember_fpga_proc_sys_reset_1_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7k325tffg900-2
 // --------------------------------------------------------------------------------

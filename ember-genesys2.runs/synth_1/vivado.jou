@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Tue Jan 31 15:17:39 2023
-# Process ID: 51516
+# Start of session at: Wed Feb  1 01:44:32 2023
+# Process ID: 39586
 # Current directory: /sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1
 # Command line: vivado -log ember_fpga_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_wrapper.tcl
 # Log file: /sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/ember_fpga_wrapper.vds

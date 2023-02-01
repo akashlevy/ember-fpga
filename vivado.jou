@@ -21,3 +21,11 @@ reset_run synth_1
 reset_run ember_fpga_ila_0_0_synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
+startgroup
+set_property -dict [list CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {50} CONFIG.MMCM_CLKOUT0_DIVIDE_F {20.000} CONFIG.CLKOUT1_JITTER {129.198}] [get_bd_cells clk_wiz]
+endgroup
+save_bd_design
+reset_run synth_1
+reset_run ember_fpga_clk_wiz_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Mon Jan 30 18:48:18 2023
+-- Date        : Wed Feb  1 01:41:53 2023
 -- Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_sim_netlist.vhdl
@@ -80,7 +80,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 5.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 10.000000,
+      CLKOUT0_DIVIDE_F => 20.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,

@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Tue Jan 31 15:14:15 2023
+//Date        : Wed Feb  1 01:40:41 2023
 //Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -42,7 +42,7 @@ module ember_fpga
   output mclk_pause_out;
   output miso;
   output miso_led;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.MMCM_LED CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.MMCM_LED, CLK_DOMAIN ember_fpga_clk_wiz_0_clk_out1, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output mmcm_led;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.MMCM_LED CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.MMCM_LED, CLK_DOMAIN ember_fpga_clk_wiz_0_clk_out1, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.0" *) output mmcm_led;
   input mosi_in;
   output mosi_led;
   output mosi_out;
