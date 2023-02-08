@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xB11D090BA14C7DBD",
+      "boundary_crc": "0x4C0E201DA7D6D356",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -14,7 +14,8 @@
       "clk_wiz": "",
       "vio_0": "",
       "rram_top_wrapper_0": "",
-      "clkmux_0": ""
+      "clkmux_0": "",
+      "util_vector_logic_0": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -33,7 +34,17 @@
     },
     "ports": {
       "PROG_SS": {
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "PROG_MOSI": {
         "direction": "I"
@@ -56,7 +67,19 @@
         }
       },
       "sc_led": {
-        "direction": "O"
+        "direction": "O",
+        "left": "0",
+        "right": "0",
+        "parameters": {
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "mosi_led": {
         "direction": "O"
@@ -70,7 +93,19 @@
         "direction": "O"
       },
       "sc_out": {
-        "direction": "O"
+        "direction": "O",
+        "left": "0",
+        "right": "0",
+        "parameters": {
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "sclk_out": {
         "direction": "O",
@@ -431,7 +466,17 @@
             }
           },
           "sc": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
           },
           "mosi": {
             "direction": "I"
@@ -518,6 +563,20 @@
             }
           }
         }
+      },
+      "util_vector_logic_0": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_0_0",
+        "xci_path": "ip/ember_fpga_util_vector_logic_0_0/ember_fpga_util_vector_logic_0_0.xci",
+        "inst_hier_path": "util_vector_logic_0",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -539,7 +598,7 @@
       },
       "sc_in": {
         "ports": [
-          "PROG_SS",
+          "util_vector_logic_0/Res",
           "sc_led",
           "sc_out",
           "rram_top_wrapper_0/sc"
@@ -628,6 +687,12 @@
         "ports": [
           "clksel",
           "clkmux_0/clksel"
+        ]
+      },
+      "PROG_SS_1": {
+        "ports": [
+          "PROG_SS",
+          "util_vector_logic_0/Op1"
         ]
       }
     }

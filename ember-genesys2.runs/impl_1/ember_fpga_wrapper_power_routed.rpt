@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date             : Tue Feb  7 23:33:23 2023
+| Date             : Wed Feb  8 01:13:53 2023
 | Host             : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command          : report_power -file ember_fpga_wrapper_power_routed.rpt -pb ember_fpga_wrapper_power_summary_routed.pb -rpx ember_fpga_wrapper_power_routed.rpx
 | Design           : ember_fpga_wrapper
@@ -54,13 +54,13 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |     0.020 |        7 |       --- |             --- |
 | Slice Logic              |     0.008 |    10650 |       --- |             --- |
-|   LUT as Logic           |     0.007 |     4271 |    203800 |            2.10 |
+|   LUT as Logic           |     0.007 |     4257 |    203800 |            2.09 |
 |   Register               |    <0.001 |     4926 |    407600 |            1.21 |
 |   CARRY4                 |    <0.001 |       69 |     50950 |            0.14 |
 |   F7/F8 Muxes            |    <0.001 |      847 |    203800 |            0.42 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     64000 |            0.04 |
 |   Others                 |     0.000 |      117 |       --- |             --- |
-| Signals                  |     0.010 |     7673 |       --- |             --- |
+| Signals                  |     0.010 |     7671 |       --- |             --- |
 | MMCM                     |     0.107 |        1 |        10 |           10.00 |
 | I/O                      |     0.032 |       74 |       500 |           14.80 |
 | Static Power             |     0.161 |          |           |                 |
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.108 |       0.040 |      0.069 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.108 |       0.039 |      0.069 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.090 |       0.062 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.009 |       0.008 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |

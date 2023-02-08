@@ -193,8 +193,8 @@ proc create_root_design { parentCell } {
   set rst_n_out [ create_bd_port -dir O rst_n_out ]
   set sa_do [ create_bd_port -dir I -from 47 -to 0 sa_do ]
   set sa_rdy [ create_bd_port -dir I sa_rdy ]
-  set sc_led [ create_bd_port -dir O sc_led ]
-  set sc_out [ create_bd_port -dir O sc_out ]
+  set sc_led [ create_bd_port -dir O -from 0 -to 0 sc_led ]
+  set sc_out [ create_bd_port -dir O -from 0 -to 0 sc_out ]
   set sclk_led [ create_bd_port -dir O sclk_led ]
   set sclk_out [ create_bd_port -dir O sclk_out ]
   set spien_led [ create_bd_port -dir O spien_led ]
@@ -285,6 +285,14 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  # Create instance: util_vector_logic_0, and set properties
+  set util_vector_logic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_0 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $util_vector_logic_0
+
   # Create instance: vio_0, and set properties
   set vio_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:vio:3.0 vio_0 ]
   set_property -dict [ list \
@@ -297,6 +305,7 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net PROG_SPIEN_1 [get_bd_ports PROG_SPIEN] [get_bd_ports spien_led]
+  connect_bd_net -net PROG_SS_1 [get_bd_ports PROG_SS] [get_bd_pins util_vector_logic_0/Op1]
   connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins vio_0/clk]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net clksel_1 [get_bd_ports clksel] [get_bd_pins clkmux_0/clksel]
@@ -308,7 +317,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins rram_top_wrapper_0/sa_do] [get_bd_pins vio_0/probe_in0]
   connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins rram_top_wrapper_0/sa_rdy] [get_bd_pins vio_0/probe_in1]
-  connect_bd_net -net sc_in [get_bd_ports PROG_SS] [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc]
+  connect_bd_net -net sc_in [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net sclk_in_1 [get_bd_ports PROG_SCK] [get_bd_pins clkmux_0/sclk]
 
   # Create address segments

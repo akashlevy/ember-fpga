@@ -1,8 +1,8 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Tue Feb  7 22:26:45 2023
-//Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
+//Date        : Wed Feb  8 01:08:32 2023
+//Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga_wrapper.bd
 //Design      : ember_fpga_wrapper
 //Purpose     : IP block netlist
@@ -57,8 +57,8 @@ module ember_fpga_wrapper
   output rst_n_out;
   input [47:0]sa_do;
   input sa_rdy;
-  output sc_led;
-  output sc_out;
+  output [0:0]sc_led;
+  output [0:0]sc_out;
   output sclk_led;
   output sclk_out;
   output spien_led;
@@ -85,8 +85,8 @@ module ember_fpga_wrapper
   wire rst_n_out;
   wire [47:0]sa_do;
   wire sa_rdy;
-  wire sc_led;
-  wire sc_out;
+  wire [0:0]sc_led;
+  wire [0:0]sc_out;
   wire sclk_led;
   wire sclk_out;
   wire spien_led;
