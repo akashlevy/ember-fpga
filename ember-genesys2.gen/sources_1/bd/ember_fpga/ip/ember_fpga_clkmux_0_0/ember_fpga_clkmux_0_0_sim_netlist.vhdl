@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Mon Jan 30 23:27:53 2023
+-- Date        : Tue Feb  7 22:00:32 2023
 -- Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0_sim_netlist.vhdl
@@ -17,8 +17,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity ember_fpga_clkmux_0_0_clkmux is
   port (
     clk_out : out STD_LOGIC;
-    sclk_in : in STD_LOGIC;
-    mmcm_clk : in STD_LOGIC;
+    sclk : in STD_LOGIC;
+    fastclk : in STD_LOGIC;
     clksel : in STD_LOGIC;
     rram_busy : in STD_LOGIC
   );
@@ -29,13 +29,13 @@ end ember_fpga_clkmux_0_0_clkmux;
 architecture STRUCTURE of ember_fpga_clkmux_0_0_clkmux is
   signal S0 : STD_LOGIC;
   attribute BOX_TYPE : string;
-  attribute BOX_TYPE of BUFGMUX_inst : label is "PRIMITIVE";
+  attribute BOX_TYPE of BUFGMUX_inst0 : label is "PRIMITIVE";
   attribute XILINX_LEGACY_PRIM : string;
-  attribute XILINX_LEGACY_PRIM of BUFGMUX_inst : label is "BUFGMUX";
+  attribute XILINX_LEGACY_PRIM of BUFGMUX_inst0 : label is "BUFGMUX";
   attribute XILINX_TRANSFORM_PINMAP : string;
-  attribute XILINX_TRANSFORM_PINMAP of BUFGMUX_inst : label is "S:CE1,CE0";
+  attribute XILINX_TRANSFORM_PINMAP of BUFGMUX_inst0 : label is "S:CE1,CE0";
 begin
-BUFGMUX_inst: unisim.vcomponents.BUFGCTRL
+BUFGMUX_inst0: unisim.vcomponents.BUFGCTRL
     generic map(
       INIT_OUT => 0,
       IS_CE0_INVERTED => '1',
@@ -46,15 +46,15 @@ BUFGMUX_inst: unisim.vcomponents.BUFGCTRL
         port map (
       CE0 => S0,
       CE1 => S0,
-      I0 => sclk_in,
-      I1 => mmcm_clk,
+      I0 => sclk,
+      I1 => fastclk,
       IGNORE0 => '0',
       IGNORE1 => '0',
       O => clk_out,
       S0 => '1',
       S1 => '1'
     );
-BUFGMUX_inst_i_1: unisim.vcomponents.LUT2
+BUFGMUX_inst0_i_1: unisim.vcomponents.LUT2
     generic map(
       INIT => X"8"
     )
@@ -70,8 +70,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity ember_fpga_clkmux_0_0 is
   port (
-    sclk_in : in STD_LOGIC;
-    mmcm_clk : in STD_LOGIC;
+    sclk : in STD_LOGIC;
+    fastclk : in STD_LOGIC;
     clksel : in STD_LOGIC;
     rram_busy : in STD_LOGIC;
     clk_out : out STD_LOGIC
@@ -89,17 +89,13 @@ entity ember_fpga_clkmux_0_0 is
 end ember_fpga_clkmux_0_0;
 
 architecture STRUCTURE of ember_fpga_clkmux_0_0 is
-  attribute X_INTERFACE_INFO : string;
-  attribute X_INTERFACE_INFO of mmcm_clk : signal is "xilinx.com:signal:clock:1.0 mmcm_clk CLK";
-  attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of mmcm_clk : signal is "XIL_INTERFACENAME mmcm_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN ember_fpga_clk_wiz_0_clk_out1, INSERT_VIP 0";
 begin
 inst: entity work.ember_fpga_clkmux_0_0_clkmux
      port map (
       clk_out => clk_out,
       clksel => clksel,
-      mmcm_clk => mmcm_clk,
+      fastclk => fastclk,
       rram_busy => rram_busy,
-      sclk_in => sclk_in
+      sclk => sclk
     );
 end STRUCTURE;

@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Tue Jan 31 15:10:44 2023
-# Process ID: 48490
+# Start of session at: Tue Feb  7 23:19:09 2023
+# Process ID: 10968
 # Current directory: /sim2/akashl/ember-fpga
 # Command line: vivado ember-genesys2.xpr
 # Log file: /sim2/akashl/ember-fpga/vivado.log
@@ -12,20 +12,20 @@
 start_gui
 open_project ember-genesys2.xpr
 update_compile_order -fileset sources_1
-open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
-startgroup
-set_property -dict [list CONFIG.C_DATA_DEPTH {131072} CONFIG.C_PROBE1_MU_CNT {2} CONFIG.C_PROBE0_MU_CNT {2} CONFIG.ALL_PROBE_SAME_MU_CNT {2}] [get_bd_cells ila_0]
-endgroup
-save_bd_design
-reset_run synth_1
-reset_run ember_fpga_ila_0_0_synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
-startgroup
-set_property -dict [list CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {50} CONFIG.MMCM_CLKOUT0_DIVIDE_F {20.000} CONFIG.CLKOUT1_JITTER {129.198}] [get_bd_cells clk_wiz]
-endgroup
-save_bd_design
-reset_run synth_1
-reset_run ember_fpga_clk_wiz_0_synth_1
+open_run impl_1
+copy_run -name impl_1_copy_1 [get_runs impl_1] -parent_run synth_1
+set_property STEPS.POST_ROUTE_PHYS_OPT_DESIGN.IS_ENABLED true [get_runs impl_1]
+reset_run impl_1
+close_design
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+open_run impl_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+set_msg_config -suppress -id {Route 35-328} -string {{WARNING: [Route 35-328] Router estimated timing not met.
+Resolution: For a complete and accurate timing signoff, report_timing_summary must be run after route_design. Alternatively, route_design can be run with the -timing_summary option to enable a complete timing signoff at the end of route_design.} } 
+report_drc -name drc_1 -ruledecks {default}
+report_drc -name drc_2 -ruledecks {default}
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1

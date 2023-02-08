@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Wed Feb  1 01:41:53 2023
+// Date        : Tue Feb  7 21:54:37 2023
 // Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_sim_netlist.v
@@ -16,26 +16,22 @@
 module ember_fpga_clk_wiz_0
    (clk_out1,
     resetn,
-    locked,
     clk_in1_p,
     clk_in1_n);
   output clk_out1;
   input resetn;
-  output locked;
   input clk_in1_p;
   input clk_in1_n;
 
   (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR *) wire clk_in1_n;
   (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR *) wire clk_in1_p;
   wire clk_out1;
-  wire locked;
-  wire resetn;
+  (* RTL_KEEP = "yes" *) wire resetn;
 
   ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz inst
        (.clk_in1_n(clk_in1_n),
         .clk_in1_p(clk_in1_p),
         .clk_out1(clk_out1),
-        .locked(locked),
         .resetn(resetn));
 endmodule
 
@@ -43,12 +39,10 @@ endmodule
 module ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
    (clk_out1,
     resetn,
-    locked,
     clk_in1_p,
     clk_in1_n);
   output clk_out1;
   input resetn;
-  output locked;
   input clk_in1_p;
   input clk_in1_n;
 
@@ -58,7 +52,6 @@ module ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
   wire clk_out1;
   wire clk_out1_ember_fpga_clk_wiz_0;
   wire clkfbout_ember_fpga_clk_wiz_0;
-  wire locked;
   wire reset_high;
   wire resetn;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
@@ -75,6 +68,7 @@ module ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
   wire NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT6_UNCONNECTED;
   wire NLW_mmcm_adv_inst_DRDY_UNCONNECTED;
+  wire NLW_mmcm_adv_inst_LOCKED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_PSDONE_UNCONNECTED;
   wire [15:0]NLW_mmcm_adv_inst_DO_UNCONNECTED;
 
@@ -100,7 +94,7 @@ module ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(5.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(20.000000),
+    .CLKOUT0_DIVIDE_F(10.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
@@ -169,7 +163,7 @@ module ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
         .DO(NLW_mmcm_adv_inst_DO_UNCONNECTED[15:0]),
         .DRDY(NLW_mmcm_adv_inst_DRDY_UNCONNECTED),
         .DWE(1'b0),
-        .LOCKED(locked),
+        .LOCKED(NLW_mmcm_adv_inst_LOCKED_UNCONNECTED),
         .PSCLK(1'b0),
         .PSDONE(NLW_mmcm_adv_inst_PSDONE_UNCONNECTED),
         .PSEN(1'b0),

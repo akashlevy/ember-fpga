@@ -4,8 +4,8 @@
 #### - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## Clock Signal
-set_property -dict {PACKAGE_PIN AD11 IOSTANDARD LVDS} [get_ports sysclk_n]
-set_property -dict {PACKAGE_PIN AD12 IOSTANDARD LVDS} [get_ports sysclk_p]
+#set_property -dict {PACKAGE_PIN AD11 IOSTANDARD LVDS} [get_ports sys_diff_clock_clk_n]
+set_property -dict {PACKAGE_PIN AD12 IOSTANDARD LVDS} [get_ports sys_diff_clock_clk_p]
 
 ## Buttons
 #set_property -dict { PACKAGE_PIN E18   IOSTANDARD LVCMOS12 } [get_ports { btnc }]; #IO_25_17 Sch=btnc
@@ -20,14 +20,14 @@ set_property -dict {PACKAGE_PIN T28 IOSTANDARD LVCMOS33} [get_ports sclk_led]
 set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports sc_led]
 set_property -dict {PACKAGE_PIN U30 IOSTANDARD LVCMOS33} [get_ports mosi_led]
 set_property -dict {PACKAGE_PIN U29 IOSTANDARD LVCMOS33} [get_ports miso_led]
-set_property -dict {PACKAGE_PIN V20 IOSTANDARD LVCMOS33} [get_ports rram_busy_ember_led]
+set_property -dict {PACKAGE_PIN V20 IOSTANDARD LVCMOS33} [get_ports rram_busy_led]
 set_property -dict {PACKAGE_PIN V26 IOSTANDARD LVCMOS33} [get_ports rram_busy_fpga_led]
-set_property -dict {PACKAGE_PIN W24 IOSTANDARD LVCMOS33} [get_ports use_mmcm_led]
-set_property -dict {PACKAGE_PIN W23 IOSTANDARD LVCMOS33} [get_ports mmcm_led]
+set_property -dict {PACKAGE_PIN W24 IOSTANDARD LVCMOS33} [get_ports spien_led]
+set_property -dict {PACKAGE_PIN W23 IOSTANDARD LVCMOS33} [get_ports rst_n_led]
 
 ## Switches
-set_property -dict { PACKAGE_PIN G19   IOSTANDARD LVCMOS33 } [get_ports { use_mmcm }]; #IO_0_17 Sch=sw[0]
-#set_property -dict { PACKAGE_PIN G25   IOSTANDARD LVCMOS12 } [get_ports { sw[1] }]; #IO_25_16 Sch=sw[1]
+set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS33} [get_ports clksel]
+#set_property -dict {PACKAGE_PIN G25 IOSTANDARD LVCMOS33} [get_ports {clksel[1]}]
 #set_property -dict { PACKAGE_PIN H24   IOSTANDARD LVCMOS12 } [get_ports { sw[2] }]; #IO_L19P_T3_16 Sch=sw[2]
 #set_property -dict { PACKAGE_PIN K19   IOSTANDARD LVCMOS12 } [get_ports { sw[3] }]; #IO_L6P_T0_17 Sch=sw[3]
 #set_property -dict { PACKAGE_PIN N19   IOSTANDARD LVCMOS12 } [get_ports { sw[4] }]; #IO_L19P_T3_A22_15 Sch=sw[4]
@@ -164,16 +164,16 @@ set_property -dict {PACKAGE_PIN U22 IOSTANDARD LVCMOS33} [get_ports mosi_out]
 
 ## PMOD Header JC
 #set_property -dict {PACKAGE_PIN AC26 IOSTANDARD LVCMOS33} [get_ports use_mmcm]
-set_property -dict {PACKAGE_PIN AJ27 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
-set_property -dict {PACKAGE_PIN AH30 IOSTANDARD LVCMOS33} [get_ports sc_in]
-set_property -dict {PACKAGE_PIN AK29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
+#set_property -dict {PACKAGE_PIN AJ27 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
+#set_property -dict {PACKAGE_PIN AH30 IOSTANDARD LVCMOS33} [get_ports sc_in]
+#set_property -dict {PACKAGE_PIN AK29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
 #set_property -dict { PACKAGE_PIN AD26  IOSTANDARD LVCMOS33 } [get_ports { jc[4] }]; #IO_L19N_T3_VREF_13 Sch=jc[7]
-set_property -dict {PACKAGE_PIN AG30 IOSTANDARD LVCMOS33} [get_ports mosi_in]
-set_property -dict {PACKAGE_PIN AK30 IOSTANDARD LVCMOS33} [get_ports miso]
-set_property -dict {PACKAGE_PIN AK28 IOSTANDARD LVCMOS33} [get_ports sclk_in]
+#set_property -dict {PACKAGE_PIN AG30 IOSTANDARD LVCMOS33} [get_ports mosi_in]
+#set_property -dict {PACKAGE_PIN AK30 IOSTANDARD LVCMOS33} [get_ports miso]
+#set_property -dict {PACKAGE_PIN AK28 IOSTANDARD LVCMOS33} [get_ports sclk_in]
 
 ## PMOD Header JD
-set_property -dict {PACKAGE_PIN V27 IOSTANDARD LVCMOS33} [get_ports trig_in_ack]
+#set_property -dict {PACKAGE_PIN V27 IOSTANDARD LVCMOS33} [get_ports trig_in_ack]
 #set_property -dict { PACKAGE_PIN Y30   IOSTANDARD LVCMOS33 } [get_ports { jd[1] }]; #IO_L8P_T1_13 Sch=jd[2]
 #set_property -dict { PACKAGE_PIN V24   IOSTANDARD LVCMOS33 } [get_ports { jd[2] }]; #IO_L23N_T3_A02_D18_14 Sch=jd[3]
 #set_property -dict { PACKAGE_PIN W22   IOSTANDARD LVCMOS33 } [get_ports { jd[3] }]; #IO_L24N_T3_A00_D16_14 Sch=jd[4]
@@ -193,9 +193,8 @@ set_property -dict {PACKAGE_PIN V27 IOSTANDARD LVCMOS33} [get_ports trig_in_ack]
 #set_property -dict { PACKAGE_PIN L21   IOSTANDARD LVCMOS33 } [get_ports { xa_p[3] }]; #IO_L4P_T0_AD9P_15 Sch=xadc9r_p
 
 ## FMC
-set_property -dict { PACKAGE_PIN E19   IOSTANDARD LVCMOS33 } [get_ports { sa_do[9] }]; #IO_L14P_T2_SRCC_17 Sch=fmc_ha_p
-set_property -dict { PACKAGE_PIN F26   IOSTANDARD LVCMOS33 } [get_ports { sa_do[4] }]; #IO_L5P_T0_16 Sch=fmc_la_p
-
+set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS33} [get_ports {sa_do[9]}]
+set_property -dict {PACKAGE_PIN F26 IOSTANDARD LVCMOS33} [get_ports {sa_do[4]}]
 
 #set_property -dict { PACKAGE_PIN G13   IOSTANDARD LVCMOS33 } [get_ports { aclk }]; #IO_L12P_T1_MRCC_18 Sch=fmc_hb_p
 #set_property -dict { PACKAGE_PIN C15   IOSTANDARD LVCMOS33 } [get_ports { bl_en }]; #IO_L23P_T3_18 Sch=fmc_hb_p
@@ -532,8 +531,8 @@ set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS33} [get_ports sa_rdy]
 #set_property -dict { PACKAGE_PIN W27   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[1] }]; #IO_L2P_T0_13 Sch=prog_d1/mosi
 #set_property -dict { PACKAGE_PIN W28   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[2] }]; #IO_L2N_T0_13 Sch=prog_d2/miso
 #set_property -dict { PACKAGE_PIN W29   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[3] }]; #IO_L4P_T0_13 Sch=prog_d3/ss
-#set_property -dict { PACKAGE_PIN Y29   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[4] }]; #IO_L4N_T0_13 Sch=prog_d[4]
-#set_property -dict { PACKAGE_PIN Y28   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[5] }]; #IO_L3P_T0_DQS_13 Sch=prog_d[5]
+set_property -dict {PACKAGE_PIN Y29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
+set_property -dict {PACKAGE_PIN Y28 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
 #set_property -dict { PACKAGE_PIN AA28  IOSTANDARD LVCMOS33 } [get_ports { PROG_D[6] }]; #IO_L3N_T0_DQS_13 Sch=prog_d[6]
 #set_property -dict { PACKAGE_PIN AA26  IOSTANDARD LVCMOS33 } [get_ports { PROG_D[7] }]; #IO_L1N_T0_13 Sch=prog_d[7]
 #set_property -dict { PACKAGE_PIN AC30  IOSTANDARD LVCMOS33 } [get_ports { PROG_OEN }]; #IO_L7N_T1_13 Sch=prog_oen
@@ -546,11 +545,11 @@ set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS33} [get_ports sa_rdy]
 
 ## DSPI
 ## Note: DPTI and DSPI constraints cannot be used in the same design, as they share pins.
-#set_property -dict { PACKAGE_PIN AD29  IOSTANDARD LVCMOS33 } [get_ports { PROG_SPIEN }]; #IO_L9P_T1_DQS_13 Sch=prog_spien
-#set_property -dict { PACKAGE_PIN AD27  IOSTANDARD LVCMOS33 } [get_ports { PROG_SCK }]; #IO_L11P_T1_SRCC_13 Sch=prog_d0/sck
-#set_property -dict { PACKAGE_PIN W27   IOSTANDARD LVCMOS33 } [get_ports { PROG_MOSI }]; #IO_L2P_T0_13 Sch=prog_d1/mosi
-#set_property -dict { PACKAGE_PIN W28   IOSTANDARD LVCMOS33 } [get_ports { PROG_MISO }]; #IO_L2N_T0_13 Sch=prog_d2/miso
-#set_property -dict { PACKAGE_PIN W29   IOSTANDARD LVCMOS33 } [get_ports { PROG_SS }]; #IO_L4P_T0_13 Sch=prog_d3/ss
+set_property -dict {PACKAGE_PIN AD29 IOSTANDARD LVCMOS33} [get_ports PROG_SPIEN]
+set_property -dict {PACKAGE_PIN AD27 IOSTANDARD LVCMOS33} [get_ports PROG_SCK]
+set_property -dict {PACKAGE_PIN W27 IOSTANDARD LVCMOS33} [get_ports PROG_MOSI]
+set_property -dict {PACKAGE_PIN W28 IOSTANDARD LVCMOS33} [get_ports PROG_MISO]
+set_property -dict {PACKAGE_PIN W29 IOSTANDARD LVCMOS33} [get_ports PROG_SS]
 
 ## QSPI
 #set_property -dict { PACKAGE_PIN U19   IOSTANDARD LVCMOS33 } [get_ports { QSPI_CSN }]; #IO_L6P_T0_FCS_B_14 Sch=qspi_csn
@@ -593,29 +592,55 @@ set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS33} [get_ports sa_rdy]
 #set_property -dict { PACKAGE_PIN AA17  IOSTANDARD LVCMOS18 } [get_ports { USB_OTG_STP }]; #IO_L23P_T3_32 Sch=usb_otg_stp
 #set_property -dict { PACKAGE_PIN AF16  IOSTANDARD LVCMOS18 } [get_ports { USB_OTG_VBUSOC }]; #IO_L6N_T0_VREF_32 Sch=usb_otg_vbusoc
 
+
+## Set configuration voltage
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 set_property CFGBVS VCCO [current_design]
 
-create_clock -period 40.000 -name sclk_in [get_ports sclk_in]
-set_clock_uncertainty -setup 0.300 [get_clocks sclk_in]
-set_clock_uncertainty -hold 0.200 [get_clocks sclk_in]
-set_input_delay -clock [get_clocks sclk_in] -min -add_delay 1.000 [get_ports {{sa_do[*]} sa_rdy rram_busy_in}]
-set_input_delay -clock [get_clocks sclk_in] -max -add_delay 2.000 [get_ports {{sa_do[*]} sa_rdy rram_busy_in}]
-set_input_delay -clock [get_clocks sclk_in] -clock_fall -min -add_delay 1.000 [get_ports mosi_in]
-set_input_delay -clock [get_clocks sclk_in] -clock_fall -max -add_delay 2.000 [get_ports mosi_in]
-set_output_delay -clock [get_clocks sclk_in] -min -add_delay 1.000 [get_ports miso]
-set_output_delay -clock [get_clocks sclk_in] -max -add_delay 2.000 [get_ports miso]
+## Set input/output delays
+set MIN_INPUT_DELAY 1.000
+set MAX_INPUT_DELAY 3.000
+set MIN_OUTPUT_DELAY 0.000
+set MAX_OUTPUT_DELAY 2.000
+set MIN_SA_DELAY 4.000
+set MAX_SA_DELAY 7.000
 
-set_input_delay -clock [get_clocks clk_out1_ember_fpga_clk_wiz_0] -min -add_delay 1.000 [get_ports {{sa_do[*]} sa_rdy use_mmcm rram_busy_in}]
-set_input_delay -clock [get_clocks clk_out1_ember_fpga_clk_wiz_0] -max -add_delay 2.000 [get_ports {{sa_do[*]} sa_rdy use_mmcm rram_busy_in}]
+## Create 100 MHz clock
+create_clock -period 10.000 -name sclk [get_ports PROG_SCK]
+set_clock_uncertainty -setup 0.300 [get_clocks sclk]
+set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 
-set_clock_groups -physically_exclusive -group sclk_in -group {sysclk_p clk_out1_ember_fpga_clk_wiz_0}
+## Add sclk constraints
+set_input_delay -clock [get_clocks sclk] -min -add_delay $MIN_INPUT_DELAY [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks sclk] -max -add_delay $MAX_INPUT_DELAY [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks sclk] -min -add_delay $MIN_SA_DELAY [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks sclk] -max -add_delay $MAX_SA_DELAY [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay $MIN_INPUT_DELAY [get_ports PROG_MOSI]
+set_input_delay -clock [get_clocks sclk] -clock_fall -max -add_delay $MAX_INPUT_DELAY [get_ports PROG_MOSI]
+set_output_delay -clock [get_clocks sclk] -min -add_delay $MIN_OUTPUT_DELAY [all_outputs]
+set_output_delay -clock [get_clocks sclk] -max -add_delay $MAX_OUTPUT_DELAY [all_outputs]
 
-set_false_path -from [get_ports {rram_busy_in reset sc_in mclk_pause_in use_mmcm}]
-set_false_path -to [get_ports {*_led rst_n_out trig_in_ack}]
+## Add 100 MHz MCMM clock constraints
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay $MIN_INPUT_DELAY [get_ports {PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay $MAX_INPUT_DELAY [get_ports {PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay $MIN_SA_DELAY [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay $MAX_SA_DELAY [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -min -add_delay $MIN_INPUT_DELAY [get_ports PROG_MOSI]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -max -add_delay $MAX_INPUT_DELAY [get_ports PROG_MOSI]
+set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay $MIN_OUTPUT_DELAY [all_outputs]
+set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay $MAX_OUTPUT_DELAY [all_outputs]
 
-create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Clock nets generated by debug core have high fanout" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sun Jan 29 17:33:21 GMT 2023"
-create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "Signal sclk_in is direct IO intentionally, since it does not need to go very fast" -objects [get_nets sclk_in_IBUF] -objects [get_pins {ember_fpga_i/sclk_in sclk_in_IBUF_inst/O}] -timestamp "Tue Jan 31 01:23:18 GMT 2023"
-create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Tue Jan 31 08:53:06 GMT 2023"
-create_waiver -type METHODOLOGY -id {TIMING-17} -user "akashl" -desc "Debug core has low visibility" -objects [get_pins {ember_fpga_i/ila_0/inst/ila_core_inst/* ember_fpga_i/ila_0/inst/ila_core_inst/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/ila_core_inst/*/*/*/*/*/*/*/*/*/*}] -timestamp "Tue Jan 31 08:53:06 GMT 2023"
-create_waiver -type METHODOLOGY -id {TIMING-28} -user "akashl" -desc "Referencing auto-derived clock is fine" -objects [get_clocks clk_out1_ember_fpga_clk_wiz_0] -timestamp "Tue Jan 31 08:53:06 GMT 2023"
+## Mark clocks as physically exclusive
+set_clock_groups -physically_exclusive -group sclk -group [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]]
+
+## Mark SPI readout as 20 ns (50 MHz max) path to meet setup timing
+set_max_delay 20.000 -to [get_ports PROG_MISO]
+
+## Mark {reset, clock multiplexing, LED indicator, out signal} paths as false
+set_false_path -from [get_ports {reset PROG_SS clksel}]
+set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out}]
+
+## Create waivers
+create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
+create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
+create_waiver -type METHODOLOGY -id {TIMING-17} -user "akashl" -desc "Debug core has low visibility" -objects [get_pins {ember_fpga_i/vio_0/inst/* ember_fpga_i/vio_0/inst/*/* ember_fpga_i/vio_0/inst/*/*/*}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"

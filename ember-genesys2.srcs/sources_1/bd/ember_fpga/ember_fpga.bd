@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xEC3706E5C3980961",
+      "boundary_crc": "0xB11D090BA14C7DBD",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -12,23 +12,48 @@
     },
     "design_tree": {
       "clk_wiz": "",
-      "proc_sys_reset_1": "",
-      "ila_0": "",
+      "vio_0": "",
       "rram_top_wrapper_0": "",
       "clkmux_0": ""
     },
+    "interface_ports": {
+      "sys_diff_clock": {
+        "mode": "Slave",
+        "vlnv": "xilinx.com:interface:diff_clock_rtl:1.0",
+        "parameters": {
+          "CAN_DEBUG": {
+            "value": "false",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "200000000"
+          }
+        }
+      }
+    },
     "ports": {
-      "sc_in": {
+      "PROG_SS": {
         "direction": "I"
       },
-      "mosi_in": {
-        "direction": "I"
-      },
-      "mclk_pause_in": {
+      "PROG_MOSI": {
         "direction": "I"
       },
       "sclk_led": {
-        "direction": "O"
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "ember_fpga_PROG_SCK",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "33000000",
+            "value_src": "user_prop"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default_prop"
+          }
+        }
       },
       "sc_led": {
         "direction": "O"
@@ -48,65 +73,44 @@
         "direction": "O"
       },
       "sclk_out": {
-        "direction": "O"
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "ember_fpga_PROG_SCK",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "33000000",
+            "value_src": "user_prop"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default_prop"
+          }
+        }
       },
       "mclk_pause_out": {
         "direction": "O"
       },
-      "rst_n_out": {
-        "type": "rst",
-        "direction": "O",
-        "left": "0",
-        "right": "0",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "const_prop"
-          }
-        }
-      },
       "rram_busy_in": {
         "direction": "I"
       },
-      "rram_busy_ember_led": {
+      "rram_busy_led": {
         "direction": "O"
       },
       "rram_busy_out": {
         "direction": "O"
       },
-      "use_mmcm": {
-        "direction": "I"
-      },
-      "use_mmcm_led": {
-        "direction": "O"
-      },
-      "reset": {
-        "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW"
-          }
-        }
-      },
-      "sclk_in": {
+      "PROG_SCK": {
         "type": "clk",
         "direction": "I",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "ember_fpga_sclk_in",
+            "value": "ember_fpga_PROG_SCK",
             "value_src": "default"
           },
           "FREQ_HZ": {
-            "value": "25000000"
+            "value": "33000000"
           },
           "FREQ_TOLERANCE_HZ": {
             "value": "0",
@@ -125,93 +129,57 @@
       "sa_rdy": {
         "direction": "I"
       },
-      "sysclk_p": {
-        "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "ember_fpga_sysclk_p",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "200000000"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.000",
-            "value_src": "default"
-          }
-        }
-      },
-      "sysclk_n": {
-        "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "CLK_DOMAIN": {
-            "value": "ember_fpga_sysclk_n",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "200000000"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.000",
-            "value_src": "default"
-          }
-        }
-      },
-      "trig_in_ack": {
-        "direction": "O"
-      },
-      "miso": {
+      "PROG_MISO": {
         "direction": "O"
       },
       "rram_busy_fpga_led": {
         "direction": "O"
       },
-      "mmcm_led": {
-        "type": "clk",
+      "miso_led": {
+        "direction": "O"
+      },
+      "mclk_pause_in": {
+        "direction": "I"
+      },
+      "PROG_SPIEN": {
+        "direction": "I"
+      },
+      "spien_led": {
+        "direction": "O"
+      },
+      "rst_n_out": {
         "direction": "O",
         "parameters": {
-          "CLK_DOMAIN": {
-            "value": "ember_fpga_clk_wiz_0_clk_out1",
-            "value_src": "default_prop"
-          },
-          "FREQ_HZ": {
-            "value": "50000000",
-            "value_src": "ip_prop"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "user_prop"
+          }
+        }
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
           "INSERT_VIP": {
             "value": "0",
             "value_src": "default"
           },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "ip_prop"
+          "POLARITY": {
+            "value": "ACTIVE_LOW"
           }
         }
       },
-      "miso_led": {
-        "direction": "O"
+      "clksel": {
+        "direction": "I"
+      },
+      "rst_n_led": {
+        "direction": "O",
+        "parameters": {
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "user_prop"
+          }
+        }
       }
     },
     "components": {
@@ -243,25 +211,43 @@
             "value": "BUFG"
           },
           "CLKOUT1_JITTER": {
-            "value": "129.198"
+            "value": "112.316"
           },
           "CLKOUT1_PHASE_ERROR": {
             "value": "89.971"
           },
           "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "50"
+            "value": "100"
           },
           "CLKOUT2_DRIVES": {
             "value": "BUFG"
           },
+          "CLKOUT2_JITTER": {
+            "value": "98.146"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "89.971"
+          },
           "CLKOUT2_REQUESTED_OUT_FREQ": {
-            "value": "100.000"
+            "value": "200.000"
+          },
+          "CLKOUT2_USED": {
+            "value": "false"
           },
           "CLKOUT3_DRIVES": {
             "value": "BUFG"
           },
+          "CLKOUT3_JITTER": {
+            "value": "129.198"
+          },
+          "CLKOUT3_PHASE_ERROR": {
+            "value": "89.971"
+          },
           "CLKOUT3_REQUESTED_OUT_FREQ": {
-            "value": "100.000"
+            "value": "50.000"
+          },
+          "CLKOUT3_USED": {
+            "value": "false"
           },
           "CLKOUT4_DRIVES": {
             "value": "BUFG"
@@ -315,7 +301,13 @@
             "value": "10.0"
           },
           "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "20.000"
+            "value": "10.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "1"
+          },
+          "MMCM_CLKOUT2_DIVIDE": {
+            "value": "1"
           },
           "MMCM_COMPENSATION": {
             "value": "ZHOLD"
@@ -325,6 +317,9 @@
           },
           "MMCM_REF_JITTER2": {
             "value": "0.010"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "1"
           },
           "PHASE_DUTY_CONFIG": {
             "value": "false"
@@ -336,7 +331,7 @@
             "value": "Differential_clock_capable_pin"
           },
           "RESET_BOARD_INTERFACE": {
-            "value": "Custom"
+            "value": "reset"
           },
           "RESET_PORT": {
             "value": "resetn"
@@ -363,7 +358,7 @@
             "value": "false"
           },
           "USE_LOCKED": {
-            "value": "true"
+            "value": "false"
           },
           "USE_PHASE_ALIGNMENT": {
             "value": "false"
@@ -373,64 +368,17 @@
           }
         }
       },
-      "proc_sys_reset_1": {
-        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
-        "xci_name": "ember_fpga_proc_sys_reset_1_0",
-        "xci_path": "ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0.xci",
-        "inst_hier_path": "proc_sys_reset_1",
+      "vio_0": {
+        "vlnv": "xilinx.com:ip:vio:3.0",
+        "xci_name": "ember_fpga_vio_0_0",
+        "xci_path": "ip/ember_fpga_vio_0_0/ember_fpga_vio_0_0.xci",
+        "inst_hier_path": "vio_0",
         "parameters": {
-          "RESET_BOARD_INTERFACE": {
-            "value": "reset"
+          "C_NUM_PROBE_IN": {
+            "value": "3"
           },
-          "USE_BOARD_FLOW": {
-            "value": "true"
-          }
-        }
-      },
-      "ila_0": {
-        "vlnv": "xilinx.com:ip:ila:6.2",
-        "xci_name": "ember_fpga_ila_0_0",
-        "xci_path": "ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0.xci",
-        "inst_hier_path": "ila_0",
-        "parameters": {
-          "ALL_PROBE_SAME_MU": {
-            "value": "true"
-          },
-          "ALL_PROBE_SAME_MU_CNT": {
-            "value": "2"
-          },
-          "C_ADV_TRIGGER": {
-            "value": "false"
-          },
-          "C_DATA_DEPTH": {
-            "value": "131072"
-          },
-          "C_ENABLE_ILA_AXI_MON": {
-            "value": "false"
-          },
-          "C_EN_STRG_QUAL": {
+          "C_NUM_PROBE_OUT": {
             "value": "0"
-          },
-          "C_MONITOR_TYPE": {
-            "value": "Native"
-          },
-          "C_NUM_OF_PROBES": {
-            "value": "2"
-          },
-          "C_PROBE0_MU_CNT": {
-            "value": "2"
-          },
-          "C_PROBE0_TYPE": {
-            "value": "1"
-          },
-          "C_PROBE0_WIDTH": {
-            "value": "48"
-          },
-          "C_PROBE1_MU_CNT": {
-            "value": "2"
-          },
-          "C_TRIGIN_EN": {
-            "value": "false"
           }
         }
       },
@@ -469,7 +417,7 @@
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "25000000",
+                "value": "33000000",
                 "value_src": "user_prop"
               },
               "PHASE": {
@@ -477,7 +425,7 @@
                 "value_src": "default_prop"
               },
               "CLK_DOMAIN": {
-                "value": "ember_fpga_sclk_in",
+                "value": "ember_fpga_PROG_SCK",
                 "value_src": "default_prop"
               }
             }
@@ -512,11 +460,11 @@
           "boundary_crc": "0x0"
         },
         "ports": {
-          "sclk_in": {
+          "sclk": {
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "25000000",
+                "value": "33000000",
                 "value_src": "user_prop"
               },
               "PHASE": {
@@ -524,17 +472,16 @@
                 "value_src": "default_prop"
               },
               "CLK_DOMAIN": {
-                "value": "ember_fpga_sclk_in",
+                "value": "ember_fpga_PROG_SCK",
                 "value_src": "default_prop"
               }
             }
           },
-          "mmcm_clk": {
-            "type": "clk",
+          "fastclk": {
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "50000000",
+                "value": "100000000",
                 "value_src": "ip_prop"
               },
               "PHASE": {
@@ -554,15 +501,37 @@
             "direction": "I"
           },
           "clk_out": {
-            "direction": "O"
+            "direction": "O",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "33000000",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "ember_fpga_PROG_SCK",
+                "value_src": "default_prop"
+              }
+            }
           }
         }
+      }
+    },
+    "interface_nets": {
+      "sys_diff_clock_1": {
+        "interface_ports": [
+          "sys_diff_clock",
+          "clk_wiz/CLK_IN1_D"
+        ]
       }
     },
     "nets": {
       "mosi_in": {
         "ports": [
-          "mosi_in",
+          "PROG_MOSI",
           "mosi_led",
           "mosi_out",
           "rram_top_wrapper_0/mosi"
@@ -570,7 +539,7 @@
       },
       "sc_in": {
         "ports": [
-          "sc_in",
+          "PROG_SS",
           "sc_led",
           "sc_out",
           "rram_top_wrapper_0/sc"
@@ -586,103 +555,79 @@
       "rram_busy_in_1": {
         "ports": [
           "rram_busy_in",
-          "rram_busy_ember_led",
+          "rram_busy_led",
           "rram_busy_out",
+          "vio_0/probe_in2",
           "clkmux_0/rram_busy"
-        ]
-      },
-      "clk_wiz_locked": {
-        "ports": [
-          "clk_wiz/locked",
-          "proc_sys_reset_1/dcm_locked"
-        ]
-      },
-      "clk_wiz_clk_out1": {
-        "ports": [
-          "clk_wiz/clk_out1",
-          "proc_sys_reset_1/slowest_sync_clk",
-          "ila_0/clk",
-          "mmcm_led",
-          "clkmux_0/mmcm_clk"
-        ]
-      },
-      "use_mmcm_1": {
-        "ports": [
-          "use_mmcm",
-          "use_mmcm_led",
-          "clkmux_0/clksel"
         ]
       },
       "clkmux_0_sclk_out": {
         "ports": [
           "clkmux_0/clk_out",
           "sclk_out",
-          "sclk_led"
-        ]
-      },
-      "proc_sys_reset_0_interconnect_aresetn": {
-        "ports": [
-          "proc_sys_reset_1/interconnect_aresetn",
-          "rst_n_out"
-        ]
-      },
-      "reset_1": {
-        "ports": [
-          "reset",
-          "proc_sys_reset_1/ext_reset_in",
-          "clk_wiz/resetn"
+          "sclk_led",
+          "rram_top_wrapper_0/sclk"
         ]
       },
       "sclk_in_1": {
         "ports": [
-          "sclk_in",
-          "rram_top_wrapper_0/sclk",
-          "clkmux_0/sclk_in"
+          "PROG_SCK",
+          "clkmux_0/sclk"
         ]
       },
       "sa_rdy_1": {
         "ports": [
           "sa_rdy",
-          "rram_top_wrapper_0/sa_rdy",
-          "ila_0/probe1"
+          "vio_0/probe_in1",
+          "rram_top_wrapper_0/sa_rdy"
         ]
       },
       "sa_do_1": {
         "ports": [
           "sa_do",
-          "ila_0/probe0",
+          "vio_0/probe_in0",
           "rram_top_wrapper_0/sa_do"
-        ]
-      },
-      "sysclk_p_1": {
-        "ports": [
-          "sysclk_p",
-          "clk_wiz/clk_in1_p"
-        ]
-      },
-      "sysclk_n_1": {
-        "ports": [
-          "sysclk_n",
-          "clk_wiz/clk_in1_n"
         ]
       },
       "rram_top_wrapper_0_miso": {
         "ports": [
           "rram_top_wrapper_0/miso",
-          "miso",
+          "PROG_MISO",
           "miso_led"
-        ]
-      },
-      "proc_sys_reset_1_peripheral_aresetn": {
-        "ports": [
-          "proc_sys_reset_1/peripheral_aresetn",
-          "rram_top_wrapper_0/rst_n"
         ]
       },
       "rram_top_wrapper_0_rram_busy": {
         "ports": [
           "rram_top_wrapper_0/rram_busy",
           "rram_busy_fpga_led"
+        ]
+      },
+      "clk_wiz_clk_out1": {
+        "ports": [
+          "clk_wiz/clk_out1",
+          "vio_0/clk",
+          "clkmux_0/fastclk"
+        ]
+      },
+      "PROG_SPIEN_1": {
+        "ports": [
+          "PROG_SPIEN",
+          "spien_led"
+        ]
+      },
+      "reset_2": {
+        "ports": [
+          "reset",
+          "clk_wiz/resetn",
+          "rst_n_out",
+          "rram_top_wrapper_0/rst_n",
+          "rst_n_led"
+        ]
+      },
+      "clksel_1": {
+        "ports": [
+          "clksel",
+          "clkmux_0/clksel"
         ]
       }
     }

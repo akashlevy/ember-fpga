@@ -71,6 +71,9 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 24
+set_msg_config -id {HDL-1065} -limit 10000
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 set_msg_config  -id {Common 17-576}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1029 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3211]}}  -suppress 
 set_msg_config  -id {DRC RTSTAT-10}  -string {{WARNING: [DRC RTSTAT-10] No routable loads: 25 net(s) have no routable loads. The problem bus(es) and/or net(s) are dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gr1.gr1_int.rfwft/aempty_fwft_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg[2:0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD7_CTL/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD1/ctl_reg_en_2[1], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_capture[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_drck[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_switch/m_bscan_runtest[0], dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwhf.whf/overflow, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_RD/U_RD_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_rdfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/gras.rsts/ram_empty_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.wr/gwas.wsts/ram_full_i, dbg_hub/inst/BSCANID.u_xsdbm_id/CORE_XSDB.UUT_MASTER/U_ICON_INTERFACE/U_CMD6_WR/U_WR_FIFO/SUBCORE_FIFO.xsdbm_v3_0_0_wrfifo_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/rd_rst_reg[0], dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/s_bscan_tms, ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[13], ember_fpga_i/ila_0/inst/ila_core_inst/u_ila_regs/U_XSDB_SLAVE/s_daddr_o[14]... and (the first 15 of 23 listed).}}  -suppress 
@@ -93,12 +96,71 @@ set_msg_config  -id {Vivado 12-627}  -string {{WARNING: [Vivado 12-627] No clock
 set_msg_config  -id {Vivado 12-646}  -string {{WARNING: [Vivado 12-646] clock 'clk_out1_ember_fpga_clk_wiz_0' not found. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:608]}}  -suppress 
 set_msg_config  -id {Vivado_Tcl 4-938}  -suppress 
 set_msg_config  -id {Vivado 12-646}  -string {{WARNING: [Vivado 12-646] clock 'clk_out1_ember_fpga_clk_wiz_0' not found. [/sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc:612]}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[36] to constant 0}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sl_iport0' of module 'jtag_axi_v1_2_12_jtag_axi' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/synth/ember_fpga_jtag_axi_0_1.v:137]}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[35] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[34] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[33] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[32] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[31] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[30] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[29] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[28] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[27] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[26] to constant 0}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sl_oport0' of module 'jtag_axi_v1_2_12_jtag_axi' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_jtag_axi_0_1/synth/ember_fpga_jtag_axi_0_1.v:137]}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[25] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[24] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[23] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[22] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[21] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[20] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[19] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[18] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[17] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[16] to constant 0}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[15] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[14] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[13] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[12] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[11] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[10] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[9] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[8] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[7] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[6] to constant 0}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[5] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[4] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[3] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[2] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[1] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-3295}  -string {{WARNING: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0}}  -suppress 
+set_msg_config  -id {Synth 8-4446}  -string {{WARNING: [Synth 8-4446] all outputs are unconnected for this instance and logic may be removed [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:132]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'aclk' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bleed_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'ember_fpga_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bsl_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'bsl_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'clamp_ref' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'di' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'read_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'read_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'read_ref' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'rram_addr' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sa_clk' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sa_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'ember_fpga_proc_sys_reset_0_0' is unconnected for instance 'proc_sys_reset_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'set_rst' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'sl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'we' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'wl_dac_config' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'wl_dac_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'wl_en' of module 'rram_top' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'rram_top' has 28 connections declared, but only 9 given [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Synth 8-4446}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:163]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_0' of module 'ember_fpga_proc_sys_reset_0_0' has 10 connections declared, but only 8 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
 set_msg_config  -id {IP_Flow 19-3571}  -string {{WARNING: [IP_Flow 19-3571] IP 'ember_fpga_rram_top_wrapper_0_0' is restricted:
@@ -200,7 +262,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /sim2/akashl/ember-fpga/ember-genesys2.cache/wt [current_project]
 set_property parent.project_path /sim2/akashl/ember-fpga/ember-genesys2.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {/home/akashl/.Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
@@ -217,13 +279,8 @@ add_files /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/em
 set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_board.xdc]
 set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0.xdc]
 set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_ooc.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0_board.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_proc_sys_reset_1_0/ember_fpga_proc_sys_reset_1_0_ooc.xdc]
-set_property used_in_synthesis false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila_impl.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ila_v6_2/constraints/ila.xdc]
-set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_vio_0_0/ember_fpga_vio_0_0.xdc]
+set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_vio_0_0/ember_fpga_vio_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ember_fpga_ooc.xdc]
 
 OPTRACE "Adding files" END { }

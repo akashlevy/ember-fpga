@@ -55,24 +55,22 @@
 (* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module ember_fpga_clkmux_0_0 (
-  sclk_in,
-  mmcm_clk,
+  sclk,
+  fastclk,
   clksel,
   rram_busy,
   clk_out
 );
 
-input wire sclk_in;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME mmcm_clk, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN ember_fpga_clk_wiz_0_clk_out1, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 mmcm_clk CLK" *)
-input wire mmcm_clk;
+input wire sclk;
+input wire fastclk;
 input wire clksel;
 input wire rram_busy;
 output wire clk_out;
 
   clkmux inst (
-    .sclk_in(sclk_in),
-    .mmcm_clk(mmcm_clk),
+    .sclk(sclk),
+    .fastclk(fastclk),
     .clksel(clksel),
     .rram_busy(rram_busy),
     .clk_out(clk_out)

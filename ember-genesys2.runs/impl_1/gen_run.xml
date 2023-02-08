@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1675244450">
+<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1675841389">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BITSTR-SYSDEF" Name="ember_fpga_wrapper.sysdef"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
@@ -203,7 +203,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>
@@ -211,11 +213,10 @@
     <Step Id="post_place_power_opt_design"/>
     <Step Id="phys_opt_design"/>
     <Step Id="route_design"/>
-    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="post_route_phys_opt_design" EnableStepBool="1"/>
     <Step Id="write_bitstream"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clkmux_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_rram_top_wrapper_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_ila_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clk_wiz_0"/>
 </GenRun>
