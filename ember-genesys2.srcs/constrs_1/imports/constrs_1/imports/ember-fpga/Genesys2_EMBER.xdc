@@ -602,8 +602,8 @@ set MIN_INPUT_DELAY 1.000
 set MAX_INPUT_DELAY 3.000
 set MIN_OUTPUT_DELAY 0.000
 set MAX_OUTPUT_DELAY 2.000
-set MIN_SA_DELAY 4.000
-set MAX_SA_DELAY 7.000
+set MIN_SA_DELAY 1.000
+set MAX_SA_DELAY 4.000
 
 ## Create 100 MHz clock
 create_clock -period 10.000 -name sclk [get_ports PROG_SCK]
