@@ -1,8 +1,8 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Tue Feb  7 12:54:44 2023
-// Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
+// Date        : Fri Feb 10 18:19:25 2023
+// Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode funcsim
 //               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0_sim_netlist.v
 // Design      : ember_fpga_rram_top_wrapper_0_0
@@ -23,6 +23,7 @@ module ember_fpga_rram_top_wrapper_0_0
     sc,
     mosi,
     miso,
+    rram_addr,
     sa_do,
     sa_rdy);
   input mclk_pause;
@@ -32,12 +33,14 @@ module ember_fpga_rram_top_wrapper_0_0
   input sc;
   input mosi;
   output miso;
+  output [15:0]rram_addr;
   input [47:0]sa_do;
   input sa_rdy;
 
   wire mclk_pause;
   wire miso;
   wire mosi;
+  wire [15:0]rram_addr;
   wire rram_busy;
   wire rst_n;
   wire [47:0]sa_do;
@@ -49,6 +52,7 @@ module ember_fpga_rram_top_wrapper_0_0
        (.mclk_pause(mclk_pause),
         .miso(miso),
         .mosi(mosi),
+        .rram_addr(rram_addr),
         .rram_busy(rram_busy),
         .rst_n(rst_n),
         .sa_do(sa_do),
@@ -334,6 +338,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \rangei_reg[3]_rep__0_3 ,
     \rangei_reg[3]_rep__0_4 ,
     \rangei_reg[3]_rep__0_5 ,
+    rram_addr,
     \addr_bits_reg[27] ,
     S,
     \counter_reg[13]_2 ,
@@ -351,7 +356,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \bsl_loop_reg[0]_4 ,
     sa_do,
     \bsl_loop_reg[3]_4 ,
-    \FSM_sequential_state_reg[4]_i_18_0 ,
+    \FSM_sequential_state_reg[4]_i_17_0 ,
     \prdata_sr_reg[5] ,
     \prdata_sr_reg[5]_0 ,
     \prdata_sr[31]_i_4 ,
@@ -470,25 +475,25 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     next_mask9_out,
     next_mask6_out,
     next_mask193_out,
-    \rram_addr_reg[15]_i_7_0 ,
+    \rram_addr_reg[15]_i_8_0 ,
     \FSM_sequential_state[0]_i_64_0 ,
     \prdata_sr[6]_i_30_0 ,
     \prdata_sr[7]_i_23_0 ,
     \prdata_sr[8]_i_22_0 ,
     \FSM_sequential_state[0]_i_64_1 ,
     \FSM_sequential_state[0]_i_18_0 ,
-    \prdata_sr_reg[153]_i_10 ,
-    \prdata_sr_reg[153]_i_10_0 ,
-    \FSM_sequential_state_reg[1]_i_32 ,
-    \FSM_sequential_state_reg[1]_i_32_0 ,
-    \prdata_sr_reg[153]_i_10_1 ,
-    \prdata_sr_reg[153]_i_10_2 ,
-    \FSM_sequential_state_reg[1]_i_32_1 ,
-    \FSM_sequential_state_reg[1]_i_32_2 ,
+    \rram_addr_reg[15]_i_17 ,
+    \rram_addr_reg[15]_i_17_0 ,
+    \FSM_sequential_state_reg[1]_i_31 ,
+    \FSM_sequential_state_reg[1]_i_31_0 ,
+    \rram_addr_reg[15]_i_17_1 ,
+    \rram_addr_reg[15]_i_17_2 ,
+    \FSM_sequential_state_reg[1]_i_31_1 ,
+    \FSM_sequential_state_reg[1]_i_31_2 ,
     \FSM_sequential_state[0]_i_18_1 ,
     \prdata_sr[152]_i_9_0 ,
     \bsl_loop_reg[4]_7 ,
-    \mask[47]_i_11 ,
+    \mask[47]_i_10 ,
     \prdata_sr_reg[151]_i_5_0 ,
     \FSM_sequential_state_reg[3]_i_5_0 ,
     \prdata_sr_reg[101]_i_5_0 ,
@@ -534,7 +539,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     D,
     \pw_loop_reg[7]_2 ,
     \pw_loop_reg[7]_3 );
-  output [71:0]\rangei_reg[3]_0 ;
+  output [55:0]\rangei_reg[3]_0 ;
   output [18:0]\failure_counter_reg[8]_0 ;
   output [3:0]Q;
   output \FSM_sequential_state_reg[4]_rep__0_0 ;
@@ -770,6 +775,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   output \rangei_reg[3]_rep__0_3 ;
   output \rangei_reg[3]_rep__0_4 ;
   output \rangei_reg[3]_rep__0_5 ;
+  output [15:0]rram_addr;
   output [1:0]\addr_bits_reg[27] ;
   output [0:0]S;
   output [0:0]\counter_reg[13]_2 ;
@@ -787,7 +793,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   input \bsl_loop_reg[0]_4 ;
   input [47:0]sa_do;
   input \bsl_loop_reg[3]_4 ;
-  input [135:0]\FSM_sequential_state_reg[4]_i_18_0 ;
+  input [135:0]\FSM_sequential_state_reg[4]_i_17_0 ;
   input \prdata_sr_reg[5] ;
   input \prdata_sr_reg[5]_0 ;
   input \prdata_sr[31]_i_4 ;
@@ -906,25 +912,25 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   input next_mask9_out;
   input next_mask6_out;
   input next_mask193_out;
-  input [43:0]\rram_addr_reg[15]_i_7_0 ;
+  input [43:0]\rram_addr_reg[15]_i_8_0 ;
   input [3:0]\FSM_sequential_state[0]_i_64_0 ;
   input \prdata_sr[6]_i_30_0 ;
   input \prdata_sr[7]_i_23_0 ;
   input \prdata_sr[8]_i_22_0 ;
   input [0:0]\FSM_sequential_state[0]_i_64_1 ;
   input \FSM_sequential_state[0]_i_18_0 ;
-  input \prdata_sr_reg[153]_i_10 ;
-  input \prdata_sr_reg[153]_i_10_0 ;
-  input \FSM_sequential_state_reg[1]_i_32 ;
-  input \FSM_sequential_state_reg[1]_i_32_0 ;
-  input \prdata_sr_reg[153]_i_10_1 ;
-  input \prdata_sr_reg[153]_i_10_2 ;
-  input \FSM_sequential_state_reg[1]_i_32_1 ;
-  input \FSM_sequential_state_reg[1]_i_32_2 ;
+  input \rram_addr_reg[15]_i_17 ;
+  input \rram_addr_reg[15]_i_17_0 ;
+  input \FSM_sequential_state_reg[1]_i_31 ;
+  input \FSM_sequential_state_reg[1]_i_31_0 ;
+  input \rram_addr_reg[15]_i_17_1 ;
+  input \rram_addr_reg[15]_i_17_2 ;
+  input \FSM_sequential_state_reg[1]_i_31_1 ;
+  input \FSM_sequential_state_reg[1]_i_31_2 ;
   input \FSM_sequential_state[0]_i_18_1 ;
   input [0:0]\prdata_sr[152]_i_9_0 ;
   input [0:0]\bsl_loop_reg[4]_7 ;
-  input [47:0]\mask[47]_i_11 ;
+  input [47:0]\mask[47]_i_10 ;
   input [2:0]\prdata_sr_reg[151]_i_5_0 ;
   input [2:0]\FSM_sequential_state_reg[3]_i_5_0 ;
   input [1:0]\prdata_sr_reg[101]_i_5_0 ;
@@ -1037,8 +1043,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[0]_i_7_n_0 ;
   wire \FSM_sequential_state[0]_i_8_n_0 ;
   wire \FSM_sequential_state[0]_i_9_n_0 ;
-  wire \FSM_sequential_state[1]_i_107_n_0 ;
-  wire \FSM_sequential_state[1]_i_108_n_0 ;
+  wire \FSM_sequential_state[1]_i_104_n_0 ;
+  wire \FSM_sequential_state[1]_i_105_n_0 ;
   wire \FSM_sequential_state[1]_i_10_n_0 ;
   wire \FSM_sequential_state[1]_i_11_n_0 ;
   wire \FSM_sequential_state[1]_i_12_n_0 ;
@@ -1050,8 +1056,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[1]_i_20_n_0 ;
   wire \FSM_sequential_state[1]_i_21_n_0 ;
   wire \FSM_sequential_state[1]_i_23_n_0 ;
-  wire \FSM_sequential_state[1]_i_24_n_0 ;
   wire \FSM_sequential_state[1]_i_2_n_0 ;
+  wire \FSM_sequential_state[1]_i_37_n_0 ;
   wire \FSM_sequential_state[1]_i_38_n_0 ;
   wire \FSM_sequential_state[1]_i_39_n_0 ;
   wire \FSM_sequential_state[1]_i_3_n_0 ;
@@ -1060,12 +1066,12 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[1]_i_42_n_0 ;
   wire \FSM_sequential_state[1]_i_43_n_0 ;
   wire \FSM_sequential_state[1]_i_44_n_0 ;
-  wire \FSM_sequential_state[1]_i_45_n_0 ;
   wire \FSM_sequential_state[1]_i_4_n_0 ;
-  wire \FSM_sequential_state[1]_i_55_n_0 ;
-  wire \FSM_sequential_state[1]_i_56_n_0 ;
   wire \FSM_sequential_state[1]_i_6_n_0 ;
+  wire \FSM_sequential_state[1]_i_70_n_0 ;
+  wire \FSM_sequential_state[1]_i_72_n_0 ;
   wire \FSM_sequential_state[1]_i_73_n_0 ;
+  wire \FSM_sequential_state[1]_i_74_n_0 ;
   wire \FSM_sequential_state[1]_i_75_n_0 ;
   wire \FSM_sequential_state[1]_i_76_n_0 ;
   wire \FSM_sequential_state[1]_i_77_n_0 ;
@@ -1074,9 +1080,6 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[1]_i_7_n_0 ;
   wire \FSM_sequential_state[1]_i_80_n_0 ;
   wire \FSM_sequential_state[1]_i_81_n_0 ;
-  wire \FSM_sequential_state[1]_i_82_n_0 ;
-  wire \FSM_sequential_state[1]_i_83_n_0 ;
-  wire \FSM_sequential_state[1]_i_84_n_0 ;
   wire \FSM_sequential_state[1]_i_8_n_0 ;
   wire \FSM_sequential_state[1]_i_9_n_0 ;
   wire \FSM_sequential_state[2]_i_12_n_0 ;
@@ -1126,11 +1129,11 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[3]_i_9_n_0 ;
   wire \FSM_sequential_state[4]_i_10_n_0 ;
   wire \FSM_sequential_state[4]_i_11_n_0 ;
-  wire \FSM_sequential_state[4]_i_12_n_0 ;
+  wire \FSM_sequential_state[4]_i_13_n_0 ;
   wire \FSM_sequential_state[4]_i_14_n_0 ;
   wire \FSM_sequential_state[4]_i_15_n_0 ;
   wire \FSM_sequential_state[4]_i_16_n_0 ;
-  wire \FSM_sequential_state[4]_i_17_n_0 ;
+  wire \FSM_sequential_state[4]_i_18_n_0 ;
   wire \FSM_sequential_state[4]_i_19_n_0 ;
   wire \FSM_sequential_state[4]_i_1_n_0 ;
   wire \FSM_sequential_state[4]_i_20_n_0 ;
@@ -1143,13 +1146,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state[4]_i_27_n_0 ;
   wire \FSM_sequential_state[4]_i_28_n_0 ;
   wire \FSM_sequential_state[4]_i_29_n_0 ;
+  wire \FSM_sequential_state[4]_i_2_n_0 ;
   wire \FSM_sequential_state[4]_i_30_n_0 ;
   wire \FSM_sequential_state[4]_i_31_n_0 ;
   wire \FSM_sequential_state[4]_i_32_n_0 ;
-  wire \FSM_sequential_state[4]_i_33_n_0 ;
   wire \FSM_sequential_state[4]_i_3_n_0 ;
   wire \FSM_sequential_state[4]_i_4_n_0 ;
-  wire \FSM_sequential_state[4]_i_5_n_0 ;
+  wire \FSM_sequential_state[4]_i_7_n_0 ;
   wire \FSM_sequential_state[4]_i_8_n_0 ;
   wire \FSM_sequential_state[4]_i_9_n_0 ;
   wire \FSM_sequential_state[4]_rep_i_1__0_n_0 ;
@@ -1170,13 +1173,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state_reg[1]_1 ;
   wire [0:0]\FSM_sequential_state_reg[1]_2 ;
   wire [3:0]\FSM_sequential_state_reg[1]_i_22 ;
-  wire \FSM_sequential_state_reg[1]_i_32 ;
-  wire \FSM_sequential_state_reg[1]_i_32_0 ;
-  wire \FSM_sequential_state_reg[1]_i_32_1 ;
-  wire \FSM_sequential_state_reg[1]_i_32_2 ;
-  wire \FSM_sequential_state_reg[1]_i_46_n_1 ;
-  wire \FSM_sequential_state_reg[1]_i_46_n_2 ;
-  wire \FSM_sequential_state_reg[1]_i_46_n_3 ;
+  wire \FSM_sequential_state_reg[1]_i_31 ;
+  wire \FSM_sequential_state_reg[1]_i_31_0 ;
+  wire \FSM_sequential_state_reg[1]_i_31_1 ;
+  wire \FSM_sequential_state_reg[1]_i_31_2 ;
+  wire \FSM_sequential_state_reg[1]_i_45_n_1 ;
+  wire \FSM_sequential_state_reg[1]_i_45_n_2 ;
+  wire \FSM_sequential_state_reg[1]_i_45_n_3 ;
   wire \FSM_sequential_state_reg[2]_0 ;
   wire \FSM_sequential_state_reg[2]_1 ;
   wire \FSM_sequential_state_reg[2]_2 ;
@@ -1207,14 +1210,14 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \FSM_sequential_state_reg[3]_i_5_n_3 ;
   wire \FSM_sequential_state_reg[4]_0 ;
   wire \FSM_sequential_state_reg[4]_1 ;
-  wire \FSM_sequential_state_reg[4]_i_13_n_1 ;
-  wire \FSM_sequential_state_reg[4]_i_13_n_2 ;
-  wire \FSM_sequential_state_reg[4]_i_13_n_3 ;
-  wire [135:0]\FSM_sequential_state_reg[4]_i_18_0 ;
-  wire \FSM_sequential_state_reg[4]_i_18_n_0 ;
-  wire \FSM_sequential_state_reg[4]_i_18_n_1 ;
-  wire \FSM_sequential_state_reg[4]_i_18_n_2 ;
-  wire \FSM_sequential_state_reg[4]_i_18_n_3 ;
+  wire \FSM_sequential_state_reg[4]_i_12_n_1 ;
+  wire \FSM_sequential_state_reg[4]_i_12_n_2 ;
+  wire \FSM_sequential_state_reg[4]_i_12_n_3 ;
+  wire [135:0]\FSM_sequential_state_reg[4]_i_17_0 ;
+  wire \FSM_sequential_state_reg[4]_i_17_n_0 ;
+  wire \FSM_sequential_state_reg[4]_i_17_n_1 ;
+  wire \FSM_sequential_state_reg[4]_i_17_n_2 ;
+  wire \FSM_sequential_state_reg[4]_i_17_n_3 ;
   wire \FSM_sequential_state_reg[4]_rep_0 ;
   wire \FSM_sequential_state_reg[4]_rep_1 ;
   wire \FSM_sequential_state_reg[4]_rep__0_0 ;
@@ -1506,9 +1509,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \mask[45]_i_3_n_0 ;
   wire \mask[46]_i_2_n_0 ;
   wire \mask[46]_i_4_n_0 ;
-  wire \mask[47]_i_10_n_0 ;
-  wire [47:0]\mask[47]_i_11 ;
-  wire \mask[47]_i_12_n_0 ;
+  wire [47:0]\mask[47]_i_10 ;
   wire \mask[47]_i_1_n_0 ;
   wire \mask[47]_i_3_n_0 ;
   wire \mask[47]_i_4_n_0 ;
@@ -1705,8 +1706,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \prdata_sr[152]_i_32_n_0 ;
   wire [0:0]\prdata_sr[152]_i_9 ;
   wire [0:0]\prdata_sr[152]_i_9_0 ;
+  wire \prdata_sr[153]_i_4_n_0 ;
   wire \prdata_sr[153]_i_5_n_0 ;
-  wire \prdata_sr[153]_i_6_n_0 ;
   wire \prdata_sr[19]_i_14_n_0 ;
   wire \prdata_sr[21]_i_14_n_0 ;
   wire \prdata_sr[23]_i_14_n_0 ;
@@ -1840,10 +1841,6 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \prdata_sr_reg[151]_i_5_n_3 ;
   wire \prdata_sr_reg[152]_i_29 ;
   wire \prdata_sr_reg[152]_i_29_0 ;
-  wire \prdata_sr_reg[153]_i_10 ;
-  wire \prdata_sr_reg[153]_i_10_0 ;
-  wire \prdata_sr_reg[153]_i_10_1 ;
-  wire \prdata_sr_reg[153]_i_10_2 ;
   wire \prdata_sr_reg[5] ;
   wire \prdata_sr_reg[5]_0 ;
   wire [0:0]\pw_loop[7]_i_18 ;
@@ -1922,7 +1919,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \rangei_reg[2]_rep_0 ;
   wire \rangei_reg[2]_rep__0_0 ;
   wire \rangei_reg[2]_rep__1_0 ;
-  wire [71:0]\rangei_reg[3]_0 ;
+  wire [55:0]\rangei_reg[3]_0 ;
   wire [3:0]\rangei_reg[3]_1 ;
   wire \rangei_reg[3]_rep_0 ;
   wire \rangei_reg[3]_rep_1 ;
@@ -2369,6 +2366,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \read_data_bits_reg[3][45]_0 ;
   wire \read_data_bits_reg[3][46]_0 ;
   wire \read_data_bits_reg[3][47]_0 ;
+  wire [15:0]rram_addr;
   wire \rram_addr[0]_i_1_n_0 ;
   wire \rram_addr[10]_i_1_n_0 ;
   wire \rram_addr[11]_i_1_n_0 ;
@@ -2379,15 +2377,20 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \rram_addr[12]_i_1_n_0 ;
   wire \rram_addr[13]_i_1_n_0 ;
   wire \rram_addr[14]_i_1_n_0 ;
-  wire \rram_addr[15]_i_10_n_0 ;
   wire \rram_addr[15]_i_11_n_0 ;
+  wire \rram_addr[15]_i_12_n_0 ;
+  wire \rram_addr[15]_i_13_n_0 ;
+  wire \rram_addr[15]_i_14_n_0 ;
+  wire \rram_addr[15]_i_15_n_0 ;
+  wire \rram_addr[15]_i_16_n_0 ;
   wire \rram_addr[15]_i_1_n_0 ;
+  wire \rram_addr[15]_i_23_n_0 ;
+  wire \rram_addr[15]_i_24_n_0 ;
   wire \rram_addr[15]_i_2_n_0 ;
-  wire \rram_addr[15]_i_3_n_0 ;
   wire \rram_addr[15]_i_4_n_0 ;
   wire \rram_addr[15]_i_5_n_0 ;
   wire \rram_addr[15]_i_6_n_0 ;
-  wire \rram_addr[15]_i_8_n_0 ;
+  wire \rram_addr[15]_i_7_n_0 ;
   wire \rram_addr[15]_i_9_n_0 ;
   wire \rram_addr[1]_i_1_n_0 ;
   wire \rram_addr[2]_i_1_n_0 ;
@@ -2410,10 +2413,14 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire \rram_addr_reg[11]_i_2_n_1 ;
   wire \rram_addr_reg[11]_i_2_n_2 ;
   wire \rram_addr_reg[11]_i_2_n_3 ;
-  wire [43:0]\rram_addr_reg[15]_i_7_0 ;
-  wire \rram_addr_reg[15]_i_7_n_1 ;
-  wire \rram_addr_reg[15]_i_7_n_2 ;
-  wire \rram_addr_reg[15]_i_7_n_3 ;
+  wire \rram_addr_reg[15]_i_17 ;
+  wire \rram_addr_reg[15]_i_17_0 ;
+  wire \rram_addr_reg[15]_i_17_1 ;
+  wire \rram_addr_reg[15]_i_17_2 ;
+  wire [43:0]\rram_addr_reg[15]_i_8_0 ;
+  wire \rram_addr_reg[15]_i_8_n_1 ;
+  wire \rram_addr_reg[15]_i_8_n_2 ;
+  wire \rram_addr_reg[15]_i_8_n_3 ;
   wire \rram_addr_reg[3]_i_2_n_0 ;
   wire \rram_addr_reg[3]_i_2_n_1 ;
   wire \rram_addr_reg[3]_i_2_n_2 ;
@@ -2571,16 +2578,16 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire [3:3]\NLW_FSM_sequential_state_reg[0]_i_14_CO_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[0]_i_14_O_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[0]_i_20_O_UNCONNECTED ;
-  wire [3:0]\NLW_FSM_sequential_state_reg[1]_i_46_O_UNCONNECTED ;
+  wire [3:0]\NLW_FSM_sequential_state_reg[1]_i_45_O_UNCONNECTED ;
   wire [3:3]\NLW_FSM_sequential_state_reg[2]_i_10_CO_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[2]_i_10_O_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[2]_i_16_O_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[3]_i_11_O_UNCONNECTED ;
   wire [3:3]\NLW_FSM_sequential_state_reg[3]_i_5_CO_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[3]_i_5_O_UNCONNECTED ;
-  wire [3:3]\NLW_FSM_sequential_state_reg[4]_i_13_CO_UNCONNECTED ;
-  wire [3:0]\NLW_FSM_sequential_state_reg[4]_i_13_O_UNCONNECTED ;
-  wire [3:0]\NLW_FSM_sequential_state_reg[4]_i_18_O_UNCONNECTED ;
+  wire [3:3]\NLW_FSM_sequential_state_reg[4]_i_12_CO_UNCONNECTED ;
+  wire [3:0]\NLW_FSM_sequential_state_reg[4]_i_12_O_UNCONNECTED ;
+  wire [3:0]\NLW_FSM_sequential_state_reg[4]_i_17_O_UNCONNECTED ;
   wire [3:1]\NLW_attempts_counter_reg[7]_i_3_CO_UNCONNECTED ;
   wire [3:0]\NLW_attempts_counter_reg[7]_i_3_O_UNCONNECTED ;
   wire [3:0]\NLW_attempts_counter_reg[7]_i_6_O_UNCONNECTED ;
@@ -2603,7 +2610,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   wire [3:0]\NLW_prdata_sr_reg[151]_i_30_O_UNCONNECTED ;
   wire [3:3]\NLW_prdata_sr_reg[151]_i_5_CO_UNCONNECTED ;
   wire [3:0]\NLW_prdata_sr_reg[151]_i_5_O_UNCONNECTED ;
-  wire [3:3]\NLW_rram_addr_reg[15]_i_7_CO_UNCONNECTED ;
+  wire [3:3]\NLW_rram_addr_reg[15]_i_8_CO_UNCONNECTED ;
   wire [3:3]\NLW_success_counter_reg[12]_i_1_CO_UNCONNECTED ;
   wire [3:3]\NLW_wl_loop_reg[7]_i_19_CO_UNCONNECTED ;
 
@@ -2622,7 +2629,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'hFFDF)) 
     \FSM_sequential_state[0]_i_10 
        (.I0(Q[2]),
-        .I1(\mask[47]_i_9_n_0 ),
+        .I1(\rram_addr[15]_i_9_n_0 ),
         .I2(\counter_reg[13]_1 ),
         .I3(\FSM_sequential_state[1]_i_21_n_0 ),
         .O(\FSM_sequential_state[0]_i_10_n_0 ));
@@ -2708,9 +2715,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\pw_loop_reg[7]_0 [7]),
         .I1(\FSM_sequential_state[0]_i_41_n_0 ),
         .I2(\pw_loop_reg[7]_0 [6]),
-        .I3(\rangei_reg[3]_0 [52]),
+        .I3(\rangei_reg[3]_0 [36]),
         .I4(\FSM_sequential_state[0]_i_42_n_0 ),
-        .I5(\rangei_reg[3]_0 [51]),
+        .I5(\rangei_reg[3]_0 [35]),
         .O(\FSM_sequential_state[0]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'h00C000C088C800C0)) 
@@ -2718,22 +2725,22 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\FSM_sequential_state[0]_i_43_n_0 ),
         .I1(\pw_loop_reg[7]_0 [7]),
         .I2(\FSM_sequential_state[0]_i_44_n_0 ),
-        .I3(\rangei_reg[3]_0 [50]),
+        .I3(\rangei_reg[3]_0 [34]),
         .I4(\FSM_sequential_state[0]_i_45_n_0 ),
-        .I5(\rangei_reg[3]_0 [49]),
+        .I5(\rangei_reg[3]_0 [33]),
         .O(\FSM_sequential_state[0]_i_22_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[0]_i_23 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\FSM_sequential_state[0]_i_23_n_0 ));
   LUT3 #(
     .INIT(8'h28)) 
     \FSM_sequential_state[0]_i_24 
        (.I0(\FSM_sequential_state[0]_i_46_n_0 ),
         .I1(\FSM_sequential_state[0]_i_42_n_0 ),
-        .I2(\rangei_reg[3]_0 [51]),
+        .I2(\rangei_reg[3]_0 [35]),
         .O(\FSM_sequential_state[0]_i_24_n_0 ));
   LUT4 #(
     .INIT(16'h8070)) 
@@ -2741,7 +2748,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\FSM_sequential_state[0]_i_43_n_0 ),
         .I1(\pw_loop_reg[7]_0 [7]),
         .I2(\FSM_sequential_state[0]_i_45_n_0 ),
-        .I3(\rangei_reg[3]_0 [49]),
+        .I3(\rangei_reg[3]_0 [33]),
         .O(\FSM_sequential_state[0]_i_25_n_0 ));
   LUT4 #(
     .INIT(16'h7FFF)) 
@@ -2786,7 +2793,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \FSM_sequential_state[0]_i_3 
        (.I0(\FSM_sequential_state[0]_i_9_n_0 ),
         .I1(\FSM_sequential_state[0]_i_10_n_0 ),
-        .I2(\prdata_sr[153]_i_5_n_0 ),
+        .I2(\prdata_sr[153]_i_4_n_0 ),
         .I3(\FSM_sequential_state[0]_i_11_n_0 ),
         .I4(\FSM_sequential_state[0]_i_12_n_0 ),
         .I5(\FSM_sequential_state[0]_i_13_n_0 ),
@@ -2794,33 +2801,33 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT4 #(
     .INIT(16'h1171)) 
     \FSM_sequential_state[0]_i_33 
-       (.I0(\rangei_reg[3]_0 [48]),
+       (.I0(\rangei_reg[3]_0 [32]),
         .I1(\FSM_sequential_state[0]_i_53_n_0 ),
         .I2(\FSM_sequential_state[0]_i_54_n_0 ),
-        .I3(\rangei_reg[3]_0 [47]),
+        .I3(\rangei_reg[3]_0 [31]),
         .O(\FSM_sequential_state[0]_i_33_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[0]_i_34 
-       (.I0(\rangei_reg[3]_0 [46]),
+       (.I0(\rangei_reg[3]_0 [30]),
         .I1(\FSM_sequential_state[0]_i_55_n_0 ),
         .I2(\FSM_sequential_state[0]_i_56_n_0 ),
-        .I3(\rangei_reg[3]_0 [45]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\FSM_sequential_state[0]_i_34_n_0 ));
   LUT5 #(
     .INIT(32'h1100F150)) 
     \FSM_sequential_state[0]_i_35 
-       (.I0(\rangei_reg[3]_0 [44]),
+       (.I0(\rangei_reg[3]_0 [28]),
         .I1(\pw_loop_reg[7]_0 [7]),
         .I2(\FSM_sequential_state[0]_i_57_n_0 ),
         .I3(\FSM_sequential_state[0]_i_58_n_0 ),
-        .I4(\rangei_reg[3]_0 [43]),
+        .I4(\rangei_reg[3]_0 [27]),
         .O(\FSM_sequential_state[0]_i_35_n_0 ));
   LUT6 #(
     .INIT(64'h0303070100000300)) 
     \FSM_sequential_state[0]_i_36 
-       (.I0(\rangei_reg[3]_0 [41]),
-        .I1(\rangei_reg[3]_0 [42]),
+       (.I0(\rangei_reg[3]_0 [25]),
+        .I1(\rangei_reg[3]_0 [26]),
         .I2(\FSM_sequential_state[0]_i_59_n_0 ),
         .I3(\pw_loop_reg[7]_0 [1]),
         .I4(\pw_loop_reg[7]_0 [5]),
@@ -2830,15 +2837,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'h0990)) 
     \FSM_sequential_state[0]_i_37 
        (.I0(\FSM_sequential_state[0]_i_54_n_0 ),
-        .I1(\rangei_reg[3]_0 [47]),
+        .I1(\rangei_reg[3]_0 [31]),
         .I2(\FSM_sequential_state[0]_i_53_n_0 ),
-        .I3(\rangei_reg[3]_0 [48]),
+        .I3(\rangei_reg[3]_0 [32]),
         .O(\FSM_sequential_state[0]_i_37_n_0 ));
   LUT4 #(
     .INIT(16'h8421)) 
     \FSM_sequential_state[0]_i_38 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\rangei_reg[3]_0 [29]),
         .I2(\FSM_sequential_state[0]_i_56_n_0 ),
         .I3(\FSM_sequential_state[0]_i_55_n_0 ),
         .O(\FSM_sequential_state[0]_i_38_n_0 ));
@@ -2846,8 +2853,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'h03840321)) 
     \FSM_sequential_state[0]_i_39 
        (.I0(\FSM_sequential_state[0]_i_58_n_0 ),
-        .I1(\rangei_reg[3]_0 [43]),
-        .I2(\rangei_reg[3]_0 [44]),
+        .I1(\rangei_reg[3]_0 [27]),
+        .I2(\rangei_reg[3]_0 [28]),
         .I3(\pw_loop_reg[7]_0 [7]),
         .I4(\FSM_sequential_state[0]_i_60_n_0 ),
         .O(\FSM_sequential_state[0]_i_39_n_0 ));
@@ -2869,7 +2876,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(\pw_loop_reg[7]_0 [6]),
         .I3(\pw_loop_reg[7]_0 [5]),
         .I4(\pw_loop_reg[7]_0 [0]),
-        .I5(\rangei_reg[3]_0 [41]),
+        .I5(\rangei_reg[3]_0 [25]),
         .O(\FSM_sequential_state[0]_i_40_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT2 #(
@@ -2910,7 +2917,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hFFFFFF80)) 
     \FSM_sequential_state[0]_i_45 
        (.I0(\pw_loop_reg[7]_0 [7]),
-        .I1(\rangei_reg[3]_0 [50]),
+        .I1(\rangei_reg[3]_0 [34]),
         .I2(\FSM_sequential_state[0]_i_44_n_0 ),
         .I3(\FSM_sequential_state[0]_i_62_n_0 ),
         .I4(\FSM_sequential_state[0]_i_63_n_0 ),
@@ -2922,14 +2929,14 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(\pw_loop_reg[7]_0 [4]),
         .I2(\pw_loop_reg[7]_0 [5]),
         .I3(\pw_loop_reg[7]_0 [6]),
-        .I4(\rangei_reg[3]_0 [52]),
+        .I4(\rangei_reg[3]_0 [36]),
         .O(\FSM_sequential_state[0]_i_46_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFEFF)) 
     \FSM_sequential_state[0]_i_48 
        (.I0(\FSM_sequential_state[0]_i_64_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_80_n_0 ),
-        .I2(\FSM_sequential_state[1]_i_42_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_77_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_41_n_0 ),
         .I3(next_rram_addr1431_out),
         .I4(\FSM_sequential_state[0]_i_65_n_0 ),
         .I5(\FSM_sequential_state[0]_i_66_n_0 ),
@@ -3038,14 +3045,14 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(\pw_loop_reg[7]_0 [1]),
         .I3(\pw_loop_reg[7]_0 [7]),
         .I4(\pw_loop_reg[7]_0 [6]),
-        .I5(\rangei_reg[3]_0 [42]),
+        .I5(\rangei_reg[3]_0 [26]),
         .O(\FSM_sequential_state[0]_i_61_n_0 ));
   LUT5 #(
     .INIT(32'h0103010F)) 
     \FSM_sequential_state[0]_i_62 
        (.I0(\pw_loop_reg[7]_0 [4]),
         .I1(\pw_loop_reg[7]_0 [6]),
-        .I2(\rangei_reg[3]_0 [50]),
+        .I2(\rangei_reg[3]_0 [34]),
         .I3(\pw_loop_reg[7]_0 [5]),
         .I4(\pw_loop_reg[7]_0 [3]),
         .O(\FSM_sequential_state[0]_i_62_n_0 ));
@@ -3055,16 +3062,16 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\pw_loop_reg[7]_0 [6]),
         .I1(\pw_loop_reg[7]_0 [2]),
         .I2(\pw_loop_reg[7]_0 [5]),
-        .I3(\rangei_reg[3]_0 [50]),
+        .I3(\rangei_reg[3]_0 [34]),
         .I4(\pw_loop_reg[7]_0 [7]),
         .O(\FSM_sequential_state[0]_i_63_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFEFFFFFFFF)) 
     \FSM_sequential_state[0]_i_64 
-       (.I0(\FSM_sequential_state[1]_i_79_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_77_n_0 ),
+       (.I0(\FSM_sequential_state[1]_i_76_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_74_n_0 ),
         .I2(is_first_try_i_8_n_0),
-        .I3(\rangei_reg[3]_0 [49]),
+        .I3(\rangei_reg[3]_0 [33]),
         .I4(\FSM_sequential_state[0]_i_69_n_0 ),
         .I5(\FSM_sequential_state[0]_i_70_n_0 ),
         .O(\FSM_sequential_state[0]_i_64_n_0 ));
@@ -3081,21 +3088,21 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFEFFFFFFFFFFFF)) 
     \FSM_sequential_state[0]_i_66 
        (.I0(\FSM_sequential_state[0]_i_71_n_0 ),
-        .I1(\rangei_reg[3]_0 [54]),
-        .I2(\FSM_sequential_state[1]_i_43_n_0 ),
-        .I3(\FSM_sequential_state[1]_i_45_n_0 ),
+        .I1(\rangei_reg[3]_0 [38]),
+        .I2(\FSM_sequential_state[1]_i_42_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_44_n_0 ),
         .I4(\counter_reg[13]_1 ),
         .I5(Q[1]),
         .O(\FSM_sequential_state[0]_i_66_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFEEFEFFFF)) 
     \FSM_sequential_state[0]_i_69 
-       (.I0(\FSM_sequential_state[1]_i_24_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_76_n_0 ),
+       (.I0(\rram_addr[15]_i_15_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_73_n_0 ),
         .I2(\FSM_sequential_state[0]_i_64_0 [3]),
         .I3(\FSM_sequential_state[0]_i_64_1 ),
         .I4(next_rram_addr0),
-        .I5(\rangei_reg[3]_0 [53]),
+        .I5(\rangei_reg[3]_0 [37]),
         .O(\FSM_sequential_state[0]_i_69_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT5 #(
@@ -3111,9 +3118,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT3 #(
     .INIT(8'h01)) 
     \FSM_sequential_state[0]_i_70 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
-        .I2(\rangei_reg[3]_0 [50]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
+        .I2(\rangei_reg[3]_0 [34]),
         .O(\FSM_sequential_state[0]_i_70_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT5 #(
@@ -3123,7 +3130,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(\mask_reg[47]_0 [6]),
         .I2(\mask_reg[47]_0 [5]),
         .I3(\mask_reg[47]_0 [4]),
-        .I4(\FSM_sequential_state[1]_i_108_n_0 ),
+        .I4(\FSM_sequential_state[1]_i_105_n_0 ),
         .O(\FSM_sequential_state[0]_i_71_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT3 #(
@@ -3138,7 +3145,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'hFDFF)) 
     \FSM_sequential_state[0]_i_9 
        (.I0(Q[1]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I2(CO),
         .I3(state),
         .O(\FSM_sequential_state[0]_i_9_n_0 ));
@@ -3155,32 +3162,32 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0101011100000000)) 
     \FSM_sequential_state[1]_i_10 
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(\FSM_sequential_state[1]_i_21_n_0 ),
         .I2(\FSM_sequential_state[0]_i_11_n_0 ),
         .I3(CO),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I5(Q[2]),
         .O(\FSM_sequential_state[1]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hFFFDFFFFFFFFFFFF)) 
-    \FSM_sequential_state[1]_i_107 
+    \FSM_sequential_state[1]_i_104 
        (.I0(\FSM_sequential_state_reg[4]_1 ),
-        .I1(\FSM_sequential_state[4]_i_17_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_16_n_0 ),
         .I2(next_mask245_out),
-        .I3(\FSM_sequential_state[4]_i_14_n_0 ),
+        .I3(\FSM_sequential_state[4]_i_13_n_0 ),
         .I4(\read_data_bits[1][17]_i_2_n_0 ),
         .I5(\read_data_bits[1][15]_i_2_n_0 ),
-        .O(\FSM_sequential_state[1]_i_107_n_0 ));
+        .O(\FSM_sequential_state[1]_i_104_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair95" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_108 
+    \FSM_sequential_state[1]_i_105 
        (.I0(\mask_reg[47]_0 [16]),
         .I1(\mask_reg[47]_0 [17]),
         .I2(\mask_reg[47]_0 [18]),
         .I3(\mask_reg[47]_0 [19]),
-        .O(\FSM_sequential_state[1]_i_108_n_0 ));
+        .O(\FSM_sequential_state[1]_i_105_n_0 ));
   LUT6 #(
     .INIT(64'h0000000000008088)) 
     \FSM_sequential_state[1]_i_11 
@@ -3189,7 +3196,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(\FSM_sequential_state[0]_i_64_1 ),
         .I3(\FSM_sequential_state[0]_i_64_0 [3]),
         .I4(\FSM_sequential_state[1]_i_23_n_0 ),
-        .I5(\FSM_sequential_state[1]_i_24_n_0 ),
+        .I5(\rram_addr[15]_i_15_n_0 ),
         .O(\FSM_sequential_state[1]_i_11_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT2 #(
@@ -3201,12 +3208,12 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'hFFFFFFFFEEEEEFEE)) 
     \FSM_sequential_state[1]_i_17 
-       (.I0(\FSM_sequential_state[1]_i_38_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_39_n_0 ),
+       (.I0(\FSM_sequential_state[1]_i_37_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_38_n_0 ),
         .I2(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I3(Q[0]),
         .I4(\prdata_sr_reg[151]_i_5_n_1 ),
-        .I5(\FSM_sequential_state[1]_i_40_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_39_n_0 ),
         .O(\FSM_sequential_state[1]_i_17_n_0 ));
   LUT6 #(
     .INIT(64'h0F0004000F000F00)) 
@@ -3215,7 +3222,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(\FSM_sequential_state_reg[3]_4 ),
         .I2(Q[2]),
         .I3(Q[1]),
-        .I4(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I4(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I5(sa_rdy),
         .O(\FSM_sequential_state[1]_i_18_n_0 ));
   LUT5 #(
@@ -3232,7 +3239,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \FSM_sequential_state[1]_i_2 
        (.I0(\FSM_sequential_state_reg[0]_0 ),
         .I1(\prdata_sr_reg[151]_i_5_n_1 ),
-        .I2(\rram_addr[15]_i_4_n_0 ),
+        .I2(\rram_addr[15]_i_5_n_0 ),
         .I3(\FSM_sequential_state[1]_i_7_n_0 ),
         .I4(\FSM_sequential_state[1]_i_8_n_0 ),
         .I5(\FSM_sequential_state[3]_i_4_n_0 ),
@@ -3242,39 +3249,29 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \FSM_sequential_state[1]_i_20 
        (.I0(\rangei[3]_i_12_n_0 ),
         .I1(Q[2]),
-        .I2(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I2(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I3(\rangei[3]_i_11_n_0 ),
         .I4(\rangei[3]_i_17_n_0 ),
         .O(\FSM_sequential_state[1]_i_20_n_0 ));
   LUT5 #(
     .INIT(32'h00000002)) 
     \FSM_sequential_state[1]_i_21 
-       (.I0(\FSM_sequential_state[1]_i_41_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_42_n_0 ),
-        .I2(\FSM_sequential_state[1]_i_43_n_0 ),
-        .I3(\FSM_sequential_state[1]_i_44_n_0 ),
-        .I4(\FSM_sequential_state[1]_i_45_n_0 ),
+       (.I0(\FSM_sequential_state[1]_i_40_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_41_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_42_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_43_n_0 ),
+        .I4(\FSM_sequential_state[1]_i_44_n_0 ),
         .O(\FSM_sequential_state[1]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \FSM_sequential_state[1]_i_23 
-       (.I0(\rangei_reg[3]_0 [49]),
-        .I1(\rangei_reg[3]_0 [50]),
-        .I2(\rangei_reg[3]_0 [52]),
-        .I3(\rangei_reg[3]_0 [51]),
-        .I4(\rangei_reg[3]_0 [54]),
-        .I5(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [33]),
+        .I1(\rangei_reg[3]_0 [34]),
+        .I2(\rangei_reg[3]_0 [36]),
+        .I3(\rangei_reg[3]_0 [35]),
+        .I4(\rangei_reg[3]_0 [38]),
+        .I5(\rangei_reg[3]_0 [37]),
         .O(\FSM_sequential_state[1]_i_23_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[1]_i_24 
-       (.I0(\FSM_sequential_state[1]_i_55_n_0 ),
-        .I1(\rangei_reg[3]_0 [47]),
-        .I2(\rangei_reg[3]_0 [48]),
-        .I3(\FSM_sequential_state[1]_i_56_n_0 ),
-        .I4(\rangei_reg[3]_0 [41]),
-        .I5(\rangei_reg[3]_0 [42]),
-        .O(\FSM_sequential_state[1]_i_24_n_0 ));
   LUT6 #(
     .INIT(64'hAAAAAABAAABAAABA)) 
     \FSM_sequential_state[1]_i_3 
@@ -3287,29 +3284,39 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .O(\FSM_sequential_state[1]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
-    \FSM_sequential_state[1]_i_35 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+    \FSM_sequential_state[1]_i_34 
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(S));
   LUT6 #(
     .INIT(64'h0404000400040004)) 
-    \FSM_sequential_state[1]_i_38 
+    \FSM_sequential_state[1]_i_37 
        (.I0(\FSM_sequential_state[1]_i_4_n_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I2(Q[2]),
         .I3(sa_rdy),
-        .I4(\FSM_sequential_state[1]_i_73_n_0 ),
-        .I5(\FSM_sequential_state_reg[4]_i_13_n_1 ),
-        .O(\FSM_sequential_state[1]_i_38_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_70_n_0 ),
+        .I5(\FSM_sequential_state_reg[4]_i_12_n_1 ),
+        .O(\FSM_sequential_state[1]_i_37_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT5 #(
     .INIT(32'h10001300)) 
-    \FSM_sequential_state[1]_i_39 
+    \FSM_sequential_state[1]_i_38 
        (.I0(\prdata_sr_reg[101]_i_5_n_3 ),
         .I1(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(fsm_go),
+        .O(\FSM_sequential_state[1]_i_38_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFAAEAAAEAAAEA)) 
+    \FSM_sequential_state[1]_i_39 
+       (.I0(\FSM_sequential_state[1]_i_17_0 ),
+        .I1(Q[1]),
+        .I2(Q[0]),
+        .I3(\FSM_sequential_state_reg[4]_rep__0_0 ),
+        .I4(\FSM_sequential_state[1]_i_70_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_72_n_0 ),
         .O(\FSM_sequential_state[1]_i_39_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair115" *) 
   LUT2 #(
@@ -3319,87 +3326,81 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(Q[1]),
         .O(\FSM_sequential_state[1]_i_4_n_0 ));
   LUT6 #(
-    .INIT(64'hFFFFAAEAAAEAAAEA)) 
-    \FSM_sequential_state[1]_i_40 
-       (.I0(\FSM_sequential_state[1]_i_17_0 ),
-        .I1(Q[1]),
-        .I2(Q[0]),
-        .I3(\FSM_sequential_state_reg[4]_rep__0_0 ),
-        .I4(\FSM_sequential_state[1]_i_73_n_0 ),
-        .I5(\FSM_sequential_state[1]_i_75_n_0 ),
-        .O(\FSM_sequential_state[1]_i_40_n_0 ));
-  LUT6 #(
     .INIT(64'h0000000000000100)) 
-    \FSM_sequential_state[1]_i_41 
+    \FSM_sequential_state[1]_i_40 
        (.I0(is_first_try_i_8_n_0),
-        .I1(\FSM_sequential_state[1]_i_76_n_0 ),
-        .I2(\FSM_sequential_state[1]_i_77_n_0 ),
-        .I3(\FSM_sequential_state[1]_i_78_n_0 ),
-        .I4(\FSM_sequential_state[1]_i_79_n_0 ),
-        .I5(\FSM_sequential_state[1]_i_80_n_0 ),
-        .O(\FSM_sequential_state[1]_i_41_n_0 ));
+        .I1(\FSM_sequential_state[1]_i_73_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_74_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_75_n_0 ),
+        .I4(\FSM_sequential_state[1]_i_76_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_77_n_0 ),
+        .O(\FSM_sequential_state[1]_i_40_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair94" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_42 
+    \FSM_sequential_state[1]_i_41 
        (.I0(\mask_reg[47]_0 [12]),
         .I1(\mask_reg[47]_0 [13]),
         .I2(\mask_reg[47]_0 [14]),
         .I3(\mask_reg[47]_0 [15]),
-        .O(\FSM_sequential_state[1]_i_42_n_0 ));
+        .O(\FSM_sequential_state[1]_i_41_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_43 
+    \FSM_sequential_state[1]_i_42 
        (.I0(\mask_reg[47]_0 [10]),
         .I1(\mask_reg[47]_0 [11]),
         .I2(\mask_reg[47]_0 [8]),
         .I3(\mask_reg[47]_0 [9]),
-        .O(\FSM_sequential_state[1]_i_43_n_0 ));
+        .O(\FSM_sequential_state[1]_i_42_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_44 
+    \FSM_sequential_state[1]_i_43 
        (.I0(\mask_reg[47]_0 [4]),
         .I1(\mask_reg[47]_0 [5]),
         .I2(\mask_reg[47]_0 [6]),
         .I3(\mask_reg[47]_0 [7]),
-        .O(\FSM_sequential_state[1]_i_44_n_0 ));
+        .O(\FSM_sequential_state[1]_i_43_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_45 
+    \FSM_sequential_state[1]_i_44 
        (.I0(\mask_reg[47]_0 [2]),
         .I1(\mask_reg[47]_0 [3]),
         .I2(\mask_reg[47]_0 [0]),
         .I3(\mask_reg[47]_0 [1]),
-        .O(\FSM_sequential_state[1]_i_45_n_0 ));
+        .O(\FSM_sequential_state[1]_i_44_n_0 ));
   LUT4 #(
     .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_49 
+    \FSM_sequential_state[1]_i_48 
        (.I0(in95[11]),
-        .I1(\rram_addr_reg[15]_i_7_0 [27]),
+        .I1(\rram_addr_reg[15]_i_8_0 [27]),
         .I2(in95[10]),
-        .I3(\rram_addr_reg[15]_i_7_0 [26]),
+        .I3(\rram_addr_reg[15]_i_8_0 [26]),
         .O(\addr_bits_reg[27] [1]));
   LUT4 #(
     .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_50 
+    \FSM_sequential_state[1]_i_49 
        (.I0(in95[9]),
-        .I1(\rram_addr_reg[15]_i_7_0 [25]),
+        .I1(\rram_addr_reg[15]_i_8_0 [25]),
         .I2(in95[8]),
-        .I3(\rram_addr_reg[15]_i_7_0 [24]),
+        .I3(\rram_addr_reg[15]_i_8_0 [24]),
         .O(\addr_bits_reg[27] [0]));
-  LUT2 #(
-    .INIT(4'hE)) 
-    \FSM_sequential_state[1]_i_55 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\rangei_reg[3]_0 [45]),
-        .O(\FSM_sequential_state[1]_i_55_n_0 ));
-  LUT2 #(
-    .INIT(4'hE)) 
-    \FSM_sequential_state[1]_i_56 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\rangei_reg[3]_0 [43]),
-        .O(\FSM_sequential_state[1]_i_56_n_0 ));
+  LUT4 #(
+    .INIT(16'h5071)) 
+    \FSM_sequential_state[1]_i_57 
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\FSM_sequential_state_reg[1]_i_31_1 ),
+        .I2(\FSM_sequential_state_reg[1]_i_31_2 ),
+        .I3(\rangei_reg[3]_0 [31]),
+        .O(\counter_reg[7]_1 [1]));
+  LUT4 #(
+    .INIT(16'h1171)) 
+    \FSM_sequential_state[1]_i_58 
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[1]_i_31 ),
+        .I2(\FSM_sequential_state_reg[1]_i_31_0 ),
+        .I3(\rangei_reg[3]_0 [29]),
+        .O(\counter_reg[7]_1 [0]));
   LUT6 #(
     .INIT(64'h000000000404FF00)) 
     \FSM_sequential_state[1]_i_6 
@@ -3410,22 +3411,6 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I4(Q[1]),
         .I5(state),
         .O(\FSM_sequential_state[1]_i_6_n_0 ));
-  LUT4 #(
-    .INIT(16'h5071)) 
-    \FSM_sequential_state[1]_i_60 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\FSM_sequential_state_reg[1]_i_32_1 ),
-        .I2(\FSM_sequential_state_reg[1]_i_32_2 ),
-        .I3(\rangei_reg[3]_0 [47]),
-        .O(\counter_reg[7]_1 [1]));
-  LUT4 #(
-    .INIT(16'h1171)) 
-    \FSM_sequential_state[1]_i_61 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[1]_i_32 ),
-        .I2(\FSM_sequential_state_reg[1]_i_32_0 ),
-        .I3(\rangei_reg[3]_0 [45]),
-        .O(\counter_reg[7]_1 [0]));
   LUT6 #(
     .INIT(64'h020200000C000000)) 
     \FSM_sequential_state[1]_i_7 
@@ -3438,58 +3423,83 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .O(\FSM_sequential_state[1]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFEFFFEFFFE)) 
-    \FSM_sequential_state[1]_i_73 
-       (.I0(\FSM_sequential_state[1]_i_107_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_13_n_1 ),
-        .I2(\FSM_sequential_state[4]_i_11_n_0 ),
+    \FSM_sequential_state[1]_i_70 
+       (.I0(\FSM_sequential_state[1]_i_104_n_0 ),
+        .I1(\FSM_sequential_state_reg[4]_i_12_n_1 ),
+        .I2(\FSM_sequential_state[4]_i_10_n_0 ),
         .I3(next_mask194_out),
         .I4(\mask_reg[47]_0 [30]),
         .I5(sa_do[30]),
-        .O(\FSM_sequential_state[1]_i_73_n_0 ));
+        .O(\FSM_sequential_state[1]_i_70_n_0 ));
   LUT6 #(
     .INIT(64'h0000010001000100)) 
-    \FSM_sequential_state[1]_i_75 
+    \FSM_sequential_state[1]_i_72 
        (.I0(sa_rdy_0),
         .I1(Q[2]),
         .I2(Q[0]),
         .I3(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I4(\FSM_sequential_state_reg[4]_1 ),
-        .I5(\FSM_sequential_state[4]_i_3_n_0 ),
-        .O(\FSM_sequential_state[1]_i_75_n_0 ));
+        .I5(\FSM_sequential_state[4]_i_2_n_0 ),
+        .O(\FSM_sequential_state[1]_i_72_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_76 
+    \FSM_sequential_state[1]_i_73 
        (.I0(\mask_reg[47]_0 [36]),
         .I1(\mask_reg[47]_0 [37]),
         .I2(\mask_reg[47]_0 [38]),
         .I3(\mask_reg[47]_0 [39]),
-        .O(\FSM_sequential_state[1]_i_76_n_0 ));
+        .O(\FSM_sequential_state[1]_i_73_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_77 
+    \FSM_sequential_state[1]_i_74 
        (.I0(\mask_reg[47]_0 [34]),
         .I1(\mask_reg[47]_0 [35]),
         .I2(\mask_reg[47]_0 [32]),
         .I3(\mask_reg[47]_0 [33]),
-        .O(\FSM_sequential_state[1]_i_77_n_0 ));
+        .O(\FSM_sequential_state[1]_i_74_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT5 #(
     .INIT(32'h00000001)) 
-    \FSM_sequential_state[1]_i_78 
+    \FSM_sequential_state[1]_i_75 
        (.I0(\mask_reg[47]_0 [21]),
         .I1(\mask_reg[47]_0 [20]),
         .I2(\mask_reg[47]_0 [23]),
         .I3(\mask_reg[47]_0 [22]),
-        .I4(\FSM_sequential_state[1]_i_108_n_0 ),
-        .O(\FSM_sequential_state[1]_i_78_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_105_n_0 ),
+        .O(\FSM_sequential_state[1]_i_75_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_79 
+    \FSM_sequential_state[1]_i_76 
        (.I0(\mask_reg[47]_0 [28]),
         .I1(\mask_reg[47]_0 [29]),
         .I2(\mask_reg[47]_0 [30]),
         .I3(\mask_reg[47]_0 [31]),
+        .O(\FSM_sequential_state[1]_i_76_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair96" *) 
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    \FSM_sequential_state[1]_i_77 
+       (.I0(\mask_reg[47]_0 [24]),
+        .I1(\mask_reg[47]_0 [25]),
+        .I2(\mask_reg[47]_0 [26]),
+        .I3(\mask_reg[47]_0 [27]),
+        .O(\FSM_sequential_state[1]_i_77_n_0 ));
+  LUT4 #(
+    .INIT(16'h22B2)) 
+    \FSM_sequential_state[1]_i_78 
+       (.I0(in95[7]),
+        .I1(\rram_addr_reg[15]_i_8_0 [23]),
+        .I2(in95[6]),
+        .I3(\rram_addr_reg[15]_i_8_0 [22]),
+        .O(\FSM_sequential_state[1]_i_78_n_0 ));
+  LUT4 #(
+    .INIT(16'h22B2)) 
+    \FSM_sequential_state[1]_i_79 
+       (.I0(in95[5]),
+        .I1(\rram_addr_reg[15]_i_8_0 [21]),
+        .I2(in95[4]),
+        .I3(\rram_addr_reg[15]_i_8_0 [20]),
         .O(\FSM_sequential_state[1]_i_79_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFC4000400)) 
@@ -3501,47 +3511,22 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I4(\counter_reg[13]_0 ),
         .I5(\FSM_sequential_state[1]_i_18_n_0 ),
         .O(\FSM_sequential_state[1]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair96" *) 
   LUT4 #(
-    .INIT(16'hFFFE)) 
+    .INIT(16'h22B2)) 
     \FSM_sequential_state[1]_i_80 
-       (.I0(\mask_reg[47]_0 [24]),
-        .I1(\mask_reg[47]_0 [25]),
-        .I2(\mask_reg[47]_0 [26]),
-        .I3(\mask_reg[47]_0 [27]),
+       (.I0(in95[3]),
+        .I1(\rram_addr_reg[15]_i_8_0 [19]),
+        .I2(in95[2]),
+        .I3(\rram_addr_reg[15]_i_8_0 [18]),
         .O(\FSM_sequential_state[1]_i_80_n_0 ));
   LUT4 #(
     .INIT(16'h22B2)) 
     \FSM_sequential_state[1]_i_81 
-       (.I0(in95[7]),
-        .I1(\rram_addr_reg[15]_i_7_0 [23]),
-        .I2(in95[6]),
-        .I3(\rram_addr_reg[15]_i_7_0 [22]),
-        .O(\FSM_sequential_state[1]_i_81_n_0 ));
-  LUT4 #(
-    .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_82 
-       (.I0(in95[5]),
-        .I1(\rram_addr_reg[15]_i_7_0 [21]),
-        .I2(in95[4]),
-        .I3(\rram_addr_reg[15]_i_7_0 [20]),
-        .O(\FSM_sequential_state[1]_i_82_n_0 ));
-  LUT4 #(
-    .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_83 
-       (.I0(in95[3]),
-        .I1(\rram_addr_reg[15]_i_7_0 [19]),
-        .I2(in95[2]),
-        .I3(\rram_addr_reg[15]_i_7_0 [18]),
-        .O(\FSM_sequential_state[1]_i_83_n_0 ));
-  LUT4 #(
-    .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_84 
        (.I0(in95[1]),
-        .I1(\rram_addr_reg[15]_i_7_0 [17]),
+        .I1(\rram_addr_reg[15]_i_8_0 [17]),
         .I2(in95[0]),
-        .I3(\rram_addr_reg[15]_i_7_0 [16]),
-        .O(\FSM_sequential_state[1]_i_84_n_0 ));
+        .I3(\rram_addr_reg[15]_i_8_0 [16]),
+        .O(\FSM_sequential_state[1]_i_81_n_0 ));
   LUT6 #(
     .INIT(64'h0000004000000000)) 
     \FSM_sequential_state[1]_i_9 
@@ -3567,7 +3552,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \FSM_sequential_state[2]_i_11 
        (.I0(\FSM_sequential_state[2]_i_20_n_0 ),
         .I1(\FSM_sequential_state[1]_i_12_n_0 ),
-        .I2(\rangei_reg[3]_0 [63]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\FSM_sequential_state[0]_i_64_0 [0]),
         .I4(\FSM_sequential_state[0]_i_64_0 [1]),
         .I5(\FSM_sequential_state[0]_i_64_0 [2]),
@@ -3609,75 +3594,75 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(Q[2]),
         .I1(\counter_reg[13]_0 ),
         .I2(Q[0]),
-        .I3(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I3(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I4(sa_rdy),
         .O(\FSM_sequential_state[2]_i_15_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[2]_i_17 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\FSM_sequential_state[2]_i_17_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[2]_i_18 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\FSM_sequential_state[2]_i_18_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[2]_i_19 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\FSM_sequential_state[2]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFF1010101010)) 
     \FSM_sequential_state[2]_i_2 
        (.I0(\FSM_sequential_state[0]_i_64_0 [0]),
-        .I1(\rram_addr[15]_i_5_n_0 ),
+        .I1(\rram_addr[15]_i_6_n_0 ),
         .I2(\FSM_sequential_state[3]_i_7_n_0 ),
         .I3(\FSM_sequential_state[2]_i_5_n_0 ),
         .I4(\FSM_sequential_state[2]_i_6_n_0 ),
-        .I5(\rram_addr[15]_i_4_n_0 ),
+        .I5(\rram_addr[15]_i_5_n_0 ),
         .O(\FSM_sequential_state[2]_i_2_n_0 ));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
     \FSM_sequential_state[2]_i_20 
-       (.I0(\rangei_reg[3]_0 [62]),
-        .I1(\rangei_reg[3]_0 [61]),
-        .I2(\rangei_reg[3]_0 [59]),
-        .I3(\rangei_reg[3]_0 [60]),
+       (.I0(\rangei_reg[3]_0 [46]),
+        .I1(\rangei_reg[3]_0 [45]),
+        .I2(\rangei_reg[3]_0 [43]),
+        .I3(\rangei_reg[3]_0 [44]),
         .I4(set_rst_loop_i_4_n_0),
         .O(\FSM_sequential_state[2]_i_20_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[2]_i_21 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [116]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [117]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [116]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [117]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\FSM_sequential_state[2]_i_21_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[2]_i_22 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [114]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [115]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [114]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [115]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\FSM_sequential_state[2]_i_22_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[2]_i_23 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [112]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [113]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [112]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [113]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\FSM_sequential_state[2]_i_23_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[2]_i_24 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\FSM_sequential_state[2]_i_24_n_0 ));
   LUT6 #(
     .INIT(64'hEEEEEEEFEEEEEEEE)) 
@@ -3752,20 +3737,20 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[3]_i_12 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\FSM_sequential_state[3]_i_12_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[3]_i_13 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\FSM_sequential_state[3]_i_13_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[3]_i_14 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\FSM_sequential_state[3]_i_14_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair113" *) 
   LUT3 #(
@@ -3799,10 +3784,10 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT4 #(
     .INIT(16'hFF08)) 
     \FSM_sequential_state[3]_i_18 
-       (.I0(\FSM_sequential_state[4]_i_10_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_12_n_0 ),
-        .I2(\FSM_sequential_state[4]_i_11_n_0 ),
-        .I3(\FSM_sequential_state[4]_i_3_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_9_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_11_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_10_n_0 ),
+        .I3(\FSM_sequential_state[4]_i_2_n_0 ),
         .O(\FSM_sequential_state[3]_i_18_n_0 ));
   LUT6 #(
     .INIT(64'h000000000202FF02)) 
@@ -3817,47 +3802,47 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[3]_i_20 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [104]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [105]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [104]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [105]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\FSM_sequential_state[3]_i_20_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[3]_i_21 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [102]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [103]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [102]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [103]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\FSM_sequential_state[3]_i_21_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[3]_i_22 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [100]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [101]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [100]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [101]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\FSM_sequential_state[3]_i_22_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[3]_i_23 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\FSM_sequential_state[3]_i_23_n_0 ));
   LUT5 #(
     .INIT(32'hFEFEFEEE)) 
     \FSM_sequential_state[3]_i_27 
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(\FSM_sequential_state[1]_i_21_n_0 ),
         .I2(\FSM_sequential_state[0]_i_11_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I4(CO),
         .O(\FSM_sequential_state[3]_i_27_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair98" *) 
   LUT3 #(
     .INIT(8'hEF)) 
     \FSM_sequential_state[3]_i_28 
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(\FSM_sequential_state[3]_i_30_n_0 ),
         .I2(\FSM_sequential_state[1]_i_21_n_0 ),
         .O(\FSM_sequential_state[3]_i_28_n_0 ));
@@ -3866,7 +3851,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \FSM_sequential_state[3]_i_3 
        (.I0(\rangei[0]_i_4_n_0 ),
         .I1(\FSM_sequential_state_reg[3]_4 ),
-        .I2(\rram_addr[15]_i_4_n_0 ),
+        .I2(\rram_addr[15]_i_5_n_0 ),
         .I3(Q[1]),
         .I4(Q[0]),
         .I5(\prdata_sr_reg[151]_i_5_n_1 ),
@@ -3919,277 +3904,277 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'hFFFFFFF4F0F0F0F0)) 
     \FSM_sequential_state[4]_i_1 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_4_n_0 ),
-        .I2(\FSM_sequential_state[4]_i_5_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_4_n_0 ),
         .I3(sa_rdy_0),
         .I4(\FSM_sequential_state_reg[4]_1 ),
-        .I5(\FSM_sequential_state[4]_i_8_n_0 ),
+        .I5(\FSM_sequential_state[4]_i_7_n_0 ),
         .O(\FSM_sequential_state[4]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000070707)) 
-    \FSM_sequential_state[4]_i_10 
-       (.I0(sa_do[30]),
-        .I1(\mask_reg[47]_0 [30]),
-        .I2(next_mask194_out),
-        .I3(\mask_reg[47]_0 [17]),
-        .I4(sa_do[17]),
-        .I5(\FSM_sequential_state[4]_i_14_n_0 ),
-        .O(\FSM_sequential_state[4]_i_10_n_0 ));
-  LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[4]_i_11 
+    \FSM_sequential_state[4]_i_10 
        (.I0(next_mask161_out),
         .I1(next_mask152_out),
         .I2(next_mask167_out),
         .I3(next_mask158_out),
-        .I4(\FSM_sequential_state[4]_i_15_n_0 ),
-        .I5(\FSM_sequential_state[4]_i_16_n_0 ),
-        .O(\FSM_sequential_state[4]_i_11_n_0 ));
+        .I4(\FSM_sequential_state[4]_i_14_n_0 ),
+        .I5(\FSM_sequential_state[4]_i_15_n_0 ),
+        .O(\FSM_sequential_state[4]_i_10_n_0 ));
   LUT5 #(
     .INIT(32'h00000777)) 
-    \FSM_sequential_state[4]_i_12 
+    \FSM_sequential_state[4]_i_11 
        (.I0(\mask_reg[47]_0 [14]),
         .I1(sa_do[14]),
         .I2(\mask_reg[47]_0 [15]),
         .I3(sa_do[15]),
-        .I4(\FSM_sequential_state[4]_i_17_n_0 ),
-        .O(\FSM_sequential_state[4]_i_12_n_0 ));
+        .I4(\FSM_sequential_state[4]_i_16_n_0 ),
+        .O(\FSM_sequential_state[4]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[4]_i_14 
-       (.I0(\FSM_sequential_state[4]_i_22_n_0 ),
+    \FSM_sequential_state[4]_i_13 
+       (.I0(\FSM_sequential_state[4]_i_21_n_0 ),
         .I1(next_mask206_out),
         .I2(next_mask209_out),
         .I3(next_mask212_out),
         .I4(next_mask215_out),
-        .I5(\FSM_sequential_state[4]_i_23_n_0 ),
-        .O(\FSM_sequential_state[4]_i_14_n_0 ));
+        .I5(\FSM_sequential_state[4]_i_22_n_0 ),
+        .O(\FSM_sequential_state[4]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFF888)) 
-    \FSM_sequential_state[4]_i_15 
+    \FSM_sequential_state[4]_i_14 
        (.I0(\mask_reg[47]_0 [33]),
         .I1(sa_do[33]),
         .I2(\mask_reg[47]_0 [46]),
         .I3(sa_do[46]),
         .I4(next_mask155_out),
         .I5(next_mask146_out),
-        .O(\FSM_sequential_state[4]_i_15_n_0 ));
+        .O(\FSM_sequential_state[4]_i_14_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFEEE)) 
-    \FSM_sequential_state[4]_i_16 
+    \FSM_sequential_state[4]_i_15 
        (.I0(next_mask170_out),
         .I1(next_mask179_out),
         .I2(sa_do[41]),
         .I3(\mask_reg[47]_0 [41]),
         .I4(next_mask173_out),
-        .I5(\FSM_sequential_state[4]_i_24_n_0 ),
-        .O(\FSM_sequential_state[4]_i_16_n_0 ));
+        .I5(\FSM_sequential_state[4]_i_23_n_0 ),
+        .O(\FSM_sequential_state[4]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[4]_i_17 
-       (.I0(\FSM_sequential_state[4]_i_25_n_0 ),
+    \FSM_sequential_state[4]_i_16 
+       (.I0(\FSM_sequential_state[4]_i_24_n_0 ),
         .I1(next_mask257_out),
         .I2(next_mask248_out),
         .I3(next_mask263_out),
         .I4(next_mask254_out),
-        .I5(\FSM_sequential_state[4]_i_26_n_0 ),
-        .O(\FSM_sequential_state[4]_i_17_n_0 ));
+        .I5(\FSM_sequential_state[4]_i_25_n_0 ),
+        .O(\FSM_sequential_state[4]_i_16_n_0 ));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \FSM_sequential_state[4]_i_18 
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
+        .O(\FSM_sequential_state[4]_i_18_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[4]_i_19 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\FSM_sequential_state[4]_i_19_n_0 ));
+  LUT6 #(
+    .INIT(64'h00C3690000000000)) 
+    \FSM_sequential_state[4]_i_2 
+       (.I0(\rangei_reg[2]_rep__0_0 ),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [11]),
+        .I2(\rangei_reg[3]_rep__0_0 ),
+        .I3(\rangei_reg[1]_rep__0_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [9]),
+        .I5(\FSM_sequential_state[4]_i_8_n_0 ),
+        .O(\FSM_sequential_state[4]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \FSM_sequential_state[4]_i_20 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\FSM_sequential_state[4]_i_20_n_0 ));
-  LUT2 #(
-    .INIT(4'h1)) 
-    \FSM_sequential_state[4]_i_21 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
-        .O(\FSM_sequential_state[4]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFF888)) 
-    \FSM_sequential_state[4]_i_22 
+    \FSM_sequential_state[4]_i_21 
        (.I0(\mask_reg[47]_0 [23]),
         .I1(sa_do[23]),
         .I2(\mask_reg[47]_0 [22]),
         .I3(sa_do[22]),
         .I4(next_mask224_out),
         .I5(next_mask227_out),
-        .O(\FSM_sequential_state[4]_i_22_n_0 ));
+        .O(\FSM_sequential_state[4]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFF8)) 
-    \FSM_sequential_state[4]_i_23 
+    \FSM_sequential_state[4]_i_22 
        (.I0(\mask_reg[47]_0 [16]),
         .I1(sa_do[16]),
         .I2(next_mask233_out),
         .I3(next_mask230_out),
         .I4(next_mask200_out),
         .I5(next_mask203_out),
-        .O(\FSM_sequential_state[4]_i_23_n_0 ));
+        .O(\FSM_sequential_state[4]_i_22_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFF888)) 
-    \FSM_sequential_state[4]_i_24 
+    \FSM_sequential_state[4]_i_23 
        (.I0(\mask_reg[47]_0 [34]),
         .I1(sa_do[34]),
         .I2(\mask_reg[47]_0 [37]),
         .I3(sa_do[37]),
         .I4(next_mask191_out),
         .I5(next_mask182_out),
-        .O(\FSM_sequential_state[4]_i_24_n_0 ));
+        .O(\FSM_sequential_state[4]_i_23_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFF888)) 
-    \FSM_sequential_state[4]_i_25 
+    \FSM_sequential_state[4]_i_24 
        (.I0(\mask_reg[47]_0 [6]),
         .I1(sa_do[6]),
         .I2(\mask_reg[47]_0 [9]),
         .I3(sa_do[9]),
         .I4(next_mask275_out),
         .I5(next_mask266_out),
-        .O(\FSM_sequential_state[4]_i_25_n_0 ));
+        .O(\FSM_sequential_state[4]_i_24_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFEFFFF)) 
-    \FSM_sequential_state[4]_i_26 
+    \FSM_sequential_state[4]_i_25 
        (.I0(next_mask278_out),
         .I1(next_mask286_out),
         .I2(next_mask272_out),
         .I3(next_mask281_out),
         .I4(\read_data_bits[1][1]_i_2_n_0 ),
         .I5(next_mask251_out),
+        .O(\FSM_sequential_state[4]_i_25_n_0 ));
+  LUT4 #(
+    .INIT(16'h50D4)) 
+    \FSM_sequential_state[4]_i_26 
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [134]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [135]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\FSM_sequential_state[4]_i_26_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[4]_i_27 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [134]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [135]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [132]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [133]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\FSM_sequential_state[4]_i_27_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \FSM_sequential_state[4]_i_28 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [132]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [133]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [130]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [131]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\FSM_sequential_state[4]_i_28_n_0 ));
-  LUT4 #(
-    .INIT(16'h50D4)) 
-    \FSM_sequential_state[4]_i_29 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [130]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [131]),
-        .I3(\rangei_reg[3]_0 [41]),
-        .O(\FSM_sequential_state[4]_i_29_n_0 ));
-  LUT6 #(
-    .INIT(64'h00C3690000000000)) 
-    \FSM_sequential_state[4]_i_3 
-       (.I0(\rangei_reg[2]_rep__0_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [11]),
-        .I2(\rangei_reg[3]_rep__0_0 ),
-        .I3(\rangei_reg[1]_rep__0_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [9]),
-        .I5(\FSM_sequential_state[4]_i_9_n_0 ),
-        .O(\FSM_sequential_state[4]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
+    \FSM_sequential_state[4]_i_29 
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
+        .O(\FSM_sequential_state[4]_i_29_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair90" *) 
+  LUT3 #(
+    .INIT(8'hDF)) 
+    \FSM_sequential_state[4]_i_3 
+       (.I0(\FSM_sequential_state[4]_i_9_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_10_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_11_n_0 ),
+        .O(\FSM_sequential_state[4]_i_3_n_0 ));
+  LUT4 #(
+    .INIT(16'h9009)) 
     \FSM_sequential_state[4]_i_30 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [135]),
+        .I2(\rangei_reg[3]_0 [29]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [134]),
         .O(\FSM_sequential_state[4]_i_30_n_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
     \FSM_sequential_state[4]_i_31 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [135]),
-        .I2(\rangei_reg[3]_0 [45]),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [134]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [133]),
+        .I2(\rangei_reg[3]_0 [27]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [132]),
         .O(\FSM_sequential_state[4]_i_31_n_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
     \FSM_sequential_state[4]_i_32 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [133]),
-        .I2(\rangei_reg[3]_0 [43]),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [132]),
+       (.I0(\rangei_reg[3]_0 [25]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [130]),
+        .I2(\rangei_reg[3]_0 [26]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [131]),
         .O(\FSM_sequential_state[4]_i_32_n_0 ));
-  LUT4 #(
-    .INIT(16'h9009)) 
-    \FSM_sequential_state[4]_i_33 
-       (.I0(\rangei_reg[3]_0 [41]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [130]),
-        .I2(\rangei_reg[3]_0 [42]),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [131]),
-        .O(\FSM_sequential_state[4]_i_33_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
-  LUT3 #(
-    .INIT(8'hDF)) 
-    \FSM_sequential_state[4]_i_4 
-       (.I0(\FSM_sequential_state[4]_i_10_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_11_n_0 ),
-        .I2(\FSM_sequential_state[4]_i_12_n_0 ),
-        .O(\FSM_sequential_state[4]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h0000020040000200)) 
-    \FSM_sequential_state[4]_i_5 
+    \FSM_sequential_state[4]_i_4 
        (.I0(Q[3]),
         .I1(state),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(Q[0]),
         .I5(\counter_reg[13]_0 ),
-        .O(\FSM_sequential_state[4]_i_5_n_0 ));
+        .O(\FSM_sequential_state[4]_i_4_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT2 #(
     .INIT(4'hB)) 
-    \FSM_sequential_state[4]_i_6 
-       (.I0(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+    \FSM_sequential_state[4]_i_5 
+       (.I0(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I1(sa_rdy),
         .O(sa_rdy_0));
   (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT4 #(
     .INIT(16'h0010)) 
-    \FSM_sequential_state[4]_i_8 
+    \FSM_sequential_state[4]_i_7 
        (.I0(state),
         .I1(Q[2]),
         .I2(Q[3]),
         .I3(Q[0]),
-        .O(\FSM_sequential_state[4]_i_8_n_0 ));
+        .O(\FSM_sequential_state[4]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h2882044128821441)) 
-    \FSM_sequential_state[4]_i_9 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [8]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [10]),
+    \FSM_sequential_state[4]_i_8 
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [8]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [10]),
         .I2(\rangei_reg[2]_rep__0_0 ),
         .I3(\rangei_reg[1]_rep__0_0 ),
         .I4(\rangei_reg[0]_rep__4_0 ),
         .I5(\rangei_reg[3]_rep__0_0 ),
+        .O(\FSM_sequential_state[4]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000000070707)) 
+    \FSM_sequential_state[4]_i_9 
+       (.I0(sa_do[30]),
+        .I1(\mask_reg[47]_0 [30]),
+        .I2(next_mask194_out),
+        .I3(\mask_reg[47]_0 [17]),
+        .I4(sa_do[17]),
+        .I5(\FSM_sequential_state[4]_i_13_n_0 ),
         .O(\FSM_sequential_state[4]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFF4F0F0F0F0)) 
     \FSM_sequential_state[4]_rep_i_1 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_4_n_0 ),
-        .I2(\FSM_sequential_state[4]_i_5_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_4_n_0 ),
         .I3(sa_rdy_0),
         .I4(\FSM_sequential_state_reg[4]_1 ),
-        .I5(\FSM_sequential_state[4]_i_8_n_0 ),
+        .I5(\FSM_sequential_state[4]_i_7_n_0 ),
         .O(\FSM_sequential_state[4]_rep_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFF4F0F0F0F0)) 
     \FSM_sequential_state[4]_rep_i_1__0 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_4_n_0 ),
-        .I2(\FSM_sequential_state[4]_i_5_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_4_n_0 ),
         .I3(sa_rdy_0),
         .I4(\FSM_sequential_state_reg[4]_1 ),
-        .I5(\FSM_sequential_state[4]_i_8_n_0 ),
+        .I5(\FSM_sequential_state[4]_i_7_n_0 ),
         .O(\FSM_sequential_state[4]_rep_i_1__0_n_0 ));
   (* FSM_ENCODED_STATES = "iSTATE:01010,iSTATE0:10001,iSTATE1:10010,iSTATE2:01110,iSTATE3:00011,iSTATE4:01101,iSTATE5:00010,iSTATE6:01100,iSTATE7:00001,iSTATE8:10000,iSTATE9:00000,iSTATE10:01111,iSTATE11:00111,iSTATE12:00110,iSTATE13:01001,iSTATE14:01000,iSTATE15:00101,iSTATE16:00100,iSTATE17:01011" *) 
   FDCE \FSM_sequential_state_reg[0] 
@@ -4222,12 +4207,12 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .D(\FSM_sequential_state[1]_i_1_n_0 ),
         .Q(Q[1]));
   (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \FSM_sequential_state_reg[1]_i_46 
+  CARRY4 \FSM_sequential_state_reg[1]_i_45 
        (.CI(1'b0),
-        .CO({\addr_bits_reg[23] ,\FSM_sequential_state_reg[1]_i_46_n_1 ,\FSM_sequential_state_reg[1]_i_46_n_2 ,\FSM_sequential_state_reg[1]_i_46_n_3 }),
+        .CO({\addr_bits_reg[23] ,\FSM_sequential_state_reg[1]_i_45_n_1 ,\FSM_sequential_state_reg[1]_i_45_n_2 ,\FSM_sequential_state_reg[1]_i_45_n_3 }),
         .CYINIT(1'b0),
-        .DI({\FSM_sequential_state[1]_i_81_n_0 ,\FSM_sequential_state[1]_i_82_n_0 ,\FSM_sequential_state[1]_i_83_n_0 ,\FSM_sequential_state[1]_i_84_n_0 }),
-        .O(\NLW_FSM_sequential_state_reg[1]_i_46_O_UNCONNECTED [3:0]),
+        .DI({\FSM_sequential_state[1]_i_78_n_0 ,\FSM_sequential_state[1]_i_79_n_0 ,\FSM_sequential_state[1]_i_80_n_0 ,\FSM_sequential_state[1]_i_81_n_0 }),
+        .O(\NLW_FSM_sequential_state_reg[1]_i_45_O_UNCONNECTED [3:0]),
         .S(\FSM_sequential_state_reg[1]_i_22 ));
   (* FSM_ENCODED_STATES = "iSTATE:01010,iSTATE0:10001,iSTATE1:10010,iSTATE2:01110,iSTATE3:00011,iSTATE4:01101,iSTATE5:00010,iSTATE6:01100,iSTATE7:00001,iSTATE8:10000,iSTATE9:00000,iSTATE10:01111,iSTATE11:00111,iSTATE12:00110,iSTATE13:01001,iSTATE14:01000,iSTATE15:00101,iSTATE16:00100,iSTATE17:01011" *) 
   FDCE \FSM_sequential_state_reg[2] 
@@ -4284,21 +4269,21 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .D(\FSM_sequential_state[4]_i_1_n_0 ),
         .Q(Q[3]));
   (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \FSM_sequential_state_reg[4]_i_13 
-       (.CI(\FSM_sequential_state_reg[4]_i_18_n_0 ),
-        .CO({\NLW_FSM_sequential_state_reg[4]_i_13_CO_UNCONNECTED [3],\FSM_sequential_state_reg[4]_i_13_n_1 ,\FSM_sequential_state_reg[4]_i_13_n_2 ,\FSM_sequential_state_reg[4]_i_13_n_3 }),
+  CARRY4 \FSM_sequential_state_reg[4]_i_12 
+       (.CI(\FSM_sequential_state_reg[4]_i_17_n_0 ),
+        .CO({\NLW_FSM_sequential_state_reg[4]_i_12_CO_UNCONNECTED [3],\FSM_sequential_state_reg[4]_i_12_n_1 ,\FSM_sequential_state_reg[4]_i_12_n_2 ,\FSM_sequential_state_reg[4]_i_12_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O(\NLW_FSM_sequential_state_reg[4]_i_13_O_UNCONNECTED [3:0]),
-        .S({1'b0,\FSM_sequential_state[4]_i_19_n_0 ,\FSM_sequential_state[4]_i_20_n_0 ,\FSM_sequential_state[4]_i_21_n_0 }));
+        .O(\NLW_FSM_sequential_state_reg[4]_i_12_O_UNCONNECTED [3:0]),
+        .S({1'b0,\FSM_sequential_state[4]_i_18_n_0 ,\FSM_sequential_state[4]_i_19_n_0 ,\FSM_sequential_state[4]_i_20_n_0 }));
   (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \FSM_sequential_state_reg[4]_i_18 
+  CARRY4 \FSM_sequential_state_reg[4]_i_17 
        (.CI(1'b0),
-        .CO({\FSM_sequential_state_reg[4]_i_18_n_0 ,\FSM_sequential_state_reg[4]_i_18_n_1 ,\FSM_sequential_state_reg[4]_i_18_n_2 ,\FSM_sequential_state_reg[4]_i_18_n_3 }),
+        .CO({\FSM_sequential_state_reg[4]_i_17_n_0 ,\FSM_sequential_state_reg[4]_i_17_n_1 ,\FSM_sequential_state_reg[4]_i_17_n_2 ,\FSM_sequential_state_reg[4]_i_17_n_3 }),
         .CYINIT(1'b0),
-        .DI({1'b0,\FSM_sequential_state[4]_i_27_n_0 ,\FSM_sequential_state[4]_i_28_n_0 ,\FSM_sequential_state[4]_i_29_n_0 }),
-        .O(\NLW_FSM_sequential_state_reg[4]_i_18_O_UNCONNECTED [3:0]),
-        .S({\FSM_sequential_state[4]_i_30_n_0 ,\FSM_sequential_state[4]_i_31_n_0 ,\FSM_sequential_state[4]_i_32_n_0 ,\FSM_sequential_state[4]_i_33_n_0 }));
+        .DI({1'b0,\FSM_sequential_state[4]_i_26_n_0 ,\FSM_sequential_state[4]_i_27_n_0 ,\FSM_sequential_state[4]_i_28_n_0 }),
+        .O(\NLW_FSM_sequential_state_reg[4]_i_17_O_UNCONNECTED [3:0]),
+        .S({\FSM_sequential_state[4]_i_29_n_0 ,\FSM_sequential_state[4]_i_30_n_0 ,\FSM_sequential_state[4]_i_31_n_0 ,\FSM_sequential_state[4]_i_32_n_0 }));
   (* FSM_ENCODED_STATES = "iSTATE:01010,iSTATE0:10001,iSTATE1:10010,iSTATE2:01110,iSTATE3:00011,iSTATE4:01101,iSTATE5:00010,iSTATE6:01100,iSTATE7:00001,iSTATE8:10000,iSTATE9:00000,iSTATE10:01111,iSTATE11:00111,iSTATE12:00110,iSTATE13:01001,iSTATE14:01000,iSTATE15:00101,iSTATE16:00100,iSTATE17:01011" *) 
   (* ORIG_CELL_NAME = "FSM_sequential_state_reg[4]" *) 
   FDCE \FSM_sequential_state_reg[4]_rep 
@@ -4319,158 +4304,158 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h1)) 
     \attempts_counter[0]_i_1 
-       (.I0(\rangei_reg[3]_0 [66]),
-        .I1(\rangei_reg[3]_0 [55]),
+       (.I0(\rangei_reg[3]_0 [50]),
+        .I1(\rangei_reg[3]_0 [39]),
         .O(\attempts_counter[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair117" *) 
   LUT3 #(
     .INIT(8'h14)) 
     \attempts_counter[1]_i_1 
-       (.I0(\rangei_reg[3]_0 [66]),
-        .I1(\rangei_reg[3]_0 [55]),
-        .I2(\rangei_reg[3]_0 [56]),
+       (.I0(\rangei_reg[3]_0 [50]),
+        .I1(\rangei_reg[3]_0 [39]),
+        .I2(\rangei_reg[3]_0 [40]),
         .O(\attempts_counter[1]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair92" *) 
   LUT4 #(
     .INIT(16'h006A)) 
     \attempts_counter[2]_i_1 
-       (.I0(\rangei_reg[3]_0 [57]),
-        .I1(\rangei_reg[3]_0 [55]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [66]),
+       (.I0(\rangei_reg[3]_0 [41]),
+        .I1(\rangei_reg[3]_0 [39]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[2]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT5 #(
     .INIT(32'h00006AAA)) 
     \attempts_counter[3]_i_1 
-       (.I0(\rangei_reg[3]_0 [58]),
-        .I1(\rangei_reg[3]_0 [56]),
-        .I2(\rangei_reg[3]_0 [55]),
-        .I3(\rangei_reg[3]_0 [57]),
-        .I4(\rangei_reg[3]_0 [66]),
+       (.I0(\rangei_reg[3]_0 [42]),
+        .I1(\rangei_reg[3]_0 [40]),
+        .I2(\rangei_reg[3]_0 [39]),
+        .I3(\rangei_reg[3]_0 [41]),
+        .I4(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[3]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h000000006AAAAAAA)) 
     \attempts_counter[4]_i_1 
-       (.I0(\rangei_reg[3]_0 [59]),
-        .I1(\rangei_reg[3]_0 [57]),
-        .I2(\rangei_reg[3]_0 [55]),
-        .I3(\rangei_reg[3]_0 [56]),
-        .I4(\rangei_reg[3]_0 [58]),
-        .I5(\rangei_reg[3]_0 [66]),
+       (.I0(\rangei_reg[3]_0 [43]),
+        .I1(\rangei_reg[3]_0 [41]),
+        .I2(\rangei_reg[3]_0 [39]),
+        .I3(\rangei_reg[3]_0 [40]),
+        .I4(\rangei_reg[3]_0 [42]),
+        .I5(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[4]_i_1_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \attempts_counter[5]_i_1 
        (.I0(\attempts_counter[5]_i_2_n_0 ),
-        .I1(\rangei_reg[3]_0 [66]),
+        .I1(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[5]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h800000007FFFFFFF)) 
     \attempts_counter[5]_i_2 
-       (.I0(\rangei_reg[3]_0 [57]),
-        .I1(\rangei_reg[3]_0 [55]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [58]),
-        .I4(\rangei_reg[3]_0 [59]),
-        .I5(\rangei_reg[3]_0 [60]),
+       (.I0(\rangei_reg[3]_0 [41]),
+        .I1(\rangei_reg[3]_0 [39]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [42]),
+        .I4(\rangei_reg[3]_0 [43]),
+        .I5(\rangei_reg[3]_0 [44]),
         .O(\attempts_counter[5]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \attempts_counter[6]_i_1 
        (.I0(\attempts_counter[6]_i_2_n_0 ),
-        .I1(\rangei_reg[3]_0 [66]),
+        .I1(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[6]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hFF7FFFFF00800000)) 
     \attempts_counter[6]_i_2 
-       (.I0(\rangei_reg[3]_0 [60]),
-        .I1(\rangei_reg[3]_0 [59]),
-        .I2(\rangei_reg[3]_0 [58]),
+       (.I0(\rangei_reg[3]_0 [44]),
+        .I1(\rangei_reg[3]_0 [43]),
+        .I2(\rangei_reg[3]_0 [42]),
         .I3(\attempts_counter[6]_i_3_n_0 ),
-        .I4(\rangei_reg[3]_0 [57]),
-        .I5(\rangei_reg[3]_0 [61]),
+        .I4(\rangei_reg[3]_0 [41]),
+        .I5(\rangei_reg[3]_0 [45]),
         .O(\attempts_counter[6]_i_2_n_0 ));
   LUT2 #(
     .INIT(4'h7)) 
     \attempts_counter[6]_i_3 
-       (.I0(\rangei_reg[3]_0 [55]),
-        .I1(\rangei_reg[3]_0 [56]),
+       (.I0(\rangei_reg[3]_0 [39]),
+        .I1(\rangei_reg[3]_0 [40]),
         .O(\attempts_counter[6]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFAAAAAAEA)) 
     \attempts_counter[7]_i_1 
-       (.I0(\rangei_reg[3]_0 [66]),
+       (.I0(\rangei_reg[3]_0 [50]),
         .I1(\rangei[0]_i_4_n_0 ),
         .I2(CO),
-        .I3(\rangei_reg[3]_0 [63]),
+        .I3(\rangei_reg[3]_0 [47]),
         .I4(\attempts_counter[7]_i_4_n_0 ),
         .I5(\attempts_counter_reg[0]_0 ),
         .O(\attempts_counter[7]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hE2222BBB82222222)) 
     \attempts_counter[7]_i_10 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [3]),
-        .I1(\rangei_reg[3]_0 [58]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [55]),
-        .I4(\rangei_reg[3]_0 [57]),
-        .I5(\FSM_sequential_state_reg[4]_i_18_0 [2]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [3]),
+        .I1(\rangei_reg[3]_0 [42]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [39]),
+        .I4(\rangei_reg[3]_0 [41]),
+        .I5(\FSM_sequential_state_reg[4]_i_17_0 [2]),
         .O(\attempts_counter[7]_i_10_n_0 ));
   LUT4 #(
-    .INIT(16'hE844)) 
+    .INIT(16'hE484)) 
     \attempts_counter[7]_i_11 
-       (.I0(\rangei_reg[3]_0 [56]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [1]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [0]),
-        .I3(\rangei_reg[3]_0 [55]),
+       (.I0(\rangei_reg[3]_0 [40]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [1]),
+        .I2(\rangei_reg[3]_0 [39]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [0]),
         .O(\attempts_counter[7]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'h82411824)) 
     \attempts_counter[7]_i_12 
-       (.I0(\rangei_reg[3]_0 [62]),
+       (.I0(\rangei_reg[3]_0 [46]),
         .I1(\attempts_counter[7]_i_5_n_0 ),
-        .I2(\rangei_reg[3]_0 [61]),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [7]),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [6]),
+        .I2(\rangei_reg[3]_0 [45]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [7]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [6]),
         .O(\attempts_counter[7]_i_12_n_0 ));
   LUT5 #(
     .INIT(32'h92040492)) 
     \attempts_counter[7]_i_13 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [4]),
-        .I1(\rangei_reg[3]_0 [59]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [4]),
+        .I1(\rangei_reg[3]_0 [43]),
         .I2(\attempts_counter[7]_i_16_n_0 ),
-        .I3(\rangei_reg[3]_0 [60]),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [5]),
+        .I3(\rangei_reg[3]_0 [44]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [5]),
         .O(\attempts_counter[7]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'h2A801540402A8015)) 
     \attempts_counter[7]_i_14 
-       (.I0(\rangei_reg[3]_0 [58]),
-        .I1(\rangei_reg[3]_0 [56]),
-        .I2(\rangei_reg[3]_0 [55]),
-        .I3(\rangei_reg[3]_0 [57]),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [3]),
-        .I5(\FSM_sequential_state_reg[4]_i_18_0 [2]),
+       (.I0(\rangei_reg[3]_0 [42]),
+        .I1(\rangei_reg[3]_0 [40]),
+        .I2(\rangei_reg[3]_0 [39]),
+        .I3(\rangei_reg[3]_0 [41]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [3]),
+        .I5(\FSM_sequential_state_reg[4]_i_17_0 [2]),
         .O(\attempts_counter[7]_i_14_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair92" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \attempts_counter[7]_i_16 
-       (.I0(\rangei_reg[3]_0 [57]),
-        .I1(\rangei_reg[3]_0 [55]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [58]),
+       (.I0(\rangei_reg[3]_0 [41]),
+        .I1(\rangei_reg[3]_0 [39]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [42]),
         .O(\attempts_counter[7]_i_16_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT4 #(
     .INIT(16'h00D2)) 
     \attempts_counter[7]_i_2 
-       (.I0(\rangei_reg[3]_0 [61]),
+       (.I0(\rangei_reg[3]_0 [45]),
         .I1(\attempts_counter[7]_i_5_n_0 ),
-        .I2(\rangei_reg[3]_0 [62]),
-        .I3(\rangei_reg[3]_0 [66]),
+        .I2(\rangei_reg[3]_0 [46]),
+        .I3(\rangei_reg[3]_0 [50]),
         .O(\attempts_counter[7]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT3 #(
@@ -4483,86 +4468,86 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h7FFFFFFFFFFFFFFF)) 
     \attempts_counter[7]_i_5 
-       (.I0(\rangei_reg[3]_0 [57]),
-        .I1(\rangei_reg[3]_0 [55]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [58]),
-        .I4(\rangei_reg[3]_0 [59]),
-        .I5(\rangei_reg[3]_0 [60]),
+       (.I0(\rangei_reg[3]_0 [41]),
+        .I1(\rangei_reg[3]_0 [39]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [42]),
+        .I4(\rangei_reg[3]_0 [43]),
+        .I5(\rangei_reg[3]_0 [44]),
         .O(\attempts_counter[7]_i_5_n_0 ));
   LUT3 #(
     .INIT(8'hDF)) 
     \attempts_counter[7]_i_7 
-       (.I0(\rangei_reg[3]_0 [61]),
+       (.I0(\rangei_reg[3]_0 [45]),
         .I1(\attempts_counter[7]_i_5_n_0 ),
-        .I2(\rangei_reg[3]_0 [62]),
+        .I2(\rangei_reg[3]_0 [46]),
         .O(\attempts_counter[7]_i_7_n_0 ));
   LUT5 #(
     .INIT(32'h2EB22822)) 
     \attempts_counter[7]_i_8 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [7]),
-        .I1(\rangei_reg[3]_0 [62]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [7]),
+        .I1(\rangei_reg[3]_0 [46]),
         .I2(\attempts_counter[7]_i_5_n_0 ),
-        .I3(\rangei_reg[3]_0 [61]),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [6]),
+        .I3(\rangei_reg[3]_0 [45]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [6]),
         .O(\attempts_counter[7]_i_8_n_0 ));
   LUT5 #(
     .INIT(32'h0E80C8EC)) 
     \attempts_counter[7]_i_9 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [4]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [5]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [4]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [5]),
         .I2(\attempts_counter[7]_i_16_n_0 ),
-        .I3(\rangei_reg[3]_0 [59]),
-        .I4(\rangei_reg[3]_0 [60]),
+        .I3(\rangei_reg[3]_0 [43]),
+        .I4(\rangei_reg[3]_0 [44]),
         .O(\attempts_counter[7]_i_9_n_0 ));
   FDCE \attempts_counter_reg[0] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[0]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [55]));
+        .Q(\rangei_reg[3]_0 [39]));
   FDCE \attempts_counter_reg[1] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[1]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [56]));
+        .Q(\rangei_reg[3]_0 [40]));
   FDCE \attempts_counter_reg[2] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[2]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [57]));
+        .Q(\rangei_reg[3]_0 [41]));
   FDCE \attempts_counter_reg[3] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[3]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [58]));
+        .Q(\rangei_reg[3]_0 [42]));
   FDCE \attempts_counter_reg[4] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[4]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [59]));
+        .Q(\rangei_reg[3]_0 [43]));
   FDCE \attempts_counter_reg[5] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[5]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [60]));
+        .Q(\rangei_reg[3]_0 [44]));
   FDCE \attempts_counter_reg[6] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[6]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [61]));
+        .Q(\rangei_reg[3]_0 [45]));
   FDCE \attempts_counter_reg[7] 
        (.C(mclk),
         .CE(\attempts_counter[7]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\attempts_counter[7]_i_2_n_0 ),
-        .Q(\rangei_reg[3]_0 [62]));
+        .Q(\rangei_reg[3]_0 [46]));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 \attempts_counter_reg[7]_i_3 
        (.CI(\attempts_counter_reg[7]_i_6_n_0 ),
@@ -4655,7 +4640,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(Q[2]),
         .I2(next_rram_addr1431_out),
         .I3(set_rst_loop),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .O(\FSM_sequential_state_reg[2]_1 ));
   (* SOFT_HLUTNM = "soft_lutpair101" *) 
   LUT2 #(
@@ -5016,7 +5001,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT5 #(
     .INIT(32'h00040000)) 
     \bsl_loop[4]_i_7 
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(state),
         .I2(Q[0]),
         .I3(\FSM_sequential_state_reg[4]_rep_0 ),
@@ -5086,130 +5071,130 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h1)) 
     \counter[0]_i_1 
-       (.I0(\rangei_reg[3]_0 [65]),
-        .I1(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [49]),
+        .I1(\rangei_reg[3]_0 [25]),
         .O(\counter[0]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair126" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[10]_i_1 
        (.I0(counter0[10]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[10]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair126" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[11]_i_1 
        (.I0(counter0[11]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[11]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[12]_i_1 
        (.I0(counter0[12]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[12]_i_1_n_0 ));
   LUT2 #(
     .INIT(4'hE)) 
     \counter[13]_i_1 
-       (.I0(\rangei_reg[3]_0 [64]),
-        .I1(\rangei_reg[3]_0 [65]),
+       (.I0(\rangei_reg[3]_0 [48]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[13]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair125" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[13]_i_2 
        (.I0(counter0[13]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[13]_i_2_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair131" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[1]_i_1 
        (.I0(counter0[1]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[1]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair130" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[2]_i_1 
        (.I0(counter0[2]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[2]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair130" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[3]_i_1 
        (.I0(counter0[3]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[3]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair129" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[4]_i_1 
        (.I0(counter0[4]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[4]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair129" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[5]_i_1 
        (.I0(counter0[5]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[5]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair128" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[6]_i_1 
        (.I0(counter0[6]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[6]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair128" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[7]_i_1 
        (.I0(counter0[7]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[7]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair127" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[8]_i_1 
        (.I0(counter0[8]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[8]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair127" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \counter[9]_i_1 
        (.I0(counter0[9]),
-        .I1(\rangei_reg[3]_0 [65]),
+        .I1(\rangei_reg[3]_0 [49]),
         .O(\counter[9]_i_1_n_0 ));
   FDCE \counter_reg[0] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[0]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [41]));
+        .Q(\rangei_reg[3]_0 [25]));
   FDCE \counter_reg[10] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[10]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [51]));
+        .Q(\rangei_reg[3]_0 [35]));
   FDCE \counter_reg[11] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[11]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [52]));
+        .Q(\rangei_reg[3]_0 [36]));
   FDCE \counter_reg[12] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[12]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [53]));
+        .Q(\rangei_reg[3]_0 [37]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \counter_reg[12]_i_2 
        (.CI(\counter_reg[8]_i_2_n_0 ),
@@ -5217,13 +5202,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(counter0[12:9]),
-        .S(\rangei_reg[3]_0 [53:50]));
+        .S(\rangei_reg[3]_0 [37:34]));
   FDCE \counter_reg[13] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[13]_i_2_n_0 ),
-        .Q(\rangei_reg[3]_0 [54]));
+        .Q(\rangei_reg[3]_0 [38]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \counter_reg[13]_i_3 
        (.CI(\counter_reg[12]_i_2_n_0 ),
@@ -5231,63 +5216,63 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_counter_reg[13]_i_3_O_UNCONNECTED [3:1],counter0[13]}),
-        .S({1'b0,1'b0,1'b0,\rangei_reg[3]_0 [54]}));
+        .S({1'b0,1'b0,1'b0,\rangei_reg[3]_0 [38]}));
   FDCE \counter_reg[1] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[1]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [42]));
+        .Q(\rangei_reg[3]_0 [26]));
   FDCE \counter_reg[2] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[2]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [43]));
+        .Q(\rangei_reg[3]_0 [27]));
   FDCE \counter_reg[3] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[3]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [44]));
+        .Q(\rangei_reg[3]_0 [28]));
   FDCE \counter_reg[4] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[4]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [45]));
+        .Q(\rangei_reg[3]_0 [29]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \counter_reg[4]_i_2 
        (.CI(1'b0),
         .CO({\counter_reg[4]_i_2_n_0 ,\counter_reg[4]_i_2_n_1 ,\counter_reg[4]_i_2_n_2 ,\counter_reg[4]_i_2_n_3 }),
-        .CYINIT(\rangei_reg[3]_0 [41]),
+        .CYINIT(\rangei_reg[3]_0 [25]),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(counter0[4:1]),
-        .S(\rangei_reg[3]_0 [45:42]));
+        .S(\rangei_reg[3]_0 [29:26]));
   FDCE \counter_reg[5] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[5]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [46]));
+        .Q(\rangei_reg[3]_0 [30]));
   FDCE \counter_reg[6] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[6]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [47]));
+        .Q(\rangei_reg[3]_0 [31]));
   FDCE \counter_reg[7] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[7]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [48]));
+        .Q(\rangei_reg[3]_0 [32]));
   FDCE \counter_reg[8] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[8]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [49]));
+        .Q(\rangei_reg[3]_0 [33]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \counter_reg[8]_i_2 
        (.CI(\counter_reg[4]_i_2_n_0 ),
@@ -5295,19 +5280,19 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(counter0[8:5]),
-        .S(\rangei_reg[3]_0 [49:46]));
+        .S(\rangei_reg[3]_0 [33:30]));
   FDCE \counter_reg[9] 
        (.C(mclk),
         .CE(\counter[13]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\counter[9]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [50]));
+        .Q(\rangei_reg[3]_0 [34]));
   LUT5 #(
     .INIT(32'hFFFF0020)) 
     \failure_counter[0]_i_1 
        (.I0(\FSM_sequential_state_reg[0]_3 ),
         .I1(CO),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I3(\mask_reg[37]_0 ),
         .I4(success_counter_rst),
         .O(\failure_counter[0]_i_1_n_0 ));
@@ -5559,7 +5544,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(\FSM_sequential_state_reg[0]_3 ),
         .I3(\mask_reg[37]_0 ),
         .I4(is_first_try_i_6_n_0),
-        .O(\rangei_reg[3]_0 [67]));
+        .O(\rangei_reg[3]_0 [51]));
   (* SOFT_HLUTNM = "soft_lutpair97" *) 
   LUT4 #(
     .INIT(16'h0001)) 
@@ -5639,7 +5624,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(state),
         .I2(Q[0]),
         .I3(Q[1]),
-        .I4(\rangei_reg[3]_0 [63]),
+        .I4(\rangei_reg[3]_0 [47]),
         .I5(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .O(is_first_try_i_2_n_0));
   LUT6 #(
@@ -5647,7 +5632,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     is_first_try_i_3
        (.I0(\prdata_sr[150]_i_6_n_0 ),
         .I1(\FSM_sequential_state_reg[3]_4 ),
-        .I2(\rangei_reg[3]_0 [63]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(Q[2]),
         .I4(state),
         .I5(\FSM_sequential_state_reg[4]_rep__0_0 ),
@@ -5655,7 +5640,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0000000010000000)) 
     is_first_try_i_4
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(Q[0]),
         .I2(Q[1]),
         .I3(Q[2]),
@@ -5676,7 +5661,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h808080808080FF80)) 
     is_first_try_i_6
        (.I0(\FSM_sequential_state_reg[4]_rep__0_7 ),
-        .I1(\rangei_reg[3]_0 [63]),
+        .I1(\rangei_reg[3]_0 [47]),
         .I2(\FSM_sequential_state_reg[3]_4 ),
         .I3(\rangei[0]_i_4_n_0 ),
         .I4(\FSM_sequential_state[1]_i_4_n_0 ),
@@ -5715,8 +5700,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [67]),
-        .Q(\rangei_reg[3]_0 [63]));
+        .D(\rangei_reg[3]_0 [51]),
+        .Q(\rangei_reg[3]_0 [47]));
   LUT6 #(
     .INIT(64'hFFFFFFFFF8888888)) 
     \mask[0]_i_1 
@@ -5733,15 +5718,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [0]),
         .I2(sa_do[0]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [44]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [44]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[0]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[0]_i_6 
        (.I0(\rangei_reg[3]_rep__0_0 ),
-        .I1(\mask[47]_i_11 [0]),
+        .I1(\mask[47]_i_10 [0]),
         .I2(\read_data_bits[3]_23 [0]),
         .I3(\read_data_bits[0]_20 [0]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5763,15 +5748,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [10]),
         .I2(sa_do[10]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [54]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [54]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[10]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[10]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [10]),
+        .I1(\mask[47]_i_10 [10]),
         .I2(\read_data_bits[3]_23 [10]),
         .I3(\read_data_bits[0]_20 [10]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5793,15 +5778,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [11]),
         .I2(sa_do[11]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [55]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [55]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[11]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[11]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [11]),
+        .I1(\mask[47]_i_10 [11]),
         .I2(\read_data_bits[3]_23 [11]),
         .I3(\read_data_bits[0]_20 [11]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5823,15 +5808,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [12]),
         .I2(sa_do[12]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [56]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [56]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[12]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[12]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [12]),
+        .I1(\mask[47]_i_10 [12]),
         .I2(\read_data_bits[3]_23 [12]),
         .I3(\read_data_bits[0]_20 [12]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5853,15 +5838,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [13]),
         .I2(sa_do[13]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [57]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [57]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[13]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[13]_i_6 
        (.I0(\rangei_reg[3]_rep__0_0 ),
-        .I1(\mask[47]_i_11 [13]),
+        .I1(\mask[47]_i_10 [13]),
         .I2(\read_data_bits[3]_23 [13]),
         .I3(\read_data_bits[0]_20 [13]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5871,7 +5856,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hEEEEAAEA)) 
     \mask[14]_i_1 
        (.I0(\mask[14]_i_2_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [58]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [58]),
         .I2(\mask[47]_i_6_n_0 ),
         .I3(next_mask127_out),
         .I4(\mask[47]_i_8_n_0 ),
@@ -5883,13 +5868,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(set_rst_loop),
         .I2(\mask_reg[47]_0 [14]),
         .I3(sa_do[14]),
-        .I4(\mask[47]_i_10_n_0 ),
+        .I4(\mask[47]_i_9_n_0 ),
         .O(\mask[14]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[14]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [14]),
+        .I1(\mask[47]_i_10 [14]),
         .I2(\read_data_bits[3]_23 [14]),
         .I3(\read_data_bits[0]_20 [14]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5911,15 +5896,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [15]),
         .I2(sa_do[15]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [59]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [59]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[15]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[15]_i_6 
        (.I0(\rangei_reg[3]_rep__0_0 ),
-        .I1(\mask[47]_i_11 [15]),
+        .I1(\mask[47]_i_10 [15]),
         .I2(\read_data_bits[3]_23 [15]),
         .I3(\read_data_bits[0]_20 [15]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5945,11 +5930,11 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'hFFFF200020002000)) 
     \mask[16]_i_3 
-       (.I0(\mask[47]_i_10_n_0 ),
+       (.I0(\mask[47]_i_9_n_0 ),
         .I1(sa_do[16]),
         .I2(\mask_reg[47]_0 [16]),
         .I3(set_rst_loop),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [60]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [60]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[16]_i_3_n_0 ));
   LUT6 #(
@@ -5966,7 +5951,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h222222220AFF0A0A)) 
     \mask[16]_i_8 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [16]),
+        .I1(\mask[47]_i_10 [16]),
         .I2(\read_data_bits[3]_23 [16]),
         .I3(\read_data_bits[0]_20 [16]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -5988,15 +5973,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [17]),
         .I2(sa_do[17]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [61]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [61]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[17]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[17]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [17]),
+        .I1(\mask[47]_i_10 [17]),
         .I2(\read_data_bits[3]_23 [17]),
         .I3(\read_data_bits[0]_20 [17]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6018,15 +6003,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [18]),
         .I2(sa_do[18]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [62]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [62]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[18]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[18]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [18]),
+        .I1(\mask[47]_i_10 [18]),
         .I2(\read_data_bits[3]_23 [18]),
         .I3(\read_data_bits[0]_20 [18]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6048,15 +6033,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [19]),
         .I2(sa_do[19]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [63]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [63]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[19]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[19]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [19]),
+        .I1(\mask[47]_i_10 [19]),
         .I2(\read_data_bits[3]_23 [19]),
         .I3(\read_data_bits[0]_20 [19]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6078,15 +6063,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [1]),
         .I2(sa_do[1]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [45]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [45]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[1]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[1]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [1]),
+        .I1(\mask[47]_i_10 [1]),
         .I2(\read_data_bits[3]_23 [1]),
         .I3(\read_data_bits[0]_20 [1]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6108,15 +6093,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [20]),
         .I2(sa_do[20]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [64]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [64]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[20]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[20]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [20]),
+        .I1(\mask[47]_i_10 [20]),
         .I2(\read_data_bits[3]_23 [20]),
         .I3(\read_data_bits[0]_20 [20]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6138,15 +6123,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [21]),
         .I2(sa_do[21]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [65]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [65]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[21]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[21]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [21]),
+        .I1(\mask[47]_i_10 [21]),
         .I2(\read_data_bits[3]_23 [21]),
         .I3(\read_data_bits[0]_20 [21]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6168,15 +6153,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [22]),
         .I2(sa_do[22]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [66]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [66]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[22]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[22]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [22]),
+        .I1(\mask[47]_i_10 [22]),
         .I2(\read_data_bits[3]_23 [22]),
         .I3(\read_data_bits[0]_20 [22]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6198,15 +6183,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [23]),
         .I2(sa_do[23]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [67]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [67]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[23]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[23]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [23]),
+        .I1(\mask[47]_i_10 [23]),
         .I2(\read_data_bits[3]_23 [23]),
         .I3(\read_data_bits[0]_20 [23]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6228,15 +6213,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [24]),
         .I2(sa_do[24]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [68]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [68]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[24]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[24]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [24]),
+        .I1(\mask[47]_i_10 [24]),
         .I2(\read_data_bits[3]_23 [24]),
         .I3(\read_data_bits[0]_20 [24]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6258,15 +6243,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [25]),
         .I2(sa_do[25]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [69]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [69]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[25]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[25]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [25]),
+        .I1(\mask[47]_i_10 [25]),
         .I2(\read_data_bits[3]_23 [25]),
         .I3(\read_data_bits[0]_20 [25]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6288,15 +6273,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [26]),
         .I2(sa_do[26]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [70]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [70]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[26]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[26]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [26]),
+        .I1(\mask[47]_i_10 [26]),
         .I2(\read_data_bits[3]_23 [26]),
         .I3(\read_data_bits[0]_20 [26]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6318,15 +6303,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [27]),
         .I2(sa_do[27]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [71]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [71]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[27]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[27]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [27]),
+        .I1(\mask[47]_i_10 [27]),
         .I2(\read_data_bits[3]_23 [27]),
         .I3(\read_data_bits[0]_20 [27]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6336,7 +6321,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hEEEEAAEA)) 
     \mask[28]_i_1 
        (.I0(\mask[28]_i_2_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [72]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [72]),
         .I2(\mask[47]_i_6_n_0 ),
         .I3(\mask_reg[28]_0 ),
         .I4(\mask[47]_i_8_n_0 ),
@@ -6348,13 +6333,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(set_rst_loop),
         .I2(\mask_reg[47]_0 [28]),
         .I3(sa_do[28]),
-        .I4(\mask[47]_i_10_n_0 ),
+        .I4(\mask[47]_i_9_n_0 ),
         .O(\mask[28]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[28]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [28]),
+        .I1(\mask[47]_i_10 [28]),
         .I2(\read_data_bits[3]_23 [28]),
         .I3(\read_data_bits[0]_20 [28]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6376,15 +6361,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [29]),
         .I2(sa_do[29]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [73]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [73]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[29]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[29]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [29]),
+        .I1(\mask[47]_i_10 [29]),
         .I2(\read_data_bits[3]_23 [29]),
         .I3(\read_data_bits[0]_20 [29]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6406,15 +6391,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [2]),
         .I2(sa_do[2]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [46]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [46]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[2]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[2]_i_6 
        (.I0(\rangei_reg[3]_rep__0_0 ),
-        .I1(\mask[47]_i_11 [2]),
+        .I1(\mask[47]_i_10 [2]),
         .I2(\read_data_bits[3]_23 [2]),
         .I3(\read_data_bits[0]_20 [2]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6424,7 +6409,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hEEEEAAEA)) 
     \mask[30]_i_1 
        (.I0(\mask[30]_i_2_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [74]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [74]),
         .I2(\mask[47]_i_6_n_0 ),
         .I3(next_mask159_out),
         .I4(\mask[47]_i_8_n_0 ),
@@ -6436,13 +6421,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(set_rst_loop),
         .I2(\mask_reg[47]_0 [30]),
         .I3(sa_do[30]),
-        .I4(\mask[47]_i_10_n_0 ),
+        .I4(\mask[47]_i_9_n_0 ),
         .O(\mask[30]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[30]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [30]),
+        .I1(\mask[47]_i_10 [30]),
         .I2(\read_data_bits[3]_23 [30]),
         .I3(\read_data_bits[0]_20 [30]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6452,7 +6437,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hEEEEAAEA)) 
     \mask[31]_i_1 
        (.I0(\mask[31]_i_2_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [75]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [75]),
         .I2(\mask[47]_i_6_n_0 ),
         .I3(\mask_reg[31]_0 ),
         .I4(\mask[47]_i_8_n_0 ),
@@ -6464,13 +6449,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(set_rst_loop),
         .I2(\mask_reg[47]_0 [31]),
         .I3(sa_do[31]),
-        .I4(\mask[47]_i_10_n_0 ),
+        .I4(\mask[47]_i_9_n_0 ),
         .O(\mask[31]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[31]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [31]),
+        .I1(\mask[47]_i_10 [31]),
         .I2(\read_data_bits[3]_23 [31]),
         .I3(\read_data_bits[0]_20 [31]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6492,15 +6477,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [32]),
         .I2(sa_do[32]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [76]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [76]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[32]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[32]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [32]),
+        .I1(\mask[47]_i_10 [32]),
         .I2(\read_data_bits[3]_23 [32]),
         .I3(\read_data_bits[0]_20 [32]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6522,15 +6507,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [33]),
         .I2(sa_do[33]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [77]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [77]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[33]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[33]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [33]),
+        .I1(\mask[47]_i_10 [33]),
         .I2(\read_data_bits[3]_23 [33]),
         .I3(\read_data_bits[0]_20 [33]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6552,15 +6537,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [34]),
         .I2(sa_do[34]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [78]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [78]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[34]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[34]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [34]),
+        .I1(\mask[47]_i_10 [34]),
         .I2(\read_data_bits[3]_23 [34]),
         .I3(\read_data_bits[0]_20 [34]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6582,15 +6567,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [35]),
         .I2(sa_do[35]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [79]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [79]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[35]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[35]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [35]),
+        .I1(\mask[47]_i_10 [35]),
         .I2(\read_data_bits[3]_23 [35]),
         .I3(\read_data_bits[0]_20 [35]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6612,15 +6597,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [36]),
         .I2(sa_do[36]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [80]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [80]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[36]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[36]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [36]),
+        .I1(\mask[47]_i_10 [36]),
         .I2(\read_data_bits[3]_23 [36]),
         .I3(\read_data_bits[0]_20 [36]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6642,15 +6627,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [37]),
         .I2(sa_do[37]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [81]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [81]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[37]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[37]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [37]),
+        .I1(\mask[47]_i_10 [37]),
         .I2(\read_data_bits[3]_23 [37]),
         .I3(\read_data_bits[0]_20 [37]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6672,15 +6657,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [38]),
         .I2(sa_do[38]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [82]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [82]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[38]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[38]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [38]),
+        .I1(\mask[47]_i_10 [38]),
         .I2(\read_data_bits[3]_23 [38]),
         .I3(\read_data_bits[0]_20 [38]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6702,15 +6687,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [39]),
         .I2(sa_do[39]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [83]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [83]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[39]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[39]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [39]),
+        .I1(\mask[47]_i_10 [39]),
         .I2(\read_data_bits[3]_23 [39]),
         .I3(\read_data_bits[0]_20 [39]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6732,15 +6717,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [3]),
         .I2(sa_do[3]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [47]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [47]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[3]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[3]_i_6 
        (.I0(\rangei_reg[3]_rep__0_0 ),
-        .I1(\mask[47]_i_11 [3]),
+        .I1(\mask[47]_i_10 [3]),
         .I2(\read_data_bits[3]_23 [3]),
         .I3(\read_data_bits[0]_20 [3]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6762,15 +6747,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [40]),
         .I2(sa_do[40]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [84]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [84]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[40]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[40]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [40]),
+        .I1(\mask[47]_i_10 [40]),
         .I2(\read_data_bits[3]_23 [40]),
         .I3(\read_data_bits[0]_20 [40]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6792,15 +6777,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [41]),
         .I2(sa_do[41]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [85]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [85]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[41]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[41]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [41]),
+        .I1(\mask[47]_i_10 [41]),
         .I2(\read_data_bits[3]_23 [41]),
         .I3(\read_data_bits[0]_20 [41]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6822,15 +6807,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [42]),
         .I2(sa_do[42]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [86]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [86]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[42]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[42]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [42]),
+        .I1(\mask[47]_i_10 [42]),
         .I2(\read_data_bits[3]_23 [42]),
         .I3(\read_data_bits[0]_20 [42]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6852,15 +6837,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [43]),
         .I2(sa_do[43]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [87]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [87]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[43]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[43]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [43]),
+        .I1(\mask[47]_i_10 [43]),
         .I2(\read_data_bits[3]_23 [43]),
         .I3(\read_data_bits[0]_20 [43]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6882,15 +6867,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [44]),
         .I2(sa_do[44]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [88]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [88]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[44]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[44]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [44]),
+        .I1(\mask[47]_i_10 [44]),
         .I2(\read_data_bits[3]_23 [44]),
         .I3(\read_data_bits[0]_20 [44]),
         .I4(\rangei_reg[0]_rep__2_0 ),
@@ -6912,15 +6897,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [45]),
         .I2(sa_do[45]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [89]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [89]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[45]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[45]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [45]),
+        .I1(\mask[47]_i_10 [45]),
         .I2(\read_data_bits[3]_23 [45]),
         .I3(\read_data_bits[0]_20 [45]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6951,15 +6936,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [46]),
         .I2(sa_do[46]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [90]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [90]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[46]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[46]_i_7 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [46]),
+        .I1(\mask[47]_i_10 [46]),
         .I2(\read_data_bits[3]_23 [46]),
         .I3(\read_data_bits[0]_20 [46]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -6971,27 +6956,11 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\mask[47]_i_3_n_0 ),
         .I1(\mask[47]_i_4_n_0 ),
         .O(\mask[47]_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h02000000)) 
-    \mask[47]_i_10 
-       (.I0(Q[1]),
-        .I1(Q[2]),
-        .I2(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I3(state),
-        .I4(Q[0]),
-        .O(\mask[47]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair119" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \mask[47]_i_12 
-       (.I0(\rangei_reg[3]_0 [49]),
-        .I1(\rangei_reg[3]_0 [50]),
-        .O(\mask[47]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
-    \mask[47]_i_16 
+    \mask[47]_i_14 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [47]),
+        .I1(\mask[47]_i_10 [47]),
         .I2(\read_data_bits[3]_23 [47]),
         .I3(\read_data_bits[0]_20 [47]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7001,7 +6970,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hEEEEAAEA)) 
     \mask[47]_i_2 
        (.I0(\mask[47]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [91]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [91]),
         .I2(\mask[47]_i_6_n_0 ),
         .I3(next_mask193_out),
         .I4(\mask[47]_i_8_n_0 ),
@@ -7009,7 +6978,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0C030C0304010000)) 
     \mask[47]_i_3 
-       (.I0(\mask[47]_i_9_n_0 ),
+       (.I0(\rram_addr[15]_i_9_n_0 ),
         .I1(Q[2]),
         .I2(\FSM_sequential_state_reg[4]_rep_0 ),
         .I3(Q[1]),
@@ -7033,7 +7002,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(set_rst_loop),
         .I2(\mask_reg[47]_0 [47]),
         .I3(sa_do[47]),
-        .I4(\mask[47]_i_10_n_0 ),
+        .I4(\mask[47]_i_9_n_0 ),
         .O(\mask[47]_i_5_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT4 #(
@@ -7053,15 +7022,14 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(state),
         .I4(\FSM_sequential_state_reg[4]_rep_0 ),
         .O(\mask[47]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+  LUT5 #(
+    .INIT(32'h02000000)) 
     \mask[47]_i_9 
-       (.I0(\FSM_sequential_state[1]_i_24_n_0 ),
-        .I1(\rangei_reg[3]_0 [53]),
-        .I2(\rangei_reg[3]_0 [54]),
-        .I3(\rangei_reg[3]_0 [51]),
-        .I4(\rangei_reg[3]_0 [52]),
-        .I5(\mask[47]_i_12_n_0 ),
+       (.I0(Q[1]),
+        .I1(Q[2]),
+        .I2(\FSM_sequential_state_reg[4]_rep_0 ),
+        .I3(state),
+        .I4(Q[0]),
         .O(\mask[47]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFF8888888)) 
@@ -7079,15 +7047,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [4]),
         .I2(sa_do[4]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [48]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [48]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[4]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[4]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [4]),
+        .I1(\mask[47]_i_10 [4]),
         .I2(\read_data_bits[3]_23 [4]),
         .I3(\read_data_bits[0]_20 [4]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7109,15 +7077,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [5]),
         .I2(sa_do[5]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [49]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [49]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[5]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[5]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [5]),
+        .I1(\mask[47]_i_10 [5]),
         .I2(\read_data_bits[3]_23 [5]),
         .I3(\read_data_bits[0]_20 [5]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7139,15 +7107,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [6]),
         .I2(sa_do[6]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [50]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [50]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[6]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[6]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [6]),
+        .I1(\mask[47]_i_10 [6]),
         .I2(\read_data_bits[3]_23 [6]),
         .I3(\read_data_bits[0]_20 [6]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7169,15 +7137,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [7]),
         .I2(sa_do[7]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [51]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [51]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[7]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[7]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [7]),
+        .I1(\mask[47]_i_10 [7]),
         .I2(\read_data_bits[3]_23 [7]),
         .I3(\read_data_bits[0]_20 [7]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7199,15 +7167,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [8]),
         .I2(sa_do[8]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [52]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [52]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[8]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[8]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [8]),
+        .I1(\mask[47]_i_10 [8]),
         .I2(\read_data_bits[3]_23 [8]),
         .I3(\read_data_bits[0]_20 [8]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7229,15 +7197,15 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(set_rst_loop),
         .I1(\mask_reg[47]_0 [9]),
         .I2(sa_do[9]),
-        .I3(\mask[47]_i_10_n_0 ),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [53]),
+        .I3(\mask[47]_i_9_n_0 ),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [53]),
         .I5(\mask[47]_i_8_n_0 ),
         .O(\mask[9]_i_3_n_0 ));
   LUT6 #(
     .INIT(64'h222222220AFF0A0A)) 
     \mask[9]_i_6 
        (.I0(\rangei_reg[3]_rep_1 ),
-        .I1(\mask[47]_i_11 [9]),
+        .I1(\mask[47]_i_10 [9]),
         .I2(\read_data_bits[3]_23 [9]),
         .I3(\read_data_bits[0]_20 [9]),
         .I4(\rangei_reg[0]_rep__1_0 ),
@@ -7544,16 +7512,16 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT3 #(
     .INIT(8'h01)) 
     \prdata_sr[101]_i_14 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
-        .I2(\rangei_reg[3]_0 [50]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
+        .I2(\rangei_reg[3]_0 [34]),
         .O(\prdata_sr[101]_i_14_n_0 ));
   LUT3 #(
     .INIT(8'h01)) 
     \prdata_sr[101]_i_15 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
-        .I2(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
+        .I2(\rangei_reg[3]_0 [33]),
         .O(\prdata_sr[101]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h0001400000014002)) 
@@ -7564,12 +7532,12 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(state),
         .I4(Q[3]),
         .I5(\prdata_sr_reg[101]_i_5_n_3 ),
-        .O(\rangei_reg[3]_0 [29]));
+        .O(\rangei_reg[3]_0 [13]));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[101]_i_9 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\prdata_sr[101]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFAEAEAFABAAAAABA)) 
@@ -7577,10 +7545,10 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\prdata_sr[102]_i_5_n_0 ),
         .I1(Q[2]),
         .I2(\FSM_sequential_state[3]_i_4_n_0 ),
-        .I3(\rangei_reg[3]_0 [63]),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I3(\rangei_reg[3]_0 [47]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I5(set_rst_loop),
-        .O(\rangei_reg[3]_0 [30]));
+        .O(\rangei_reg[3]_0 [14]));
   LUT6 #(
     .INIT(64'h5041537240415262)) 
     \prdata_sr[102]_i_5 
@@ -7589,7 +7557,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(Q[1]),
         .I3(Q[0]),
         .I4(Q[2]),
-        .I5(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I5(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .O(\prdata_sr[102]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h3333333337373E1E)) 
@@ -7600,7 +7568,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\FSM_sequential_state_reg[1]_2 ),
         .I4(Q[0]),
         .I5(state),
-        .O(\rangei_reg[3]_0 [31]));
+        .O(\rangei_reg[3]_0 [15]));
   LUT6 #(
     .INIT(64'h0000000008000C00)) 
     \prdata_sr[104]_i_4 
@@ -7635,52 +7603,52 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[105]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [30]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [17]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [17]),
         .I4(\wl_loop_reg[7]_0 [0]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [32]));
+        .O(\rangei_reg[3]_0 [16]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[106]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [31]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [31]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [18]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [18]),
         .I4(\wl_loop_reg[7]_0 [1]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [33]));
+        .O(\rangei_reg[3]_0 [17]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[107]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [32]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [32]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [19]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [19]),
         .I4(\wl_loop_reg[7]_0 [2]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [34]));
+        .O(\rangei_reg[3]_0 [18]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[108]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [33]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [33]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [20]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [20]),
         .I4(\wl_loop_reg[7]_0 [3]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [35]));
+        .O(\rangei_reg[3]_0 [19]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[109]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [34]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [34]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [21]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [21]),
         .I4(\wl_loop_reg[7]_0 [4]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [36]));
+        .O(\rangei_reg[3]_0 [20]));
   LUT6 #(
     .INIT(64'h0033550FFF33550F)) 
     \prdata_sr[10]_i_10 
@@ -7721,22 +7689,22 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[110]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [35]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [35]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [22]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [22]),
         .I4(\wl_loop_reg[7]_0 [5]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [37]));
+        .O(\rangei_reg[3]_0 [21]));
   LUT6 #(
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[111]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [36]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [36]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [23]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [23]),
         .I4(\wl_loop_reg[7]_0 [6]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [38]));
+        .O(\rangei_reg[3]_0 [22]));
   (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT5 #(
     .INIT(32'h22331130)) 
@@ -7751,17 +7719,17 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[112]_i_3 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [37]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [37]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [24]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [24]),
         .I4(\wl_loop_reg[7]_0 [7]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
-        .O(\rangei_reg[3]_0 [39]));
+        .O(\rangei_reg[3]_0 [23]));
   LUT6 #(
     .INIT(64'h0006000033030000)) 
     \prdata_sr[112]_i_5 
-       (.I0(\rangei_reg[3]_0 [63]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+       (.I0(\rangei_reg[3]_0 [47]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(\prdata_sr[112]_i_10_n_0 ),
@@ -7770,8 +7738,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h00090000CC0C0000)) 
     \prdata_sr[112]_i_6 
-       (.I0(\rangei_reg[3]_0 [63]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+       (.I0(\rangei_reg[3]_0 [47]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(\prdata_sr[112]_i_10_n_0 ),
@@ -7803,7 +7771,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h2332223A22322A3A)) 
     \prdata_sr[113]_i_6 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [93]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [93]),
         .I1(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I2(state),
         .I3(Q[1]),
@@ -7819,13 +7787,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(Q[0]),
         .I4(Q[3]),
         .I5(state),
-        .O(\rangei_reg[3]_0 [40]));
+        .O(\rangei_reg[3]_0 [24]));
   LUT6 #(
     .INIT(64'h282822220000FF00)) 
     \prdata_sr[119]_i_4 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [38]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
-        .I2(\rangei_reg[3]_0 [63]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [38]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\pw_loop_reg[7]_0 [0]),
         .I4(\FSM_sequential_state_reg[2]_5 ),
         .I5(\FSM_sequential_state_reg[2]_6 ),
@@ -7853,9 +7821,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h282822220000FF00)) 
     \prdata_sr[120]_i_4 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [39]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
-        .I2(\rangei_reg[3]_0 [63]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [39]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\pw_loop_reg[7]_0 [1]),
         .I4(\FSM_sequential_state_reg[2]_5 ),
         .I5(\FSM_sequential_state_reg[2]_6 ),
@@ -7863,9 +7831,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h282822220000FF00)) 
     \prdata_sr[121]_i_4 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [40]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
-        .I2(\rangei_reg[3]_0 [63]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [40]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\pw_loop_reg[7]_0 [2]),
         .I4(\FSM_sequential_state_reg[2]_5 ),
         .I5(\FSM_sequential_state_reg[2]_6 ),
@@ -7873,9 +7841,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h282822220000FF00)) 
     \prdata_sr[122]_i_4 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [41]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
-        .I2(\rangei_reg[3]_0 [63]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [41]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\pw_loop_reg[7]_0 [3]),
         .I4(\FSM_sequential_state_reg[2]_5 ),
         .I5(\FSM_sequential_state_reg[2]_6 ),
@@ -7883,9 +7851,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h282822220000FF00)) 
     \prdata_sr[123]_i_4 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
-        .I2(\rangei_reg[3]_0 [63]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [42]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\pw_loop_reg[7]_0 [4]),
         .I4(\FSM_sequential_state_reg[2]_5 ),
         .I5(\FSM_sequential_state_reg[2]_6 ),
@@ -7894,9 +7862,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'h8828)) 
     \prdata_sr[123]_i_5 
        (.I0(\FSM_sequential_state_reg[2]_6 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I2(\FSM_sequential_state_reg[2]_5 ),
-        .I3(\rangei_reg[3]_0 [63]),
+        .I3(\rangei_reg[3]_0 [47]),
         .O(\misc_cnfg_bits_reg[55] ));
   (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT5 #(
@@ -7942,9 +7910,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[13]_i_9 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [25]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [25]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [12]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [12]),
         .I4(\bsl_loop_reg[4]_0 [0]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
         .O(\rangei_reg[3]_0 [7]));
@@ -7952,9 +7920,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[14]_i_11 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [26]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [13]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [13]),
         .I4(\bsl_loop_reg[4]_0 [1]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
         .O(\rangei_reg[3]_0 [8]));
@@ -7972,7 +7940,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(4'h7)) 
     \prdata_sr[150]_i_12 
        (.I0(sa_rdy),
-        .I1(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I1(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .O(\prdata_sr[150]_i_12_n_0 ));
   LUT6 #(
     .INIT(64'h00000000DF579B13)) 
@@ -7987,8 +7955,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_19 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\prdata_sr[150]_i_19_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFEAFFEAEA)) 
@@ -7999,96 +7967,96 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\prdata_sr[150]_i_6_n_0 ),
         .I4(\prdata_sr[150]_i_7_n_0 ),
         .I5(\prdata_sr[150]_i_8_n_0 ),
-        .O(\rangei_reg[3]_0 [64]));
+        .O(\rangei_reg[3]_0 [48]));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_20 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\prdata_sr[150]_i_20_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_21 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\prdata_sr[150]_i_21_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_23 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\prdata_sr[150]_i_23_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_24 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\prdata_sr[150]_i_24_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_25 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\prdata_sr[150]_i_25_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_26 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [128]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [129]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [128]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [129]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\prdata_sr[150]_i_26_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_27 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [126]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [127]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [126]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [127]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\prdata_sr[150]_i_27_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_28 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [124]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [125]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [124]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [125]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\prdata_sr[150]_i_28_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_29 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\prdata_sr[150]_i_29_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_33 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [122]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [123]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [122]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [123]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\prdata_sr[150]_i_33_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_34 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [120]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [121]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [120]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [121]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\prdata_sr[150]_i_34_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[150]_i_35 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [118]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [119]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [118]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [119]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\prdata_sr[150]_i_35_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[150]_i_36 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\prdata_sr[150]_i_36_n_0 ));
   LUT6 #(
     .INIT(64'h5100550400000000)) 
@@ -8139,20 +8107,20 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_13 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\prdata_sr[151]_i_13_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_14 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\prdata_sr[151]_i_14_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_15 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\prdata_sr[151]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h00000000313D0000)) 
@@ -8190,7 +8158,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I1(\FSM_sequential_state_reg[3]_4 ),
         .I2(state),
-        .I3(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I3(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I4(sa_rdy),
         .O(\prdata_sr[151]_i_19_n_0 ));
   LUT6 #(
@@ -8202,84 +8170,84 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\prdata_sr[151]_i_6_n_0 ),
         .I4(\prdata_sr[151]_i_7_n_0 ),
         .I5(\prdata_sr[151]_i_8_n_0 ),
-        .O(\rangei_reg[3]_0 [65]));
+        .O(\rangei_reg[3]_0 [49]));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_23 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [98]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [99]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [98]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [99]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\prdata_sr[151]_i_23_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_24 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [96]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [97]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [96]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [97]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\prdata_sr[151]_i_24_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_25 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [94]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [95]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [94]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [95]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\prdata_sr[151]_i_25_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_26 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\prdata_sr[151]_i_26_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_31 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
         .O(\prdata_sr[151]_i_31_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_32 
-       (.I0(\rangei_reg[3]_0 [51]),
-        .I1(\rangei_reg[3]_0 [52]),
+       (.I0(\rangei_reg[3]_0 [35]),
+        .I1(\rangei_reg[3]_0 [36]),
         .O(\prdata_sr[151]_i_32_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_33 
-       (.I0(\rangei_reg[3]_0 [50]),
-        .I1(\rangei_reg[3]_0 [49]),
+       (.I0(\rangei_reg[3]_0 [34]),
+        .I1(\rangei_reg[3]_0 [33]),
         .O(\prdata_sr[151]_i_33_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_34 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [110]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [111]),
-        .I3(\rangei_reg[3]_0 [45]),
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [110]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [111]),
+        .I3(\rangei_reg[3]_0 [29]),
         .O(\prdata_sr[151]_i_34_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_35 
-       (.I0(\rangei_reg[3]_0 [44]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [108]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [109]),
-        .I3(\rangei_reg[3]_0 [43]),
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [108]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [109]),
+        .I3(\rangei_reg[3]_0 [27]),
         .O(\prdata_sr[151]_i_35_n_0 ));
   LUT4 #(
     .INIT(16'h50D4)) 
     \prdata_sr[151]_i_36 
-       (.I0(\rangei_reg[3]_0 [42]),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [106]),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [107]),
-        .I3(\rangei_reg[3]_0 [41]),
+       (.I0(\rangei_reg[3]_0 [26]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [106]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [107]),
+        .I3(\rangei_reg[3]_0 [25]),
         .O(\prdata_sr[151]_i_36_n_0 ));
   LUT2 #(
     .INIT(4'h1)) 
     \prdata_sr[151]_i_37 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\rangei_reg[3]_0 [47]),
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rangei_reg[3]_0 [31]),
         .O(\prdata_sr[151]_i_37_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT4 #(
@@ -8457,7 +8425,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \prdata_sr[152]_i_4 
        (.I0(\rangei[0]_i_4_n_0 ),
         .I1(CO),
-        .I2(\rangei_reg[3]_0 [63]),
+        .I2(\rangei_reg[3]_0 [47]),
         .I3(\FSM_sequential_state_reg[3]_4 ),
         .I4(Q[0]),
         .I5(Q[1]),
@@ -8472,52 +8440,30 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I4(\wl_loop_reg[6]_1 ),
         .I5(\prdata_sr_reg[152]_i_29_0 ),
         .O(DI));
-  LUT2 #(
-    .INIT(4'h1)) 
-    \prdata_sr[153]_i_13 
-       (.I0(\rangei_reg[3]_0 [54]),
-        .I1(\rangei_reg[3]_0 [53]),
-        .O(\counter_reg[13]_2 ));
-  LUT4 #(
-    .INIT(16'h5071)) 
-    \prdata_sr[153]_i_18 
-       (.I0(\rangei_reg[3]_0 [48]),
-        .I1(\prdata_sr_reg[153]_i_10_1 ),
-        .I2(\prdata_sr_reg[153]_i_10_2 ),
-        .I3(\rangei_reg[3]_0 [47]),
-        .O(\counter_reg[7]_0 [1]));
-  LUT4 #(
-    .INIT(16'h1171)) 
-    \prdata_sr[153]_i_19 
-       (.I0(\rangei_reg[3]_0 [46]),
-        .I1(\prdata_sr_reg[153]_i_10 ),
-        .I2(\prdata_sr_reg[153]_i_10_0 ),
-        .I3(\rangei_reg[3]_0 [45]),
-        .O(\counter_reg[7]_0 [0]));
   LUT6 #(
     .INIT(64'h00000001000000FF)) 
     \prdata_sr[153]_i_2 
        (.I0(\FSM_sequential_state_reg[3]_4 ),
-        .I1(\rangei_reg[3]_0 [63]),
+        .I1(\rangei_reg[3]_0 [47]),
         .I2(CO),
-        .I3(\prdata_sr[153]_i_5_n_0 ),
-        .I4(\prdata_sr[153]_i_6_n_0 ),
+        .I3(\prdata_sr[153]_i_4_n_0 ),
+        .I4(\prdata_sr[153]_i_5_n_0 ),
         .I5(state),
-        .O(\rangei_reg[3]_0 [66]));
+        .O(\rangei_reg[3]_0 [50]));
   (* SOFT_HLUTNM = "soft_lutpair133" *) 
   LUT2 #(
     .INIT(4'hE)) 
-    \prdata_sr[153]_i_5 
+    \prdata_sr[153]_i_4 
        (.I0(Q[0]),
         .I1(\FSM_sequential_state_reg[4]_rep__0_0 ),
-        .O(\prdata_sr[153]_i_5_n_0 ));
+        .O(\prdata_sr[153]_i_4_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair100" *) 
   LUT2 #(
     .INIT(4'hE)) 
-    \prdata_sr[153]_i_6 
+    \prdata_sr[153]_i_5 
        (.I0(Q[2]),
         .I1(Q[1]),
-        .O(\prdata_sr[153]_i_6_n_0 ));
+        .O(\prdata_sr[153]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'h0033550FFF33550F)) 
     \prdata_sr[15]_i_10 
@@ -8532,9 +8478,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[15]_i_9 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [27]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [27]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [14]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [14]),
         .I4(\bsl_loop_reg[4]_0 [2]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
         .O(\rangei_reg[3]_0 [9]));
@@ -8552,9 +8498,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[16]_i_9 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [28]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [28]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [15]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [15]),
         .I4(\bsl_loop_reg[4]_0 [3]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
         .O(\rangei_reg[3]_0 [10]));
@@ -8562,9 +8508,9 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFF888F888F888)) 
     \prdata_sr[17]_i_11 
        (.I0(\prdata_sr[112]_i_5_n_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [29]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [29]),
         .I2(\prdata_sr[112]_i_6_n_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [16]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [16]),
         .I4(\bsl_loop_reg[4]_0 [4]),
         .I5(\prdata_sr[112]_i_7_n_0 ),
         .O(\rangei_reg[3]_0 [11]));
@@ -8591,7 +8537,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0000002AAFAFEABE)) 
     \prdata_sr[18]_i_9 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [93]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [93]),
         .I1(Q[0]),
         .I2(Q[1]),
         .I3(Q[2]),
@@ -9083,19 +9029,19 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'hFDFF)) 
     \prdata_sr[5]_i_21 
        (.I0(sa_rdy),
-        .I1(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I1(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I2(Q[1]),
         .I3(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .O(\prdata_sr[5]_i_21_n_0 ));
   LUT6 #(
     .INIT(64'hAAAAAAAAAAAAABAA)) 
     \prdata_sr[5]_i_22 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_17_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_16_n_0 ),
         .I2(next_mask245_out),
         .I3(\read_data_bits[1][15]_i_2_n_0 ),
         .I4(\prdata_sr[5]_i_31_n_0 ),
-        .I5(\FSM_sequential_state[4]_i_11_n_0 ),
+        .I5(\FSM_sequential_state[4]_i_10_n_0 ),
         .O(\prdata_sr[5]_i_22_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair124" *) 
   LUT3 #(
@@ -9113,7 +9059,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(\FSM_sequential_state[0]_i_64_1 ),
         .I3(\FSM_sequential_state[0]_i_64_0 [3]),
         .I4(CO),
-        .I5(\rangei_reg[3]_0 [63]),
+        .I5(\rangei_reg[3]_0 [47]),
         .O(\prdata_sr[5]_i_26_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
@@ -9163,7 +9109,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'hFFEAEAEAFFFFFFFF)) 
     \prdata_sr[5]_i_31 
-       (.I0(\FSM_sequential_state[4]_i_14_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_13_n_0 ),
         .I1(sa_do[30]),
         .I2(\mask_reg[47]_0 [30]),
         .I3(sa_do[31]),
@@ -9348,7 +9294,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(Q[1]),
         .I1(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .I2(sa_rdy),
-        .I3(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I3(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I4(\counter_reg[13]_0 ),
         .I5(Q[0]),
         .O(\prdata_sr[6]_i_29_n_0 ));
@@ -9370,7 +9316,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I2(sa_do[14]),
         .I3(\mask_reg[47]_0 [15]),
         .I4(sa_do[15]),
-        .I5(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I5(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .O(\prdata_sr[6]_i_31_n_0 ));
   LUT6 #(
     .INIT(64'hEEFEEEEEEEEEEEEE)) 
@@ -9484,7 +9430,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'hD000)) 
     \prdata_sr[7]_i_21 
        (.I0(sa_rdy),
-        .I1(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I1(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I2(Q[1]),
         .I3(Q[0]),
         .O(\prdata_sr[7]_i_21_n_0 ));
@@ -9531,8 +9477,8 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hEEEEEEEEFFFCCCCC)) 
     \prdata_sr[7]_i_26 
        (.I0(\FSM_sequential_state[3]_i_30_n_0 ),
-        .I1(\mask[47]_i_9_n_0 ),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I1(\rram_addr[15]_i_9_n_0 ),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I3(CO),
         .I4(\FSM_sequential_state[0]_i_11_n_0 ),
         .I5(\mask_reg[37]_0 ),
@@ -9586,7 +9532,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0000030003000500)) 
     \prdata_sr[83]_i_11 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I1(set_rst_loop),
         .I2(\prdata_sr[83]_i_16_n_0 ),
         .I3(state),
@@ -9612,7 +9558,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h00000C000C000A00)) 
     \prdata_sr[83]_i_6 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I1(set_rst_loop),
         .I2(\prdata_sr[83]_i_16_n_0 ),
         .I3(state),
@@ -9651,7 +9597,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hDDDD0000F0F000F0)) 
     \prdata_sr[8]_i_18 
        (.I0(sa_rdy),
-        .I1(\FSM_sequential_state_reg[4]_i_13_n_1 ),
+        .I1(\FSM_sequential_state_reg[4]_i_12_n_1 ),
         .I2(\prdata_sr[9]_i_10_0 ),
         .I3(\counter_reg[13]_0 ),
         .I4(\rangei_reg[3]_0 [2]),
@@ -9797,7 +9743,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hAEAAAAAAAAAAAAAA)) 
     \prdata_sr[9]_i_16 
        (.I0(\prdata_sr[9]_i_26_n_0 ),
-        .I1(\mask[47]_i_9_n_0 ),
+        .I1(\rram_addr[15]_i_9_n_0 ),
         .I2(Q[0]),
         .I3(Q[2]),
         .I4(\counter_reg[13]_1 ),
@@ -9820,7 +9766,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(\prdata_sr[9]_i_28_n_0 ),
         .I2(\counter_reg[13]_1 ),
         .I3(Q[2]),
-        .I4(\mask[47]_i_9_n_0 ),
+        .I4(\rram_addr[15]_i_9_n_0 ),
         .I5(\FSM_sequential_state[1]_i_4_n_0 ),
         .O(\prdata_sr[9]_i_18_n_0 ));
   LUT6 #(
@@ -9891,7 +9837,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \prdata_sr[9]_i_28 
        (.I0(\FSM_sequential_state[3]_i_30_n_0 ),
         .I1(\mask_reg[37]_0 ),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [92]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [92]),
         .I3(CO),
         .I4(\rangei_reg[3]_0 [3]),
         .I5(\FSM_sequential_state[0]_i_11_n_0 ),
@@ -10215,7 +10161,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\rangei[0]_i_4_n_0 ),
         .I4(\rangei[3]_i_4_n_0 ),
         .I5(\rangei[0]_i_5_n_0 ),
-        .O(\rangei_reg[3]_0 [68]));
+        .O(\rangei_reg[3]_0 [52]));
   (* SOFT_HLUTNM = "soft_lutpair116" *) 
   LUT2 #(
     .INIT(4'h7)) 
@@ -10260,7 +10206,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\rangei[3]_i_6_n_0 ),
         .I4(\rangei_reg[1]_rep_0 ),
         .I5(\rangei_reg[0]_rep_0 ),
-        .O(\rangei_reg[3]_0 [69]));
+        .O(\rangei_reg[3]_0 [53]));
   LUT6 #(
     .INIT(64'h0110000000000000)) 
     \rangei[1]_i_2 
@@ -10280,7 +10226,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\rangei[3]_i_4_n_0 ),
         .I4(\rangei[3]_i_6_n_0 ),
         .I5(\rangei[2]_i_3_n_0 ),
-        .O(\rangei_reg[3]_0 [70]));
+        .O(\rangei_reg[3]_0 [54]));
   LUT6 #(
     .INIT(64'h0002000000000000)) 
     \rangei[2]_i_2 
@@ -10307,7 +10253,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I3(\rangei[3]_i_4_n_0 ),
         .I4(p_2_in),
         .I5(\rangei[3]_i_6_n_0 ),
-        .O(\rangei_reg[3]_0 [71]));
+        .O(\rangei_reg[3]_0 [55]));
   LUT6 #(
     .INIT(64'hBBFBBAEAFEEEBAEA)) 
     \rangei[3]_i_10 
@@ -10633,147 +10579,147 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[3]_1 [0]));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__0 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__0_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__1 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__1_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__2 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__2_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__3 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__3_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__4 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__4_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[0]" *) 
   FDCE \rangei_reg[0]_rep__5 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [68]),
+        .D(\rangei_reg[3]_0 [52]),
         .Q(\rangei_reg[0]_rep__5_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1] 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[3]_1 [1]));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1]_rep 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[1]_rep_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1]_rep__0 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[1]_rep__0_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1]_rep__1 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[1]_rep__1_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1]_rep__2 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[1]_rep__2_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[1]" *) 
   FDCE \rangei_reg[1]_rep__3 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [69]),
+        .D(\rangei_reg[3]_0 [53]),
         .Q(\rangei_reg[1]_rep__3_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[2]" *) 
   FDCE \rangei_reg[2] 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [70]),
+        .D(\rangei_reg[3]_0 [54]),
         .Q(\rangei_reg[3]_1 [2]));
   (* ORIG_CELL_NAME = "rangei_reg[2]" *) 
   FDCE \rangei_reg[2]_rep 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [70]),
+        .D(\rangei_reg[3]_0 [54]),
         .Q(\rangei_reg[2]_rep_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[2]" *) 
   FDCE \rangei_reg[2]_rep__0 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [70]),
+        .D(\rangei_reg[3]_0 [54]),
         .Q(\rangei_reg[2]_rep__0_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[2]" *) 
   FDCE \rangei_reg[2]_rep__1 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [70]),
+        .D(\rangei_reg[3]_0 [54]),
         .Q(\rangei_reg[2]_rep__1_0 ));
   (* ORIG_CELL_NAME = "rangei_reg[3]" *) 
   FDCE \rangei_reg[3] 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [71]),
+        .D(\rangei_reg[3]_0 [55]),
         .Q(\rangei_reg[3]_1 [3]));
   (* ORIG_CELL_NAME = "rangei_reg[3]" *) 
   FDCE \rangei_reg[3]_rep 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [71]),
+        .D(\rangei_reg[3]_0 [55]),
         .Q(\rangei_reg[3]_rep_1 ));
   (* ORIG_CELL_NAME = "rangei_reg[3]" *) 
   FDCE \rangei_reg[3]_rep__0 
        (.C(mclk),
         .CE(1'b1),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
-        .D(\rangei_reg[3]_0 [71]),
+        .D(\rangei_reg[3]_0 [55]),
         .Q(\rangei_reg[3]_rep__0_0 ));
   LUT6 #(
     .INIT(64'hEEFEFFFFEEFE0000)) 
@@ -10790,7 +10736,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][0]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [0]),
         .I4(sa_do[0]),
         .O(\read_data_bits[0][0]_i_2_n_0 ));
@@ -10798,7 +10744,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][0]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [0]),
         .I4(sa_do[0]),
@@ -10818,7 +10764,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][10]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [10]),
         .I4(sa_do[10]),
         .O(\read_data_bits[0][10]_i_2_n_0 ));
@@ -10826,7 +10772,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][10]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [10]),
         .I4(sa_do[10]),
@@ -10846,7 +10792,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][11]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [11]),
         .I4(sa_do[11]),
         .O(\read_data_bits[0][11]_i_2_n_0 ));
@@ -10854,7 +10800,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][11]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [11]),
         .I4(sa_do[11]),
@@ -10874,7 +10820,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][12]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [12]),
         .I4(sa_do[12]),
         .O(\read_data_bits[0][12]_i_2_n_0 ));
@@ -10882,7 +10828,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][12]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [12]),
         .I4(sa_do[12]),
@@ -10902,7 +10848,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][13]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [13]),
         .I4(sa_do[13]),
         .O(\read_data_bits[0][13]_i_2_n_0 ));
@@ -10910,7 +10856,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][13]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [13]),
         .I4(sa_do[13]),
@@ -10930,7 +10876,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][14]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [14]),
         .I4(sa_do[14]),
         .O(\read_data_bits[0][14]_i_2_n_0 ));
@@ -10938,7 +10884,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][14]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [14]),
         .I4(sa_do[14]),
@@ -10958,7 +10904,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][15]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [15]),
         .I4(sa_do[15]),
         .O(\read_data_bits[0][15]_i_2_n_0 ));
@@ -10966,7 +10912,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[0][15]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(sa_do[15]),
         .I4(\mask_reg[47]_0 [15]),
@@ -10986,7 +10932,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][16]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [16]),
         .I4(sa_do[16]),
         .O(\read_data_bits[0][16]_i_2_n_0 ));
@@ -10994,7 +10940,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[0][16]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(sa_do[16]),
         .I4(\mask_reg[47]_0 [16]),
@@ -11014,7 +10960,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][17]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [17]),
         .I4(sa_do[17]),
         .O(\read_data_bits[0][17]_i_2_n_0 ));
@@ -11022,7 +10968,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[0][17]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(sa_do[17]),
         .I4(\mask_reg[47]_0 [17]),
@@ -11042,7 +10988,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][18]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [18]),
         .I4(sa_do[18]),
         .O(\read_data_bits[0][18]_i_2_n_0 ));
@@ -11050,7 +10996,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][18]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [18]),
         .I4(sa_do[18]),
@@ -11070,7 +11016,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][19]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [19]),
         .I4(sa_do[19]),
         .O(\read_data_bits[0][19]_i_2_n_0 ));
@@ -11078,7 +11024,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][19]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [19]),
         .I4(sa_do[19]),
@@ -11098,7 +11044,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][1]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [1]),
         .I4(sa_do[1]),
         .O(\read_data_bits[0][1]_i_2_n_0 ));
@@ -11106,7 +11052,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[0][1]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(sa_do[1]),
         .I4(\mask_reg[47]_0 [1]),
@@ -11126,7 +11072,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][20]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [20]),
         .I4(sa_do[20]),
         .O(\read_data_bits[0][20]_i_2_n_0 ));
@@ -11134,7 +11080,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][20]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [20]),
         .I4(sa_do[20]),
@@ -11154,7 +11100,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][21]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [21]),
         .I4(sa_do[21]),
         .O(\read_data_bits[0][21]_i_2_n_0 ));
@@ -11162,7 +11108,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][21]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [21]),
         .I4(sa_do[21]),
@@ -11182,7 +11128,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][22]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [22]),
         .I4(sa_do[22]),
         .O(\read_data_bits[0][22]_i_2_n_0 ));
@@ -11190,7 +11136,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][22]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [22]),
         .I4(sa_do[22]),
@@ -11210,7 +11156,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][23]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [23]),
         .I4(sa_do[23]),
         .O(\read_data_bits[0][23]_i_2_n_0 ));
@@ -11218,7 +11164,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][23]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [23]),
         .I4(sa_do[23]),
@@ -11238,7 +11184,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][24]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [24]),
         .I4(sa_do[24]),
         .O(\read_data_bits[0][24]_i_2_n_0 ));
@@ -11246,7 +11192,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][24]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [24]),
         .I4(sa_do[24]),
@@ -11266,7 +11212,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][25]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [25]),
         .I4(sa_do[25]),
         .O(\read_data_bits[0][25]_i_2_n_0 ));
@@ -11274,7 +11220,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][25]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [25]),
         .I4(sa_do[25]),
@@ -11294,7 +11240,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][26]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [26]),
         .I4(sa_do[26]),
         .O(\read_data_bits[0][26]_i_2_n_0 ));
@@ -11302,7 +11248,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][26]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [26]),
         .I4(sa_do[26]),
@@ -11322,7 +11268,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][27]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [27]),
         .I4(sa_do[27]),
         .O(\read_data_bits[0][27]_i_2_n_0 ));
@@ -11330,7 +11276,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][27]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [27]),
         .I4(sa_do[27]),
@@ -11350,7 +11296,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][28]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [28]),
         .I4(sa_do[28]),
         .O(\read_data_bits[0][28]_i_2_n_0 ));
@@ -11358,7 +11304,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][28]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [28]),
         .I4(sa_do[28]),
@@ -11378,7 +11324,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][29]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [29]),
         .I4(sa_do[29]),
         .O(\read_data_bits[0][29]_i_2_n_0 ));
@@ -11386,7 +11332,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][29]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [29]),
         .I4(sa_do[29]),
@@ -11406,7 +11352,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][2]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [2]),
         .I4(sa_do[2]),
         .O(\read_data_bits[0][2]_i_2_n_0 ));
@@ -11414,7 +11360,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][2]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [2]),
         .I4(sa_do[2]),
@@ -11434,7 +11380,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][30]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [30]),
         .I4(sa_do[30]),
         .O(\read_data_bits[0][30]_i_2_n_0 ));
@@ -11442,7 +11388,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][30]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [30]),
         .I4(sa_do[30]),
@@ -11462,7 +11408,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][31]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [31]),
         .I4(sa_do[31]),
         .O(\read_data_bits[0][31]_i_2_n_0 ));
@@ -11470,7 +11416,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][31]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [31]),
         .I4(sa_do[31]),
@@ -11490,7 +11436,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][32]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [32]),
         .I4(sa_do[32]),
         .O(\read_data_bits[0][32]_i_2_n_0 ));
@@ -11498,7 +11444,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][32]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [32]),
         .I4(sa_do[32]),
@@ -11518,7 +11464,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][33]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [33]),
         .I4(sa_do[33]),
         .O(\read_data_bits[0][33]_i_2_n_0 ));
@@ -11526,7 +11472,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[0][33]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(sa_do[33]),
         .I4(\mask_reg[47]_0 [33]),
@@ -11546,7 +11492,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][34]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [34]),
         .I4(sa_do[34]),
         .O(\read_data_bits[0][34]_i_2_n_0 ));
@@ -11554,7 +11500,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][34]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [34]),
         .I4(sa_do[34]),
@@ -11574,7 +11520,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][35]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [35]),
         .I4(sa_do[35]),
         .O(\read_data_bits[0][35]_i_2_n_0 ));
@@ -11582,7 +11528,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][35]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [35]),
         .I4(sa_do[35]),
@@ -11602,7 +11548,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][36]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [36]),
         .I4(sa_do[36]),
         .O(\read_data_bits[0][36]_i_2_n_0 ));
@@ -11610,7 +11556,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][36]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [36]),
         .I4(sa_do[36]),
@@ -11630,7 +11576,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][37]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [37]),
         .I4(sa_do[37]),
         .O(\read_data_bits[0][37]_i_2_n_0 ));
@@ -11638,7 +11584,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][37]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [37]),
         .I4(sa_do[37]),
@@ -11658,7 +11604,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][38]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [38]),
         .I4(sa_do[38]),
         .O(\read_data_bits[0][38]_i_2_n_0 ));
@@ -11666,7 +11612,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][38]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [38]),
         .I4(sa_do[38]),
@@ -11686,7 +11632,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][39]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [39]),
         .I4(sa_do[39]),
         .O(\read_data_bits[0][39]_i_2_n_0 ));
@@ -11694,7 +11640,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][39]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [39]),
         .I4(sa_do[39]),
@@ -11714,7 +11660,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][3]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [3]),
         .I4(sa_do[3]),
         .O(\read_data_bits[0][3]_i_2_n_0 ));
@@ -11722,7 +11668,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][3]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [3]),
         .I4(sa_do[3]),
@@ -11742,7 +11688,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][40]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [40]),
         .I4(sa_do[40]),
         .O(\read_data_bits[0][40]_i_2_n_0 ));
@@ -11750,7 +11696,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][40]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [40]),
         .I4(sa_do[40]),
@@ -11770,7 +11716,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][41]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [41]),
         .I4(sa_do[41]),
         .O(\read_data_bits[0][41]_i_2_n_0 ));
@@ -11778,7 +11724,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][41]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [41]),
         .I4(sa_do[41]),
@@ -11798,7 +11744,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][42]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [42]),
         .I4(sa_do[42]),
         .O(\read_data_bits[0][42]_i_2_n_0 ));
@@ -11806,7 +11752,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][42]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [42]),
         .I4(sa_do[42]),
@@ -11826,7 +11772,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][43]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [43]),
         .I4(sa_do[43]),
         .O(\read_data_bits[0][43]_i_2_n_0 ));
@@ -11834,7 +11780,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][43]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [43]),
         .I4(sa_do[43]),
@@ -11854,7 +11800,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][44]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [44]),
         .I4(sa_do[44]),
         .O(\read_data_bits[0][44]_i_2_n_0 ));
@@ -11862,7 +11808,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][44]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [44]),
         .I4(sa_do[44]),
@@ -11882,7 +11828,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][45]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [45]),
         .I4(sa_do[45]),
         .O(\read_data_bits[0][45]_i_2_n_0 ));
@@ -11890,7 +11836,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][45]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [45]),
         .I4(sa_do[45]),
@@ -11910,7 +11856,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][46]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [46]),
         .I4(sa_do[46]),
         .O(\read_data_bits[0][46]_i_2_n_0 ));
@@ -11918,7 +11864,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][46]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [46]),
         .I4(sa_do[46]),
@@ -11938,7 +11884,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][47]_i_2 
        (.I0(\rangei_reg[0]_rep__5_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [47]),
         .I4(sa_do[47]),
         .O(\read_data_bits[0][47]_i_2_n_0 ));
@@ -11947,7 +11893,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][47]_i_3 
        (.I0(\FSM_sequential_state_reg[4]_rep_0 ),
         .I1(\rangei_reg[0]_rep__4_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .O(\read_data_bits[0][47]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'hE)) 
@@ -11959,7 +11905,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][47]_i_5 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [47]),
         .I4(sa_do[47]),
@@ -11999,7 +11945,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][4]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [4]),
         .I4(sa_do[4]),
         .O(\read_data_bits[0][4]_i_2_n_0 ));
@@ -12007,7 +11953,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][4]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [4]),
         .I4(sa_do[4]),
@@ -12027,7 +11973,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][5]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [5]),
         .I4(sa_do[5]),
         .O(\read_data_bits[0][5]_i_2_n_0 ));
@@ -12035,7 +11981,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][5]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [5]),
         .I4(sa_do[5]),
@@ -12055,7 +12001,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][6]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [6]),
         .I4(sa_do[6]),
         .O(\read_data_bits[0][6]_i_2_n_0 ));
@@ -12063,7 +12009,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][6]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [6]),
         .I4(sa_do[6]),
@@ -12083,7 +12029,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][7]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [7]),
         .I4(sa_do[7]),
         .O(\read_data_bits[0][7]_i_2_n_0 ));
@@ -12091,7 +12037,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][7]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [7]),
         .I4(sa_do[7]),
@@ -12111,7 +12057,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][8]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [8]),
         .I4(sa_do[8]),
         .O(\read_data_bits[0][8]_i_2_n_0 ));
@@ -12119,7 +12065,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][8]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [8]),
         .I4(sa_do[8]),
@@ -12139,7 +12085,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     \read_data_bits[0][9]_i_2 
        (.I0(\rangei_reg[0]_rep__4_0 ),
         .I1(\FSM_sequential_state_reg[4]_rep_0 ),
-        .I2(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I2(\FSM_sequential_state[4]_i_2_n_0 ),
         .I3(\mask_reg[47]_0 [9]),
         .I4(sa_do[9]),
         .O(\read_data_bits[0][9]_i_2_n_0 ));
@@ -12147,7 +12093,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[0][9]_i_3 
        (.I0(\read_data_bits[0][47]_i_6_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[0][47]_i_7_n_0 ),
         .I3(\mask_reg[47]_0 [9]),
         .I4(sa_do[9]),
@@ -12174,7 +12120,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][0]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [0]),
         .I4(sa_do[0]),
@@ -12201,7 +12147,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][10]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [10]),
         .I4(sa_do[10]),
@@ -12228,7 +12174,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][11]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [11]),
         .I4(sa_do[11]),
@@ -12255,7 +12201,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][12]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [12]),
         .I4(sa_do[12]),
@@ -12282,7 +12228,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][13]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [13]),
         .I4(sa_do[13]),
@@ -12309,7 +12255,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][14]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [14]),
         .I4(sa_do[14]),
@@ -12336,7 +12282,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[1][15]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(sa_do[15]),
         .I4(\mask_reg[47]_0 [15]),
@@ -12356,7 +12302,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[1][16]_i_2 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(sa_do[16]),
         .I4(\mask_reg[47]_0 [16]),
@@ -12383,7 +12329,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[1][17]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(sa_do[17]),
         .I4(\mask_reg[47]_0 [17]),
@@ -12410,7 +12356,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][18]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [18]),
         .I4(sa_do[18]),
@@ -12437,7 +12383,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][19]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [19]),
         .I4(sa_do[19]),
@@ -12464,7 +12410,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[1][1]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(sa_do[1]),
         .I4(\mask_reg[47]_0 [1]),
@@ -12491,7 +12437,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][20]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [20]),
         .I4(sa_do[20]),
@@ -12518,7 +12464,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][21]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [21]),
         .I4(sa_do[21]),
@@ -12545,7 +12491,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][22]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [22]),
         .I4(sa_do[22]),
@@ -12572,7 +12518,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][23]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [23]),
         .I4(sa_do[23]),
@@ -12599,7 +12545,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][24]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [24]),
         .I4(sa_do[24]),
@@ -12626,7 +12572,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][25]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [25]),
         .I4(sa_do[25]),
@@ -12653,7 +12599,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][26]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [26]),
         .I4(sa_do[26]),
@@ -12680,7 +12626,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][27]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [27]),
         .I4(sa_do[27]),
@@ -12707,7 +12653,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][28]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [28]),
         .I4(sa_do[28]),
@@ -12734,7 +12680,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][29]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [29]),
         .I4(sa_do[29]),
@@ -12761,7 +12707,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][2]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [2]),
         .I4(sa_do[2]),
@@ -12788,7 +12734,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][30]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [30]),
         .I4(sa_do[30]),
@@ -12815,7 +12761,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][31]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [31]),
         .I4(sa_do[31]),
@@ -12842,7 +12788,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][32]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [32]),
         .I4(sa_do[32]),
@@ -12869,7 +12815,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8FAF0F0)) 
     \read_data_bits[1][33]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(sa_do[33]),
         .I4(\mask_reg[47]_0 [33]),
@@ -12896,7 +12842,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][34]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [34]),
         .I4(sa_do[34]),
@@ -12923,7 +12869,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][35]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [35]),
         .I4(sa_do[35]),
@@ -12950,7 +12896,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][36]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [36]),
         .I4(sa_do[36]),
@@ -12977,7 +12923,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][37]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [37]),
         .I4(sa_do[37]),
@@ -13004,7 +12950,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][38]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [38]),
         .I4(sa_do[38]),
@@ -13031,7 +12977,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][39]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [39]),
         .I4(sa_do[39]),
@@ -13058,7 +13004,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][3]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [3]),
         .I4(sa_do[3]),
@@ -13085,7 +13031,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][40]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [40]),
         .I4(sa_do[40]),
@@ -13112,7 +13058,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][41]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [41]),
         .I4(sa_do[41]),
@@ -13139,7 +13085,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][42]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [42]),
         .I4(sa_do[42]),
@@ -13166,7 +13112,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][43]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [43]),
         .I4(sa_do[43]),
@@ -13193,7 +13139,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][44]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [44]),
         .I4(sa_do[44]),
@@ -13220,7 +13166,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][45]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [45]),
         .I4(sa_do[45]),
@@ -13247,7 +13193,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][46]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [46]),
         .I4(sa_do[46]),
@@ -13265,7 +13211,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT5 #(
     .INIT(32'h00010000)) 
     \read_data_bits[1][47]_i_2 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(state),
@@ -13289,7 +13235,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'h0000000200020000)) 
     \read_data_bits[1][47]_i_5 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(state),
@@ -13301,7 +13247,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][47]_i_6 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [47]),
         .I4(sa_do[47]),
@@ -13347,7 +13293,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][4]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [4]),
         .I4(sa_do[4]),
@@ -13374,7 +13320,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][5]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [5]),
         .I4(sa_do[5]),
@@ -13401,7 +13347,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][6]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [6]),
         .I4(sa_do[6]),
@@ -13428,7 +13374,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][7]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [7]),
         .I4(sa_do[7]),
@@ -13455,7 +13401,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][8]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [8]),
         .I4(sa_do[8]),
@@ -13482,7 +13428,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(32'hF8F0FAF0)) 
     \read_data_bits[1][9]_i_3 
        (.I0(\read_data_bits[1][47]_i_7_n_0 ),
-        .I1(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I1(\FSM_sequential_state[4]_i_2_n_0 ),
         .I2(\read_data_bits[1][47]_i_8_n_0 ),
         .I3(\mask_reg[47]_0 [9]),
         .I4(sa_do[9]),
@@ -13910,7 +13856,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT5 #(
     .INIT(32'h00010000)) 
     \read_data_bits[2][47]_i_2 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(state),
@@ -13939,7 +13885,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
        (.I0(state),
         .I1(Q[2]),
         .I2(Q[1]),
-        .I3(\FSM_sequential_state[4]_i_3_n_0 ),
+        .I3(\FSM_sequential_state[4]_i_2_n_0 ),
         .O(\read_data_bits[2][47]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hFEAEFFFFFEAE0000)) 
@@ -14424,7 +14370,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT5 #(
     .INIT(32'h00010000)) 
     \read_data_bits[3][47]_i_2 
-       (.I0(\FSM_sequential_state[4]_i_3_n_0 ),
+       (.I0(\FSM_sequential_state[4]_i_2_n_0 ),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(state),
@@ -15663,7 +15609,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[0]_i_1 
        (.I0(in95[0]),
-        .I1(\rram_addr_reg[15]_i_7_0 [0]),
+        .I1(\rram_addr_reg[15]_i_8_0 [0]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15673,7 +15619,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[10]_i_1 
        (.I0(in95[10]),
-        .I1(\rram_addr_reg[15]_i_7_0 [10]),
+        .I1(\rram_addr_reg[15]_i_8_0 [10]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15683,7 +15629,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[11]_i_1 
        (.I0(in95[11]),
-        .I1(\rram_addr_reg[15]_i_7_0 [11]),
+        .I1(\rram_addr_reg[15]_i_8_0 [11]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15692,32 +15638,32 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[11]_i_3 
-       (.I0(\rangei_reg[3]_0 [24]),
-        .I1(\rram_addr_reg[15]_i_7_0 [39]),
+       (.I0(rram_addr[11]),
+        .I1(\rram_addr_reg[15]_i_8_0 [39]),
         .O(\rram_addr[11]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[11]_i_4 
-       (.I0(\rangei_reg[3]_0 [23]),
-        .I1(\rram_addr_reg[15]_i_7_0 [38]),
+       (.I0(rram_addr[10]),
+        .I1(\rram_addr_reg[15]_i_8_0 [38]),
         .O(\rram_addr[11]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[11]_i_5 
-       (.I0(\rangei_reg[3]_0 [22]),
-        .I1(\rram_addr_reg[15]_i_7_0 [37]),
+       (.I0(rram_addr[9]),
+        .I1(\rram_addr_reg[15]_i_8_0 [37]),
         .O(\rram_addr[11]_i_5_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[11]_i_6 
-       (.I0(\rangei_reg[3]_0 [21]),
-        .I1(\rram_addr_reg[15]_i_7_0 [36]),
+       (.I0(rram_addr[8]),
+        .I1(\rram_addr_reg[15]_i_8_0 [36]),
         .O(\rram_addr[11]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[12]_i_1 
        (.I0(in95[12]),
-        .I1(\rram_addr_reg[15]_i_7_0 [12]),
+        .I1(\rram_addr_reg[15]_i_8_0 [12]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15727,7 +15673,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[13]_i_1 
        (.I0(in95[13]),
-        .I1(\rram_addr_reg[15]_i_7_0 [13]),
+        .I1(\rram_addr_reg[15]_i_8_0 [13]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15737,7 +15683,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[14]_i_1 
        (.I0(in95[14]),
-        .I1(\rram_addr_reg[15]_i_7_0 [14]),
+        .I1(\rram_addr_reg[15]_i_8_0 [14]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15746,88 +15692,149 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT6 #(
     .INIT(64'hFFFFFFFFAEAAAEAF)) 
     \rram_addr[15]_i_1 
-       (.I0(\rram_addr[15]_i_3_n_0 ),
-        .I1(\rram_addr[15]_i_4_n_0 ),
+       (.I0(\rram_addr[15]_i_4_n_0 ),
+        .I1(\rram_addr[15]_i_5_n_0 ),
         .I2(Q[0]),
         .I3(Q[1]),
-        .I4(\rram_addr[15]_i_5_n_0 ),
-        .I5(\rram_addr[15]_i_6_n_0 ),
+        .I4(\rram_addr[15]_i_6_n_0 ),
+        .I5(\rram_addr[15]_i_7_n_0 ),
         .O(\rram_addr[15]_i_1_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \rram_addr[15]_i_10 
-       (.I0(\rangei_reg[3]_0 [26]),
-        .I1(\rram_addr_reg[15]_i_7_0 [41]),
-        .O(\rram_addr[15]_i_10_n_0 ));
+    \rram_addr[15]_i_11 
+       (.I0(rram_addr[15]),
+        .I1(\rram_addr_reg[15]_i_8_0 [43]),
+        .O(\rram_addr[15]_i_11_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
-    \rram_addr[15]_i_11 
-       (.I0(\rangei_reg[3]_0 [25]),
-        .I1(\rram_addr_reg[15]_i_7_0 [40]),
-        .O(\rram_addr[15]_i_11_n_0 ));
+    \rram_addr[15]_i_12 
+       (.I0(rram_addr[14]),
+        .I1(\rram_addr_reg[15]_i_8_0 [42]),
+        .O(\rram_addr[15]_i_12_n_0 ));
+  LUT2 #(
+    .INIT(4'h6)) 
+    \rram_addr[15]_i_13 
+       (.I0(rram_addr[13]),
+        .I1(\rram_addr_reg[15]_i_8_0 [41]),
+        .O(\rram_addr[15]_i_13_n_0 ));
+  LUT2 #(
+    .INIT(4'h6)) 
+    \rram_addr[15]_i_14 
+       (.I0(rram_addr[12]),
+        .I1(\rram_addr_reg[15]_i_8_0 [40]),
+        .O(\rram_addr[15]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
+    \rram_addr[15]_i_15 
+       (.I0(\rram_addr[15]_i_23_n_0 ),
+        .I1(\rangei_reg[3]_0 [31]),
+        .I2(\rangei_reg[3]_0 [32]),
+        .I3(\rram_addr[15]_i_24_n_0 ),
+        .I4(\rangei_reg[3]_0 [25]),
+        .I5(\rangei_reg[3]_0 [26]),
+        .O(\rram_addr[15]_i_15_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair119" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rram_addr[15]_i_16 
+       (.I0(\rangei_reg[3]_0 [33]),
+        .I1(\rangei_reg[3]_0 [34]),
+        .O(\rram_addr[15]_i_16_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[15]_i_2 
        (.I0(in95[15]),
-        .I1(\rram_addr_reg[15]_i_7_0 [15]),
+        .I1(\rram_addr_reg[15]_i_8_0 [15]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
         .I5(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .O(\rram_addr[15]_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \rram_addr[15]_i_20 
+       (.I0(\rangei_reg[3]_0 [38]),
+        .I1(\rangei_reg[3]_0 [37]),
+        .O(\counter_reg[13]_2 ));
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rram_addr[15]_i_23 
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\rangei_reg[3]_0 [29]),
+        .O(\rram_addr[15]_i_23_n_0 ));
+  LUT2 #(
+    .INIT(4'hE)) 
+    \rram_addr[15]_i_24 
+       (.I0(\rangei_reg[3]_0 [28]),
+        .I1(\rangei_reg[3]_0 [27]),
+        .O(\rram_addr[15]_i_24_n_0 ));
+  LUT4 #(
+    .INIT(16'h5071)) 
+    \rram_addr[15]_i_25 
+       (.I0(\rangei_reg[3]_0 [32]),
+        .I1(\rram_addr_reg[15]_i_17_1 ),
+        .I2(\rram_addr_reg[15]_i_17_2 ),
+        .I3(\rangei_reg[3]_0 [31]),
+        .O(\counter_reg[7]_0 [1]));
+  LUT4 #(
+    .INIT(16'h1171)) 
+    \rram_addr[15]_i_26 
+       (.I0(\rangei_reg[3]_0 [30]),
+        .I1(\rram_addr_reg[15]_i_17 ),
+        .I2(\rram_addr_reg[15]_i_17_0 ),
+        .I3(\rangei_reg[3]_0 [29]),
+        .O(\counter_reg[7]_0 [0]));
   LUT6 #(
     .INIT(64'h0000000000008000)) 
-    \rram_addr[15]_i_3 
+    \rram_addr[15]_i_4 
        (.I0(\mask_reg[37]_0 ),
         .I1(\FSM_sequential_state[3]_i_4_n_0 ),
         .I2(next_rram_addr0),
         .I3(next_rram_addr1431_out),
-        .I4(\mask[47]_i_9_n_0 ),
+        .I4(\rram_addr[15]_i_9_n_0 ),
         .I5(\FSM_sequential_state[1]_i_4_n_0 ),
-        .O(\rram_addr[15]_i_3_n_0 ));
+        .O(\rram_addr[15]_i_4_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT3 #(
     .INIT(8'h02)) 
-    \rram_addr[15]_i_4 
-       (.I0(Q[2]),
-        .I1(state),
-        .I2(\FSM_sequential_state_reg[4]_rep__0_0 ),
-        .O(\rram_addr[15]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair114" *) 
-  LUT3 #(
-    .INIT(8'hFE)) 
     \rram_addr[15]_i_5 
        (.I0(Q[2]),
         .I1(state),
         .I2(\FSM_sequential_state_reg[4]_rep__0_0 ),
         .O(\rram_addr[15]_i_5_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair114" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
+    \rram_addr[15]_i_6 
+       (.I0(Q[2]),
+        .I1(state),
+        .I2(\FSM_sequential_state_reg[4]_rep__0_0 ),
+        .O(\rram_addr[15]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h00FF000100000000)) 
-    \rram_addr[15]_i_6 
+    \rram_addr[15]_i_7 
        (.I0(\FSM_sequential_state_reg[3]_4 ),
-        .I1(\rangei_reg[3]_0 [63]),
+        .I1(\rangei_reg[3]_0 [47]),
         .I2(CO),
         .I3(Q[0]),
         .I4(Q[1]),
         .I5(\rangei[0]_i_4_n_0 ),
-        .O(\rram_addr[15]_i_6_n_0 ));
-  LUT2 #(
-    .INIT(4'h6)) 
-    \rram_addr[15]_i_8 
-       (.I0(\rangei_reg[3]_0 [28]),
-        .I1(\rram_addr_reg[15]_i_7_0 [43]),
-        .O(\rram_addr[15]_i_8_n_0 ));
-  LUT2 #(
-    .INIT(4'h6)) 
+        .O(\rram_addr[15]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \rram_addr[15]_i_9 
-       (.I0(\rangei_reg[3]_0 [27]),
-        .I1(\rram_addr_reg[15]_i_7_0 [42]),
+       (.I0(\rram_addr[15]_i_15_n_0 ),
+        .I1(\rangei_reg[3]_0 [37]),
+        .I2(\rangei_reg[3]_0 [38]),
+        .I3(\rangei_reg[3]_0 [35]),
+        .I4(\rangei_reg[3]_0 [36]),
+        .I5(\rram_addr[15]_i_16_n_0 ),
         .O(\rram_addr[15]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[1]_i_1 
        (.I0(in95[1]),
-        .I1(\rram_addr_reg[15]_i_7_0 [1]),
+        .I1(\rram_addr_reg[15]_i_8_0 [1]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15837,7 +15844,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[2]_i_1 
        (.I0(in95[2]),
-        .I1(\rram_addr_reg[15]_i_7_0 [2]),
+        .I1(\rram_addr_reg[15]_i_8_0 [2]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15847,7 +15854,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[3]_i_1 
        (.I0(in95[3]),
-        .I1(\rram_addr_reg[15]_i_7_0 [3]),
+        .I1(\rram_addr_reg[15]_i_8_0 [3]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15856,32 +15863,32 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[3]_i_3 
-       (.I0(\rangei_reg[3]_0 [16]),
-        .I1(\rram_addr_reg[15]_i_7_0 [31]),
+       (.I0(rram_addr[3]),
+        .I1(\rram_addr_reg[15]_i_8_0 [31]),
         .O(\rram_addr[3]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[3]_i_4 
-       (.I0(\rangei_reg[3]_0 [15]),
-        .I1(\rram_addr_reg[15]_i_7_0 [30]),
+       (.I0(rram_addr[2]),
+        .I1(\rram_addr_reg[15]_i_8_0 [30]),
         .O(\rram_addr[3]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[3]_i_5 
-       (.I0(\rangei_reg[3]_0 [14]),
-        .I1(\rram_addr_reg[15]_i_7_0 [29]),
+       (.I0(rram_addr[1]),
+        .I1(\rram_addr_reg[15]_i_8_0 [29]),
         .O(\rram_addr[3]_i_5_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[3]_i_6 
-       (.I0(\rangei_reg[3]_0 [13]),
-        .I1(\rram_addr_reg[15]_i_7_0 [28]),
+       (.I0(rram_addr[0]),
+        .I1(\rram_addr_reg[15]_i_8_0 [28]),
         .O(\rram_addr[3]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[4]_i_1 
        (.I0(in95[4]),
-        .I1(\rram_addr_reg[15]_i_7_0 [4]),
+        .I1(\rram_addr_reg[15]_i_8_0 [4]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15891,7 +15898,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[5]_i_1 
        (.I0(in95[5]),
-        .I1(\rram_addr_reg[15]_i_7_0 [5]),
+        .I1(\rram_addr_reg[15]_i_8_0 [5]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15901,7 +15908,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[6]_i_1 
        (.I0(in95[6]),
-        .I1(\rram_addr_reg[15]_i_7_0 [6]),
+        .I1(\rram_addr_reg[15]_i_8_0 [6]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15911,7 +15918,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[7]_i_1 
        (.I0(in95[7]),
-        .I1(\rram_addr_reg[15]_i_7_0 [7]),
+        .I1(\rram_addr_reg[15]_i_8_0 [7]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15920,32 +15927,32 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[7]_i_3 
-       (.I0(\rangei_reg[3]_0 [20]),
-        .I1(\rram_addr_reg[15]_i_7_0 [35]),
+       (.I0(rram_addr[7]),
+        .I1(\rram_addr_reg[15]_i_8_0 [35]),
         .O(\rram_addr[7]_i_3_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[7]_i_4 
-       (.I0(\rangei_reg[3]_0 [19]),
-        .I1(\rram_addr_reg[15]_i_7_0 [34]),
+       (.I0(rram_addr[6]),
+        .I1(\rram_addr_reg[15]_i_8_0 [34]),
         .O(\rram_addr[7]_i_4_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[7]_i_5 
-       (.I0(\rangei_reg[3]_0 [18]),
-        .I1(\rram_addr_reg[15]_i_7_0 [33]),
+       (.I0(rram_addr[5]),
+        .I1(\rram_addr_reg[15]_i_8_0 [33]),
         .O(\rram_addr[7]_i_5_n_0 ));
   LUT2 #(
     .INIT(4'h6)) 
     \rram_addr[7]_i_6 
-       (.I0(\rangei_reg[3]_0 [17]),
-        .I1(\rram_addr_reg[15]_i_7_0 [32]),
+       (.I0(rram_addr[4]),
+        .I1(\rram_addr_reg[15]_i_8_0 [32]),
         .O(\rram_addr[7]_i_6_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[8]_i_1 
        (.I0(in95[8]),
-        .I1(\rram_addr_reg[15]_i_7_0 [8]),
+        .I1(\rram_addr_reg[15]_i_8_0 [8]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15955,7 +15962,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h00000000ACAACCCC)) 
     \rram_addr[9]_i_1 
        (.I0(in95[9]),
-        .I1(\rram_addr_reg[15]_i_7_0 [9]),
+        .I1(\rram_addr_reg[15]_i_8_0 [9]),
         .I2(Q[2]),
         .I3(Q[1]),
         .I4(state),
@@ -15966,25 +15973,25 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[0]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [13]));
+        .Q(rram_addr[0]));
   FDCE \rram_addr_reg[10] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[10]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [23]));
+        .Q(rram_addr[10]));
   FDCE \rram_addr_reg[11] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[11]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [24]));
+        .Q(rram_addr[11]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \rram_addr_reg[11]_i_2 
        (.CI(\rram_addr_reg[7]_i_2_n_0 ),
         .CO({\rram_addr_reg[11]_i_2_n_0 ,\rram_addr_reg[11]_i_2_n_1 ,\rram_addr_reg[11]_i_2_n_2 ,\rram_addr_reg[11]_i_2_n_3 }),
         .CYINIT(1'b0),
-        .DI(\rangei_reg[3]_0 [24:21]),
+        .DI(rram_addr[11:8]),
         .O(in95[11:8]),
         .S({\rram_addr[11]_i_3_n_0 ,\rram_addr[11]_i_4_n_0 ,\rram_addr[11]_i_5_n_0 ,\rram_addr[11]_i_6_n_0 }));
   FDCE \rram_addr_reg[12] 
@@ -15992,57 +15999,57 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[12]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [25]));
+        .Q(rram_addr[12]));
   FDCE \rram_addr_reg[13] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[13]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [26]));
+        .Q(rram_addr[13]));
   FDCE \rram_addr_reg[14] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[14]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [27]));
+        .Q(rram_addr[14]));
   FDCE \rram_addr_reg[15] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[15]_i_2_n_0 ),
-        .Q(\rangei_reg[3]_0 [28]));
+        .Q(rram_addr[15]));
   (* ADDER_THRESHOLD = "35" *) 
-  CARRY4 \rram_addr_reg[15]_i_7 
+  CARRY4 \rram_addr_reg[15]_i_8 
        (.CI(\rram_addr_reg[11]_i_2_n_0 ),
-        .CO({\NLW_rram_addr_reg[15]_i_7_CO_UNCONNECTED [3],\rram_addr_reg[15]_i_7_n_1 ,\rram_addr_reg[15]_i_7_n_2 ,\rram_addr_reg[15]_i_7_n_3 }),
+        .CO({\NLW_rram_addr_reg[15]_i_8_CO_UNCONNECTED [3],\rram_addr_reg[15]_i_8_n_1 ,\rram_addr_reg[15]_i_8_n_2 ,\rram_addr_reg[15]_i_8_n_3 }),
         .CYINIT(1'b0),
-        .DI({1'b0,\rangei_reg[3]_0 [27:25]}),
+        .DI({1'b0,rram_addr[14:12]}),
         .O(in95[15:12]),
-        .S({\rram_addr[15]_i_8_n_0 ,\rram_addr[15]_i_9_n_0 ,\rram_addr[15]_i_10_n_0 ,\rram_addr[15]_i_11_n_0 }));
+        .S({\rram_addr[15]_i_11_n_0 ,\rram_addr[15]_i_12_n_0 ,\rram_addr[15]_i_13_n_0 ,\rram_addr[15]_i_14_n_0 }));
   FDCE \rram_addr_reg[1] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[1]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [14]));
+        .Q(rram_addr[1]));
   FDCE \rram_addr_reg[2] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[2]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [15]));
+        .Q(rram_addr[2]));
   FDCE \rram_addr_reg[3] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[3]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [16]));
+        .Q(rram_addr[3]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \rram_addr_reg[3]_i_2 
        (.CI(1'b0),
         .CO({\rram_addr_reg[3]_i_2_n_0 ,\rram_addr_reg[3]_i_2_n_1 ,\rram_addr_reg[3]_i_2_n_2 ,\rram_addr_reg[3]_i_2_n_3 }),
         .CYINIT(1'b0),
-        .DI(\rangei_reg[3]_0 [16:13]),
+        .DI(rram_addr[3:0]),
         .O(in95[3:0]),
         .S({\rram_addr[3]_i_3_n_0 ,\rram_addr[3]_i_4_n_0 ,\rram_addr[3]_i_5_n_0 ,\rram_addr[3]_i_6_n_0 }));
   FDCE \rram_addr_reg[4] 
@@ -16050,31 +16057,31 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[4]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [17]));
+        .Q(rram_addr[4]));
   FDCE \rram_addr_reg[5] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[5]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [18]));
+        .Q(rram_addr[5]));
   FDCE \rram_addr_reg[6] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[6]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [19]));
+        .Q(rram_addr[6]));
   FDCE \rram_addr_reg[7] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[7]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [20]));
+        .Q(rram_addr[7]));
   (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \rram_addr_reg[7]_i_2 
        (.CI(\rram_addr_reg[3]_i_2_n_0 ),
         .CO({\rram_addr_reg[7]_i_2_n_0 ,\rram_addr_reg[7]_i_2_n_1 ,\rram_addr_reg[7]_i_2_n_2 ,\rram_addr_reg[7]_i_2_n_3 }),
         .CYINIT(1'b0),
-        .DI(\rangei_reg[3]_0 [20:17]),
+        .DI(rram_addr[7:4]),
         .O(in95[7:4]),
         .S({\rram_addr[7]_i_3_n_0 ,\rram_addr[7]_i_4_n_0 ,\rram_addr[7]_i_5_n_0 ,\rram_addr[7]_i_6_n_0 }));
   FDCE \rram_addr_reg[8] 
@@ -16082,13 +16089,13 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[8]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [21]));
+        .Q(rram_addr[8]));
   FDCE \rram_addr_reg[9] 
        (.C(mclk),
         .CE(\rram_addr[15]_i_1_n_0 ),
         .CLR(\FSM_sequential_state_reg[4]_0 ),
         .D(\rram_addr[9]_i_1_n_0 ),
-        .Q(\rangei_reg[3]_0 [22]));
+        .Q(rram_addr[9]));
   (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
@@ -16103,7 +16110,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'h080CFFFF0D0C0000)) 
     set_rst_loop_i_1
        (.I0(next_rram_addr1431_out),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .I2(\FSM_sequential_state_reg[4]_rep_0 ),
         .I3(Q[2]),
         .I4(set_rst_loop_i_3_n_0),
@@ -16113,11 +16120,11 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(64'hFFFFFFFE00000000)) 
     set_rst_loop_i_2
        (.I0(set_rst_loop_i_4_n_0),
-        .I1(\rangei_reg[3]_0 [60]),
-        .I2(\rangei_reg[3]_0 [59]),
-        .I3(\rangei_reg[3]_0 [61]),
-        .I4(\rangei_reg[3]_0 [62]),
-        .I5(\rangei_reg[3]_0 [63]),
+        .I1(\rangei_reg[3]_0 [44]),
+        .I2(\rangei_reg[3]_0 [43]),
+        .I3(\rangei_reg[3]_0 [45]),
+        .I4(\rangei_reg[3]_0 [46]),
+        .I5(\rangei_reg[3]_0 [47]),
         .O(next_rram_addr1431_out));
   LUT6 #(
     .INIT(64'h888888888888F888)) 
@@ -16133,10 +16140,10 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
   LUT4 #(
     .INIT(16'hFFFE)) 
     set_rst_loop_i_4
-       (.I0(\rangei_reg[3]_0 [58]),
-        .I1(\rangei_reg[3]_0 [57]),
-        .I2(\rangei_reg[3]_0 [56]),
-        .I3(\rangei_reg[3]_0 [55]),
+       (.I0(\rangei_reg[3]_0 [42]),
+        .I1(\rangei_reg[3]_0 [41]),
+        .I2(\rangei_reg[3]_0 [40]),
+        .I3(\rangei_reg[3]_0 [39]),
         .O(set_rst_loop_i_4_n_0));
   LUT2 #(
     .INIT(4'h2)) 
@@ -16163,16 +16170,16 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
     .INIT(16'h9009)) 
     \success_counter[0]_i_10 
        (.I0(\rangei_reg[1]_rep__0_0 ),
-        .I1(\FSM_sequential_state_reg[4]_i_18_0 [9]),
+        .I1(\FSM_sequential_state_reg[4]_i_17_0 [9]),
         .I2(\rangei_reg[0]_rep__5_0 ),
-        .I3(\FSM_sequential_state_reg[4]_i_18_0 [8]),
+        .I3(\FSM_sequential_state_reg[4]_i_17_0 [8]),
         .O(\success_counter[0]_i_10_n_0 ));
   LUT5 #(
     .INIT(32'h90090000)) 
     \success_counter[0]_i_3 
-       (.I0(\FSM_sequential_state_reg[4]_i_18_0 [10]),
+       (.I0(\FSM_sequential_state_reg[4]_i_17_0 [10]),
         .I1(\rangei_reg[2]_rep__0_0 ),
-        .I2(\FSM_sequential_state_reg[4]_i_18_0 [11]),
+        .I2(\FSM_sequential_state_reg[4]_i_17_0 [11]),
         .I3(\rangei_reg[3]_rep__0_0 ),
         .I4(\success_counter[0]_i_10_n_0 ),
         .O(next_rram_addr0));
@@ -16619,7 +16626,7 @@ module ember_fpga_rram_top_wrapper_0_0_fsm
         .I1(Q[2]),
         .I2(next_rram_addr1431_out),
         .I3(set_rst_loop),
-        .I4(\FSM_sequential_state_reg[4]_i_18_0 [43]),
+        .I4(\FSM_sequential_state_reg[4]_i_17_0 [43]),
         .O(\FSM_sequential_state_reg[2]_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT2 #(
@@ -17140,6 +17147,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
     \prdata_sr[31]_i_2 ,
     \prdata_sr_reg[77] ,
     \prdata_sr_reg[78] ,
+    rram_addr,
     mclk,
     \prdata_sr_reg[104] ,
     \prdata_sr_reg[104]_0 ,
@@ -17196,7 +17204,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
     \prdata_sr[47]_i_4_0 ,
     \prdata_sr[47]_i_4_1 ,
     \mask_reg[47] ,
-    \mask[47]_i_13 ,
+    \mask[47]_i_11 ,
     \prdata_sr_reg[159]_i_7 ,
     \prdata_sr_reg[159]_i_7_0 ,
     \prdata_sr_reg[159]_i_7_1 ,
@@ -17269,13 +17277,13 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
     next_mask117_out,
     \FSM_sequential_state[0]_i_19_0 ,
     \read_data_bits[2]_22 ,
-    \mask[47]_i_11 ,
+    \mask[47]_i_10 ,
     \read_data_bits[3]_23 ,
-    \mask[47]_i_13_0 ,
+    \mask[47]_i_11_0 ,
     \mask[31]_i_5 ,
     \FSM_sequential_state_reg[1]_i_16 ,
     S,
-    \prdata_sr_reg[153]_i_4 ,
+    \rram_addr_reg[15]_i_10 ,
     \FSM_sequential_state[0]_i_27 ,
     fsm_go_reg_0,
     sclk,
@@ -17349,7 +17357,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   output miso;
   output [159:0]\pwdata_reg[159] ;
   input rst_n;
-  input [71:0]\prdata_sr_reg[158] ;
+  input [55:0]\prdata_sr_reg[158] ;
   input [147:0]\prdata_sr_reg[147] ;
   input [47:0]\prdata_sr_reg[47] ;
   input \prdata_sr[0]_i_2 ;
@@ -17375,6 +17383,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   input \prdata_sr[31]_i_2 ;
   input \prdata_sr_reg[77] ;
   input \prdata_sr_reg[78] ;
+  input [15:0]rram_addr;
   input mclk;
   input \prdata_sr_reg[104] ;
   input \prdata_sr_reg[104]_0 ;
@@ -17431,7 +17440,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   input [47:0]\prdata_sr[47]_i_4_0 ;
   input [47:0]\prdata_sr[47]_i_4_1 ;
   input [47:0]\mask_reg[47] ;
-  input [47:0]\mask[47]_i_13 ;
+  input [47:0]\mask[47]_i_11 ;
   input [159:0]\prdata_sr_reg[159]_i_7 ;
   input [159:0]\prdata_sr_reg[159]_i_7_0 ;
   input [159:0]\prdata_sr_reg[159]_i_7_1 ;
@@ -17504,13 +17513,13 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   input next_mask117_out;
   input \FSM_sequential_state[0]_i_19_0 ;
   input [4:0]\read_data_bits[2]_22 ;
-  input \mask[47]_i_11 ;
+  input \mask[47]_i_10 ;
   input [4:0]\read_data_bits[3]_23 ;
-  input \mask[47]_i_13_0 ;
+  input \mask[47]_i_11_0 ;
   input \mask[31]_i_5 ;
   input [1:0]\FSM_sequential_state_reg[1]_i_16 ;
   input [0:0]S;
-  input [1:0]\prdata_sr_reg[153]_i_4 ;
+  input [1:0]\rram_addr_reg[15]_i_10 ;
   input [0:0]\FSM_sequential_state[0]_i_27 ;
   input fsm_go_reg_0;
   input sclk;
@@ -17544,9 +17553,9 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   wire \mask[46]_i_3 ;
   wire \mask[46]_i_3_0 ;
   wire \mask[46]_i_3_1 ;
-  wire \mask[47]_i_11 ;
-  wire [47:0]\mask[47]_i_13 ;
-  wire \mask[47]_i_13_0 ;
+  wire \mask[47]_i_10 ;
+  wire [47:0]\mask[47]_i_11 ;
+  wire \mask[47]_i_11_0 ;
   wire \mask[47]_i_7 ;
   wire \mask_reg[46] ;
   wire \mask_reg[46]_0 ;
@@ -17716,8 +17725,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   wire [147:0]\prdata_sr_reg[147] ;
   wire \prdata_sr_reg[152] ;
   wire \prdata_sr_reg[152]_0 ;
-  wire [1:0]\prdata_sr_reg[153]_i_4 ;
-  wire [71:0]\prdata_sr_reg[158] ;
+  wire [55:0]\prdata_sr_reg[158] ;
   wire \prdata_sr_reg[159] ;
   wire [159:0]\prdata_sr_reg[159]_i_7 ;
   wire [159:0]\prdata_sr_reg[159]_i_7_0 ;
@@ -17761,6 +17769,8 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
   wire [4:0]\read_data_bits[3]_23 ;
   wire \read_data_bits_reg[0][28] ;
   wire \read_data_bits_reg[0][31] ;
+  wire [15:0]rram_addr;
+  wire [1:0]\rram_addr_reg[15]_i_10 ;
   wire rst_n;
   wire sclk;
   wire [1:0]spi_st;
@@ -17837,9 +17847,9 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
         .\mask[46]_i_3_0 (\mask[46]_i_3 ),
         .\mask[46]_i_3_1 (\mask[46]_i_3_0 ),
         .\mask[46]_i_3_2 (\mask[46]_i_3_1 ),
+        .\mask[47]_i_10_0 (\mask[47]_i_10 ),
         .\mask[47]_i_11_0 (\mask[47]_i_11 ),
-        .\mask[47]_i_13_0 (\mask[47]_i_13 ),
-        .\mask[47]_i_13_1 (\mask[47]_i_13_0 ),
+        .\mask[47]_i_11_1 (\mask[47]_i_11_0 ),
         .\mask[47]_i_7_0 (\mask[47]_i_7 ),
         .\mask_reg[46] (\mask_reg[46] ),
         .\mask_reg[46]_0 (\mask_reg[46]_0 ),
@@ -18010,7 +18020,6 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
         .\prdata_sr_reg[147]_0 (\prdata_sr_reg[147] ),
         .\prdata_sr_reg[152]_0 (\prdata_sr_reg[152] ),
         .\prdata_sr_reg[152]_1 (\prdata_sr_reg[152]_0 ),
-        .\prdata_sr_reg[153]_i_4_0 (\prdata_sr_reg[153]_i_4 ),
         .\prdata_sr_reg[158]_0 (\prdata_sr_reg[158] ),
         .\prdata_sr_reg[159]_0 (\prdata_sr_reg[159] ),
         .\prdata_sr_reg[159]_i_7_0 (\prdata_sr_reg[159]_i_7 ),
@@ -18055,6 +18064,8 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi
         .\read_data_bits[3]_23 (\read_data_bits[3]_23 ),
         .\read_data_bits_reg[0][28] (\read_data_bits_reg[0][28] ),
         .\read_data_bits_reg[0][31] (\read_data_bits_reg[0][31] ),
+        .rram_addr(rram_addr),
+        .\rram_addr_reg[15]_i_10_0 (\rram_addr_reg[15]_i_10 ),
         .sclk(sclk));
 endmodule
 
@@ -18163,6 +18174,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[31]_i_2_0 ,
     \prdata_sr_reg[77]_0 ,
     \prdata_sr_reg[78]_0 ,
+    rram_addr,
     mclk,
     \prdata_sr_reg[104]_0 ,
     \prdata_sr_reg[104]_1 ,
@@ -18219,7 +18231,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[47]_i_4_1 ,
     \prdata_sr[47]_i_4_2 ,
     \mask_reg[47] ,
-    \mask[47]_i_13_0 ,
+    \mask[47]_i_11_0 ,
     \prdata_sr_reg[159]_i_7_0 ,
     \prdata_sr_reg[159]_i_7_1 ,
     \prdata_sr_reg[159]_i_7_2 ,
@@ -18292,13 +18304,13 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     next_mask117_out,
     \FSM_sequential_state[0]_i_19_1 ,
     \read_data_bits[2]_22 ,
-    \mask[47]_i_11_0 ,
+    \mask[47]_i_10_0 ,
     \read_data_bits[3]_23 ,
-    \mask[47]_i_13_1 ,
+    \mask[47]_i_11_1 ,
     \mask[31]_i_5_0 ,
     \FSM_sequential_state_reg[1]_i_16_0 ,
     S,
-    \prdata_sr_reg[153]_i_4_0 ,
+    \rram_addr_reg[15]_i_10_0 ,
     \FSM_sequential_state[0]_i_27 ,
     psel,
     penable,
@@ -18388,7 +18400,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   input misc_cnfg_bits1;
   input [1:0]apb_st_reg;
   input \FSM_onehot_apb_st_reg[0]_0 ;
-  input [71:0]\prdata_sr_reg[158]_0 ;
+  input [55:0]\prdata_sr_reg[158]_0 ;
   input [147:0]\prdata_sr_reg[147]_0 ;
   input [47:0]\prdata_sr_reg[47]_0 ;
   input \prdata_sr[0]_i_2_0 ;
@@ -18414,6 +18426,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   input \prdata_sr[31]_i_2_0 ;
   input \prdata_sr_reg[77]_0 ;
   input \prdata_sr_reg[78]_0 ;
+  input [15:0]rram_addr;
   input mclk;
   input \prdata_sr_reg[104]_0 ;
   input \prdata_sr_reg[104]_1 ;
@@ -18470,7 +18483,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   input [47:0]\prdata_sr[47]_i_4_1 ;
   input [47:0]\prdata_sr[47]_i_4_2 ;
   input [47:0]\mask_reg[47] ;
-  input [47:0]\mask[47]_i_13_0 ;
+  input [47:0]\mask[47]_i_11_0 ;
   input [159:0]\prdata_sr_reg[159]_i_7_0 ;
   input [159:0]\prdata_sr_reg[159]_i_7_1 ;
   input [159:0]\prdata_sr_reg[159]_i_7_2 ;
@@ -18543,13 +18556,13 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   input next_mask117_out;
   input \FSM_sequential_state[0]_i_19_1 ;
   input [4:0]\read_data_bits[2]_22 ;
-  input \mask[47]_i_11_0 ;
+  input \mask[47]_i_10_0 ;
   input [4:0]\read_data_bits[3]_23 ;
-  input \mask[47]_i_13_1 ;
+  input \mask[47]_i_11_1 ;
   input \mask[31]_i_5_0 ;
   input [1:0]\FSM_sequential_state_reg[1]_i_16_0 ;
   input [0:0]S;
-  input [1:0]\prdata_sr_reg[153]_i_4_0 ;
+  input [1:0]\rram_addr_reg[15]_i_10_0 ;
   input [0:0]\FSM_sequential_state[0]_i_27 ;
   input psel;
   input penable;
@@ -18596,15 +18609,15 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire \FSM_sequential_state[1]_i_101_n_0 ;
   wire \FSM_sequential_state[1]_i_102_n_0 ;
   wire \FSM_sequential_state[1]_i_103_n_0 ;
-  wire \FSM_sequential_state[1]_i_104_n_0 ;
-  wire \FSM_sequential_state[1]_i_105_n_0 ;
   wire \FSM_sequential_state[1]_i_106_n_0 ;
-  wire \FSM_sequential_state[1]_i_109_n_0 ;
-  wire \FSM_sequential_state[1]_i_110_n_0 ;
+  wire \FSM_sequential_state[1]_i_107_n_0 ;
+  wire \FSM_sequential_state[1]_i_32_n_0 ;
   wire \FSM_sequential_state[1]_i_33_n_0 ;
-  wire \FSM_sequential_state[1]_i_34_n_0 ;
+  wire \FSM_sequential_state[1]_i_35_n_0 ;
   wire \FSM_sequential_state[1]_i_36_n_0 ;
-  wire \FSM_sequential_state[1]_i_37_n_0 ;
+  wire \FSM_sequential_state[1]_i_59_n_0 ;
+  wire \FSM_sequential_state[1]_i_60_n_0 ;
+  wire \FSM_sequential_state[1]_i_61_n_0 ;
   wire \FSM_sequential_state[1]_i_62_n_0 ;
   wire \FSM_sequential_state[1]_i_63_n_0 ;
   wire \FSM_sequential_state[1]_i_64_n_0 ;
@@ -18613,9 +18626,9 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire \FSM_sequential_state[1]_i_67_n_0 ;
   wire \FSM_sequential_state[1]_i_68_n_0 ;
   wire \FSM_sequential_state[1]_i_69_n_0 ;
-  wire \FSM_sequential_state[1]_i_70_n_0 ;
-  wire \FSM_sequential_state[1]_i_71_n_0 ;
-  wire \FSM_sequential_state[1]_i_72_n_0 ;
+  wire \FSM_sequential_state[1]_i_92_n_0 ;
+  wire \FSM_sequential_state[1]_i_93_n_0 ;
+  wire \FSM_sequential_state[1]_i_94_n_0 ;
   wire \FSM_sequential_state[1]_i_95_n_0 ;
   wire \FSM_sequential_state[1]_i_96_n_0 ;
   wire \FSM_sequential_state[1]_i_97_n_0 ;
@@ -18624,10 +18637,10 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire [1:0]\FSM_sequential_state_reg[1]_i_16_0 ;
   wire \FSM_sequential_state_reg[1]_i_16_n_2 ;
   wire \FSM_sequential_state_reg[1]_i_16_n_3 ;
-  wire \FSM_sequential_state_reg[1]_i_32_n_0 ;
-  wire \FSM_sequential_state_reg[1]_i_32_n_1 ;
-  wire \FSM_sequential_state_reg[1]_i_32_n_2 ;
-  wire \FSM_sequential_state_reg[1]_i_32_n_3 ;
+  wire \FSM_sequential_state_reg[1]_i_31_n_0 ;
+  wire \FSM_sequential_state_reg[1]_i_31_n_1 ;
+  wire \FSM_sequential_state_reg[1]_i_31_n_2 ;
+  wire \FSM_sequential_state_reg[1]_i_31_n_3 ;
   wire [1:0]Q;
   wire [0:0]S;
   wire [5:0]adc_clamp_ref_lvl;
@@ -18684,13 +18697,13 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire \mask[46]_i_6_n_0 ;
   wire \mask[46]_i_8_n_0 ;
   wire \mask[46]_i_9_n_0 ;
-  wire \mask[47]_i_11_0 ;
+  wire \mask[47]_i_10_0 ;
+  wire \mask[47]_i_10_n_0 ;
+  wire [47:0]\mask[47]_i_11_0 ;
+  wire \mask[47]_i_11_1 ;
   wire \mask[47]_i_11_n_0 ;
-  wire [47:0]\mask[47]_i_13_0 ;
-  wire \mask[47]_i_13_1 ;
-  wire \mask[47]_i_13_n_0 ;
-  wire \mask[47]_i_17_n_0 ;
-  wire \mask[47]_i_18_n_0 ;
+  wire \mask[47]_i_15_n_0 ;
+  wire \mask[47]_i_16_n_0 ;
   wire \mask[47]_i_7_0 ;
   wire \mask_reg[46] ;
   wire \mask_reg[46]_0 ;
@@ -19141,38 +19154,9 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire \prdata_sr[152]_i_19_n_0 ;
   wire \prdata_sr[152]_i_2_n_0 ;
   wire \prdata_sr[152]_i_5_n_0 ;
-  wire \prdata_sr[153]_i_11_n_0 ;
-  wire \prdata_sr[153]_i_12_n_0 ;
-  wire \prdata_sr[153]_i_14_n_0 ;
-  wire \prdata_sr[153]_i_15_n_0 ;
-  wire \prdata_sr[153]_i_16_n_0 ;
-  wire \prdata_sr[153]_i_17_n_0 ;
-  wire \prdata_sr[153]_i_20_n_0 ;
-  wire \prdata_sr[153]_i_21_n_0 ;
-  wire \prdata_sr[153]_i_22_n_0 ;
-  wire \prdata_sr[153]_i_23_n_0 ;
-  wire \prdata_sr[153]_i_24_n_0 ;
-  wire \prdata_sr[153]_i_25_n_0 ;
-  wire \prdata_sr[153]_i_26_n_0 ;
-  wire \prdata_sr[153]_i_27_n_0 ;
-  wire \prdata_sr[153]_i_28_n_0 ;
-  wire \prdata_sr[153]_i_29_n_0 ;
-  wire \prdata_sr[153]_i_30_n_0 ;
-  wire \prdata_sr[153]_i_35_n_0 ;
-  wire \prdata_sr[153]_i_36_n_0 ;
-  wire \prdata_sr[153]_i_37_n_0 ;
-  wire \prdata_sr[153]_i_38_n_0 ;
-  wire \prdata_sr[153]_i_39_n_0 ;
+  wire \prdata_sr[153]_i_10_n_0 ;
   wire \prdata_sr[153]_i_3_n_0 ;
-  wire \prdata_sr[153]_i_40_n_0 ;
-  wire \prdata_sr[153]_i_41_n_0 ;
-  wire \prdata_sr[153]_i_42_n_0 ;
-  wire \prdata_sr[153]_i_43_n_0 ;
-  wire \prdata_sr[153]_i_44_n_0 ;
-  wire \prdata_sr[153]_i_45_n_0 ;
-  wire \prdata_sr[153]_i_46_n_0 ;
-  wire \prdata_sr[153]_i_47_n_0 ;
-  wire \prdata_sr[153]_i_48_n_0 ;
+  wire \prdata_sr[153]_i_7_n_0 ;
   wire \prdata_sr[153]_i_8_n_0 ;
   wire \prdata_sr[153]_i_9_n_0 ;
   wire \prdata_sr[154]_i_2_n_0 ;
@@ -20170,18 +20154,11 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire \prdata_sr_reg[152]_0 ;
   wire \prdata_sr_reg[152]_1 ;
   wire \prdata_sr_reg[152]_i_10_n_0 ;
-  wire \prdata_sr_reg[153]_i_10_n_0 ;
-  wire \prdata_sr_reg[153]_i_10_n_1 ;
-  wire \prdata_sr_reg[153]_i_10_n_2 ;
-  wire \prdata_sr_reg[153]_i_10_n_3 ;
-  wire [1:0]\prdata_sr_reg[153]_i_4_0 ;
-  wire \prdata_sr_reg[153]_i_4_n_2 ;
-  wire \prdata_sr_reg[153]_i_4_n_3 ;
-  wire \prdata_sr_reg[153]_i_7_n_0 ;
+  wire \prdata_sr_reg[153]_i_6_n_0 ;
   wire \prdata_sr_reg[154]_i_3_n_0 ;
   wire \prdata_sr_reg[155]_i_3_n_0 ;
   wire \prdata_sr_reg[156]_i_4_n_0 ;
-  wire [71:0]\prdata_sr_reg[158]_0 ;
+  wire [55:0]\prdata_sr_reg[158]_0 ;
   wire \prdata_sr_reg[159]_0 ;
   wire \prdata_sr_reg[159]_i_5_n_0 ;
   wire [159:0]\prdata_sr_reg[159]_i_7_0 ;
@@ -20558,16 +20535,53 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   wire [4:0]\read_data_bits[3]_23 ;
   wire \read_data_bits_reg[0][28] ;
   wire \read_data_bits_reg[0][31] ;
+  wire [15:0]rram_addr;
+  wire \rram_addr[15]_i_18_n_0 ;
+  wire \rram_addr[15]_i_19_n_0 ;
+  wire \rram_addr[15]_i_21_n_0 ;
+  wire \rram_addr[15]_i_22_n_0 ;
+  wire \rram_addr[15]_i_27_n_0 ;
+  wire \rram_addr[15]_i_28_n_0 ;
+  wire \rram_addr[15]_i_29_n_0 ;
+  wire \rram_addr[15]_i_30_n_0 ;
+  wire \rram_addr[15]_i_31_n_0 ;
+  wire \rram_addr[15]_i_32_n_0 ;
+  wire \rram_addr[15]_i_33_n_0 ;
+  wire \rram_addr[15]_i_34_n_0 ;
+  wire \rram_addr[15]_i_35_n_0 ;
+  wire \rram_addr[15]_i_36_n_0 ;
+  wire \rram_addr[15]_i_37_n_0 ;
+  wire \rram_addr[15]_i_42_n_0 ;
+  wire \rram_addr[15]_i_43_n_0 ;
+  wire \rram_addr[15]_i_44_n_0 ;
+  wire \rram_addr[15]_i_45_n_0 ;
+  wire \rram_addr[15]_i_46_n_0 ;
+  wire \rram_addr[15]_i_47_n_0 ;
+  wire \rram_addr[15]_i_48_n_0 ;
+  wire \rram_addr[15]_i_49_n_0 ;
+  wire \rram_addr[15]_i_50_n_0 ;
+  wire \rram_addr[15]_i_51_n_0 ;
+  wire \rram_addr[15]_i_52_n_0 ;
+  wire \rram_addr[15]_i_53_n_0 ;
+  wire \rram_addr[15]_i_54_n_0 ;
+  wire \rram_addr[15]_i_55_n_0 ;
+  wire [1:0]\rram_addr_reg[15]_i_10_0 ;
+  wire \rram_addr_reg[15]_i_10_n_2 ;
+  wire \rram_addr_reg[15]_i_10_n_3 ;
+  wire \rram_addr_reg[15]_i_17_n_0 ;
+  wire \rram_addr_reg[15]_i_17_n_1 ;
+  wire \rram_addr_reg[15]_i_17_n_2 ;
+  wire \rram_addr_reg[15]_i_17_n_3 ;
   wire sclk;
   wire [2:2]spi_st;
   wire [2:0]spi_st_d__0;
   wire [2:0]\u_fsm/p_0_in ;
   wire [3:3]\NLW_FSM_sequential_state_reg[1]_i_16_CO_UNCONNECTED ;
   wire [3:0]\NLW_FSM_sequential_state_reg[1]_i_16_O_UNCONNECTED ;
-  wire [3:0]\NLW_FSM_sequential_state_reg[1]_i_32_O_UNCONNECTED ;
-  wire [3:0]\NLW_prdata_sr_reg[153]_i_10_O_UNCONNECTED ;
-  wire [3:3]\NLW_prdata_sr_reg[153]_i_4_CO_UNCONNECTED ;
-  wire [3:0]\NLW_prdata_sr_reg[153]_i_4_O_UNCONNECTED ;
+  wire [3:0]\NLW_FSM_sequential_state_reg[1]_i_31_O_UNCONNECTED ;
+  wire [3:3]\NLW_rram_addr_reg[15]_i_10_CO_UNCONNECTED ;
+  wire [3:0]\NLW_rram_addr_reg[15]_i_10_O_UNCONNECTED ;
+  wire [3:0]\NLW_rram_addr_reg[15]_i_17_O_UNCONNECTED ;
 
   LUT6 #(
     .INIT(64'hFFFFFF00AABA0000)) 
@@ -20814,61 +20828,43 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(next_mask33_out),
         .I3(next_mask42_out),
         .O(\FSM_sequential_state[0]_i_68_n_0 ));
-  LUT6 #(
-    .INIT(64'h01510000FEAEFFFF)) 
-    \FSM_sequential_state[1]_i_100 
-       (.I0(\u_fsm/p_0_in [2]),
-        .I1(\prdata_sr_reg[147]_0 [53]),
-        .I2(\prdata_sr_reg[147]_0 [55]),
-        .I3(\prdata_sr_reg[147]_0 [32]),
-        .I4(\FSM_sequential_state[1]_i_98_n_0 ),
-        .I5(\prdata_sr_reg[158]_0 [42]),
-        .O(\FSM_sequential_state[1]_i_100_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \FSM_sequential_state[1]_i_101 
-       (.I0(\prdata_sr_reg[147]_0 [29]),
-        .I1(\prdata_sr_reg[147]_0 [50]),
-        .I2(\u_fsm/p_0_in [0]),
-        .I3(\prdata_sr_reg[147]_0 [30]),
-        .I4(\prdata_sr_reg[147]_0 [55]),
-        .I5(\prdata_sr_reg[147]_0 [51]),
-        .O(\FSM_sequential_state[1]_i_101_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair151" *) 
-  LUT3 #(
-    .INIT(8'hB8)) 
-    \FSM_sequential_state[1]_i_102 
-       (.I0(\prdata_sr_reg[147]_0 [29]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[147]_0 [50]),
-        .O(\FSM_sequential_state[1]_i_102_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair149" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \FSM_sequential_state[1]_i_103 
+    \FSM_sequential_state[1]_i_100 
        (.I0(\prdata_sr_reg[147]_0 [30]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [51]),
-        .O(\FSM_sequential_state[1]_i_103_n_0 ));
+        .O(\FSM_sequential_state[1]_i_100_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair150" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \FSM_sequential_state[1]_i_104 
+    \FSM_sequential_state[1]_i_101 
        (.I0(\prdata_sr_reg[147]_0 [28]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [49]),
-        .O(\FSM_sequential_state[1]_i_104_n_0 ));
+        .O(\FSM_sequential_state[1]_i_101_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair152" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \FSM_sequential_state[1]_i_105 
+    \FSM_sequential_state[1]_i_102 
        (.I0(\prdata_sr_reg[147]_0 [27]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [48]),
-        .O(\FSM_sequential_state[1]_i_105_n_0 ));
+        .O(\FSM_sequential_state[1]_i_102_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair141" *) 
   LUT5 #(
     .INIT(32'h335FFF5F)) 
+    \FSM_sequential_state[1]_i_103 
+       (.I0(\prdata_sr_reg[147]_0 [52]),
+        .I1(\prdata_sr_reg[147]_0 [31]),
+        .I2(\prdata_sr_reg[147]_0 [53]),
+        .I3(\prdata_sr_reg[147]_0 [55]),
+        .I4(\prdata_sr_reg[147]_0 [32]),
+        .O(\FSM_sequential_state[1]_i_103_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair141" *) 
+  LUT5 #(
+    .INIT(32'hFFFACCFA)) 
     \FSM_sequential_state[1]_i_106 
        (.I0(\prdata_sr_reg[147]_0 [52]),
         .I1(\prdata_sr_reg[147]_0 [31]),
@@ -20876,27 +20872,17 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I3(\prdata_sr_reg[147]_0 [55]),
         .I4(\prdata_sr_reg[147]_0 [32]),
         .O(\FSM_sequential_state[1]_i_106_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair141" *) 
-  LUT5 #(
-    .INIT(32'hFFFACCFA)) 
-    \FSM_sequential_state[1]_i_109 
-       (.I0(\prdata_sr_reg[147]_0 [52]),
-        .I1(\prdata_sr_reg[147]_0 [31]),
-        .I2(\prdata_sr_reg[147]_0 [53]),
-        .I3(\prdata_sr_reg[147]_0 [55]),
-        .I4(\prdata_sr_reg[147]_0 [32]),
-        .O(\FSM_sequential_state[1]_i_109_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair153" *) 
   LUT3 #(
     .INIT(8'hB8)) 
-    \FSM_sequential_state[1]_i_110 
+    \FSM_sequential_state[1]_i_107 
        (.I0(\prdata_sr_reg[147]_0 [26]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [47]),
-        .O(\FSM_sequential_state[1]_i_110_n_0 ));
+        .O(\FSM_sequential_state[1]_i_107_n_0 ));
   LUT4 #(
     .INIT(16'h4F44)) 
-    \FSM_sequential_state[1]_i_30 
+    \FSM_sequential_state[1]_i_29 
        (.I0(next_mask159_out),
         .I1(\prdata_sr_reg[147]_0 [86]),
         .I2(\read_data_bits_reg[0][28] ),
@@ -20904,301 +20890,329 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .O(\misc_cnfg_bits_reg[86] ));
   LUT5 #(
     .INIT(32'h0202022F)) 
-    \FSM_sequential_state[1]_i_33 
+    \FSM_sequential_state[1]_i_32 
        (.I0(\u_fsm/p_0_in [2]),
-        .I1(\FSM_sequential_state[1]_i_68_n_0 ),
-        .I2(\prdata_sr_reg[158]_0 [52]),
-        .I3(\FSM_sequential_state[1]_i_69_n_0 ),
-        .I4(\prdata_sr_reg[158]_0 [51]),
-        .O(\FSM_sequential_state[1]_i_33_n_0 ));
+        .I1(\FSM_sequential_state[1]_i_65_n_0 ),
+        .I2(\prdata_sr_reg[158]_0 [36]),
+        .I3(\FSM_sequential_state[1]_i_66_n_0 ),
+        .I4(\prdata_sr_reg[158]_0 [35]),
+        .O(\FSM_sequential_state[1]_i_32_n_0 ));
   LUT5 #(
     .INIT(32'h00A080E0)) 
-    \FSM_sequential_state[1]_i_34 
-       (.I0(\FSM_sequential_state[1]_i_70_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_71_n_0 ),
+    \FSM_sequential_state[1]_i_33 
+       (.I0(\FSM_sequential_state[1]_i_67_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_68_n_0 ),
         .I2(\u_fsm/p_0_in [2]),
-        .I3(\prdata_sr_reg[158]_0 [50]),
-        .I4(\prdata_sr_reg[158]_0 [49]),
-        .O(\FSM_sequential_state[1]_i_34_n_0 ));
+        .I3(\prdata_sr_reg[158]_0 [34]),
+        .I4(\prdata_sr_reg[158]_0 [33]),
+        .O(\FSM_sequential_state[1]_i_33_n_0 ));
   LUT3 #(
     .INIT(8'h28)) 
-    \FSM_sequential_state[1]_i_36 
-       (.I0(\FSM_sequential_state[1]_i_72_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_69_n_0 ),
-        .I2(\prdata_sr_reg[158]_0 [51]),
-        .O(\FSM_sequential_state[1]_i_36_n_0 ));
+    \FSM_sequential_state[1]_i_35 
+       (.I0(\FSM_sequential_state[1]_i_69_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_66_n_0 ),
+        .I2(\prdata_sr_reg[158]_0 [35]),
+        .O(\FSM_sequential_state[1]_i_35_n_0 ));
   LUT5 #(
     .INIT(32'h81412111)) 
-    \FSM_sequential_state[1]_i_37 
-       (.I0(\prdata_sr_reg[158]_0 [50]),
-        .I1(\prdata_sr_reg[158]_0 [49]),
+    \FSM_sequential_state[1]_i_36 
+       (.I0(\prdata_sr_reg[158]_0 [34]),
+        .I1(\prdata_sr_reg[158]_0 [33]),
         .I2(\u_fsm/p_0_in [2]),
-        .I3(\FSM_sequential_state[1]_i_70_n_0 ),
-        .I4(\FSM_sequential_state[1]_i_71_n_0 ),
-        .O(\FSM_sequential_state[1]_i_37_n_0 ));
+        .I3(\FSM_sequential_state[1]_i_67_n_0 ),
+        .I4(\FSM_sequential_state[1]_i_68_n_0 ),
+        .O(\FSM_sequential_state[1]_i_36_n_0 ));
   LUT5 #(
     .INIT(32'h1010F510)) 
-    \FSM_sequential_state[1]_i_62 
-       (.I0(\prdata_sr_reg[158]_0 [44]),
+    \FSM_sequential_state[1]_i_59 
+       (.I0(\prdata_sr_reg[158]_0 [28]),
         .I1(\u_fsm/p_0_in [2]),
-        .I2(\FSM_sequential_state[1]_i_95_n_0 ),
-        .I3(\FSM_sequential_state[1]_i_96_n_0 ),
-        .I4(\prdata_sr_reg[158]_0 [43]),
-        .O(\FSM_sequential_state[1]_i_62_n_0 ));
+        .I2(\FSM_sequential_state[1]_i_92_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_93_n_0 ),
+        .I4(\prdata_sr_reg[158]_0 [27]),
+        .O(\FSM_sequential_state[1]_i_59_n_0 ));
   LUT6 #(
     .INIT(64'h0101010101011F01)) 
-    \FSM_sequential_state[1]_i_63 
-       (.I0(\FSM_sequential_state[1]_i_97_n_0 ),
-        .I1(\prdata_sr_reg[158]_0 [41]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\FSM_sequential_state[1]_i_98_n_0 ),
+    \FSM_sequential_state[1]_i_60 
+       (.I0(\FSM_sequential_state[1]_i_94_n_0 ),
+        .I1(\prdata_sr_reg[158]_0 [25]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\FSM_sequential_state[1]_i_95_n_0 ),
         .I4(\u_fsm/p_0_in [1]),
         .I5(\u_fsm/p_0_in [2]),
-        .O(\FSM_sequential_state[1]_i_63_n_0 ));
+        .O(\FSM_sequential_state[1]_i_60_n_0 ));
   LUT4 #(
     .INIT(16'h0990)) 
-    \FSM_sequential_state[1]_i_64 
+    \FSM_sequential_state[1]_i_61 
        (.I0(\misc_cnfg_bits_reg[30]_0 ),
-        .I1(\prdata_sr_reg[158]_0 [48]),
+        .I1(\prdata_sr_reg[158]_0 [32]),
         .I2(\misc_cnfg_bits_reg[53] ),
-        .I3(\prdata_sr_reg[158]_0 [47]),
-        .O(\FSM_sequential_state[1]_i_64_n_0 ));
+        .I3(\prdata_sr_reg[158]_0 [31]),
+        .O(\FSM_sequential_state[1]_i_61_n_0 ));
   LUT4 #(
     .INIT(16'h0990)) 
-    \FSM_sequential_state[1]_i_65 
+    \FSM_sequential_state[1]_i_62 
        (.I0(\misc_cnfg_bits_reg[26]_0 ),
-        .I1(\prdata_sr_reg[158]_0 [45]),
+        .I1(\prdata_sr_reg[158]_0 [29]),
         .I2(\misc_cnfg_bits_reg[53]_0 ),
-        .I3(\prdata_sr_reg[158]_0 [46]),
-        .O(\FSM_sequential_state[1]_i_65_n_0 ));
+        .I3(\prdata_sr_reg[158]_0 [30]),
+        .O(\FSM_sequential_state[1]_i_62_n_0 ));
   LUT5 #(
     .INIT(32'h11118241)) 
-    \FSM_sequential_state[1]_i_66 
-       (.I0(\prdata_sr_reg[158]_0 [44]),
-        .I1(\prdata_sr_reg[158]_0 [43]),
-        .I2(\FSM_sequential_state[1]_i_99_n_0 ),
-        .I3(\FSM_sequential_state[1]_i_95_n_0 ),
+    \FSM_sequential_state[1]_i_63 
+       (.I0(\prdata_sr_reg[158]_0 [28]),
+        .I1(\prdata_sr_reg[158]_0 [27]),
+        .I2(\FSM_sequential_state[1]_i_96_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_92_n_0 ),
         .I4(\u_fsm/p_0_in [2]),
-        .O(\FSM_sequential_state[1]_i_66_n_0 ));
+        .O(\FSM_sequential_state[1]_i_63_n_0 ));
   LUT3 #(
     .INIT(8'h28)) 
-    \FSM_sequential_state[1]_i_67 
-       (.I0(\FSM_sequential_state[1]_i_100_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_97_n_0 ),
-        .I2(\prdata_sr_reg[158]_0 [41]),
-        .O(\FSM_sequential_state[1]_i_67_n_0 ));
+    \FSM_sequential_state[1]_i_64 
+       (.I0(\FSM_sequential_state[1]_i_97_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_94_n_0 ),
+        .I2(\prdata_sr_reg[158]_0 [25]),
+        .O(\FSM_sequential_state[1]_i_64_n_0 ));
   LUT6 #(
     .INIT(64'h77775FFFFFFF5FFF)) 
-    \FSM_sequential_state[1]_i_68 
+    \FSM_sequential_state[1]_i_65 
        (.I0(\u_fsm/p_0_in [1]),
         .I1(\prdata_sr_reg[147]_0 [31]),
         .I2(\prdata_sr_reg[147]_0 [52]),
         .I3(\prdata_sr_reg[147]_0 [51]),
         .I4(\prdata_sr_reg[147]_0 [55]),
         .I5(\prdata_sr_reg[147]_0 [30]),
-        .O(\FSM_sequential_state[1]_i_68_n_0 ));
+        .O(\FSM_sequential_state[1]_i_65_n_0 ));
   LUT6 #(
     .INIT(64'h5F5F3FFFFFFF3FFF)) 
-    \FSM_sequential_state[1]_i_69 
+    \FSM_sequential_state[1]_i_66 
        (.I0(\prdata_sr_reg[147]_0 [32]),
         .I1(\prdata_sr_reg[147]_0 [53]),
-        .I2(\FSM_sequential_state[1]_i_101_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_98_n_0 ),
         .I3(\prdata_sr_reg[147]_0 [54]),
         .I4(\prdata_sr_reg[147]_0 [55]),
         .I5(\prdata_sr_reg[147]_0 [33]),
-        .O(\FSM_sequential_state[1]_i_69_n_0 ));
+        .O(\FSM_sequential_state[1]_i_66_n_0 ));
   LUT5 #(
     .INIT(32'hFAC00AC0)) 
-    \FSM_sequential_state[1]_i_70 
-       (.I0(\FSM_sequential_state[1]_i_102_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_103_n_0 ),
+    \FSM_sequential_state[1]_i_67 
+       (.I0(\FSM_sequential_state[1]_i_99_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_100_n_0 ),
         .I2(\u_fsm/p_0_in [0]),
         .I3(\u_fsm/p_0_in [1]),
-        .I4(\FSM_sequential_state[1]_i_104_n_0 ),
-        .O(\FSM_sequential_state[1]_i_70_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_101_n_0 ),
+        .O(\FSM_sequential_state[1]_i_67_n_0 ));
   LUT5 #(
     .INIT(32'hFCAA0CAA)) 
-    \FSM_sequential_state[1]_i_71 
-       (.I0(\FSM_sequential_state[1]_i_101_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_104_n_0 ),
+    \FSM_sequential_state[1]_i_68 
+       (.I0(\FSM_sequential_state[1]_i_98_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_101_n_0 ),
         .I2(\u_fsm/p_0_in [0]),
         .I3(\u_fsm/p_0_in [1]),
-        .I4(\FSM_sequential_state[1]_i_105_n_0 ),
-        .O(\FSM_sequential_state[1]_i_71_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_102_n_0 ),
+        .O(\FSM_sequential_state[1]_i_68_n_0 ));
   LUT6 #(
     .INIT(64'h22200020DDDFFFDF)) 
-    \FSM_sequential_state[1]_i_72 
+    \FSM_sequential_state[1]_i_69 
        (.I0(\u_fsm/p_0_in [2]),
-        .I1(\FSM_sequential_state[1]_i_106_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_103_n_0 ),
         .I2(\prdata_sr_reg[147]_0 [51]),
         .I3(\prdata_sr_reg[147]_0 [55]),
         .I4(\prdata_sr_reg[147]_0 [30]),
-        .I5(\prdata_sr_reg[158]_0 [52]),
-        .O(\FSM_sequential_state[1]_i_72_n_0 ));
+        .I5(\prdata_sr_reg[158]_0 [36]),
+        .O(\FSM_sequential_state[1]_i_69_n_0 ));
   LUT3 #(
     .INIT(8'hF4)) 
-    \FSM_sequential_state[1]_i_89 
+    \FSM_sequential_state[1]_i_86 
        (.I0(next_mask193_out),
         .I1(\prdata_sr_reg[147]_0 [103]),
         .I2(next_mask6_out),
         .O(\misc_cnfg_bits_reg[103] ));
   LUT2 #(
     .INIT(4'h2)) 
-    \FSM_sequential_state[1]_i_90 
+    \FSM_sequential_state[1]_i_87 
        (.I0(\prdata_sr_reg[147]_0 [87]),
         .I1(\read_data_bits_reg[0][31] ),
         .O(\misc_cnfg_bits_reg[87] ));
   LUT6 #(
     .INIT(64'h4747477777774777)) 
-    \FSM_sequential_state[1]_i_91 
-       (.I0(\FSM_sequential_state[1]_i_99_n_0 ),
+    \FSM_sequential_state[1]_i_88 
+       (.I0(\FSM_sequential_state[1]_i_96_n_0 ),
         .I1(\u_fsm/p_0_in [2]),
-        .I2(\FSM_sequential_state[1]_i_101_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_98_n_0 ),
         .I3(\prdata_sr_reg[147]_0 [53]),
         .I4(\prdata_sr_reg[147]_0 [55]),
         .I5(\prdata_sr_reg[147]_0 [32]),
         .O(\misc_cnfg_bits_reg[53] ));
   LUT6 #(
     .INIT(64'h88888888B8BBB888)) 
-    \FSM_sequential_state[1]_i_92 
-       (.I0(\FSM_sequential_state[1]_i_95_n_0 ),
+    \FSM_sequential_state[1]_i_89 
+       (.I0(\FSM_sequential_state[1]_i_92_n_0 ),
         .I1(\u_fsm/p_0_in [2]),
         .I2(\prdata_sr_reg[147]_0 [30]),
         .I3(\prdata_sr_reg[147]_0 [55]),
         .I4(\prdata_sr_reg[147]_0 [51]),
-        .I5(\FSM_sequential_state[1]_i_106_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_103_n_0 ),
         .O(\misc_cnfg_bits_reg[30]_0 ));
   LUT6 #(
     .INIT(64'hE2FF0000E2FFFFFF)) 
-    \FSM_sequential_state[1]_i_93 
+    \FSM_sequential_state[1]_i_90 
        (.I0(\prdata_sr_reg[147]_0 [53]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [32]),
-        .I3(\FSM_sequential_state[1]_i_98_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_95_n_0 ),
         .I4(\u_fsm/p_0_in [2]),
-        .I5(\FSM_sequential_state[1]_i_70_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_67_n_0 ),
         .O(\misc_cnfg_bits_reg[53]_0 ));
   LUT6 #(
     .INIT(64'h00B8FFFF00B80000)) 
-    \FSM_sequential_state[1]_i_94 
+    \FSM_sequential_state[1]_i_91 
        (.I0(\prdata_sr_reg[147]_0 [26]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [47]),
-        .I3(\FSM_sequential_state[1]_i_109_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_106_n_0 ),
         .I4(\u_fsm/p_0_in [2]),
-        .I5(\FSM_sequential_state[1]_i_71_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_68_n_0 ),
         .O(\misc_cnfg_bits_reg[26]_0 ));
   LUT5 #(
     .INIT(32'hFFE200E2)) 
-    \FSM_sequential_state[1]_i_95 
-       (.I0(\FSM_sequential_state[1]_i_102_n_0 ),
+    \FSM_sequential_state[1]_i_92 
+       (.I0(\FSM_sequential_state[1]_i_99_n_0 ),
         .I1(\u_fsm/p_0_in [0]),
-        .I2(\FSM_sequential_state[1]_i_104_n_0 ),
+        .I2(\FSM_sequential_state[1]_i_101_n_0 ),
         .I3(\u_fsm/p_0_in [1]),
-        .I4(\FSM_sequential_state[1]_i_98_n_0 ),
-        .O(\FSM_sequential_state[1]_i_95_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_95_n_0 ),
+        .O(\FSM_sequential_state[1]_i_92_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair156" *) 
   LUT4 #(
     .INIT(16'h02A2)) 
-    \FSM_sequential_state[1]_i_96 
-       (.I0(\FSM_sequential_state[1]_i_99_n_0 ),
+    \FSM_sequential_state[1]_i_93 
+       (.I0(\FSM_sequential_state[1]_i_96_n_0 ),
         .I1(\prdata_sr_reg[147]_0 [54]),
         .I2(\prdata_sr_reg[147]_0 [55]),
         .I3(\prdata_sr_reg[147]_0 [33]),
-        .O(\FSM_sequential_state[1]_i_96_n_0 ));
+        .O(\FSM_sequential_state[1]_i_93_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFF47)) 
-    \FSM_sequential_state[1]_i_97 
+    \FSM_sequential_state[1]_i_94 
        (.I0(\prdata_sr_reg[147]_0 [26]),
         .I1(\prdata_sr_reg[147]_0 [55]),
         .I2(\prdata_sr_reg[147]_0 [47]),
         .I3(\u_fsm/p_0_in [0]),
         .I4(\u_fsm/p_0_in [1]),
         .I5(\u_fsm/p_0_in [2]),
-        .O(\FSM_sequential_state[1]_i_97_n_0 ));
+        .O(\FSM_sequential_state[1]_i_94_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \FSM_sequential_state[1]_i_98 
+    \FSM_sequential_state[1]_i_95 
        (.I0(\prdata_sr_reg[147]_0 [26]),
         .I1(\prdata_sr_reg[147]_0 [47]),
         .I2(\u_fsm/p_0_in [0]),
         .I3(\prdata_sr_reg[147]_0 [27]),
         .I4(\prdata_sr_reg[147]_0 [55]),
         .I5(\prdata_sr_reg[147]_0 [48]),
-        .O(\FSM_sequential_state[1]_i_98_n_0 ));
+        .O(\FSM_sequential_state[1]_i_95_n_0 ));
   LUT5 #(
     .INIT(32'h0C0CFA0A)) 
-    \FSM_sequential_state[1]_i_99 
-       (.I0(\FSM_sequential_state[1]_i_104_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_110_n_0 ),
+    \FSM_sequential_state[1]_i_96 
+       (.I0(\FSM_sequential_state[1]_i_101_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_107_n_0 ),
         .I2(\u_fsm/p_0_in [0]),
-        .I3(\FSM_sequential_state[1]_i_105_n_0 ),
+        .I3(\FSM_sequential_state[1]_i_102_n_0 ),
         .I4(\u_fsm/p_0_in [1]),
+        .O(\FSM_sequential_state[1]_i_96_n_0 ));
+  LUT6 #(
+    .INIT(64'h01510000FEAEFFFF)) 
+    \FSM_sequential_state[1]_i_97 
+       (.I0(\u_fsm/p_0_in [2]),
+        .I1(\prdata_sr_reg[147]_0 [53]),
+        .I2(\prdata_sr_reg[147]_0 [55]),
+        .I3(\prdata_sr_reg[147]_0 [32]),
+        .I4(\FSM_sequential_state[1]_i_95_n_0 ),
+        .I5(\prdata_sr_reg[158]_0 [26]),
+        .O(\FSM_sequential_state[1]_i_97_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \FSM_sequential_state[1]_i_98 
+       (.I0(\prdata_sr_reg[147]_0 [29]),
+        .I1(\prdata_sr_reg[147]_0 [50]),
+        .I2(\u_fsm/p_0_in [0]),
+        .I3(\prdata_sr_reg[147]_0 [30]),
+        .I4(\prdata_sr_reg[147]_0 [55]),
+        .I5(\prdata_sr_reg[147]_0 [51]),
+        .O(\FSM_sequential_state[1]_i_98_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair151" *) 
+  LUT3 #(
+    .INIT(8'hB8)) 
+    \FSM_sequential_state[1]_i_99 
+       (.I0(\prdata_sr_reg[147]_0 [29]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[147]_0 [50]),
         .O(\FSM_sequential_state[1]_i_99_n_0 ));
   LUT4 #(
     .INIT(16'h8241)) 
     \FSM_sequential_state[2]_i_25 
        (.I0(\prdata_sr_reg[147]_0 [129]),
         .I1(\prdata_sr_reg[147]_0 [128]),
-        .I2(\prdata_sr_reg[158]_0 [45]),
-        .I3(\prdata_sr_reg[158]_0 [46]),
+        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I3(\prdata_sr_reg[158]_0 [30]),
         .O(\misc_cnfg_bits_reg[129] [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \FSM_sequential_state[2]_i_26 
        (.I0(\prdata_sr_reg[147]_0 [127]),
         .I1(\prdata_sr_reg[147]_0 [126]),
-        .I2(\prdata_sr_reg[158]_0 [43]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
+        .I2(\prdata_sr_reg[158]_0 [27]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
         .O(\misc_cnfg_bits_reg[129] [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \FSM_sequential_state[2]_i_27 
        (.I0(\prdata_sr_reg[147]_0 [125]),
         .I1(\prdata_sr_reg[147]_0 [124]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr_reg[158]_0 [41]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\prdata_sr_reg[158]_0 [25]),
         .O(\misc_cnfg_bits_reg[129] [0]));
   LUT4 #(
     .INIT(16'h8241)) 
     \FSM_sequential_state[3]_i_24 
        (.I0(\prdata_sr_reg[147]_0 [117]),
         .I1(\prdata_sr_reg[147]_0 [116]),
-        .I2(\prdata_sr_reg[158]_0 [45]),
-        .I3(\prdata_sr_reg[158]_0 [46]),
+        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I3(\prdata_sr_reg[158]_0 [30]),
         .O(\misc_cnfg_bits_reg[117] [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \FSM_sequential_state[3]_i_25 
        (.I0(\prdata_sr_reg[147]_0 [115]),
         .I1(\prdata_sr_reg[147]_0 [114]),
-        .I2(\prdata_sr_reg[158]_0 [43]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
+        .I2(\prdata_sr_reg[158]_0 [27]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
         .O(\misc_cnfg_bits_reg[117] [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \FSM_sequential_state[3]_i_26 
        (.I0(\prdata_sr_reg[147]_0 [113]),
         .I1(\prdata_sr_reg[147]_0 [112]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr_reg[158]_0 [41]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\prdata_sr_reg[158]_0 [25]),
         .O(\misc_cnfg_bits_reg[117] [0]));
   (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 \FSM_sequential_state_reg[1]_i_16 
-       (.CI(\FSM_sequential_state_reg[1]_i_32_n_0 ),
+       (.CI(\FSM_sequential_state_reg[1]_i_31_n_0 ),
         .CO({\NLW_FSM_sequential_state_reg[1]_i_16_CO_UNCONNECTED [3],\counter_reg[11] ,\FSM_sequential_state_reg[1]_i_16_n_2 ,\FSM_sequential_state_reg[1]_i_16_n_3 }),
         .CYINIT(1'b0),
-        .DI({1'b0,1'b0,\FSM_sequential_state[1]_i_33_n_0 ,\FSM_sequential_state[1]_i_34_n_0 }),
+        .DI({1'b0,1'b0,\FSM_sequential_state[1]_i_32_n_0 ,\FSM_sequential_state[1]_i_33_n_0 }),
         .O(\NLW_FSM_sequential_state_reg[1]_i_16_O_UNCONNECTED [3:0]),
-        .S({1'b0,S,\FSM_sequential_state[1]_i_36_n_0 ,\FSM_sequential_state[1]_i_37_n_0 }));
+        .S({1'b0,S,\FSM_sequential_state[1]_i_35_n_0 ,\FSM_sequential_state[1]_i_36_n_0 }));
   (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \FSM_sequential_state_reg[1]_i_32 
+  CARRY4 \FSM_sequential_state_reg[1]_i_31 
        (.CI(1'b0),
-        .CO({\FSM_sequential_state_reg[1]_i_32_n_0 ,\FSM_sequential_state_reg[1]_i_32_n_1 ,\FSM_sequential_state_reg[1]_i_32_n_2 ,\FSM_sequential_state_reg[1]_i_32_n_3 }),
+        .CO({\FSM_sequential_state_reg[1]_i_31_n_0 ,\FSM_sequential_state_reg[1]_i_31_n_1 ,\FSM_sequential_state_reg[1]_i_31_n_2 ,\FSM_sequential_state_reg[1]_i_31_n_3 }),
         .CYINIT(1'b0),
-        .DI({\FSM_sequential_state_reg[1]_i_16_0 ,\FSM_sequential_state[1]_i_62_n_0 ,\FSM_sequential_state[1]_i_63_n_0 }),
-        .O(\NLW_FSM_sequential_state_reg[1]_i_32_O_UNCONNECTED [3:0]),
-        .S({\FSM_sequential_state[1]_i_64_n_0 ,\FSM_sequential_state[1]_i_65_n_0 ,\FSM_sequential_state[1]_i_66_n_0 ,\FSM_sequential_state[1]_i_67_n_0 }));
+        .DI({\FSM_sequential_state_reg[1]_i_16_0 ,\FSM_sequential_state[1]_i_59_n_0 ,\FSM_sequential_state[1]_i_60_n_0 }),
+        .O(\NLW_FSM_sequential_state_reg[1]_i_31_O_UNCONNECTED [3:0]),
+        .S({\FSM_sequential_state[1]_i_61_n_0 ,\FSM_sequential_state[1]_i_62_n_0 ,\FSM_sequential_state[1]_i_63_n_0 ,\FSM_sequential_state[1]_i_64_n_0 }));
   LUT6 #(
     .INIT(64'hFFFFF0FF00000E00)) 
     \addr_bit_ctr[0]_i_1 
@@ -21294,8 +21308,8 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \attempts_counter[7]_i_15 
        (.I0(\prdata_sr_reg[147]_0 [1]),
         .I1(\prdata_sr_reg[147]_0 [0]),
-        .I2(\prdata_sr_reg[158]_0 [56]),
-        .I3(\prdata_sr_reg[158]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [40]),
+        .I3(\prdata_sr_reg[158]_0 [39]),
         .O(\misc_cnfg_bits_reg[1] ));
   LUT1 #(
     .INIT(2'h1)) 
@@ -21472,7 +21486,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I1(\mask[28]_i_8_n_0 ),
         .I2(\prdata_sr[47]_i_4_2 [28]),
         .I3(\read_data_bits[2]_22 [0]),
-        .I4(\mask[47]_i_11_0 ),
+        .I4(\mask[47]_i_10_0 ),
         .I5(\mask_reg[46] ),
         .O(\mask[28]_i_5_n_0 ));
   LUT6 #(
@@ -21488,12 +21502,12 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'h00000000ACAAAAAA)) 
     \mask[28]_i_8 
-       (.I0(\mask[47]_i_13_0 [28]),
+       (.I0(\mask[47]_i_11_0 [28]),
         .I1(\read_data_bits[3]_23 [0]),
         .I2(\prdata_sr[3]_i_3_0 [0]),
         .I3(\prdata_sr[3]_i_3_0 [1]),
         .I4(\prdata_sr[3]_i_3_0 [2]),
-        .I5(\mask[47]_i_13_1 ),
+        .I5(\mask[47]_i_11_1 ),
         .O(\mask[28]_i_8_n_0 ));
   LUT5 #(
     .INIT(32'hCFCEFCCE)) 
@@ -21521,7 +21535,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I1(\mask[30]_i_8_n_0 ),
         .I2(\prdata_sr[47]_i_4_2 [30]),
         .I3(\read_data_bits[2]_22 [1]),
-        .I4(\mask[47]_i_11_0 ),
+        .I4(\mask[47]_i_10_0 ),
         .I5(\mask_reg[46] ),
         .O(\mask[30]_i_5_n_0 ));
   LUT6 #(
@@ -21537,12 +21551,12 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'h00000000ACAAAAAA)) 
     \mask[30]_i_8 
-       (.I0(\mask[47]_i_13_0 [30]),
+       (.I0(\mask[47]_i_11_0 [30]),
         .I1(\read_data_bits[3]_23 [1]),
         .I2(\prdata_sr[3]_i_3_0 [0]),
         .I3(\prdata_sr[3]_i_3_0 [1]),
         .I4(\prdata_sr[3]_i_3_0 [2]),
-        .I5(\mask[47]_i_13_1 ),
+        .I5(\mask[47]_i_11_1 ),
         .O(\mask[30]_i_8_n_0 ));
   LUT5 #(
     .INIT(32'hCFCEFCCE)) 
@@ -21570,7 +21584,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I1(\mask[31]_i_8_n_0 ),
         .I2(\prdata_sr[47]_i_4_2 [31]),
         .I3(\read_data_bits[2]_22 [2]),
-        .I4(\mask[47]_i_11_0 ),
+        .I4(\mask[47]_i_10_0 ),
         .I5(\mask_reg[46] ),
         .O(\mask[31]_i_5_n_0 ));
   LUT6 #(
@@ -21586,12 +21600,12 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'h00000000ACAAAAAA)) 
     \mask[31]_i_8 
-       (.I0(\mask[47]_i_13_0 [31]),
+       (.I0(\mask[47]_i_11_0 [31]),
         .I1(\read_data_bits[3]_23 [2]),
         .I2(\prdata_sr[3]_i_3_0 [0]),
         .I3(\prdata_sr[3]_i_3_0 [1]),
         .I4(\prdata_sr[3]_i_3_0 [2]),
-        .I5(\mask[47]_i_13_1 ),
+        .I5(\mask[47]_i_11_1 ),
         .O(\mask[31]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'h00008A2000008A2A)) 
@@ -21620,7 +21634,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I1(\mask[46]_i_9_n_0 ),
         .I2(\prdata_sr[47]_i_4_2 [46]),
         .I3(\read_data_bits[2]_22 [3]),
-        .I4(\mask[47]_i_11_0 ),
+        .I4(\mask[47]_i_10_0 ),
         .I5(\mask_reg[46] ),
         .O(\mask[46]_i_6_n_0 ));
   LUT6 #(
@@ -21636,58 +21650,58 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'h00000000ACAAAAAA)) 
     \mask[46]_i_9 
-       (.I0(\mask[47]_i_13_0 [46]),
+       (.I0(\mask[47]_i_11_0 [46]),
         .I1(\read_data_bits[3]_23 [3]),
         .I2(\prdata_sr[3]_i_3_0 [0]),
         .I3(\prdata_sr[3]_i_3_0 [1]),
         .I4(\prdata_sr[3]_i_3_0 [2]),
-        .I5(\mask[47]_i_13_1 ),
+        .I5(\mask[47]_i_11_1 ),
         .O(\mask[46]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFEAEAEA)) 
-    \mask[47]_i_11 
-       (.I0(\mask[47]_i_13_n_0 ),
+    \mask[47]_i_10 
+       (.I0(\mask[47]_i_11_n_0 ),
         .I1(\prdata_sr[47]_i_4_1 [47]),
         .I2(\mask[46]_i_3_0 ),
         .I3(\read_data_bits[1]_21 [4]),
         .I4(\mask[46]_i_3_1 ),
         .I5(\mask[47]_i_7_0 ),
-        .O(\mask[47]_i_11_n_0 ));
+        .O(\mask[47]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'hEFEFFEFEEEFFFFEE)) 
-    \mask[47]_i_13 
-       (.I0(\mask[47]_i_17_n_0 ),
-        .I1(\mask[47]_i_18_n_0 ),
+    \mask[47]_i_11 
+       (.I0(\mask[47]_i_15_n_0 ),
+        .I1(\mask[47]_i_16_n_0 ),
         .I2(\prdata_sr[47]_i_4_2 [47]),
         .I3(\read_data_bits[2]_22 [4]),
-        .I4(\mask[47]_i_11_0 ),
+        .I4(\mask[47]_i_10_0 ),
         .I5(\mask_reg[46] ),
-        .O(\mask[47]_i_13_n_0 ));
+        .O(\mask[47]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'h5030505050505050)) 
-    \mask[47]_i_17 
+    \mask[47]_i_15 
        (.I0(\prdata_sr[47]_i_4_1 [47]),
         .I1(\read_data_bits[1]_21 [4]),
         .I2(\mask[31]_i_5_0 ),
         .I3(\prdata_sr[3]_i_3_0 [0]),
         .I4(\prdata_sr[3]_i_3_0 [1]),
         .I5(\prdata_sr[3]_i_3_0 [2]),
-        .O(\mask[47]_i_17_n_0 ));
+        .O(\mask[47]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'h00000000ACAAAAAA)) 
-    \mask[47]_i_18 
-       (.I0(\mask[47]_i_13_0 [47]),
+    \mask[47]_i_16 
+       (.I0(\mask[47]_i_11_0 [47]),
         .I1(\read_data_bits[3]_23 [4]),
         .I2(\prdata_sr[3]_i_3_0 [0]),
         .I3(\prdata_sr[3]_i_3_0 [1]),
         .I4(\prdata_sr[3]_i_3_0 [2]),
-        .I5(\mask[47]_i_13_1 ),
-        .O(\mask[47]_i_18_n_0 ));
+        .I5(\mask[47]_i_11_1 ),
+        .O(\mask[47]_i_16_n_0 ));
   LUT5 #(
     .INIT(32'hCFCEFCCE)) 
     \mask[47]_i_7 
        (.I0(\read_data_bits[0]_20 [4]),
-        .I1(\mask[47]_i_11_n_0 ),
+        .I1(\mask[47]_i_10_n_0 ),
         .I2(\mask_reg[46]_0 ),
         .I3(\mask_reg[46] ),
         .I4(\mask_reg[47] [47]),
@@ -21917,7 +21931,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [0]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [0]),
+        .I5(\mask[47]_i_11_0 [0]),
         .O(\prdata_sr[0]_i_11_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -22108,20 +22122,20 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h9009000000009009)) 
     \prdata_sr[101]_i_16 
        (.I0(\prdata_sr_reg[147]_0 [146]),
-        .I1(\prdata_sr_reg[158]_0 [45]),
+        .I1(\prdata_sr_reg[158]_0 [29]),
         .I2(\prdata_sr_reg[147]_0 [145]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
-        .I4(\prdata_sr_reg[158]_0 [46]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
+        .I4(\prdata_sr_reg[158]_0 [30]),
         .I5(\prdata_sr_reg[147]_0 [147]),
         .O(\misc_cnfg_bits_reg[146] [1]));
   LUT6 #(
     .INIT(64'h9009000000009009)) 
     \prdata_sr[101]_i_17 
        (.I0(\prdata_sr_reg[147]_0 [144]),
-        .I1(\prdata_sr_reg[158]_0 [43]),
+        .I1(\prdata_sr_reg[158]_0 [27]),
         .I2(\prdata_sr_reg[147]_0 [143]),
-        .I3(\prdata_sr_reg[158]_0 [42]),
-        .I4(\prdata_sr_reg[158]_0 [41]),
+        .I3(\prdata_sr_reg[158]_0 [26]),
+        .I4(\prdata_sr_reg[158]_0 [25]),
         .I5(\prdata_sr_reg[147]_0 [142]),
         .O(\misc_cnfg_bits_reg[146] [0]));
   LUT6 #(
@@ -22129,7 +22143,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[101]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [101]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I2(\prdata_sr_reg[158]_0 [13]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[101]_i_4_n_0 ),
@@ -22168,7 +22182,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[102]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [102]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [30]),
+        .I2(\prdata_sr_reg[158]_0 [14]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[102]_i_4_n_0 ),
@@ -22217,7 +22231,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[103]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [103]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [31]),
+        .I2(\prdata_sr_reg[158]_0 [15]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[103]_i_4_n_0 ),
@@ -22336,7 +22350,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[105]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [105]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [32]),
+        .I2(\prdata_sr_reg[158]_0 [16]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[105]_i_4_n_0 ),
@@ -22395,7 +22409,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[106]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [106]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [33]),
+        .I2(\prdata_sr_reg[158]_0 [17]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[106]_i_4_n_0 ),
@@ -22453,7 +22467,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[107]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [107]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [34]),
+        .I2(\prdata_sr_reg[158]_0 [18]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[107]_i_4_n_0 ),
@@ -22511,7 +22525,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[108]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [108]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [35]),
+        .I2(\prdata_sr_reg[158]_0 [19]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[108]_i_4_n_0 ),
@@ -22569,7 +22583,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[109]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [109]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [36]),
+        .I2(\prdata_sr_reg[158]_0 [20]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[109]_i_4_n_0 ),
@@ -22687,7 +22701,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hAACCF0FFAACCF000)) 
     \prdata_sr[10]_i_8 
        (.I0(\prdata_sr[47]_i_4_1 [10]),
-        .I1(\mask[47]_i_13_0 [10]),
+        .I1(\mask[47]_i_11_0 [10]),
         .I2(\mask_reg[47] [10]),
         .I3(Q[1]),
         .I4(Q[0]),
@@ -22716,7 +22730,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[110]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [110]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [37]),
+        .I2(\prdata_sr_reg[158]_0 [21]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[110]_i_4_n_0 ),
@@ -22774,7 +22788,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[111]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [111]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [38]),
+        .I2(\prdata_sr_reg[158]_0 [22]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[111]_i_4_n_0 ),
@@ -22862,7 +22876,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[112]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [112]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [39]),
+        .I2(\prdata_sr_reg[158]_0 [23]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[112]_i_4_n_0 ),
@@ -22950,7 +22964,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[114]_i_2 
        (.I0(\prdata_sr_reg[147]_0 [114]),
         .I1(\paddr_reg[4]_rep__0_1 ),
-        .I2(\prdata_sr_reg[158]_0 [40]),
+        .I2(\prdata_sr_reg[158]_0 [24]),
         .I3(\paddr_reg[3]_rep_0 ),
         .I4(\paddr_reg[4]_rep__0_n_0 ),
         .I5(\prdata_sr_reg[114]_i_4_n_0 ),
@@ -23360,7 +23374,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hF0CCFFAAF0CC00AA)) 
     \prdata_sr[11]_i_8 
        (.I0(\prdata_sr[47]_i_4_2 [11]),
-        .I1(\mask[47]_i_13_0 [11]),
+        .I1(\mask[47]_i_11_0 [11]),
         .I2(\prdata_sr[47]_i_4_1 [11]),
         .I3(Q[1]),
         .I4(Q[0]),
@@ -23670,7 +23684,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[124]_i_7 
        (.I0(\prdata_sr_reg[147]_0 [31]),
         .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
         .I3(\prdata_sr_reg[147]_0 [52]),
         .O(\prdata_sr[124]_i_7_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair154" *) 
@@ -23755,7 +23769,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[125]_i_7 
        (.I0(\prdata_sr_reg[147]_0 [32]),
         .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
         .I3(\prdata_sr_reg[147]_0 [53]),
         .O(\prdata_sr[125]_i_7_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair155" *) 
@@ -23857,7 +23871,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[126]_i_7 
        (.I0(\prdata_sr_reg[147]_0 [33]),
         .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
         .I3(\prdata_sr_reg[147]_0 [54]),
         .O(\prdata_sr[126]_i_7_n_0 ));
   LUT6 #(
@@ -23874,7 +23888,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[127]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [41]),
+        .I1(\prdata_sr_reg[158]_0 [25]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [127]),
         .O(\prdata_sr[127]_i_2_n_0 ));
@@ -23932,7 +23946,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[128]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [42]),
+        .I1(\prdata_sr_reg[158]_0 [26]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [128]),
         .O(\prdata_sr[128]_i_2_n_0 ));
@@ -23990,7 +24004,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[129]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [43]),
+        .I1(\prdata_sr_reg[158]_0 [27]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [129]),
         .O(\prdata_sr[129]_i_2_n_0 ));
@@ -24115,7 +24129,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hAACCF0FFAACCF000)) 
     \prdata_sr[12]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [12]),
-        .I1(\mask[47]_i_13_0 [12]),
+        .I1(\mask[47]_i_11_0 [12]),
         .I2(\mask_reg[47] [12]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -24145,7 +24159,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[130]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [44]),
+        .I1(\prdata_sr_reg[158]_0 [28]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [130]),
         .O(\prdata_sr[130]_i_2_n_0 ));
@@ -24203,7 +24217,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[131]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [45]),
+        .I1(\prdata_sr_reg[158]_0 [29]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [131]),
         .O(\prdata_sr[131]_i_2_n_0 ));
@@ -24261,7 +24275,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[132]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [46]),
+        .I1(\prdata_sr_reg[158]_0 [30]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [132]),
         .O(\prdata_sr[132]_i_2_n_0 ));
@@ -24319,7 +24333,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[133]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [47]),
+        .I1(\prdata_sr_reg[158]_0 [31]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [133]),
         .O(\prdata_sr[133]_i_2_n_0 ));
@@ -24377,7 +24391,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[134]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [48]),
+        .I1(\prdata_sr_reg[158]_0 [32]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [134]),
         .O(\prdata_sr[134]_i_2_n_0 ));
@@ -24435,7 +24449,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[135]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [49]),
+        .I1(\prdata_sr_reg[158]_0 [33]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [135]),
         .O(\prdata_sr[135]_i_2_n_0 ));
@@ -24493,7 +24507,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[136]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [50]),
+        .I1(\prdata_sr_reg[158]_0 [34]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [136]),
         .O(\prdata_sr[136]_i_2_n_0 ));
@@ -24551,7 +24565,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[137]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [51]),
+        .I1(\prdata_sr_reg[158]_0 [35]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [137]),
         .O(\prdata_sr[137]_i_2_n_0 ));
@@ -24609,7 +24623,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[138]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [52]),
+        .I1(\prdata_sr_reg[158]_0 [36]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [138]),
         .O(\prdata_sr[138]_i_2_n_0 ));
@@ -24667,7 +24681,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[139]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [53]),
+        .I1(\prdata_sr_reg[158]_0 [37]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [139]),
         .O(\prdata_sr[139]_i_2_n_0 ));
@@ -24798,7 +24812,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [13]),
         .I3(Q[1]),
         .I4(Q[0]),
-        .I5(\mask[47]_i_13_0 [13]),
+        .I5(\mask[47]_i_11_0 [13]),
         .O(\prdata_sr[13]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hF4FFF4F444444444)) 
@@ -24814,7 +24828,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[140]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [54]),
+        .I1(\prdata_sr_reg[158]_0 [38]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [140]),
         .O(\prdata_sr[140]_i_2_n_0 ));
@@ -24872,7 +24886,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[141]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [55]),
+        .I1(\prdata_sr_reg[158]_0 [39]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [141]),
         .O(\prdata_sr[141]_i_2_n_0 ));
@@ -24930,7 +24944,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[142]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [56]),
+        .I1(\prdata_sr_reg[158]_0 [40]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [142]),
         .O(\prdata_sr[142]_i_2_n_0 ));
@@ -24988,7 +25002,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[143]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [57]),
+        .I1(\prdata_sr_reg[158]_0 [41]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [143]),
         .O(\prdata_sr[143]_i_2_n_0 ));
@@ -25046,7 +25060,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[144]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [58]),
+        .I1(\prdata_sr_reg[158]_0 [42]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [144]),
         .O(\prdata_sr[144]_i_2_n_0 ));
@@ -25104,7 +25118,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[145]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [59]),
+        .I1(\prdata_sr_reg[158]_0 [43]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [145]),
         .O(\prdata_sr[145]_i_2_n_0 ));
@@ -25162,7 +25176,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[146]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [60]),
+        .I1(\prdata_sr_reg[158]_0 [44]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [146]),
         .O(\prdata_sr[146]_i_2_n_0 ));
@@ -25220,7 +25234,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[147]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [61]),
+        .I1(\prdata_sr_reg[158]_0 [45]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [147]),
         .O(\prdata_sr[147]_i_2_n_0 ));
@@ -25270,7 +25284,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[147]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [62]),
+        .I3(\prdata_sr_reg[158]_0 [46]),
         .I4(\prdata_sr[148]_i_2_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[148]));
@@ -25330,7 +25344,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[148]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [63]),
+        .I3(\prdata_sr_reg[158]_0 [47]),
         .I4(\prdata_sr[149]_i_2_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[149]));
@@ -25465,7 +25479,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[14]_i_5 
        (.I0(\prdata_sr[47]_i_4_1 [14]),
-        .I1(\mask[47]_i_13_0 [14]),
+        .I1(\mask[47]_i_11_0 [14]),
         .I2(\mask_reg[47] [14]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -25486,7 +25500,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[149]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [64]),
+        .I3(\prdata_sr_reg[158]_0 [48]),
         .I4(\prdata_sr[150]_i_3_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[150]));
@@ -25545,24 +25559,24 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[150]_i_30 
        (.I0(\prdata_sr_reg[147]_0 [141]),
         .I1(\prdata_sr_reg[147]_0 [140]),
-        .I2(\prdata_sr_reg[158]_0 [45]),
-        .I3(\prdata_sr_reg[158]_0 [46]),
+        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I3(\prdata_sr_reg[158]_0 [30]),
         .O(\misc_cnfg_bits_reg[141] [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \prdata_sr[150]_i_31 
        (.I0(\prdata_sr_reg[147]_0 [139]),
         .I1(\prdata_sr_reg[147]_0 [138]),
-        .I2(\prdata_sr_reg[158]_0 [43]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
+        .I2(\prdata_sr_reg[158]_0 [27]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
         .O(\misc_cnfg_bits_reg[141] [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \prdata_sr[150]_i_32 
        (.I0(\prdata_sr_reg[147]_0 [137]),
         .I1(\prdata_sr_reg[147]_0 [136]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr_reg[158]_0 [41]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\prdata_sr_reg[158]_0 [25]),
         .O(\misc_cnfg_bits_reg[141] [0]));
   LUT6 #(
     .INIT(64'hFFFF4F4444444444)) 
@@ -25570,7 +25584,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[150]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [65]),
+        .I3(\prdata_sr_reg[158]_0 [49]),
         .I4(\prdata_sr[151]_i_3_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[151]));
@@ -25619,24 +25633,24 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[151]_i_27 
        (.I0(\prdata_sr_reg[147]_0 [111]),
         .I1(\prdata_sr_reg[147]_0 [110]),
-        .I2(\prdata_sr_reg[158]_0 [45]),
-        .I3(\prdata_sr_reg[158]_0 [46]),
+        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I3(\prdata_sr_reg[158]_0 [30]),
         .O(\misc_cnfg_bits_reg[111] [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \prdata_sr[151]_i_28 
        (.I0(\prdata_sr_reg[147]_0 [109]),
         .I1(\prdata_sr_reg[147]_0 [108]),
-        .I2(\prdata_sr_reg[158]_0 [43]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
+        .I2(\prdata_sr_reg[158]_0 [27]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
         .O(\misc_cnfg_bits_reg[111] [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \prdata_sr[151]_i_29 
        (.I0(\prdata_sr_reg[147]_0 [107]),
         .I1(\prdata_sr_reg[147]_0 [106]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr_reg[158]_0 [41]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\prdata_sr_reg[158]_0 [25]),
         .O(\misc_cnfg_bits_reg[111] [0]));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
@@ -25653,24 +25667,24 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     \prdata_sr[151]_i_38 
        (.I0(\prdata_sr_reg[147]_0 [123]),
         .I1(\prdata_sr_reg[147]_0 [122]),
-        .I2(\prdata_sr_reg[158]_0 [45]),
-        .I3(\prdata_sr_reg[158]_0 [46]),
+        .I2(\prdata_sr_reg[158]_0 [29]),
+        .I3(\prdata_sr_reg[158]_0 [30]),
         .O(\misc_cnfg_bits_reg[123] [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \prdata_sr[151]_i_39 
        (.I0(\prdata_sr_reg[147]_0 [121]),
         .I1(\prdata_sr_reg[147]_0 [120]),
-        .I2(\prdata_sr_reg[158]_0 [43]),
-        .I3(\prdata_sr_reg[158]_0 [44]),
+        .I2(\prdata_sr_reg[158]_0 [27]),
+        .I3(\prdata_sr_reg[158]_0 [28]),
         .O(\misc_cnfg_bits_reg[123] [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \prdata_sr[151]_i_40 
        (.I0(\prdata_sr_reg[147]_0 [119]),
         .I1(\prdata_sr_reg[147]_0 [118]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr_reg[158]_0 [41]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\prdata_sr_reg[158]_0 [25]),
         .O(\misc_cnfg_bits_reg[123] [0]));
   LUT6 #(
     .INIT(64'hFFFFBBBAAAAAAAAA)) 
@@ -25745,360 +25759,59 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[152]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [66]),
+        .I3(\prdata_sr_reg[158]_0 [50]),
         .I4(\prdata_sr[153]_i_3_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[153]));
-  LUT5 #(
-    .INIT(32'h0202022F)) 
-    \prdata_sr[153]_i_11 
-       (.I0(\prdata_sr[126]_i_7_n_0 ),
-        .I1(\prdata_sr[153]_i_26_n_0 ),
-        .I2(\prdata_sr_reg[158]_0 [52]),
-        .I3(\prdata_sr[153]_i_27_n_0 ),
-        .I4(\prdata_sr_reg[158]_0 [51]),
-        .O(\prdata_sr[153]_i_11_n_0 ));
-  LUT5 #(
-    .INIT(32'h00A080E0)) 
-    \prdata_sr[153]_i_12 
-       (.I0(\prdata_sr[153]_i_28_n_0 ),
-        .I1(\prdata_sr[153]_i_29_n_0 ),
-        .I2(\prdata_sr[126]_i_7_n_0 ),
-        .I3(\prdata_sr_reg[158]_0 [50]),
-        .I4(\prdata_sr_reg[158]_0 [49]),
-        .O(\prdata_sr[153]_i_12_n_0 ));
-  LUT3 #(
-    .INIT(8'h28)) 
-    \prdata_sr[153]_i_14 
-       (.I0(\prdata_sr[153]_i_30_n_0 ),
-        .I1(\prdata_sr[153]_i_27_n_0 ),
-        .I2(\prdata_sr_reg[158]_0 [51]),
-        .O(\prdata_sr[153]_i_14_n_0 ));
-  LUT5 #(
-    .INIT(32'h81412111)) 
-    \prdata_sr[153]_i_15 
-       (.I0(\prdata_sr_reg[158]_0 [50]),
-        .I1(\prdata_sr_reg[158]_0 [49]),
-        .I2(\prdata_sr[126]_i_7_n_0 ),
-        .I3(\prdata_sr[153]_i_28_n_0 ),
-        .I4(\prdata_sr[153]_i_29_n_0 ),
-        .O(\prdata_sr[153]_i_15_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_16 
-       (.I0(\prdata_sr_reg[159]_i_7_0 [153]),
-        .I1(\prdata_sr_reg[159]_i_7_1 [153]),
-        .I2(Q[1]),
-        .I3(\prdata_sr_reg[159]_i_7_2 [153]),
-        .I4(Q[0]),
-        .I5(\prdata_sr_reg[159]_i_7_3 [153]),
-        .O(\prdata_sr[153]_i_16_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_17 
+    \prdata_sr[153]_i_10 
        (.I0(\prdata_sr_reg[159]_i_7_4 [153]),
         .I1(\prdata_sr_reg[159]_i_7_5 [153]),
         .I2(Q[1]),
         .I3(\prdata_sr_reg[159]_i_7_6 [153]),
         .I4(Q[0]),
         .I5(\prdata_sr_reg[159]_i_7_7 [153]),
-        .O(\prdata_sr[153]_i_17_n_0 ));
-  LUT5 #(
-    .INIT(32'h1010F510)) 
-    \prdata_sr[153]_i_20 
-       (.I0(\prdata_sr_reg[158]_0 [44]),
-        .I1(\prdata_sr[126]_i_7_n_0 ),
-        .I2(\prdata_sr[153]_i_35_n_0 ),
-        .I3(\prdata_sr[153]_i_36_n_0 ),
-        .I4(\prdata_sr_reg[158]_0 [43]),
-        .O(\prdata_sr[153]_i_20_n_0 ));
-  LUT6 #(
-    .INIT(64'h0101010101011F01)) 
-    \prdata_sr[153]_i_21 
-       (.I0(\prdata_sr[153]_i_37_n_0 ),
-        .I1(\prdata_sr_reg[158]_0 [41]),
-        .I2(\prdata_sr_reg[158]_0 [42]),
-        .I3(\prdata_sr[153]_i_38_n_0 ),
-        .I4(\prdata_sr[125]_i_7_n_0 ),
-        .I5(\prdata_sr[126]_i_7_n_0 ),
-        .O(\prdata_sr[153]_i_21_n_0 ));
-  LUT4 #(
-    .INIT(16'h0990)) 
-    \prdata_sr[153]_i_22 
-       (.I0(\misc_cnfg_bits_reg[30] ),
-        .I1(\prdata_sr_reg[158]_0 [48]),
-        .I2(\misc_cnfg_bits_reg[33] ),
-        .I3(\prdata_sr_reg[158]_0 [47]),
-        .O(\prdata_sr[153]_i_22_n_0 ));
-  LUT4 #(
-    .INIT(16'h0990)) 
-    \prdata_sr[153]_i_23 
-       (.I0(\misc_cnfg_bits_reg[26] ),
-        .I1(\prdata_sr_reg[158]_0 [45]),
-        .I2(\misc_cnfg_bits_reg[32] ),
-        .I3(\prdata_sr_reg[158]_0 [46]),
-        .O(\prdata_sr[153]_i_23_n_0 ));
-  LUT5 #(
-    .INIT(32'h11118241)) 
-    \prdata_sr[153]_i_24 
-       (.I0(\prdata_sr_reg[158]_0 [44]),
-        .I1(\prdata_sr_reg[158]_0 [43]),
-        .I2(\prdata_sr[153]_i_39_n_0 ),
-        .I3(\prdata_sr[153]_i_35_n_0 ),
-        .I4(\prdata_sr[126]_i_7_n_0 ),
-        .O(\prdata_sr[153]_i_24_n_0 ));
-  LUT6 #(
-    .INIT(64'h000010EF10EF0000)) 
-    \prdata_sr[153]_i_25 
-       (.I0(\prdata_sr[126]_i_7_n_0 ),
-        .I1(\prdata_sr[125]_i_7_n_0 ),
-        .I2(\prdata_sr[153]_i_38_n_0 ),
-        .I3(\prdata_sr_reg[158]_0 [42]),
-        .I4(\prdata_sr[153]_i_37_n_0 ),
-        .I5(\prdata_sr_reg[158]_0 [41]),
-        .O(\prdata_sr[153]_i_25_n_0 ));
-  LUT6 #(
-    .INIT(64'h77775FFFFFFF5FFF)) 
-    \prdata_sr[153]_i_26 
-       (.I0(\prdata_sr[125]_i_7_n_0 ),
-        .I1(\prdata_sr_reg[147]_0 [31]),
-        .I2(\prdata_sr_reg[147]_0 [52]),
-        .I3(\prdata_sr_reg[147]_0 [51]),
-        .I4(\prdata_sr[153]_i_40_n_0 ),
-        .I5(\prdata_sr_reg[147]_0 [30]),
-        .O(\prdata_sr[153]_i_26_n_0 ));
-  LUT6 #(
-    .INIT(64'h417DFFFFFFFFFFFF)) 
-    \prdata_sr[153]_i_27 
-       (.I0(\prdata_sr_reg[147]_0 [32]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [53]),
-        .I4(\prdata_sr[153]_i_41_n_0 ),
-        .I5(\prdata_sr[126]_i_7_n_0 ),
-        .O(\prdata_sr[153]_i_27_n_0 ));
-  LUT5 #(
-    .INIT(32'hFAC00AC0)) 
-    \prdata_sr[153]_i_28 
-       (.I0(\prdata_sr[153]_i_42_n_0 ),
-        .I1(\prdata_sr[153]_i_43_n_0 ),
-        .I2(\prdata_sr[124]_i_7_n_0 ),
-        .I3(\prdata_sr[125]_i_7_n_0 ),
-        .I4(\prdata_sr[153]_i_44_n_0 ),
-        .O(\prdata_sr[153]_i_28_n_0 ));
-  LUT5 #(
-    .INIT(32'hFCAA0CAA)) 
-    \prdata_sr[153]_i_29 
-       (.I0(\prdata_sr[153]_i_41_n_0 ),
-        .I1(\prdata_sr[153]_i_44_n_0 ),
-        .I2(\prdata_sr[124]_i_7_n_0 ),
-        .I3(\prdata_sr[125]_i_7_n_0 ),
-        .I4(\prdata_sr[153]_i_45_n_0 ),
-        .O(\prdata_sr[153]_i_29_n_0 ));
+        .O(\prdata_sr[153]_i_10_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
     \prdata_sr[153]_i_3 
-       (.I0(\prdata_sr_reg[153]_i_7_n_0 ),
+       (.I0(\prdata_sr_reg[153]_i_6_n_0 ),
         .I1(\paddr_reg[3]_rep_n_0 ),
-        .I2(\prdata_sr[153]_i_8_n_0 ),
+        .I2(\prdata_sr[153]_i_7_n_0 ),
         .I3(\paddr_reg_n_0_[2] ),
-        .I4(\prdata_sr[153]_i_9_n_0 ),
+        .I4(\prdata_sr[153]_i_8_n_0 ),
         .I5(\paddr_reg[4]_rep__0_n_0 ),
         .O(\prdata_sr[153]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h22200020DDDFFFDF)) 
-    \prdata_sr[153]_i_30 
-       (.I0(\prdata_sr[126]_i_7_n_0 ),
-        .I1(\prdata_sr[153]_i_46_n_0 ),
-        .I2(\prdata_sr_reg[147]_0 [51]),
-        .I3(\prdata_sr[153]_i_40_n_0 ),
-        .I4(\prdata_sr_reg[147]_0 [30]),
-        .I5(\prdata_sr_reg[158]_0 [52]),
-        .O(\prdata_sr[153]_i_30_n_0 ));
-  LUT4 #(
-    .INIT(16'h4777)) 
-    \prdata_sr[153]_i_31 
-       (.I0(\prdata_sr[153]_i_39_n_0 ),
-        .I1(\prdata_sr[126]_i_7_n_0 ),
-        .I2(\prdata_sr[153]_i_41_n_0 ),
-        .I3(\prdata_sr[125]_i_7_n_0 ),
-        .O(\misc_cnfg_bits_reg[33] ));
-  LUT6 #(
-    .INIT(64'h88888888B8BBB888)) 
-    \prdata_sr[153]_i_32 
-       (.I0(\prdata_sr[153]_i_35_n_0 ),
-        .I1(\prdata_sr[126]_i_7_n_0 ),
-        .I2(\prdata_sr_reg[147]_0 [30]),
-        .I3(\prdata_sr[153]_i_40_n_0 ),
-        .I4(\prdata_sr_reg[147]_0 [51]),
-        .I5(\prdata_sr[153]_i_46_n_0 ),
-        .O(\misc_cnfg_bits_reg[30] ));
-  LUT4 #(
-    .INIT(16'hB0BF)) 
-    \prdata_sr[153]_i_33 
-       (.I0(\prdata_sr[125]_i_7_n_0 ),
-        .I1(\prdata_sr[153]_i_38_n_0 ),
-        .I2(\prdata_sr[126]_i_7_n_0 ),
-        .I3(\prdata_sr[153]_i_28_n_0 ),
-        .O(\misc_cnfg_bits_reg[32] ));
-  LUT6 #(
-    .INIT(64'h00B8FFFF00B80000)) 
-    \prdata_sr[153]_i_34 
-       (.I0(\prdata_sr_reg[147]_0 [26]),
-        .I1(\prdata_sr[153]_i_40_n_0 ),
-        .I2(\prdata_sr_reg[147]_0 [47]),
-        .I3(\prdata_sr[153]_i_47_n_0 ),
-        .I4(\prdata_sr[126]_i_7_n_0 ),
-        .I5(\prdata_sr[153]_i_29_n_0 ),
-        .O(\misc_cnfg_bits_reg[26] ));
-  LUT5 #(
-    .INIT(32'hFFE200E2)) 
-    \prdata_sr[153]_i_35 
-       (.I0(\prdata_sr[153]_i_42_n_0 ),
-        .I1(\prdata_sr[124]_i_7_n_0 ),
-        .I2(\prdata_sr[153]_i_44_n_0 ),
-        .I3(\prdata_sr[125]_i_7_n_0 ),
-        .I4(\prdata_sr[153]_i_38_n_0 ),
-        .O(\prdata_sr[153]_i_35_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair140" *) 
-  LUT5 #(
-    .INIT(32'h0220A22A)) 
-    \prdata_sr[153]_i_36 
-       (.I0(\prdata_sr[153]_i_39_n_0 ),
-        .I1(\prdata_sr_reg[147]_0 [54]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [55]),
-        .I4(\prdata_sr_reg[147]_0 [33]),
-        .O(\prdata_sr[153]_i_36_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFFF47)) 
-    \prdata_sr[153]_i_37 
-       (.I0(\prdata_sr_reg[147]_0 [26]),
-        .I1(\prdata_sr[153]_i_40_n_0 ),
-        .I2(\prdata_sr_reg[147]_0 [47]),
-        .I3(\prdata_sr[124]_i_7_n_0 ),
-        .I4(\prdata_sr[125]_i_7_n_0 ),
-        .I5(\prdata_sr[126]_i_7_n_0 ),
-        .O(\prdata_sr[153]_i_37_n_0 ));
-  LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_38 
-       (.I0(\prdata_sr_reg[147]_0 [26]),
-        .I1(\prdata_sr_reg[147]_0 [47]),
-        .I2(\prdata_sr[124]_i_7_n_0 ),
-        .I3(\prdata_sr_reg[147]_0 [27]),
-        .I4(\prdata_sr[153]_i_40_n_0 ),
-        .I5(\prdata_sr_reg[147]_0 [48]),
-        .O(\prdata_sr[153]_i_38_n_0 ));
-  LUT5 #(
-    .INIT(32'h0C0CFA0A)) 
-    \prdata_sr[153]_i_39 
-       (.I0(\prdata_sr[153]_i_44_n_0 ),
-        .I1(\prdata_sr[153]_i_48_n_0 ),
-        .I2(\prdata_sr[124]_i_7_n_0 ),
-        .I3(\prdata_sr[153]_i_45_n_0 ),
-        .I4(\prdata_sr[125]_i_7_n_0 ),
-        .O(\prdata_sr[153]_i_39_n_0 ));
-  LUT2 #(
-    .INIT(4'h9)) 
-    \prdata_sr[153]_i_40 
-       (.I0(\prdata_sr_reg[147]_0 [55]),
-        .I1(\prdata_sr_reg[158]_0 [63]),
-        .O(\prdata_sr[153]_i_40_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_41 
-       (.I0(\prdata_sr_reg[147]_0 [29]),
-        .I1(\prdata_sr_reg[147]_0 [50]),
-        .I2(\prdata_sr[124]_i_7_n_0 ),
-        .I3(\prdata_sr_reg[147]_0 [30]),
-        .I4(\prdata_sr[153]_i_40_n_0 ),
-        .I5(\prdata_sr_reg[147]_0 [51]),
-        .O(\prdata_sr[153]_i_41_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair151" *) 
-  LUT4 #(
-    .INIT(16'hBE82)) 
-    \prdata_sr[153]_i_42 
-       (.I0(\prdata_sr_reg[147]_0 [29]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [50]),
-        .O(\prdata_sr[153]_i_42_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair149" *) 
-  LUT4 #(
-    .INIT(16'hBE82)) 
-    \prdata_sr[153]_i_43 
-       (.I0(\prdata_sr_reg[147]_0 [30]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [51]),
-        .O(\prdata_sr[153]_i_43_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair150" *) 
-  LUT4 #(
-    .INIT(16'hBE82)) 
-    \prdata_sr[153]_i_44 
-       (.I0(\prdata_sr_reg[147]_0 [28]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [49]),
-        .O(\prdata_sr[153]_i_44_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair152" *) 
-  LUT4 #(
-    .INIT(16'hBE82)) 
-    \prdata_sr[153]_i_45 
-       (.I0(\prdata_sr_reg[147]_0 [27]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [48]),
-        .O(\prdata_sr[153]_i_45_n_0 ));
-  LUT6 #(
-    .INIT(64'h335F5F33FF5F5FFF)) 
-    \prdata_sr[153]_i_46 
-       (.I0(\prdata_sr_reg[147]_0 [52]),
-        .I1(\prdata_sr_reg[147]_0 [31]),
-        .I2(\prdata_sr_reg[147]_0 [53]),
-        .I3(\prdata_sr_reg[158]_0 [63]),
-        .I4(\prdata_sr_reg[147]_0 [55]),
-        .I5(\prdata_sr_reg[147]_0 [32]),
-        .O(\prdata_sr[153]_i_46_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFAFAFFCCFAFACC)) 
-    \prdata_sr[153]_i_47 
-       (.I0(\prdata_sr_reg[147]_0 [52]),
-        .I1(\prdata_sr_reg[147]_0 [31]),
-        .I2(\prdata_sr_reg[147]_0 [53]),
-        .I3(\prdata_sr_reg[158]_0 [63]),
-        .I4(\prdata_sr_reg[147]_0 [55]),
-        .I5(\prdata_sr_reg[147]_0 [32]),
-        .O(\prdata_sr[153]_i_47_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair153" *) 
-  LUT4 #(
-    .INIT(16'hBE82)) 
-    \prdata_sr[153]_i_48 
-       (.I0(\prdata_sr_reg[147]_0 [26]),
-        .I1(\prdata_sr_reg[147]_0 [55]),
-        .I2(\prdata_sr_reg[158]_0 [63]),
-        .I3(\prdata_sr_reg[147]_0 [47]),
-        .O(\prdata_sr[153]_i_48_n_0 ));
-  LUT6 #(
-    .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_8 
+    \prdata_sr[153]_i_7 
        (.I0(\prdata_sr_reg[159]_i_8_0 [153]),
         .I1(\prdata_sr_reg[159]_i_8_1 [153]),
         .I2(Q[1]),
         .I3(\prdata_sr_reg[159]_i_8_2 [153]),
         .I4(Q[0]),
         .I5(\prdata_sr_reg[159]_i_8_3 [153]),
-        .O(\prdata_sr[153]_i_8_n_0 ));
+        .O(\prdata_sr[153]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
-    \prdata_sr[153]_i_9 
+    \prdata_sr[153]_i_8 
        (.I0(\prdata_sr_reg[159]_i_8_4 [153]),
         .I1(\prdata_sr_reg[159]_i_8_5 [153]),
         .I2(Q[1]),
         .I3(\prdata_sr_reg[159]_i_8_6 [153]),
         .I4(Q[0]),
         .I5(\prdata_sr_reg[159]_i_8_7 [153]),
+        .O(\prdata_sr[153]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \prdata_sr[153]_i_9 
+       (.I0(\prdata_sr_reg[159]_i_7_0 [153]),
+        .I1(\prdata_sr_reg[159]_i_7_1 [153]),
+        .I2(Q[1]),
+        .I3(\prdata_sr_reg[159]_i_7_2 [153]),
+        .I4(Q[0]),
+        .I5(\prdata_sr_reg[159]_i_7_3 [153]),
         .O(\prdata_sr[153]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'hFFFF4F4444444444)) 
@@ -26106,7 +25819,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[153]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [67]),
+        .I3(\prdata_sr_reg[158]_0 [51]),
         .I4(\prdata_sr[154]_i_2_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[154]));
@@ -26166,7 +25879,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[154]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [68]),
+        .I3(\prdata_sr_reg[158]_0 [52]),
         .I4(\prdata_sr[155]_i_2_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[155]));
@@ -26226,7 +25939,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[159]_i_4_n_0 ),
         .I1(prdata_sr[155]),
         .I2(\paddr_reg[3]_rep_0 ),
-        .I3(\prdata_sr_reg[158]_0 [69]),
+        .I3(\prdata_sr_reg[158]_0 [53]),
         .I4(\prdata_sr[156]_i_3_n_0 ),
         .I5(\prdata_sr[159]_i_6_n_0 ),
         .O(prdata_sr_d[156]));
@@ -26302,7 +26015,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h44F4444444444444)) 
     \prdata_sr[157]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [70]),
+        .I1(\prdata_sr_reg[158]_0 [54]),
         .I2(\paddr_reg_n_0_[2] ),
         .I3(\paddr_reg[4]_rep__0_n_0 ),
         .I4(\paddr_reg[3]_rep_n_0 ),
@@ -26371,7 +26084,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h44F4444444444444)) 
     \prdata_sr[158]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [71]),
+        .I1(\prdata_sr_reg[158]_0 [55]),
         .I2(\paddr_reg_n_0_[2] ),
         .I3(\paddr_reg[4]_rep__0_n_0 ),
         .I4(\paddr_reg[3]_rep_n_0 ),
@@ -26586,7 +26299,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [15]),
         .I3(Q[1]),
         .I4(Q[0]),
-        .I5(\mask[47]_i_13_0 [15]),
+        .I5(\mask[47]_i_11_0 [15]),
         .O(\prdata_sr[15]_i_8_n_0 ));
   LUT6 #(
     .INIT(64'hF4FFF4F444444444)) 
@@ -26670,7 +26383,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'hF0AAFFCCF0AA00CC)) 
     \prdata_sr[16]_i_8 
-       (.I0(\mask[47]_i_13_0 [16]),
+       (.I0(\mask[47]_i_11_0 [16]),
         .I1(\prdata_sr[47]_i_4_2 [16]),
         .I2(\prdata_sr[47]_i_4_1 [16]),
         .I3(Q[1]),
@@ -26758,7 +26471,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[17]_i_5 
        (.I0(\prdata_sr[47]_i_4_1 [17]),
-        .I1(\mask[47]_i_13_0 [17]),
+        .I1(\mask[47]_i_11_0 [17]),
         .I2(\mask_reg[47] [17]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -26876,7 +26589,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hF0CCFFAAF0CC00AA)) 
     \prdata_sr[18]_i_8 
        (.I0(\prdata_sr[47]_i_4_2 [18]),
-        .I1(\mask[47]_i_13_0 [18]),
+        .I1(\mask[47]_i_11_0 [18]),
         .I2(\prdata_sr[47]_i_4_1 [18]),
         .I3(Q[1]),
         .I4(Q[0]),
@@ -26994,7 +26707,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'hF0AAFFCCF0AA00CC)) 
     \prdata_sr[19]_i_7 
-       (.I0(\mask[47]_i_13_0 [19]),
+       (.I0(\mask[47]_i_11_0 [19]),
         .I1(\prdata_sr[47]_i_4_2 [19]),
         .I2(\prdata_sr[47]_i_4_1 [19]),
         .I3(\paddr_reg[1]_rep__4_0 ),
@@ -27015,7 +26728,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[1]_i_10 
        (.I0(\prdata_sr[47]_i_4_1 [1]),
-        .I1(\mask[47]_i_13_0 [1]),
+        .I1(\mask[47]_i_11_0 [1]),
         .I2(\mask_reg[47] [1]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -27225,7 +26938,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [20]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [20]),
+        .I5(\mask[47]_i_11_0 [20]),
         .O(\prdata_sr[20]_i_5_n_0 ));
   LUT6 #(
     .INIT(64'hF4F4F4F4FFF4F4F4)) 
@@ -27354,7 +27067,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [21]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [21]),
+        .I5(\mask[47]_i_11_0 [21]),
         .O(\prdata_sr[21]_i_7_n_0 ));
   LUT5 #(
     .INIT(32'hBAFFBABA)) 
@@ -27501,7 +27214,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [22]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [22]),
+        .I5(\mask[47]_i_11_0 [22]),
         .O(\prdata_sr[22]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hF4FFF4F444444444)) 
@@ -27620,7 +27333,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [23]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [23]),
+        .I5(\mask[47]_i_11_0 [23]),
         .O(\prdata_sr[23]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hF4FFF4F444444444)) 
@@ -27739,7 +27452,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [24]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [24]),
+        .I5(\mask[47]_i_11_0 [24]),
         .O(\prdata_sr[24]_i_7_n_0 ));
   LUT4 #(
     .INIT(16'h4F44)) 
@@ -27804,7 +27517,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[25]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [0]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[25]_i_2_0 ),
         .O(\prdata_sr[25]_i_4_n_0 ));
@@ -27816,7 +27529,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [25]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [25]),
+        .I5(\mask[47]_i_11_0 [25]),
         .O(\prdata_sr[25]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -27883,7 +27596,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[26]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [1]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[26]_i_2_0 ),
         .O(\prdata_sr[26]_i_4_n_0 ));
@@ -27895,7 +27608,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [26]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [26]),
+        .I5(\mask[47]_i_11_0 [26]),
         .O(\prdata_sr[26]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -27962,7 +27675,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[27]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [2]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[27]_i_2_0 ),
         .O(\prdata_sr[27]_i_4_n_0 ));
@@ -27970,7 +27683,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[27]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [27]),
-        .I1(\mask[47]_i_13_0 [27]),
+        .I1(\mask[47]_i_11_0 [27]),
         .I2(\mask_reg[47] [27]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28041,7 +27754,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[28]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [3]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[28]_i_2_0 ),
         .O(\prdata_sr[28]_i_4_n_0 ));
@@ -28049,7 +27762,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[28]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [28]),
-        .I1(\mask[47]_i_13_0 [28]),
+        .I1(\mask[47]_i_11_0 [28]),
         .I2(\mask_reg[47] [28]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28120,7 +27833,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[29]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [4]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[29]_i_2_0 ),
         .O(\prdata_sr[29]_i_4_n_0 ));
@@ -28132,7 +27845,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [29]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [29]),
+        .I5(\mask[47]_i_11_0 [29]),
         .O(\prdata_sr[29]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -28237,7 +27950,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [2]),
         .I3(\paddr_reg[1]_rep__5_n_0 ),
         .I4(\paddr_reg[0]_rep__5_n_0 ),
-        .I5(\mask[47]_i_13_0 [2]),
+        .I5(\mask[47]_i_11_0 [2]),
         .O(\prdata_sr[2]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hF4FFF4F444444444)) 
@@ -28294,7 +28007,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[30]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [5]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[30]_i_2_0 ),
         .O(\prdata_sr[30]_i_4_n_0 ));
@@ -28302,7 +28015,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h0F3300550F33FF55)) 
     \prdata_sr[30]_i_7 
        (.I0(\prdata_sr[47]_i_4_2 [30]),
-        .I1(\mask[47]_i_13_0 [30]),
+        .I1(\mask[47]_i_11_0 [30]),
         .I2(\prdata_sr[47]_i_4_1 [30]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28373,7 +28086,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[31]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [6]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[31]_i_2_0 ),
         .O(\prdata_sr[31]_i_4_n_0 ));
@@ -28385,7 +28098,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [31]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [31]),
+        .I5(\mask[47]_i_11_0 [31]),
         .O(\prdata_sr[31]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -28452,7 +28165,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[32]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [7]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[32]_i_8_n_0 ),
         .O(\prdata_sr[32]_i_4_n_0 ));
@@ -28464,7 +28177,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [32]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [32]),
+        .I5(\mask[47]_i_11_0 [32]),
         .O(\prdata_sr[32]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h0000000008080880)) 
@@ -28541,7 +28254,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[33]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [8]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[33]_i_8_n_0 ),
         .O(\prdata_sr[33]_i_4_n_0 ));
@@ -28549,7 +28262,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[33]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [33]),
-        .I1(\mask[47]_i_13_0 [33]),
+        .I1(\mask[47]_i_11_0 [33]),
         .I2(\mask_reg[47] [33]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28630,7 +28343,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[34]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [9]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[34]_i_8_n_0 ),
         .O(\prdata_sr[34]_i_4_n_0 ));
@@ -28642,7 +28355,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [34]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [34]),
+        .I5(\mask[47]_i_11_0 [34]),
         .O(\prdata_sr[34]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h0000000008080880)) 
@@ -28719,7 +28432,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[35]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [10]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[35]_i_8_n_0 ),
         .O(\prdata_sr[35]_i_4_n_0 ));
@@ -28727,7 +28440,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[35]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [35]),
-        .I1(\mask[47]_i_13_0 [35]),
+        .I1(\mask[47]_i_11_0 [35]),
         .I2(\mask_reg[47] [35]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28808,7 +28521,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[36]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [11]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[36]_i_8_n_0 ),
         .O(\prdata_sr[36]_i_4_n_0 ));
@@ -28816,7 +28529,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h0F3355000F3355FF)) 
     \prdata_sr[36]_i_7 
        (.I0(\mask_reg[47] [36]),
-        .I1(\mask[47]_i_13_0 [36]),
+        .I1(\mask[47]_i_11_0 [36]),
         .I2(\prdata_sr[47]_i_4_1 [36]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28897,7 +28610,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[37]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [12]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[37]_i_8_n_0 ),
         .O(\prdata_sr[37]_i_4_n_0 ));
@@ -28905,7 +28618,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[37]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [37]),
-        .I1(\mask[47]_i_13_0 [37]),
+        .I1(\mask[47]_i_11_0 [37]),
         .I2(\mask_reg[47] [37]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -28986,7 +28699,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[38]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [13]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[38]_i_8_n_0 ),
         .O(\prdata_sr[38]_i_4_n_0 ));
@@ -28998,7 +28711,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [38]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [38]),
+        .I5(\mask[47]_i_11_0 [38]),
         .O(\prdata_sr[38]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h0000000008080880)) 
@@ -29075,7 +28788,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[39]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [14]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[39]_i_8_n_0 ),
         .O(\prdata_sr[39]_i_4_n_0 ));
@@ -29083,7 +28796,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[39]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [39]),
-        .I1(\mask[47]_i_13_0 [39]),
+        .I1(\mask[47]_i_11_0 [39]),
         .I2(\mask_reg[47] [39]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29194,7 +28907,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [3]),
         .I3(\paddr_reg[1]_rep__5_n_0 ),
         .I4(\paddr_reg[0]_rep__5_n_0 ),
-        .I5(\mask[47]_i_13_0 [3]),
+        .I5(\mask[47]_i_11_0 [3]),
         .O(\prdata_sr[3]_i_5_n_0 ));
   LUT4 #(
     .INIT(16'hFEAE)) 
@@ -29269,7 +28982,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[40]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [15]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[40]_i_8_n_0 ),
         .O(\prdata_sr[40]_i_4_n_0 ));
@@ -29281,7 +28994,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\prdata_sr[47]_i_4_1 [40]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [40]),
+        .I5(\mask[47]_i_11_0 [40]),
         .O(\prdata_sr[40]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h0000000008080880)) 
@@ -29358,7 +29071,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[41]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [16]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[41]_i_8_n_0 ),
         .O(\prdata_sr[41]_i_4_n_0 ));
@@ -29370,7 +29083,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [41]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [41]),
+        .I5(\mask[47]_i_11_0 [41]),
         .O(\prdata_sr[41]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'h0000000008080880)) 
@@ -29447,7 +29160,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[42]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [17]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[42]_i_8_n_0 ),
         .O(\prdata_sr[42]_i_4_n_0 ));
@@ -29455,7 +29168,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h0F3355000F3355FF)) 
     \prdata_sr[42]_i_7 
        (.I0(\mask_reg[47] [42]),
-        .I1(\mask[47]_i_13_0 [42]),
+        .I1(\mask[47]_i_11_0 [42]),
         .I2(\prdata_sr[47]_i_4_1 [42]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29536,7 +29249,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[43]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [18]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[43]_i_8_n_0 ),
         .O(\prdata_sr[43]_i_4_n_0 ));
@@ -29544,7 +29257,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[43]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [43]),
-        .I1(\mask[47]_i_13_0 [43]),
+        .I1(\mask[47]_i_11_0 [43]),
         .I2(\mask_reg[47] [43]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29625,7 +29338,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[44]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [19]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[44]_i_8_n_0 ),
         .O(\prdata_sr[44]_i_4_n_0 ));
@@ -29633,7 +29346,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h0F3355000F3355FF)) 
     \prdata_sr[44]_i_7 
        (.I0(\mask_reg[47] [44]),
-        .I1(\mask[47]_i_13_0 [44]),
+        .I1(\mask[47]_i_11_0 [44]),
         .I2(\prdata_sr[47]_i_4_1 [44]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29714,7 +29427,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[45]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [20]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[45]_i_8_n_0 ),
         .O(\prdata_sr[45]_i_4_n_0 ));
@@ -29722,7 +29435,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[45]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [45]),
-        .I1(\mask[47]_i_13_0 [45]),
+        .I1(\mask[47]_i_11_0 [45]),
         .I2(\mask_reg[47] [45]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29803,7 +29516,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[46]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [21]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[46]_i_8_n_0 ),
         .O(\prdata_sr[46]_i_4_n_0 ));
@@ -29811,7 +29524,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h0F3355000F3355FF)) 
     \prdata_sr[46]_i_7 
        (.I0(\mask_reg[47] [46]),
-        .I1(\mask[47]_i_13_0 [46]),
+        .I1(\mask[47]_i_11_0 [46]),
         .I2(\prdata_sr[47]_i_4_1 [46]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29892,7 +29605,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
        (.I0(\prdata_sr[47]_i_7_n_0 ),
         .I1(\prdata_sr[9]_i_8_n_0 ),
         .I2(\prdata_sr_reg[72]_0 [22]),
-        .I3(\prdata_sr_reg[158]_0 [30]),
+        .I3(\prdata_sr_reg[158]_0 [14]),
         .I4(\paddr_reg[3]_rep_0 ),
         .I5(\prdata_sr[47]_i_8_n_0 ),
         .O(\prdata_sr[47]_i_4_n_0 ));
@@ -29900,7 +29613,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'h55330F0055330FFF)) 
     \prdata_sr[47]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [47]),
-        .I1(\mask[47]_i_13_0 [47]),
+        .I1(\mask[47]_i_11_0 [47]),
         .I2(\mask_reg[47] [47]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -29940,7 +29653,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[48]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [23]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [48]),
@@ -29999,7 +29712,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[49]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [24]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [49]),
@@ -30127,7 +29840,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hAACCF0FFAACCF000)) 
     \prdata_sr[4]_i_8 
        (.I0(\prdata_sr[47]_i_4_1 [4]),
-        .I1(\mask[47]_i_13_0 [4]),
+        .I1(\mask[47]_i_11_0 [4]),
         .I2(\mask_reg[47] [4]),
         .I3(Q[1]),
         .I4(Q[0]),
@@ -30147,7 +29860,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[50]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [25]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [50]),
@@ -30206,7 +29919,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[51]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [26]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [51]),
@@ -30265,7 +29978,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[52]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [27]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [52]),
@@ -30324,7 +30037,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[53]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [28]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [53]),
@@ -30383,7 +30096,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[54]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [29]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [54]),
@@ -30442,7 +30155,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[55]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [30]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [55]),
@@ -30501,7 +30214,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[56]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [31]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [56]),
@@ -30560,7 +30273,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[57]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [32]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [57]),
@@ -30619,7 +30332,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[58]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [33]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [58]),
@@ -30678,7 +30391,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[59]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [34]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [59]),
@@ -30761,7 +30474,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [5]),
         .I3(Q[1]),
         .I4(Q[0]),
-        .I5(\mask[47]_i_13_0 [5]),
+        .I5(\mask[47]_i_11_0 [5]),
         .O(\prdata_sr[5]_i_14_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair157" *) 
   LUT2 #(
@@ -30840,7 +30553,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[60]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [35]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [60]),
@@ -30899,7 +30612,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[61]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [36]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [61]),
@@ -30958,7 +30671,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[62]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [37]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [62]),
@@ -31017,7 +30730,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[63]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [38]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [63]),
@@ -31076,7 +30789,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[64]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [39]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [64]),
@@ -31135,7 +30848,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[65]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [40]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [65]),
@@ -31194,7 +30907,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[66]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [41]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [66]),
@@ -31253,7 +30966,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[67]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [42]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [67]),
@@ -31312,7 +31025,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[68]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [43]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [68]),
@@ -31371,7 +31084,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[69]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [44]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [69]),
@@ -31484,7 +31197,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [6]),
         .I3(Q[1]),
         .I4(Q[0]),
-        .I5(\mask[47]_i_13_0 [6]),
+        .I5(\mask[47]_i_11_0 [6]),
         .O(\prdata_sr[6]_i_16_n_0 ));
   LUT6 #(
     .INIT(64'h00000000EEE222E2)) 
@@ -31573,7 +31286,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[70]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [45]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [70]),
@@ -31632,7 +31345,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[71]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [46]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [71]),
@@ -31691,7 +31404,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(32'h41FF4141)) 
     \prdata_sr[72]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [30]),
+        .I1(\prdata_sr_reg[158]_0 [14]),
         .I2(\prdata_sr_reg[72]_0 [47]),
         .I3(\paddr_reg[4]_rep__0_1 ),
         .I4(\prdata_sr_reg[147]_0 [72]),
@@ -32657,7 +32370,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .I2(\mask_reg[47] [7]),
         .I3(\paddr_reg[1]_rep__5_n_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
-        .I5(\mask[47]_i_13_0 [7]),
+        .I5(\mask[47]_i_11_0 [7]),
         .O(\prdata_sr[7]_i_7_n_0 ));
   LUT6 #(
     .INIT(64'hAFA0CFCFAFA0C0C0)) 
@@ -33444,7 +33157,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[84]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [13]),
+        .I1(rram_addr[0]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [84]),
         .O(\prdata_sr[84]_i_2_n_0 ));
@@ -33503,7 +33216,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[85]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [14]),
+        .I1(rram_addr[1]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [85]),
         .O(\prdata_sr[85]_i_2_n_0 ));
@@ -33562,7 +33275,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[86]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [15]),
+        .I1(rram_addr[2]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [86]),
         .O(\prdata_sr[86]_i_2_n_0 ));
@@ -33621,7 +33334,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[87]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [16]),
+        .I1(rram_addr[3]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [87]),
         .O(\prdata_sr[87]_i_2_n_0 ));
@@ -33680,7 +33393,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[88]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [17]),
+        .I1(rram_addr[4]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [88]),
         .O(\prdata_sr[88]_i_2_n_0 ));
@@ -33738,7 +33451,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[89]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [18]),
+        .I1(rram_addr[5]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [89]),
         .O(\prdata_sr[89]_i_2_n_0 ));
@@ -33804,7 +33517,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
   LUT6 #(
     .INIT(64'h0F5500330F55FF33)) 
     \prdata_sr[8]_i_12 
-       (.I0(\mask[47]_i_13_0 [8]),
+       (.I0(\mask[47]_i_11_0 [8]),
         .I1(\prdata_sr[47]_i_4_2 [8]),
         .I2(\prdata_sr[47]_i_4_1 [8]),
         .I3(\paddr_reg[1]_rep__5_n_0 ),
@@ -33922,7 +33635,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[90]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [19]),
+        .I1(rram_addr[6]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [90]),
         .O(\prdata_sr[90]_i_2_n_0 ));
@@ -33980,7 +33693,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[91]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [20]),
+        .I1(rram_addr[7]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [91]),
         .O(\prdata_sr[91]_i_2_n_0 ));
@@ -34038,7 +33751,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[92]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [21]),
+        .I1(rram_addr[8]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [92]),
         .O(\prdata_sr[92]_i_2_n_0 ));
@@ -34096,7 +33809,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[93]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [22]),
+        .I1(rram_addr[9]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [93]),
         .O(\prdata_sr[93]_i_2_n_0 ));
@@ -34154,7 +33867,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[94]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [23]),
+        .I1(rram_addr[10]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [94]),
         .O(\prdata_sr[94]_i_2_n_0 ));
@@ -34212,7 +33925,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[95]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [24]),
+        .I1(rram_addr[11]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [95]),
         .O(\prdata_sr[95]_i_2_n_0 ));
@@ -34270,7 +33983,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[96]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [25]),
+        .I1(rram_addr[12]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [96]),
         .O(\prdata_sr[96]_i_2_n_0 ));
@@ -34328,7 +34041,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[97]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [26]),
+        .I1(rram_addr[13]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [97]),
         .O(\prdata_sr[97]_i_2_n_0 ));
@@ -34386,7 +34099,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[98]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [27]),
+        .I1(rram_addr[14]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [98]),
         .O(\prdata_sr[98]_i_2_n_0 ));
@@ -34444,7 +34157,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(16'h4F44)) 
     \prdata_sr[99]_i_2 
        (.I0(\paddr_reg[3]_rep_0 ),
-        .I1(\prdata_sr_reg[158]_0 [28]),
+        .I1(rram_addr[15]),
         .I2(\paddr_reg[4]_rep__0_1 ),
         .I3(\prdata_sr_reg[147]_0 [99]),
         .O(\prdata_sr[99]_i_2_n_0 ));
@@ -34586,7 +34299,7 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
     .INIT(64'hAACCF0FFAACCF000)) 
     \prdata_sr[9]_i_7 
        (.I0(\prdata_sr[47]_i_4_1 [9]),
-        .I1(\mask[47]_i_13_0 [9]),
+        .I1(\mask[47]_i_11_0 [9]),
         .I2(\mask_reg[47] [9]),
         .I3(\paddr_reg[1]_rep__4_0 ),
         .I4(\paddr_reg[0]_rep__4_0 ),
@@ -35795,26 +35508,10 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .CLR(\prdata_sr_reg[0]_0 ),
         .D(prdata_sr_d[153]),
         .Q(prdata_sr[153]));
-  (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \prdata_sr_reg[153]_i_10 
-       (.CI(1'b0),
-        .CO({\prdata_sr_reg[153]_i_10_n_0 ,\prdata_sr_reg[153]_i_10_n_1 ,\prdata_sr_reg[153]_i_10_n_2 ,\prdata_sr_reg[153]_i_10_n_3 }),
-        .CYINIT(1'b0),
-        .DI({\prdata_sr_reg[153]_i_4_0 ,\prdata_sr[153]_i_20_n_0 ,\prdata_sr[153]_i_21_n_0 }),
-        .O(\NLW_prdata_sr_reg[153]_i_10_O_UNCONNECTED [3:0]),
-        .S({\prdata_sr[153]_i_22_n_0 ,\prdata_sr[153]_i_23_n_0 ,\prdata_sr[153]_i_24_n_0 ,\prdata_sr[153]_i_25_n_0 }));
-  (* COMPARATOR_THRESHOLD = "11" *) 
-  CARRY4 \prdata_sr_reg[153]_i_4 
-       (.CI(\prdata_sr_reg[153]_i_10_n_0 ),
-        .CO({\NLW_prdata_sr_reg[153]_i_4_CO_UNCONNECTED [3],\counter_reg[11]_0 ,\prdata_sr_reg[153]_i_4_n_2 ,\prdata_sr_reg[153]_i_4_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,\prdata_sr[153]_i_11_n_0 ,\prdata_sr[153]_i_12_n_0 }),
-        .O(\NLW_prdata_sr_reg[153]_i_4_O_UNCONNECTED [3:0]),
-        .S({1'b0,\FSM_sequential_state[0]_i_27 ,\prdata_sr[153]_i_14_n_0 ,\prdata_sr[153]_i_15_n_0 }));
-  MUXF7 \prdata_sr_reg[153]_i_7 
-       (.I0(\prdata_sr[153]_i_16_n_0 ),
-        .I1(\prdata_sr[153]_i_17_n_0 ),
-        .O(\prdata_sr_reg[153]_i_7_n_0 ),
+  MUXF7 \prdata_sr_reg[153]_i_6 
+       (.I0(\prdata_sr[153]_i_9_n_0 ),
+        .I1(\prdata_sr[153]_i_10_n_0 ),
+        .O(\prdata_sr_reg[153]_i_6_n_0 ),
         .S(\paddr_reg_n_0_[2] ));
   FDCE \prdata_sr_reg[154] 
        (.C(sclk),
@@ -39349,6 +39046,323 @@ module ember_fpga_rram_top_wrapper_0_0_itrx_apbm_spi_fsm
         .CLR(\prdata_sr_reg[0]_0 ),
         .D(pwrite_d),
         .Q(pwrite));
+  LUT5 #(
+    .INIT(32'h0202022F)) 
+    \rram_addr[15]_i_18 
+       (.I0(\prdata_sr[126]_i_7_n_0 ),
+        .I1(\rram_addr[15]_i_33_n_0 ),
+        .I2(\prdata_sr_reg[158]_0 [36]),
+        .I3(\rram_addr[15]_i_34_n_0 ),
+        .I4(\prdata_sr_reg[158]_0 [35]),
+        .O(\rram_addr[15]_i_18_n_0 ));
+  LUT5 #(
+    .INIT(32'h00A080E0)) 
+    \rram_addr[15]_i_19 
+       (.I0(\rram_addr[15]_i_35_n_0 ),
+        .I1(\rram_addr[15]_i_36_n_0 ),
+        .I2(\prdata_sr[126]_i_7_n_0 ),
+        .I3(\prdata_sr_reg[158]_0 [34]),
+        .I4(\prdata_sr_reg[158]_0 [33]),
+        .O(\rram_addr[15]_i_19_n_0 ));
+  LUT3 #(
+    .INIT(8'h28)) 
+    \rram_addr[15]_i_21 
+       (.I0(\rram_addr[15]_i_37_n_0 ),
+        .I1(\rram_addr[15]_i_34_n_0 ),
+        .I2(\prdata_sr_reg[158]_0 [35]),
+        .O(\rram_addr[15]_i_21_n_0 ));
+  LUT5 #(
+    .INIT(32'h81412111)) 
+    \rram_addr[15]_i_22 
+       (.I0(\prdata_sr_reg[158]_0 [34]),
+        .I1(\prdata_sr_reg[158]_0 [33]),
+        .I2(\prdata_sr[126]_i_7_n_0 ),
+        .I3(\rram_addr[15]_i_35_n_0 ),
+        .I4(\rram_addr[15]_i_36_n_0 ),
+        .O(\rram_addr[15]_i_22_n_0 ));
+  LUT5 #(
+    .INIT(32'h1010F510)) 
+    \rram_addr[15]_i_27 
+       (.I0(\prdata_sr_reg[158]_0 [28]),
+        .I1(\prdata_sr[126]_i_7_n_0 ),
+        .I2(\rram_addr[15]_i_42_n_0 ),
+        .I3(\rram_addr[15]_i_43_n_0 ),
+        .I4(\prdata_sr_reg[158]_0 [27]),
+        .O(\rram_addr[15]_i_27_n_0 ));
+  LUT6 #(
+    .INIT(64'h0101010101011F01)) 
+    \rram_addr[15]_i_28 
+       (.I0(\rram_addr[15]_i_44_n_0 ),
+        .I1(\prdata_sr_reg[158]_0 [25]),
+        .I2(\prdata_sr_reg[158]_0 [26]),
+        .I3(\rram_addr[15]_i_45_n_0 ),
+        .I4(\prdata_sr[125]_i_7_n_0 ),
+        .I5(\prdata_sr[126]_i_7_n_0 ),
+        .O(\rram_addr[15]_i_28_n_0 ));
+  LUT4 #(
+    .INIT(16'h0990)) 
+    \rram_addr[15]_i_29 
+       (.I0(\misc_cnfg_bits_reg[30] ),
+        .I1(\prdata_sr_reg[158]_0 [32]),
+        .I2(\misc_cnfg_bits_reg[33] ),
+        .I3(\prdata_sr_reg[158]_0 [31]),
+        .O(\rram_addr[15]_i_29_n_0 ));
+  LUT4 #(
+    .INIT(16'h0990)) 
+    \rram_addr[15]_i_30 
+       (.I0(\misc_cnfg_bits_reg[26] ),
+        .I1(\prdata_sr_reg[158]_0 [29]),
+        .I2(\misc_cnfg_bits_reg[32] ),
+        .I3(\prdata_sr_reg[158]_0 [30]),
+        .O(\rram_addr[15]_i_30_n_0 ));
+  LUT5 #(
+    .INIT(32'h11118241)) 
+    \rram_addr[15]_i_31 
+       (.I0(\prdata_sr_reg[158]_0 [28]),
+        .I1(\prdata_sr_reg[158]_0 [27]),
+        .I2(\rram_addr[15]_i_46_n_0 ),
+        .I3(\rram_addr[15]_i_42_n_0 ),
+        .I4(\prdata_sr[126]_i_7_n_0 ),
+        .O(\rram_addr[15]_i_31_n_0 ));
+  LUT6 #(
+    .INIT(64'h000010EF10EF0000)) 
+    \rram_addr[15]_i_32 
+       (.I0(\prdata_sr[126]_i_7_n_0 ),
+        .I1(\prdata_sr[125]_i_7_n_0 ),
+        .I2(\rram_addr[15]_i_45_n_0 ),
+        .I3(\prdata_sr_reg[158]_0 [26]),
+        .I4(\rram_addr[15]_i_44_n_0 ),
+        .I5(\prdata_sr_reg[158]_0 [25]),
+        .O(\rram_addr[15]_i_32_n_0 ));
+  LUT6 #(
+    .INIT(64'h77775FFFFFFF5FFF)) 
+    \rram_addr[15]_i_33 
+       (.I0(\prdata_sr[125]_i_7_n_0 ),
+        .I1(\prdata_sr_reg[147]_0 [31]),
+        .I2(\prdata_sr_reg[147]_0 [52]),
+        .I3(\prdata_sr_reg[147]_0 [51]),
+        .I4(\rram_addr[15]_i_47_n_0 ),
+        .I5(\prdata_sr_reg[147]_0 [30]),
+        .O(\rram_addr[15]_i_33_n_0 ));
+  LUT6 #(
+    .INIT(64'h417DFFFFFFFFFFFF)) 
+    \rram_addr[15]_i_34 
+       (.I0(\prdata_sr_reg[147]_0 [32]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [53]),
+        .I4(\rram_addr[15]_i_48_n_0 ),
+        .I5(\prdata_sr[126]_i_7_n_0 ),
+        .O(\rram_addr[15]_i_34_n_0 ));
+  LUT5 #(
+    .INIT(32'hFAC00AC0)) 
+    \rram_addr[15]_i_35 
+       (.I0(\rram_addr[15]_i_49_n_0 ),
+        .I1(\rram_addr[15]_i_50_n_0 ),
+        .I2(\prdata_sr[124]_i_7_n_0 ),
+        .I3(\prdata_sr[125]_i_7_n_0 ),
+        .I4(\rram_addr[15]_i_51_n_0 ),
+        .O(\rram_addr[15]_i_35_n_0 ));
+  LUT5 #(
+    .INIT(32'hFCAA0CAA)) 
+    \rram_addr[15]_i_36 
+       (.I0(\rram_addr[15]_i_48_n_0 ),
+        .I1(\rram_addr[15]_i_51_n_0 ),
+        .I2(\prdata_sr[124]_i_7_n_0 ),
+        .I3(\prdata_sr[125]_i_7_n_0 ),
+        .I4(\rram_addr[15]_i_52_n_0 ),
+        .O(\rram_addr[15]_i_36_n_0 ));
+  LUT6 #(
+    .INIT(64'h22200020DDDFFFDF)) 
+    \rram_addr[15]_i_37 
+       (.I0(\prdata_sr[126]_i_7_n_0 ),
+        .I1(\rram_addr[15]_i_53_n_0 ),
+        .I2(\prdata_sr_reg[147]_0 [51]),
+        .I3(\rram_addr[15]_i_47_n_0 ),
+        .I4(\prdata_sr_reg[147]_0 [30]),
+        .I5(\prdata_sr_reg[158]_0 [36]),
+        .O(\rram_addr[15]_i_37_n_0 ));
+  LUT4 #(
+    .INIT(16'h4777)) 
+    \rram_addr[15]_i_38 
+       (.I0(\rram_addr[15]_i_46_n_0 ),
+        .I1(\prdata_sr[126]_i_7_n_0 ),
+        .I2(\rram_addr[15]_i_48_n_0 ),
+        .I3(\prdata_sr[125]_i_7_n_0 ),
+        .O(\misc_cnfg_bits_reg[33] ));
+  LUT6 #(
+    .INIT(64'h88888888B8BBB888)) 
+    \rram_addr[15]_i_39 
+       (.I0(\rram_addr[15]_i_42_n_0 ),
+        .I1(\prdata_sr[126]_i_7_n_0 ),
+        .I2(\prdata_sr_reg[147]_0 [30]),
+        .I3(\rram_addr[15]_i_47_n_0 ),
+        .I4(\prdata_sr_reg[147]_0 [51]),
+        .I5(\rram_addr[15]_i_53_n_0 ),
+        .O(\misc_cnfg_bits_reg[30] ));
+  LUT4 #(
+    .INIT(16'hB0BF)) 
+    \rram_addr[15]_i_40 
+       (.I0(\prdata_sr[125]_i_7_n_0 ),
+        .I1(\rram_addr[15]_i_45_n_0 ),
+        .I2(\prdata_sr[126]_i_7_n_0 ),
+        .I3(\rram_addr[15]_i_35_n_0 ),
+        .O(\misc_cnfg_bits_reg[32] ));
+  LUT6 #(
+    .INIT(64'h00B8FFFF00B80000)) 
+    \rram_addr[15]_i_41 
+       (.I0(\prdata_sr_reg[147]_0 [26]),
+        .I1(\rram_addr[15]_i_47_n_0 ),
+        .I2(\prdata_sr_reg[147]_0 [47]),
+        .I3(\rram_addr[15]_i_54_n_0 ),
+        .I4(\prdata_sr[126]_i_7_n_0 ),
+        .I5(\rram_addr[15]_i_36_n_0 ),
+        .O(\misc_cnfg_bits_reg[26] ));
+  LUT5 #(
+    .INIT(32'hFFE200E2)) 
+    \rram_addr[15]_i_42 
+       (.I0(\rram_addr[15]_i_49_n_0 ),
+        .I1(\prdata_sr[124]_i_7_n_0 ),
+        .I2(\rram_addr[15]_i_51_n_0 ),
+        .I3(\prdata_sr[125]_i_7_n_0 ),
+        .I4(\rram_addr[15]_i_45_n_0 ),
+        .O(\rram_addr[15]_i_42_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair140" *) 
+  LUT5 #(
+    .INIT(32'h0220A22A)) 
+    \rram_addr[15]_i_43 
+       (.I0(\rram_addr[15]_i_46_n_0 ),
+        .I1(\prdata_sr_reg[147]_0 [54]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [55]),
+        .I4(\prdata_sr_reg[147]_0 [33]),
+        .O(\rram_addr[15]_i_43_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFFFF47)) 
+    \rram_addr[15]_i_44 
+       (.I0(\prdata_sr_reg[147]_0 [26]),
+        .I1(\rram_addr[15]_i_47_n_0 ),
+        .I2(\prdata_sr_reg[147]_0 [47]),
+        .I3(\prdata_sr[124]_i_7_n_0 ),
+        .I4(\prdata_sr[125]_i_7_n_0 ),
+        .I5(\prdata_sr[126]_i_7_n_0 ),
+        .O(\rram_addr[15]_i_44_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rram_addr[15]_i_45 
+       (.I0(\prdata_sr_reg[147]_0 [26]),
+        .I1(\prdata_sr_reg[147]_0 [47]),
+        .I2(\prdata_sr[124]_i_7_n_0 ),
+        .I3(\prdata_sr_reg[147]_0 [27]),
+        .I4(\rram_addr[15]_i_47_n_0 ),
+        .I5(\prdata_sr_reg[147]_0 [48]),
+        .O(\rram_addr[15]_i_45_n_0 ));
+  LUT5 #(
+    .INIT(32'h0C0CFA0A)) 
+    \rram_addr[15]_i_46 
+       (.I0(\rram_addr[15]_i_51_n_0 ),
+        .I1(\rram_addr[15]_i_55_n_0 ),
+        .I2(\prdata_sr[124]_i_7_n_0 ),
+        .I3(\rram_addr[15]_i_52_n_0 ),
+        .I4(\prdata_sr[125]_i_7_n_0 ),
+        .O(\rram_addr[15]_i_46_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \rram_addr[15]_i_47 
+       (.I0(\prdata_sr_reg[147]_0 [55]),
+        .I1(\prdata_sr_reg[158]_0 [47]),
+        .O(\rram_addr[15]_i_47_n_0 ));
+  LUT6 #(
+    .INIT(64'hAFA0CFCFAFA0C0C0)) 
+    \rram_addr[15]_i_48 
+       (.I0(\prdata_sr_reg[147]_0 [29]),
+        .I1(\prdata_sr_reg[147]_0 [50]),
+        .I2(\prdata_sr[124]_i_7_n_0 ),
+        .I3(\prdata_sr_reg[147]_0 [30]),
+        .I4(\rram_addr[15]_i_47_n_0 ),
+        .I5(\prdata_sr_reg[147]_0 [51]),
+        .O(\rram_addr[15]_i_48_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair151" *) 
+  LUT4 #(
+    .INIT(16'hBE82)) 
+    \rram_addr[15]_i_49 
+       (.I0(\prdata_sr_reg[147]_0 [29]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [50]),
+        .O(\rram_addr[15]_i_49_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair149" *) 
+  LUT4 #(
+    .INIT(16'hBE82)) 
+    \rram_addr[15]_i_50 
+       (.I0(\prdata_sr_reg[147]_0 [30]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [51]),
+        .O(\rram_addr[15]_i_50_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair150" *) 
+  LUT4 #(
+    .INIT(16'hBE82)) 
+    \rram_addr[15]_i_51 
+       (.I0(\prdata_sr_reg[147]_0 [28]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [49]),
+        .O(\rram_addr[15]_i_51_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair152" *) 
+  LUT4 #(
+    .INIT(16'hBE82)) 
+    \rram_addr[15]_i_52 
+       (.I0(\prdata_sr_reg[147]_0 [27]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [48]),
+        .O(\rram_addr[15]_i_52_n_0 ));
+  LUT6 #(
+    .INIT(64'h335F5F33FF5F5FFF)) 
+    \rram_addr[15]_i_53 
+       (.I0(\prdata_sr_reg[147]_0 [52]),
+        .I1(\prdata_sr_reg[147]_0 [31]),
+        .I2(\prdata_sr_reg[147]_0 [53]),
+        .I3(\prdata_sr_reg[158]_0 [47]),
+        .I4(\prdata_sr_reg[147]_0 [55]),
+        .I5(\prdata_sr_reg[147]_0 [32]),
+        .O(\rram_addr[15]_i_53_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFAFAFFCCFAFACC)) 
+    \rram_addr[15]_i_54 
+       (.I0(\prdata_sr_reg[147]_0 [52]),
+        .I1(\prdata_sr_reg[147]_0 [31]),
+        .I2(\prdata_sr_reg[147]_0 [53]),
+        .I3(\prdata_sr_reg[158]_0 [47]),
+        .I4(\prdata_sr_reg[147]_0 [55]),
+        .I5(\prdata_sr_reg[147]_0 [32]),
+        .O(\rram_addr[15]_i_54_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair153" *) 
+  LUT4 #(
+    .INIT(16'hBE82)) 
+    \rram_addr[15]_i_55 
+       (.I0(\prdata_sr_reg[147]_0 [26]),
+        .I1(\prdata_sr_reg[147]_0 [55]),
+        .I2(\prdata_sr_reg[158]_0 [47]),
+        .I3(\prdata_sr_reg[147]_0 [47]),
+        .O(\rram_addr[15]_i_55_n_0 ));
+  (* COMPARATOR_THRESHOLD = "11" *) 
+  CARRY4 \rram_addr_reg[15]_i_10 
+       (.CI(\rram_addr_reg[15]_i_17_n_0 ),
+        .CO({\NLW_rram_addr_reg[15]_i_10_CO_UNCONNECTED [3],\counter_reg[11]_0 ,\rram_addr_reg[15]_i_10_n_2 ,\rram_addr_reg[15]_i_10_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,\rram_addr[15]_i_18_n_0 ,\rram_addr[15]_i_19_n_0 }),
+        .O(\NLW_rram_addr_reg[15]_i_10_O_UNCONNECTED [3:0]),
+        .S({1'b0,\FSM_sequential_state[0]_i_27 ,\rram_addr[15]_i_21_n_0 ,\rram_addr[15]_i_22_n_0 }));
+  (* COMPARATOR_THRESHOLD = "11" *) 
+  CARRY4 \rram_addr_reg[15]_i_17 
+       (.CI(1'b0),
+        .CO({\rram_addr_reg[15]_i_17_n_0 ,\rram_addr_reg[15]_i_17_n_1 ,\rram_addr_reg[15]_i_17_n_2 ,\rram_addr_reg[15]_i_17_n_3 }),
+        .CYINIT(1'b0),
+        .DI({\rram_addr_reg[15]_i_10_0 ,\rram_addr[15]_i_27_n_0 ,\rram_addr[15]_i_28_n_0 }),
+        .O(\NLW_rram_addr_reg[15]_i_17_O_UNCONNECTED [3:0]),
+        .S({\rram_addr[15]_i_29_n_0 ,\rram_addr[15]_i_30_n_0 ,\rram_addr[15]_i_31_n_0 ,\rram_addr[15]_i_32_n_0 }));
   LUT6 #(
     .INIT(64'h0000000004000000)) 
     \write_data_bits[0][47]_i_1 
@@ -39394,6 +39408,7 @@ endmodule
 (* ORIG_REF_NAME = "rram_top" *) 
 module ember_fpga_rram_top_wrapper_0_0_rram_top
    (miso,
+    rram_addr,
     rram_busy,
     sa_rdy,
     rst_n,
@@ -39403,6 +39418,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
     sc,
     mclk_pause);
   output miso;
+  output [15:0]rram_addr;
   output rram_busy;
   input sa_rdy;
   input rst_n;
@@ -39412,7 +39428,6 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   input sc;
   input mclk_pause;
 
-  wire \FSM_sequential_state[4]_i_2_n_0 ;
   wire [15:0]address_start;
   wire [15:0]address_step;
   wire [11:0]address_stop;
@@ -39559,6 +39574,8 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire [47:0]\read_data_bits[2]_22 ;
   wire [47:0]\read_data_bits[3]_23 ;
   wire [5:0]read_to_init_write_setup_cycles;
+  wire [15:0]rram_addr;
+  wire \rram_addr[15]_i_3_n_0 ;
   wire rram_busy;
   wire rst_n;
   wire [47:0]sa_do;
@@ -39572,38 +39589,49 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire [4:0]state;
   wire [5:0]step_read_setup_cycles;
   wire [5:0]step_write_setup_cycles;
-  wire u_fsm_n_103;
-  wire u_fsm_n_104;
-  wire u_fsm_n_106;
-  wire u_fsm_n_107;
-  wire u_fsm_n_108;
+  wire u_fsm_n_140;
+  wire u_fsm_n_141;
+  wire u_fsm_n_142;
+  wire u_fsm_n_143;
+  wire u_fsm_n_144;
+  wire u_fsm_n_145;
+  wire u_fsm_n_155;
   wire u_fsm_n_156;
   wire u_fsm_n_157;
   wire u_fsm_n_158;
   wire u_fsm_n_159;
   wire u_fsm_n_160;
   wire u_fsm_n_161;
+  wire u_fsm_n_162;
+  wire u_fsm_n_163;
+  wire u_fsm_n_164;
+  wire u_fsm_n_165;
+  wire u_fsm_n_166;
+  wire u_fsm_n_167;
+  wire u_fsm_n_168;
+  wire u_fsm_n_169;
+  wire u_fsm_n_170;
   wire u_fsm_n_171;
   wire u_fsm_n_172;
   wire u_fsm_n_173;
   wire u_fsm_n_174;
   wire u_fsm_n_175;
-  wire u_fsm_n_176;
-  wire u_fsm_n_177;
-  wire u_fsm_n_178;
-  wire u_fsm_n_179;
-  wire u_fsm_n_180;
-  wire u_fsm_n_181;
-  wire u_fsm_n_182;
-  wire u_fsm_n_183;
-  wire u_fsm_n_184;
-  wire u_fsm_n_185;
-  wire u_fsm_n_186;
-  wire u_fsm_n_187;
-  wire u_fsm_n_188;
-  wire u_fsm_n_189;
-  wire u_fsm_n_190;
-  wire u_fsm_n_191;
+  wire u_fsm_n_368;
+  wire u_fsm_n_369;
+  wire u_fsm_n_370;
+  wire u_fsm_n_371;
+  wire u_fsm_n_372;
+  wire u_fsm_n_373;
+  wire u_fsm_n_374;
+  wire u_fsm_n_375;
+  wire u_fsm_n_376;
+  wire u_fsm_n_377;
+  wire u_fsm_n_378;
+  wire u_fsm_n_379;
+  wire u_fsm_n_380;
+  wire u_fsm_n_381;
+  wire u_fsm_n_382;
+  wire u_fsm_n_383;
   wire u_fsm_n_384;
   wire u_fsm_n_385;
   wire u_fsm_n_386;
@@ -39637,37 +39665,37 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_414;
   wire u_fsm_n_415;
   wire u_fsm_n_416;
-  wire u_fsm_n_417;
-  wire u_fsm_n_418;
-  wire u_fsm_n_419;
-  wire u_fsm_n_420;
-  wire u_fsm_n_421;
-  wire u_fsm_n_422;
-  wire u_fsm_n_423;
-  wire u_fsm_n_424;
-  wire u_fsm_n_425;
-  wire u_fsm_n_426;
-  wire u_fsm_n_427;
-  wire u_fsm_n_428;
-  wire u_fsm_n_429;
-  wire u_fsm_n_430;
-  wire u_fsm_n_431;
-  wire u_fsm_n_432;
-  wire u_fsm_n_449;
-  wire u_fsm_n_450;
-  wire u_fsm_n_451;
-  wire u_fsm_n_452;
+  wire u_fsm_n_433;
+  wire u_fsm_n_434;
+  wire u_fsm_n_435;
+  wire u_fsm_n_436;
+  wire u_fsm_n_437;
+  wire u_fsm_n_438;
+  wire u_fsm_n_440;
+  wire u_fsm_n_442;
+  wire u_fsm_n_443;
   wire u_fsm_n_453;
   wire u_fsm_n_454;
+  wire u_fsm_n_455;
   wire u_fsm_n_456;
+  wire u_fsm_n_457;
   wire u_fsm_n_458;
-  wire u_fsm_n_459;
+  wire u_fsm_n_460;
+  wire u_fsm_n_461;
+  wire u_fsm_n_462;
+  wire u_fsm_n_463;
+  wire u_fsm_n_464;
+  wire u_fsm_n_465;
+  wire u_fsm_n_466;
+  wire u_fsm_n_467;
+  wire u_fsm_n_468;
   wire u_fsm_n_469;
   wire u_fsm_n_470;
   wire u_fsm_n_471;
   wire u_fsm_n_472;
   wire u_fsm_n_473;
   wire u_fsm_n_474;
+  wire u_fsm_n_475;
   wire u_fsm_n_476;
   wire u_fsm_n_477;
   wire u_fsm_n_478;
@@ -39679,26 +39707,25 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_484;
   wire u_fsm_n_485;
   wire u_fsm_n_486;
-  wire u_fsm_n_487;
-  wire u_fsm_n_488;
-  wire u_fsm_n_489;
-  wire u_fsm_n_490;
   wire u_fsm_n_491;
   wire u_fsm_n_492;
-  wire u_fsm_n_493;
-  wire u_fsm_n_494;
-  wire u_fsm_n_495;
-  wire u_fsm_n_496;
-  wire u_fsm_n_497;
-  wire u_fsm_n_498;
-  wire u_fsm_n_499;
-  wire u_fsm_n_500;
-  wire u_fsm_n_501;
-  wire u_fsm_n_502;
-  wire u_fsm_n_507;
-  wire u_fsm_n_508;
+  wire u_fsm_n_509;
+  wire u_fsm_n_510;
+  wire u_fsm_n_511;
+  wire u_fsm_n_512;
+  wire u_fsm_n_513;
+  wire u_fsm_n_514;
+  wire u_fsm_n_515;
+  wire u_fsm_n_516;
+  wire u_fsm_n_517;
+  wire u_fsm_n_518;
+  wire u_fsm_n_519;
+  wire u_fsm_n_520;
+  wire u_fsm_n_521;
+  wire u_fsm_n_522;
+  wire u_fsm_n_523;
+  wire u_fsm_n_524;
   wire u_fsm_n_525;
-  wire u_fsm_n_526;
   wire u_fsm_n_527;
   wire u_fsm_n_528;
   wire u_fsm_n_529;
@@ -39711,9 +39738,9 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_536;
   wire u_fsm_n_537;
   wire u_fsm_n_538;
-  wire u_fsm_n_539;
   wire u_fsm_n_540;
   wire u_fsm_n_541;
+  wire u_fsm_n_542;
   wire u_fsm_n_543;
   wire u_fsm_n_544;
   wire u_fsm_n_545;
@@ -39726,6 +39753,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_552;
   wire u_fsm_n_553;
   wire u_fsm_n_554;
+  wire u_fsm_n_555;
   wire u_fsm_n_556;
   wire u_fsm_n_557;
   wire u_fsm_n_558;
@@ -39769,22 +39797,6 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_596;
   wire u_fsm_n_597;
   wire u_fsm_n_598;
-  wire u_fsm_n_599;
-  wire u_fsm_n_600;
-  wire u_fsm_n_601;
-  wire u_fsm_n_602;
-  wire u_fsm_n_603;
-  wire u_fsm_n_604;
-  wire u_fsm_n_605;
-  wire u_fsm_n_606;
-  wire u_fsm_n_607;
-  wire u_fsm_n_608;
-  wire u_fsm_n_609;
-  wire u_fsm_n_610;
-  wire u_fsm_n_611;
-  wire u_fsm_n_612;
-  wire u_fsm_n_613;
-  wire u_fsm_n_614;
   wire u_fsm_n_615;
   wire u_fsm_n_616;
   wire u_fsm_n_617;
@@ -39796,8 +39808,13 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   wire u_fsm_n_623;
   wire u_fsm_n_624;
   wire u_fsm_n_625;
-  wire u_fsm_n_95;
-  wire u_fsm_n_97;
+  wire u_fsm_n_79;
+  wire u_fsm_n_81;
+  wire u_fsm_n_87;
+  wire u_fsm_n_88;
+  wire u_fsm_n_90;
+  wire u_fsm_n_91;
+  wire u_fsm_n_92;
   wire u_spi_slave_rram_n_0;
   wire u_spi_slave_rram_n_1;
   wire u_spi_slave_rram_n_10;
@@ -39960,11 +39977,6 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
 
   LUT1 #(
     .INIT(2'h1)) 
-    \FSM_sequential_state[4]_i_2 
-       (.I0(rst_n),
-        .O(\FSM_sequential_state[4]_i_2_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
     \prdata_sr[159]_i_3 
        (.I0(sc),
         .O(\prdata_sr[159]_i_3_n_0 ));
@@ -39974,6 +39986,11 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
        (.I0(u_spi_slave_rram_n_3),
         .I1(u_spi_slave_rram_n_2),
         .O(\prdata_sr[159]_i_9_n_0 ));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \rram_addr[15]_i_3 
+       (.I0(rst_n),
+        .O(\rram_addr[15]_i_3_n_0 ));
   ember_fpga_rram_top_wrapper_0_0_clock_gen u_clock_gen
        (.mclk(mclk),
         .mclk_pause(mclk_pause),
@@ -39981,7 +39998,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   ember_fpga_rram_top_wrapper_0_0_fsm u_fsm
        (.CO(next_rram_addr1),
         .D({u_spi_slave_rram_n_315,u_spi_slave_rram_n_316,u_spi_slave_rram_n_317,u_spi_slave_rram_n_318,u_spi_slave_rram_n_319,u_spi_slave_rram_n_320,u_spi_slave_rram_n_321,u_spi_slave_rram_n_322}),
-        .DI(u_fsm_n_454),
+        .DI(u_fsm_n_438),
         .E(u_spi_slave_rram_n_314),
         .\FSM_sequential_state[0]_i_18_0 (u_spi_slave_rram_n_359),
         .\FSM_sequential_state[0]_i_18_1 (u_spi_slave_rram_n_380),
@@ -39992,48 +40009,48 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\FSM_sequential_state[2]_i_3_1 (u_spi_slave_rram_n_392),
         .\FSM_sequential_state[2]_i_3_2 (u_spi_slave_rram_n_391),
         .\FSM_sequential_state[3]_i_2_0 (u_spi_slave_rram_n_354),
-        .\FSM_sequential_state_reg[0]_0 (u_fsm_n_499),
-        .\FSM_sequential_state_reg[0]_1 (u_fsm_n_525),
-        .\FSM_sequential_state_reg[0]_2 (u_fsm_n_535),
-        .\FSM_sequential_state_reg[0]_3 (u_fsm_n_537),
-        .\FSM_sequential_state_reg[0]_4 (u_fsm_n_539),
-        .\FSM_sequential_state_reg[1]_0 (u_fsm_n_544),
+        .\FSM_sequential_state_reg[0]_0 (u_fsm_n_483),
+        .\FSM_sequential_state_reg[0]_1 (u_fsm_n_509),
+        .\FSM_sequential_state_reg[0]_2 (u_fsm_n_519),
+        .\FSM_sequential_state_reg[0]_3 (u_fsm_n_521),
+        .\FSM_sequential_state_reg[0]_4 (u_fsm_n_523),
+        .\FSM_sequential_state_reg[1]_0 (u_fsm_n_528),
         .\FSM_sequential_state_reg[1]_1 (u_spi_slave_rram_n_390),
         .\FSM_sequential_state_reg[1]_2 (u_spi_slave_rram_n_452),
         .\FSM_sequential_state_reg[1]_i_22 ({u_spi_slave_rram_n_448,u_spi_slave_rram_n_449,u_spi_slave_rram_n_450,u_spi_slave_rram_n_451}),
-        .\FSM_sequential_state_reg[1]_i_32 (u_spi_slave_rram_n_389),
-        .\FSM_sequential_state_reg[1]_i_32_0 (u_spi_slave_rram_n_388),
-        .\FSM_sequential_state_reg[1]_i_32_1 (u_spi_slave_rram_n_387),
-        .\FSM_sequential_state_reg[1]_i_32_2 (u_spi_slave_rram_n_386),
-        .\FSM_sequential_state_reg[2]_0 (u_fsm_n_106),
-        .\FSM_sequential_state_reg[2]_1 (u_fsm_n_108),
-        .\FSM_sequential_state_reg[2]_2 (u_fsm_n_161),
-        .\FSM_sequential_state_reg[2]_3 (u_fsm_n_497),
-        .\FSM_sequential_state_reg[2]_4 (u_fsm_n_526),
-        .\FSM_sequential_state_reg[2]_5 (u_fsm_n_528),
-        .\FSM_sequential_state_reg[2]_6 (u_fsm_n_529),
+        .\FSM_sequential_state_reg[1]_i_31 (u_spi_slave_rram_n_389),
+        .\FSM_sequential_state_reg[1]_i_31_0 (u_spi_slave_rram_n_388),
+        .\FSM_sequential_state_reg[1]_i_31_1 (u_spi_slave_rram_n_387),
+        .\FSM_sequential_state_reg[1]_i_31_2 (u_spi_slave_rram_n_386),
+        .\FSM_sequential_state_reg[2]_0 (u_fsm_n_90),
+        .\FSM_sequential_state_reg[2]_1 (u_fsm_n_92),
+        .\FSM_sequential_state_reg[2]_2 (u_fsm_n_145),
+        .\FSM_sequential_state_reg[2]_3 (u_fsm_n_481),
+        .\FSM_sequential_state_reg[2]_4 (u_fsm_n_510),
+        .\FSM_sequential_state_reg[2]_5 (u_fsm_n_512),
+        .\FSM_sequential_state_reg[2]_6 (u_fsm_n_513),
         .\FSM_sequential_state_reg[2]_7 (u_spi_slave_rram_n_358),
         .\FSM_sequential_state_reg[2]_i_10_0 ({u_spi_slave_rram_n_361,u_spi_slave_rram_n_362,u_spi_slave_rram_n_363}),
-        .\FSM_sequential_state_reg[3]_0 (u_fsm_n_178),
-        .\FSM_sequential_state_reg[3]_1 (u_fsm_n_419),
-        .\FSM_sequential_state_reg[3]_2 (u_fsm_n_500),
-        .\FSM_sequential_state_reg[3]_3 (u_fsm_n_540),
+        .\FSM_sequential_state_reg[3]_0 (u_fsm_n_162),
+        .\FSM_sequential_state_reg[3]_1 (u_fsm_n_403),
+        .\FSM_sequential_state_reg[3]_2 (u_fsm_n_484),
+        .\FSM_sequential_state_reg[3]_3 (u_fsm_n_524),
         .\FSM_sequential_state_reg[3]_4 (u_spi_slave_rram_n_453),
         .\FSM_sequential_state_reg[3]_5 (u_spi_slave_rram_n_444),
         .\FSM_sequential_state_reg[3]_i_5_0 ({u_spi_slave_rram_n_373,u_spi_slave_rram_n_374,u_spi_slave_rram_n_375}),
-        .\FSM_sequential_state_reg[4]_0 (\FSM_sequential_state[4]_i_2_n_0 ),
+        .\FSM_sequential_state_reg[4]_0 (\rram_addr[15]_i_3_n_0 ),
         .\FSM_sequential_state_reg[4]_1 (u_spi_slave_rram_n_406),
-        .\FSM_sequential_state_reg[4]_i_18_0 ({post_read_setup_cycles,step_write_setup_cycles,step_read_setup_cycles,write_to_init_read_setup_cycles,read_to_init_write_setup_cycles,idle_to_init_read_setup_cycles,idle_to_init_write_setup_cycles,all_dacs_on,ignore_failures,di_init_mask,set_first,pw_rst_cycle,wl_dac_rst_lvl_cycle,sl_dac_rst_lvl_cycle,wl_dac_set_lvl_cycle,bl_dac_set_lvl_cycle,num_levels,max_attempts}),
-        .\FSM_sequential_state_reg[4]_rep_0 (u_fsm_n_158),
-        .\FSM_sequential_state_reg[4]_rep_1 (u_fsm_n_176),
-        .\FSM_sequential_state_reg[4]_rep__0_0 (u_fsm_n_95),
-        .\FSM_sequential_state_reg[4]_rep__0_1 (u_fsm_n_174),
-        .\FSM_sequential_state_reg[4]_rep__0_2 (u_fsm_n_175),
-        .\FSM_sequential_state_reg[4]_rep__0_3 (u_fsm_n_177),
-        .\FSM_sequential_state_reg[4]_rep__0_4 (u_fsm_n_450),
-        .\FSM_sequential_state_reg[4]_rep__0_5 (u_fsm_n_451),
-        .\FSM_sequential_state_reg[4]_rep__0_6 (u_fsm_n_452),
-        .\FSM_sequential_state_reg[4]_rep__0_7 (u_fsm_n_543),
+        .\FSM_sequential_state_reg[4]_i_17_0 ({post_read_setup_cycles,step_write_setup_cycles,step_read_setup_cycles,write_to_init_read_setup_cycles,read_to_init_write_setup_cycles,idle_to_init_read_setup_cycles,idle_to_init_write_setup_cycles,all_dacs_on,ignore_failures,di_init_mask,set_first,pw_rst_cycle,wl_dac_rst_lvl_cycle,sl_dac_rst_lvl_cycle,wl_dac_set_lvl_cycle,bl_dac_set_lvl_cycle,num_levels,max_attempts}),
+        .\FSM_sequential_state_reg[4]_rep_0 (u_fsm_n_142),
+        .\FSM_sequential_state_reg[4]_rep_1 (u_fsm_n_160),
+        .\FSM_sequential_state_reg[4]_rep__0_0 (u_fsm_n_79),
+        .\FSM_sequential_state_reg[4]_rep__0_1 (u_fsm_n_158),
+        .\FSM_sequential_state_reg[4]_rep__0_2 (u_fsm_n_159),
+        .\FSM_sequential_state_reg[4]_rep__0_3 (u_fsm_n_161),
+        .\FSM_sequential_state_reg[4]_rep__0_4 (u_fsm_n_434),
+        .\FSM_sequential_state_reg[4]_rep__0_5 (u_fsm_n_435),
+        .\FSM_sequential_state_reg[4]_rep__0_6 (u_fsm_n_436),
+        .\FSM_sequential_state_reg[4]_rep__0_7 (u_fsm_n_527),
         .Q({state[4],state[2:0]}),
         .S(u_fsm_n_617),
         .\addr_bits_reg[23] (u_fsm_n_619),
@@ -40059,30 +40076,30 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\bsl_loop[4]_i_37_2 (u_spi_slave_rram_n_25),
         .\bsl_loop[4]_i_65 (u_spi_slave_rram_n_344),
         .\bsl_loop[4]_i_80 (u_spi_slave_rram_n_345),
-        .\bsl_loop_reg[0]_0 (u_fsm_n_103),
-        .\bsl_loop_reg[0]_1 (u_fsm_n_491),
-        .\bsl_loop_reg[0]_2 (u_fsm_n_493),
+        .\bsl_loop_reg[0]_0 (u_fsm_n_87),
+        .\bsl_loop_reg[0]_1 (u_fsm_n_475),
+        .\bsl_loop_reg[0]_2 (u_fsm_n_477),
         .\bsl_loop_reg[0]_3 (u_spi_slave_rram_n_9),
         .\bsl_loop_reg[0]_4 (u_spi_slave_rram_n_13),
         .\bsl_loop_reg[0]_5 (u_spi_slave_rram_n_336),
         .\bsl_loop_reg[0]_6 (u_spi_slave_rram_n_334),
-        .\bsl_loop_reg[1]_0 (u_fsm_n_492),
+        .\bsl_loop_reg[1]_0 (u_fsm_n_476),
         .\bsl_loop_reg[1]_1 (u_spi_slave_rram_n_337),
-        .\bsl_loop_reg[2]_0 (u_fsm_n_97),
-        .\bsl_loop_reg[2]_1 (u_fsm_n_553),
+        .\bsl_loop_reg[2]_0 (u_fsm_n_81),
+        .\bsl_loop_reg[2]_1 (u_fsm_n_537),
         .\bsl_loop_reg[2]_2 (u_spi_slave_rram_n_338),
         .\bsl_loop_reg[2]_3 (u_spi_slave_rram_n_335),
-        .\bsl_loop_reg[3]_0 (u_fsm_n_487),
-        .\bsl_loop_reg[3]_1 (u_fsm_n_488),
-        .\bsl_loop_reg[3]_2 (u_fsm_n_494),
-        .\bsl_loop_reg[3]_3 (u_fsm_n_495),
+        .\bsl_loop_reg[3]_0 (u_fsm_n_471),
+        .\bsl_loop_reg[3]_1 (u_fsm_n_472),
+        .\bsl_loop_reg[3]_2 (u_fsm_n_478),
+        .\bsl_loop_reg[3]_3 (u_fsm_n_479),
         .\bsl_loop_reg[3]_4 (u_spi_slave_rram_n_10),
         .\bsl_loop_reg[3]_5 (u_spi_slave_rram_n_339),
         .\bsl_loop_reg[3]_6 (u_spi_slave_rram_n_342),
         .\bsl_loop_reg[3]_7 (u_spi_slave_rram_n_14),
         .\bsl_loop_reg[4]_0 (bsl_loop),
-        .\bsl_loop_reg[4]_1 (u_fsm_n_453),
-        .\bsl_loop_reg[4]_2 (u_fsm_n_552),
+        .\bsl_loop_reg[4]_1 (u_fsm_n_437),
+        .\bsl_loop_reg[4]_2 (u_fsm_n_536),
         .\bsl_loop_reg[4]_3 (u_spi_slave_rram_n_19),
         .\bsl_loop_reg[4]_4 (u_spi_slave_rram_n_340),
         .\bsl_loop_reg[4]_5 (u_spi_slave_rram_n_343),
@@ -40102,46 +40119,46 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\bsl_loop_reg[4]_i_55_5 (u_spi_slave_rram_n_293),
         .\bsl_loop_reg[4]_i_55_6 (u_spi_slave_rram_n_295),
         .\bsl_loop_reg[4]_i_55_7 (u_spi_slave_rram_n_296),
-        .\counter_reg[13]_0 (u_fsm_n_498),
-        .\counter_reg[13]_1 (u_fsm_n_501),
+        .\counter_reg[13]_0 (u_fsm_n_482),
+        .\counter_reg[13]_1 (u_fsm_n_485),
         .\counter_reg[13]_2 (u_fsm_n_618),
-        .\counter_reg[7]_0 ({u_fsm_n_546,u_fsm_n_547}),
-        .\counter_reg[7]_1 ({u_fsm_n_548,u_fsm_n_549}),
-        .\failure_counter_reg[10]_0 (u_fsm_n_185),
-        .\failure_counter_reg[11]_0 (u_fsm_n_186),
-        .\failure_counter_reg[12]_0 (u_fsm_n_187),
-        .\failure_counter_reg[13]_0 (u_fsm_n_188),
-        .\failure_counter_reg[14]_0 (u_fsm_n_189),
-        .\failure_counter_reg[15]_0 (u_fsm_n_190),
-        .\failure_counter_reg[3]_0 (u_fsm_n_181),
-        .\failure_counter_reg[5]_0 (u_fsm_n_182),
-        .\failure_counter_reg[7]_0 (u_fsm_n_183),
+        .\counter_reg[7]_0 ({u_fsm_n_530,u_fsm_n_531}),
+        .\counter_reg[7]_1 ({u_fsm_n_532,u_fsm_n_533}),
+        .\failure_counter_reg[10]_0 (u_fsm_n_169),
+        .\failure_counter_reg[11]_0 (u_fsm_n_170),
+        .\failure_counter_reg[12]_0 (u_fsm_n_171),
+        .\failure_counter_reg[13]_0 (u_fsm_n_172),
+        .\failure_counter_reg[14]_0 (u_fsm_n_173),
+        .\failure_counter_reg[15]_0 (u_fsm_n_174),
+        .\failure_counter_reg[3]_0 (u_fsm_n_165),
+        .\failure_counter_reg[5]_0 (u_fsm_n_166),
+        .\failure_counter_reg[7]_0 (u_fsm_n_167),
         .\failure_counter_reg[8]_0 ({diag_bits[24],diag_bits[22],diag_bits[20],diag_bits[18:10],diag_bits[8],diag_bits[6],diag_bits[4:0]}),
-        .\failure_counter_reg[9]_0 (u_fsm_n_184),
+        .\failure_counter_reg[9]_0 (u_fsm_n_168),
         .fsm_go(fsm_go),
-        .fsm_go_reg(u_fsm_n_538),
+        .fsm_go_reg(u_fsm_n_522),
         .in95(in95),
-        .is_first_try_reg_0(u_fsm_n_541),
-        .\mask[47]_i_11 (\write_data_bits[3]_16 ),
+        .is_first_try_reg_0(u_fsm_n_525),
+        .\mask[47]_i_10 (\write_data_bits[3]_16 ),
         .\mask_reg[0]_0 (u_spi_slave_rram_n_441),
         .\mask_reg[1]_0 (u_spi_slave_rram_n_437),
         .\mask_reg[28]_0 (u_spi_slave_rram_n_428),
         .\mask_reg[31]_0 (u_spi_slave_rram_n_429),
-        .\mask_reg[37]_0 (u_fsm_n_160),
+        .\mask_reg[37]_0 (u_fsm_n_144),
         .\mask_reg[3]_0 (u_spi_slave_rram_n_440),
-        .\mask_reg[47]_0 ({p_1_in144_in,p_1_in147_in,p_1_in150_in,p_1_in153_in,p_1_in156_in,p_1_in159_in,p_1_in162_in,p_1_in165_in,p_1_in168_in,p_1_in171_in,p_1_in174_in,p_1_in177_in,p_1_in180_in,p_1_in183_in,p_1_in186_in,p_1_in189_in,p_1_in192_in,p_1_in195_in,p_1_in198_in,p_1_in201_in,p_1_in204_in,p_1_in207_in,p_1_in210_in,p_1_in213_in,p_1_in216_in,p_1_in219_in,p_1_in222_in,p_1_in225_in,p_1_in228_in,p_1_in231_in,p_1_in234_in,p_1_in237_in,p_1_in240_in,p_1_in243_in,p_1_in246_in,p_1_in249_in,p_1_in252_in,p_1_in255_in,p_1_in258_in,p_1_in261_in,p_1_in264_in,p_1_in267_in,p_1_in270_in,p_1_in273_in,p_1_in276_in,p_1_in279_in,p_1_in282_in,u_fsm_n_156}),
+        .\mask_reg[47]_0 ({p_1_in144_in,p_1_in147_in,p_1_in150_in,p_1_in153_in,p_1_in156_in,p_1_in159_in,p_1_in162_in,p_1_in165_in,p_1_in168_in,p_1_in171_in,p_1_in174_in,p_1_in177_in,p_1_in180_in,p_1_in183_in,p_1_in186_in,p_1_in189_in,p_1_in192_in,p_1_in195_in,p_1_in198_in,p_1_in201_in,p_1_in204_in,p_1_in207_in,p_1_in210_in,p_1_in213_in,p_1_in216_in,p_1_in219_in,p_1_in222_in,p_1_in225_in,p_1_in228_in,p_1_in231_in,p_1_in234_in,p_1_in237_in,p_1_in240_in,p_1_in243_in,p_1_in246_in,p_1_in249_in,p_1_in252_in,p_1_in255_in,p_1_in258_in,p_1_in261_in,p_1_in264_in,p_1_in267_in,p_1_in270_in,p_1_in273_in,p_1_in276_in,p_1_in279_in,p_1_in282_in,u_fsm_n_140}),
         .\mask_reg[5]_0 (u_spi_slave_rram_n_442),
         .\mask_reg[7]_0 (u_spi_slave_rram_n_418),
         .mclk(mclk),
-        .\misc_cnfg_bits_reg[105] (u_fsm_n_536),
-        .\misc_cnfg_bits_reg[47] (u_fsm_n_527),
-        .\misc_cnfg_bits_reg[48] (u_fsm_n_530),
-        .\misc_cnfg_bits_reg[49] (u_fsm_n_531),
-        .\misc_cnfg_bits_reg[50] (u_fsm_n_532),
-        .\misc_cnfg_bits_reg[51] (u_fsm_n_533),
-        .\misc_cnfg_bits_reg[55] (u_fsm_n_534),
-        .\misc_cnfg_bits_reg[55]_0 (u_fsm_n_563),
-        .\misc_cnfg_bits_reg[55]_1 (u_fsm_n_564),
+        .\misc_cnfg_bits_reg[105] (u_fsm_n_520),
+        .\misc_cnfg_bits_reg[47] (u_fsm_n_511),
+        .\misc_cnfg_bits_reg[48] (u_fsm_n_514),
+        .\misc_cnfg_bits_reg[49] (u_fsm_n_515),
+        .\misc_cnfg_bits_reg[50] (u_fsm_n_516),
+        .\misc_cnfg_bits_reg[51] (u_fsm_n_517),
+        .\misc_cnfg_bits_reg[55] (u_fsm_n_518),
+        .\misc_cnfg_bits_reg[55]_0 (u_fsm_n_547),
+        .\misc_cnfg_bits_reg[55]_1 (u_fsm_n_548),
         .next_bsl_loop1(next_bsl_loop1),
         .next_bsl_loop17_out(next_bsl_loop17_out),
         .next_mask105_out(next_mask105_out),
@@ -40211,195 +40228,196 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\prdata_sr_reg[151]_i_5_0 ({u_spi_slave_rram_n_376,u_spi_slave_rram_n_377,u_spi_slave_rram_n_378}),
         .\prdata_sr_reg[152]_i_29 (u_spi_slave_rram_n_21),
         .\prdata_sr_reg[152]_i_29_0 (u_spi_slave_rram_n_24),
-        .\prdata_sr_reg[153]_i_10 (u_spi_slave_rram_n_385),
-        .\prdata_sr_reg[153]_i_10_0 (u_spi_slave_rram_n_384),
-        .\prdata_sr_reg[153]_i_10_1 (u_spi_slave_rram_n_383),
-        .\prdata_sr_reg[153]_i_10_2 (u_spi_slave_rram_n_382),
         .\prdata_sr_reg[5] (u_spi_slave_rram_n_4),
         .\prdata_sr_reg[5]_0 (u_spi_slave_rram_n_218),
         .\pw_loop[7]_i_18 (attempts_counter_incr_en134_in),
         .\pw_loop[7]_i_9 (u_spi_slave_rram_n_351),
-        .\pw_loop_reg[0]_0 (u_fsm_n_473),
-        .\pw_loop_reg[0]_1 (u_fsm_n_486),
-        .\pw_loop_reg[1]_0 (u_fsm_n_458),
-        .\pw_loop_reg[2]_0 (u_fsm_n_471),
-        .\pw_loop_reg[2]_1 (u_fsm_n_485),
-        .\pw_loop_reg[3]_0 (u_fsm_n_474),
-        .\pw_loop_reg[3]_1 (u_fsm_n_551),
-        .\pw_loop_reg[4]_0 (u_fsm_n_469),
-        .\pw_loop_reg[4]_1 (u_fsm_n_484),
-        .\pw_loop_reg[5]_0 (u_fsm_n_472),
-        .\pw_loop_reg[6]_0 (u_fsm_n_470),
+        .\pw_loop_reg[0]_0 (u_fsm_n_457),
+        .\pw_loop_reg[0]_1 (u_fsm_n_470),
+        .\pw_loop_reg[1]_0 (u_fsm_n_442),
+        .\pw_loop_reg[2]_0 (u_fsm_n_455),
+        .\pw_loop_reg[2]_1 (u_fsm_n_469),
+        .\pw_loop_reg[3]_0 (u_fsm_n_458),
+        .\pw_loop_reg[3]_1 (u_fsm_n_535),
+        .\pw_loop_reg[4]_0 (u_fsm_n_453),
+        .\pw_loop_reg[4]_1 (u_fsm_n_468),
+        .\pw_loop_reg[5]_0 (u_fsm_n_456),
+        .\pw_loop_reg[6]_0 (u_fsm_n_454),
         .\pw_loop_reg[7]_0 (pw_loop),
-        .\pw_loop_reg[7]_1 (u_fsm_n_459),
+        .\pw_loop_reg[7]_1 (u_fsm_n_443),
         .\pw_loop_reg[7]_2 (u_spi_slave_rram_n_20),
         .\pw_loop_reg[7]_3 ({u_spi_slave_rram_n_29,u_spi_slave_rram_n_30,u_spi_slave_rram_n_31,u_spi_slave_rram_n_32,u_spi_slave_rram_n_33,u_spi_slave_rram_n_34,u_spi_slave_rram_n_35,u_spi_slave_rram_n_36}),
         .pw_rst_step(pw_rst_step),
-        .\rangei_reg[0]_rep_0 (u_fsm_n_502),
+        .\rangei_reg[0]_rep_0 (u_fsm_n_486),
         .\rangei_reg[0]_rep__0_0 (u_fsm_n_624),
-        .\rangei_reg[0]_rep__1_0 (u_fsm_n_545),
-        .\rangei_reg[0]_rep__2_0 (u_fsm_n_569),
+        .\rangei_reg[0]_rep__1_0 (u_fsm_n_529),
+        .\rangei_reg[0]_rep__2_0 (u_fsm_n_553),
         .\rangei_reg[0]_rep__3_0 (u_fsm_n_625),
-        .\rangei_reg[0]_rep__4_0 (u_fsm_n_159),
-        .\rangei_reg[0]_rep__5_0 (u_fsm_n_157),
-        .\rangei_reg[1]_rep_0 (u_fsm_n_507),
-        .\rangei_reg[1]_rep__0_0 (u_fsm_n_173),
+        .\rangei_reg[0]_rep__4_0 (u_fsm_n_143),
+        .\rangei_reg[0]_rep__5_0 (u_fsm_n_141),
+        .\rangei_reg[1]_rep_0 (u_fsm_n_491),
+        .\rangei_reg[1]_rep__0_0 (u_fsm_n_157),
         .\rangei_reg[1]_rep__1_0 (u_fsm_n_621),
         .\rangei_reg[1]_rep__2_0 (u_fsm_n_622),
         .\rangei_reg[1]_rep__3_0 (u_fsm_n_623),
         .\rangei_reg[2]_rep_0 (u_fsm_n_620),
-        .\rangei_reg[2]_rep__0_0 (u_fsm_n_171),
-        .\rangei_reg[2]_rep__1_0 (u_fsm_n_508),
-        .\rangei_reg[3]_0 ({fsm_bits[158:153],fsm_bits[151:127],fsm_bits[114],fsm_bits[112:105],fsm_bits[103:101],fsm_bits[99:84],fsm_bits[18:13],fsm_bits[11:10],fsm_bits[6],fsm_bits[4:2],fsm_bits[0]}),
+        .\rangei_reg[2]_rep__0_0 (u_fsm_n_155),
+        .\rangei_reg[2]_rep__1_0 (u_fsm_n_492),
+        .\rangei_reg[3]_0 ({fsm_bits[158:153],fsm_bits[151:127],fsm_bits[114],fsm_bits[112:105],fsm_bits[103:101],fsm_bits[18:13],fsm_bits[11:10],fsm_bits[6],fsm_bits[4:2],fsm_bits[0]}),
         .\rangei_reg[3]_1 (rangei),
-        .\rangei_reg[3]_rep_0 (u_fsm_n_565),
-        .\rangei_reg[3]_rep_1 (u_fsm_n_566),
-        .\rangei_reg[3]_rep_10 (u_fsm_n_576),
-        .\rangei_reg[3]_rep_11 (u_fsm_n_577),
-        .\rangei_reg[3]_rep_12 (u_fsm_n_578),
-        .\rangei_reg[3]_rep_13 (u_fsm_n_579),
-        .\rangei_reg[3]_rep_14 (u_fsm_n_580),
-        .\rangei_reg[3]_rep_15 (u_fsm_n_581),
-        .\rangei_reg[3]_rep_16 (u_fsm_n_582),
-        .\rangei_reg[3]_rep_17 (u_fsm_n_583),
-        .\rangei_reg[3]_rep_18 (u_fsm_n_584),
-        .\rangei_reg[3]_rep_19 (u_fsm_n_585),
-        .\rangei_reg[3]_rep_2 (u_fsm_n_567),
-        .\rangei_reg[3]_rep_20 (u_fsm_n_586),
-        .\rangei_reg[3]_rep_21 (u_fsm_n_587),
-        .\rangei_reg[3]_rep_22 (u_fsm_n_588),
-        .\rangei_reg[3]_rep_23 (u_fsm_n_589),
-        .\rangei_reg[3]_rep_24 (u_fsm_n_590),
-        .\rangei_reg[3]_rep_25 (u_fsm_n_591),
-        .\rangei_reg[3]_rep_26 (u_fsm_n_592),
-        .\rangei_reg[3]_rep_27 (u_fsm_n_593),
-        .\rangei_reg[3]_rep_28 (u_fsm_n_594),
-        .\rangei_reg[3]_rep_29 (u_fsm_n_595),
-        .\rangei_reg[3]_rep_3 (u_fsm_n_568),
-        .\rangei_reg[3]_rep_30 (u_fsm_n_596),
-        .\rangei_reg[3]_rep_31 (u_fsm_n_597),
-        .\rangei_reg[3]_rep_32 (u_fsm_n_598),
-        .\rangei_reg[3]_rep_33 (u_fsm_n_599),
-        .\rangei_reg[3]_rep_34 (u_fsm_n_600),
-        .\rangei_reg[3]_rep_35 (u_fsm_n_601),
-        .\rangei_reg[3]_rep_36 (u_fsm_n_602),
-        .\rangei_reg[3]_rep_37 (u_fsm_n_603),
-        .\rangei_reg[3]_rep_38 (u_fsm_n_604),
-        .\rangei_reg[3]_rep_39 (u_fsm_n_605),
-        .\rangei_reg[3]_rep_4 (u_fsm_n_570),
-        .\rangei_reg[3]_rep_40 (u_fsm_n_606),
-        .\rangei_reg[3]_rep_41 (u_fsm_n_607),
-        .\rangei_reg[3]_rep_42 (u_fsm_n_608),
-        .\rangei_reg[3]_rep_43 (u_fsm_n_609),
-        .\rangei_reg[3]_rep_5 (u_fsm_n_571),
-        .\rangei_reg[3]_rep_6 (u_fsm_n_572),
-        .\rangei_reg[3]_rep_7 (u_fsm_n_573),
-        .\rangei_reg[3]_rep_8 (u_fsm_n_574),
-        .\rangei_reg[3]_rep_9 (u_fsm_n_575),
-        .\rangei_reg[3]_rep__0_0 (u_fsm_n_172),
-        .\rangei_reg[3]_rep__0_1 (u_fsm_n_610),
-        .\rangei_reg[3]_rep__0_2 (u_fsm_n_611),
-        .\rangei_reg[3]_rep__0_3 (u_fsm_n_612),
-        .\rangei_reg[3]_rep__0_4 (u_fsm_n_613),
-        .\rangei_reg[3]_rep__0_5 (u_fsm_n_614),
+        .\rangei_reg[3]_rep_0 (u_fsm_n_549),
+        .\rangei_reg[3]_rep_1 (u_fsm_n_550),
+        .\rangei_reg[3]_rep_10 (u_fsm_n_560),
+        .\rangei_reg[3]_rep_11 (u_fsm_n_561),
+        .\rangei_reg[3]_rep_12 (u_fsm_n_562),
+        .\rangei_reg[3]_rep_13 (u_fsm_n_563),
+        .\rangei_reg[3]_rep_14 (u_fsm_n_564),
+        .\rangei_reg[3]_rep_15 (u_fsm_n_565),
+        .\rangei_reg[3]_rep_16 (u_fsm_n_566),
+        .\rangei_reg[3]_rep_17 (u_fsm_n_567),
+        .\rangei_reg[3]_rep_18 (u_fsm_n_568),
+        .\rangei_reg[3]_rep_19 (u_fsm_n_569),
+        .\rangei_reg[3]_rep_2 (u_fsm_n_551),
+        .\rangei_reg[3]_rep_20 (u_fsm_n_570),
+        .\rangei_reg[3]_rep_21 (u_fsm_n_571),
+        .\rangei_reg[3]_rep_22 (u_fsm_n_572),
+        .\rangei_reg[3]_rep_23 (u_fsm_n_573),
+        .\rangei_reg[3]_rep_24 (u_fsm_n_574),
+        .\rangei_reg[3]_rep_25 (u_fsm_n_575),
+        .\rangei_reg[3]_rep_26 (u_fsm_n_576),
+        .\rangei_reg[3]_rep_27 (u_fsm_n_577),
+        .\rangei_reg[3]_rep_28 (u_fsm_n_578),
+        .\rangei_reg[3]_rep_29 (u_fsm_n_579),
+        .\rangei_reg[3]_rep_3 (u_fsm_n_552),
+        .\rangei_reg[3]_rep_30 (u_fsm_n_580),
+        .\rangei_reg[3]_rep_31 (u_fsm_n_581),
+        .\rangei_reg[3]_rep_32 (u_fsm_n_582),
+        .\rangei_reg[3]_rep_33 (u_fsm_n_583),
+        .\rangei_reg[3]_rep_34 (u_fsm_n_584),
+        .\rangei_reg[3]_rep_35 (u_fsm_n_585),
+        .\rangei_reg[3]_rep_36 (u_fsm_n_586),
+        .\rangei_reg[3]_rep_37 (u_fsm_n_587),
+        .\rangei_reg[3]_rep_38 (u_fsm_n_588),
+        .\rangei_reg[3]_rep_39 (u_fsm_n_589),
+        .\rangei_reg[3]_rep_4 (u_fsm_n_554),
+        .\rangei_reg[3]_rep_40 (u_fsm_n_590),
+        .\rangei_reg[3]_rep_41 (u_fsm_n_591),
+        .\rangei_reg[3]_rep_42 (u_fsm_n_592),
+        .\rangei_reg[3]_rep_43 (u_fsm_n_593),
+        .\rangei_reg[3]_rep_5 (u_fsm_n_555),
+        .\rangei_reg[3]_rep_6 (u_fsm_n_556),
+        .\rangei_reg[3]_rep_7 (u_fsm_n_557),
+        .\rangei_reg[3]_rep_8 (u_fsm_n_558),
+        .\rangei_reg[3]_rep_9 (u_fsm_n_559),
+        .\rangei_reg[3]_rep__0_0 (u_fsm_n_156),
+        .\rangei_reg[3]_rep__0_1 (u_fsm_n_594),
+        .\rangei_reg[3]_rep__0_2 (u_fsm_n_595),
+        .\rangei_reg[3]_rep__0_3 (u_fsm_n_596),
+        .\rangei_reg[3]_rep__0_4 (u_fsm_n_597),
+        .\rangei_reg[3]_rep__0_5 (u_fsm_n_598),
         .\read_data_bits[0]_20 (\read_data_bits[0]_20 ),
         .\read_data_bits[1]_21 (\read_data_bits[1]_21 ),
         .\read_data_bits[2]_22 (\read_data_bits[2]_22 ),
         .\read_data_bits[3]_23 (\read_data_bits[3]_23 ),
-        .\read_data_bits_reg[1][0]_0 (u_fsm_n_191),
-        .\read_data_bits_reg[1][10]_0 (u_fsm_n_390),
-        .\read_data_bits_reg[1][11]_0 (u_fsm_n_391),
-        .\read_data_bits_reg[1][12]_0 (u_fsm_n_392),
-        .\read_data_bits_reg[1][13]_0 (u_fsm_n_393),
-        .\read_data_bits_reg[1][14]_0 (u_fsm_n_394),
-        .\read_data_bits_reg[1][15]_0 (u_fsm_n_395),
-        .\read_data_bits_reg[1][16]_0 (u_fsm_n_396),
-        .\read_data_bits_reg[1][17]_0 (u_fsm_n_397),
-        .\read_data_bits_reg[1][18]_0 (u_fsm_n_398),
-        .\read_data_bits_reg[1][1]_0 (u_fsm_n_384),
-        .\read_data_bits_reg[1][20]_0 (u_fsm_n_399),
-        .\read_data_bits_reg[1][22]_0 (u_fsm_n_400),
-        .\read_data_bits_reg[1][24]_0 (u_fsm_n_401),
-        .\read_data_bits_reg[1][2]_0 (u_fsm_n_385),
-        .\read_data_bits_reg[1][3]_0 (u_fsm_n_386),
-        .\read_data_bits_reg[1][4]_0 (u_fsm_n_387),
-        .\read_data_bits_reg[1][6]_0 (u_fsm_n_388),
-        .\read_data_bits_reg[1][8]_0 (u_fsm_n_389),
-        .\read_data_bits_reg[2][36]_0 (u_fsm_n_406),
-        .\read_data_bits_reg[2][41]_0 (u_fsm_n_411),
-        .\read_data_bits_reg[3][32]_0 (u_fsm_n_402),
-        .\read_data_bits_reg[3][33]_0 (u_fsm_n_403),
-        .\read_data_bits_reg[3][34]_0 (u_fsm_n_404),
-        .\read_data_bits_reg[3][35]_0 (u_fsm_n_405),
-        .\read_data_bits_reg[3][37]_0 (u_fsm_n_407),
-        .\read_data_bits_reg[3][38]_0 (u_fsm_n_408),
-        .\read_data_bits_reg[3][39]_0 (u_fsm_n_409),
-        .\read_data_bits_reg[3][40]_0 (u_fsm_n_410),
-        .\read_data_bits_reg[3][42]_0 (u_fsm_n_412),
-        .\read_data_bits_reg[3][43]_0 (u_fsm_n_413),
-        .\read_data_bits_reg[3][44]_0 (u_fsm_n_414),
-        .\read_data_bits_reg[3][45]_0 (u_fsm_n_415),
-        .\read_data_bits_reg[3][46]_0 (u_fsm_n_416),
-        .\read_data_bits_reg[3][47]_0 (u_fsm_n_417),
-        .\rram_addr_reg[15]_i_7_0 ({address_step,address_stop,address_start}),
+        .\read_data_bits_reg[1][0]_0 (u_fsm_n_175),
+        .\read_data_bits_reg[1][10]_0 (u_fsm_n_374),
+        .\read_data_bits_reg[1][11]_0 (u_fsm_n_375),
+        .\read_data_bits_reg[1][12]_0 (u_fsm_n_376),
+        .\read_data_bits_reg[1][13]_0 (u_fsm_n_377),
+        .\read_data_bits_reg[1][14]_0 (u_fsm_n_378),
+        .\read_data_bits_reg[1][15]_0 (u_fsm_n_379),
+        .\read_data_bits_reg[1][16]_0 (u_fsm_n_380),
+        .\read_data_bits_reg[1][17]_0 (u_fsm_n_381),
+        .\read_data_bits_reg[1][18]_0 (u_fsm_n_382),
+        .\read_data_bits_reg[1][1]_0 (u_fsm_n_368),
+        .\read_data_bits_reg[1][20]_0 (u_fsm_n_383),
+        .\read_data_bits_reg[1][22]_0 (u_fsm_n_384),
+        .\read_data_bits_reg[1][24]_0 (u_fsm_n_385),
+        .\read_data_bits_reg[1][2]_0 (u_fsm_n_369),
+        .\read_data_bits_reg[1][3]_0 (u_fsm_n_370),
+        .\read_data_bits_reg[1][4]_0 (u_fsm_n_371),
+        .\read_data_bits_reg[1][6]_0 (u_fsm_n_372),
+        .\read_data_bits_reg[1][8]_0 (u_fsm_n_373),
+        .\read_data_bits_reg[2][36]_0 (u_fsm_n_390),
+        .\read_data_bits_reg[2][41]_0 (u_fsm_n_395),
+        .\read_data_bits_reg[3][32]_0 (u_fsm_n_386),
+        .\read_data_bits_reg[3][33]_0 (u_fsm_n_387),
+        .\read_data_bits_reg[3][34]_0 (u_fsm_n_388),
+        .\read_data_bits_reg[3][35]_0 (u_fsm_n_389),
+        .\read_data_bits_reg[3][37]_0 (u_fsm_n_391),
+        .\read_data_bits_reg[3][38]_0 (u_fsm_n_392),
+        .\read_data_bits_reg[3][39]_0 (u_fsm_n_393),
+        .\read_data_bits_reg[3][40]_0 (u_fsm_n_394),
+        .\read_data_bits_reg[3][42]_0 (u_fsm_n_396),
+        .\read_data_bits_reg[3][43]_0 (u_fsm_n_397),
+        .\read_data_bits_reg[3][44]_0 (u_fsm_n_398),
+        .\read_data_bits_reg[3][45]_0 (u_fsm_n_399),
+        .\read_data_bits_reg[3][46]_0 (u_fsm_n_400),
+        .\read_data_bits_reg[3][47]_0 (u_fsm_n_401),
+        .rram_addr(rram_addr),
+        .\rram_addr_reg[15]_i_17 (u_spi_slave_rram_n_385),
+        .\rram_addr_reg[15]_i_17_0 (u_spi_slave_rram_n_384),
+        .\rram_addr_reg[15]_i_17_1 (u_spi_slave_rram_n_383),
+        .\rram_addr_reg[15]_i_17_2 (u_spi_slave_rram_n_382),
+        .\rram_addr_reg[15]_i_8_0 ({address_step,address_stop,address_start}),
         .rram_busy(rram_busy),
         .sa_do(sa_do),
         .sa_rdy(sa_rdy),
-        .sa_rdy_0(u_fsm_n_496),
+        .sa_rdy_0(u_fsm_n_480),
         .set_rst_loop(set_rst_loop),
-        .set_rst_loop_reg_0(u_fsm_n_104),
-        .set_rst_loop_reg_1(u_fsm_n_107),
-        .set_rst_loop_reg_2(u_fsm_n_418),
-        .set_rst_loop_reg_3(u_fsm_n_420),
-        .set_rst_loop_reg_4(u_fsm_n_422),
-        .set_rst_loop_reg_5(u_fsm_n_424),
-        .set_rst_loop_reg_6(u_fsm_n_426),
-        .set_rst_loop_reg_7(u_fsm_n_428),
-        .set_rst_loop_reg_8(u_fsm_n_430),
+        .set_rst_loop_reg_0(u_fsm_n_88),
+        .set_rst_loop_reg_1(u_fsm_n_91),
+        .set_rst_loop_reg_2(u_fsm_n_402),
+        .set_rst_loop_reg_3(u_fsm_n_404),
+        .set_rst_loop_reg_4(u_fsm_n_406),
+        .set_rst_loop_reg_5(u_fsm_n_408),
+        .set_rst_loop_reg_6(u_fsm_n_410),
+        .set_rst_loop_reg_7(u_fsm_n_412),
+        .set_rst_loop_reg_8(u_fsm_n_414),
         .sl_dac_rst_lvl_start(sl_dac_rst_lvl_start),
-        .\success_counter_reg[7]_0 (u_fsm_n_179),
-        .\success_counter_reg[9]_0 (u_fsm_n_180),
+        .\success_counter_reg[7]_0 (u_fsm_n_163),
+        .\success_counter_reg[9]_0 (u_fsm_n_164),
         .wl_dac_rst_lvl_step(wl_dac_rst_lvl_step),
         .\wl_loop[7]_i_23 (u_spi_slave_rram_n_324),
         .\wl_loop[7]_i_23_0 (u_spi_slave_rram_n_328),
         .\wl_loop[7]_i_23_1 (next_pw_loop2),
-        .\wl_loop_reg[0]_0 (u_fsm_n_421),
-        .\wl_loop_reg[0]_1 (u_fsm_n_482),
-        .\wl_loop_reg[0]_2 (u_fsm_n_561),
+        .\wl_loop_reg[0]_0 (u_fsm_n_405),
+        .\wl_loop_reg[0]_1 (u_fsm_n_466),
+        .\wl_loop_reg[0]_2 (u_fsm_n_545),
         .\wl_loop_reg[0]_3 (u_spi_slave_rram_n_330),
-        .\wl_loop_reg[1]_0 (u_fsm_n_423),
-        .\wl_loop_reg[1]_1 (u_fsm_n_481),
-        .\wl_loop_reg[1]_2 (u_fsm_n_559),
+        .\wl_loop_reg[1]_0 (u_fsm_n_407),
+        .\wl_loop_reg[1]_1 (u_fsm_n_465),
+        .\wl_loop_reg[1]_2 (u_fsm_n_543),
         .\wl_loop_reg[1]_3 (u_spi_slave_rram_n_329),
-        .\wl_loop_reg[2]_0 (u_fsm_n_425),
-        .\wl_loop_reg[2]_1 (u_fsm_n_477),
-        .\wl_loop_reg[2]_2 (u_fsm_n_558),
+        .\wl_loop_reg[2]_0 (u_fsm_n_409),
+        .\wl_loop_reg[2]_1 (u_fsm_n_461),
+        .\wl_loop_reg[2]_2 (u_fsm_n_542),
         .\wl_loop_reg[2]_3 (u_spi_slave_rram_n_327),
-        .\wl_loop_reg[3]_0 (u_fsm_n_427),
-        .\wl_loop_reg[3]_1 (u_fsm_n_483),
-        .\wl_loop_reg[3]_2 (u_fsm_n_554),
-        .\wl_loop_reg[3]_3 (u_fsm_n_560),
+        .\wl_loop_reg[3]_0 (u_fsm_n_411),
+        .\wl_loop_reg[3]_1 (u_fsm_n_467),
+        .\wl_loop_reg[3]_2 (u_fsm_n_538),
+        .\wl_loop_reg[3]_3 (u_fsm_n_544),
         .\wl_loop_reg[3]_4 (u_spi_slave_rram_n_326),
-        .\wl_loop_reg[4]_0 (u_fsm_n_429),
-        .\wl_loop_reg[4]_1 (u_fsm_n_478),
-        .\wl_loop_reg[4]_2 (u_fsm_n_556),
+        .\wl_loop_reg[4]_0 (u_fsm_n_413),
+        .\wl_loop_reg[4]_1 (u_fsm_n_462),
+        .\wl_loop_reg[4]_2 (u_fsm_n_540),
         .\wl_loop_reg[4]_3 (u_spi_slave_rram_n_325),
-        .\wl_loop_reg[5]_0 (u_fsm_n_431),
-        .\wl_loop_reg[5]_1 (u_fsm_n_476),
-        .\wl_loop_reg[5]_2 (u_fsm_n_557),
+        .\wl_loop_reg[5]_0 (u_fsm_n_415),
+        .\wl_loop_reg[5]_1 (u_fsm_n_460),
+        .\wl_loop_reg[5]_2 (u_fsm_n_541),
         .\wl_loop_reg[5]_3 (u_spi_slave_rram_n_323),
-        .\wl_loop_reg[6]_0 (u_fsm_n_432),
-        .\wl_loop_reg[6]_1 (u_fsm_n_456),
-        .\wl_loop_reg[6]_2 (u_fsm_n_479),
-        .\wl_loop_reg[6]_3 (u_fsm_n_490),
-        .\wl_loop_reg[6]_4 (u_fsm_n_550),
+        .\wl_loop_reg[6]_0 (u_fsm_n_416),
+        .\wl_loop_reg[6]_1 (u_fsm_n_440),
+        .\wl_loop_reg[6]_2 (u_fsm_n_463),
+        .\wl_loop_reg[6]_3 (u_fsm_n_474),
+        .\wl_loop_reg[6]_4 (u_fsm_n_534),
         .\wl_loop_reg[6]_5 (u_spi_slave_rram_n_23),
         .\wl_loop_reg[6]_6 (u_spi_slave_rram_n_11),
         .\wl_loop_reg[7]_0 (wl_loop),
-        .\wl_loop_reg[7]_1 (u_fsm_n_449),
-        .\wl_loop_reg[7]_2 (u_fsm_n_480),
-        .\wl_loop_reg[7]_3 (u_fsm_n_489),
-        .\wl_loop_reg[7]_4 (u_fsm_n_562),
+        .\wl_loop_reg[7]_1 (u_fsm_n_433),
+        .\wl_loop_reg[7]_2 (u_fsm_n_464),
+        .\wl_loop_reg[7]_3 (u_fsm_n_473),
+        .\wl_loop_reg[7]_4 (u_fsm_n_546),
         .\wl_loop_reg[7]_5 (u_spi_slave_rram_n_22),
         .\wl_loop_reg[7]_i_19_0 (u_spi_slave_rram_n_297),
         .\wl_loop_reg[7]_i_19_1 (u_spi_slave_rram_n_298),
@@ -40418,20 +40436,20 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
   ember_fpga_rram_top_wrapper_0_0_spi_slave_rram u_spi_slave_rram
        (.CO(next_rram_addr1),
         .D({u_spi_slave_rram_n_315,u_spi_slave_rram_n_316,u_spi_slave_rram_n_317,u_spi_slave_rram_n_318,u_spi_slave_rram_n_319,u_spi_slave_rram_n_320,u_spi_slave_rram_n_321,u_spi_slave_rram_n_322}),
-        .DI(u_fsm_n_454),
+        .DI(u_fsm_n_438),
         .E(u_spi_slave_rram_n_314),
         .\FSM_sequential_state[0]_i_27 (u_fsm_n_618),
-        .\FSM_sequential_state[0]_i_28 (u_fsm_n_500),
+        .\FSM_sequential_state[0]_i_28 (u_fsm_n_484),
         .\FSM_sequential_state[0]_i_69 (u_fsm_n_619),
         .\FSM_sequential_state[0]_i_69_0 ({u_fsm_n_615,u_fsm_n_616}),
-        .\FSM_sequential_state[3]_i_2 (u_fsm_n_95),
-        .\FSM_sequential_state[3]_i_9 (u_fsm_n_496),
+        .\FSM_sequential_state[3]_i_2 (u_fsm_n_79),
+        .\FSM_sequential_state[3]_i_9 (u_fsm_n_480),
         .\FSM_sequential_state_reg[0] (u_spi_slave_rram_n_331),
-        .\FSM_sequential_state_reg[1] (u_fsm_n_501),
-        .\FSM_sequential_state_reg[1]_i_16 ({u_fsm_n_548,u_fsm_n_549}),
+        .\FSM_sequential_state_reg[1] (u_fsm_n_485),
+        .\FSM_sequential_state_reg[1]_i_16 ({u_fsm_n_532,u_fsm_n_533}),
         .\FSM_sequential_state_reg[2] ({u_spi_slave_rram_n_29,u_spi_slave_rram_n_30,u_spi_slave_rram_n_31,u_spi_slave_rram_n_32,u_spi_slave_rram_n_33,u_spi_slave_rram_n_34,u_spi_slave_rram_n_35,u_spi_slave_rram_n_36}),
         .\FSM_sequential_state_reg[2]_0 (u_spi_slave_rram_n_390),
-        .\FSM_sequential_state_reg[2]_1 (u_fsm_n_498),
+        .\FSM_sequential_state_reg[2]_1 (u_fsm_n_482),
         .\FSM_sequential_state_reg[4]_rep__0 (u_spi_slave_rram_n_444),
         .Q({use_multi_addrs,opcode}),
         .S(u_fsm_n_617),
@@ -40443,51 +40461,51 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .attempts_counter_incr_en016_out(attempts_counter_incr_en016_out),
         .attempts_counter_incr_en022_out(attempts_counter_incr_en022_out),
         .attempts_counter_incr_en036_out(attempts_counter_incr_en036_out),
-        .\bsl_loop[2]_i_16_0 (u_fsm_n_103),
-        .\bsl_loop[2]_i_16_1 (u_fsm_n_493),
-        .\bsl_loop[2]_i_21 (u_fsm_n_491),
-        .\bsl_loop[2]_i_21_0 (u_fsm_n_488),
-        .\bsl_loop[2]_i_21_1 (u_fsm_n_494),
-        .\bsl_loop[2]_i_26_0 (u_fsm_n_489),
-        .\bsl_loop[2]_i_26_1 (u_fsm_n_490),
+        .\bsl_loop[2]_i_16_0 (u_fsm_n_87),
+        .\bsl_loop[2]_i_16_1 (u_fsm_n_477),
+        .\bsl_loop[2]_i_21 (u_fsm_n_475),
+        .\bsl_loop[2]_i_21_0 (u_fsm_n_472),
+        .\bsl_loop[2]_i_21_1 (u_fsm_n_478),
+        .\bsl_loop[2]_i_26_0 (u_fsm_n_473),
+        .\bsl_loop[2]_i_26_1 (u_fsm_n_474),
         .\bsl_loop[4]_i_135_0 (u_fsm_n_620),
-        .\bsl_loop[4]_i_38 (u_fsm_n_492),
-        .\bsl_loop[4]_i_38_0 (u_fsm_n_453),
-        .\bsl_loop[4]_i_38_1 (u_fsm_n_487),
+        .\bsl_loop[4]_i_38 (u_fsm_n_476),
+        .\bsl_loop[4]_i_38_0 (u_fsm_n_437),
+        .\bsl_loop[4]_i_38_1 (u_fsm_n_471),
         .\bsl_loop[4]_i_82_0 (bsl_loop),
         .\bsl_loop_reg[0] (u_spi_slave_rram_n_13),
         .\bsl_loop_reg[0]_0 (u_spi_slave_rram_n_334),
         .\bsl_loop_reg[0]_1 (u_spi_slave_rram_n_336),
-        .\bsl_loop_reg[0]_2 (u_fsm_n_451),
-        .\bsl_loop_reg[0]_3 (u_fsm_n_452),
-        .\bsl_loop_reg[0]_i_11_0 (u_fsm_n_159),
-        .\bsl_loop_reg[0]_i_4_0 (u_fsm_n_171),
+        .\bsl_loop_reg[0]_2 (u_fsm_n_435),
+        .\bsl_loop_reg[0]_3 (u_fsm_n_436),
+        .\bsl_loop_reg[0]_i_11_0 (u_fsm_n_143),
+        .\bsl_loop_reg[0]_i_4_0 (u_fsm_n_155),
         .\bsl_loop_reg[1] (u_spi_slave_rram_n_337),
         .\bsl_loop_reg[2] (u_spi_slave_rram_n_28),
         .\bsl_loop_reg[2]_0 (u_spi_slave_rram_n_338),
-        .\bsl_loop_reg[2]_i_101_0 (u_fsm_n_502),
+        .\bsl_loop_reg[2]_i_101_0 (u_fsm_n_486),
         .\bsl_loop_reg[3] (u_spi_slave_rram_n_14),
         .\bsl_loop_reg[3]_0 (u_spi_slave_rram_n_15),
         .\bsl_loop_reg[3]_1 (u_spi_slave_rram_n_25),
         .\bsl_loop_reg[3]_2 (u_spi_slave_rram_n_339),
         .\bsl_loop_reg[3]_3 (u_spi_slave_rram_n_347),
-        .\bsl_loop_reg[3]_4 (u_fsm_n_450),
-        .\bsl_loop_reg[3]_i_27_0 (u_fsm_n_550),
-        .\bsl_loop_reg[3]_i_27_1 (u_fsm_n_431),
-        .\bsl_loop_reg[3]_i_27_2 (u_fsm_n_429),
-        .\bsl_loop_reg[3]_i_27_3 (u_fsm_n_427),
-        .\bsl_loop_reg[3]_i_27_4 (u_fsm_n_425),
-        .\bsl_loop_reg[3]_i_27_5 (u_fsm_n_423),
-        .\bsl_loop_reg[3]_i_27_6 (u_fsm_n_421),
+        .\bsl_loop_reg[3]_4 (u_fsm_n_434),
+        .\bsl_loop_reg[3]_i_27_0 (u_fsm_n_534),
+        .\bsl_loop_reg[3]_i_27_1 (u_fsm_n_415),
+        .\bsl_loop_reg[3]_i_27_2 (u_fsm_n_413),
+        .\bsl_loop_reg[3]_i_27_3 (u_fsm_n_411),
+        .\bsl_loop_reg[3]_i_27_4 (u_fsm_n_409),
+        .\bsl_loop_reg[3]_i_27_5 (u_fsm_n_407),
+        .\bsl_loop_reg[3]_i_27_6 (u_fsm_n_405),
         .\bsl_loop_reg[4] (u_spi_slave_rram_n_340),
         .\bsl_loop_reg[4]_0 (u_spi_slave_rram_n_341),
-        .\bsl_loop_reg[4]_1 (u_fsm_n_418),
-        .\bsl_loop_reg[4]_2 (u_fsm_n_419),
-        .\bsl_loop_reg[4]_3 (u_fsm_n_551),
+        .\bsl_loop_reg[4]_1 (u_fsm_n_402),
+        .\bsl_loop_reg[4]_2 (u_fsm_n_403),
+        .\bsl_loop_reg[4]_3 (u_fsm_n_535),
         .\bsl_loop_reg[4]_i_121_0 (u_fsm_n_624),
         .\bsl_loop_reg[4]_i_126_0 (u_fsm_n_622),
         .\bsl_loop_reg[4]_i_177_0 (u_fsm_n_621),
-        .\bsl_loop_reg[4]_i_264_0 (u_fsm_n_173),
+        .\bsl_loop_reg[4]_i_264_0 (u_fsm_n_157),
         .\counter_reg[11] (u_spi_slave_rram_n_452),
         .\counter_reg[11]_0 (u_spi_slave_rram_n_453),
         .\fsm_cmd_bits_reg[0]_0 (u_spi_slave_rram_n_357),
@@ -40499,60 +40517,60 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .fsm_go(fsm_go),
         .fsm_go_reg_0(u_spi_slave_rram_n_358),
         .fsm_go_reg_1(u_spi_slave_rram_n_379),
-        .fsm_go_reg_2(u_fsm_n_178),
+        .fsm_go_reg_2(u_fsm_n_162),
         .in95(in95),
         .is_first_try_reg(u_spi_slave_rram_n_380),
-        .\mask[0]_i_2_0 (u_fsm_n_612),
-        .\mask[10]_i_2_0 (u_fsm_n_603),
-        .\mask[11]_i_2_0 (u_fsm_n_583),
-        .\mask[12]_i_2_0 (u_fsm_n_601),
-        .\mask[13]_i_2_0 (u_fsm_n_614),
-        .\mask[14]_i_3_0 (u_fsm_n_602),
-        .\mask[15]_i_2_0 (u_fsm_n_613),
-        .\mask[16]_i_4_0 (u_fsm_n_597),
-        .\mask[17]_i_2_0 (u_fsm_n_598),
-        .\mask[18]_i_2_0 (u_fsm_n_595),
-        .\mask[19]_i_2_0 (u_fsm_n_596),
-        .\mask[1]_i_2_0 (u_fsm_n_606),
-        .\mask[20]_i_2_0 (u_fsm_n_593),
-        .\mask[21]_i_2_0 (u_fsm_n_594),
-        .\mask[22]_i_2_0 (u_fsm_n_591),
-        .\mask[23]_i_2_0 (u_fsm_n_592),
-        .\mask[24]_i_2_0 (u_fsm_n_589),
-        .\mask[25]_i_2_0 (u_fsm_n_590),
-        .\mask[26]_i_2_0 (u_fsm_n_600),
-        .\mask[27]_i_2_0 (u_fsm_n_588),
-        .\mask[28]_i_3 (u_fsm_n_585),
-        .\mask[29]_i_2_0 (u_fsm_n_599),
-        .\mask[2]_i_2_0 (u_fsm_n_610),
-        .\mask[2]_i_5_0 (u_fsm_n_566),
-        .\mask[30]_i_3 (u_fsm_n_586),
-        .\mask[31]_i_3 (u_fsm_n_587),
-        .\mask[32]_i_2_0 (u_fsm_n_582),
-        .\mask[33]_i_2_0 (u_fsm_n_565),
-        .\mask[34]_i_2_0 (u_fsm_n_580),
-        .\mask[35]_i_2_0 (u_fsm_n_581),
-        .\mask[36]_i_2_0 (u_fsm_n_573),
-        .\mask[37]_i_2_0 (u_fsm_n_579),
-        .\mask[38]_i_2_0 (u_fsm_n_571),
-        .\mask[39]_i_2_0 (u_fsm_n_572),
-        .\mask[3]_i_2_0 (u_fsm_n_611),
-        .\mask[40]_i_2_0 (u_fsm_n_578),
-        .\mask[41]_i_2_0 (u_fsm_n_570),
-        .\mask[42]_i_2_0 (u_fsm_n_568),
-        .\mask[43]_i_2_0 (u_fsm_n_577),
-        .\mask[44]_i_2_0 (u_fsm_n_576),
-        .\mask[45]_i_2_0 (u_fsm_n_567),
-        .\mask[46]_i_3 (u_fsm_n_574),
-        .\mask[47]_i_7 (u_fsm_n_575),
-        .\mask[4]_i_2_0 (u_fsm_n_608),
-        .\mask[5]_i_2_0 (u_fsm_n_609),
-        .\mask[6]_i_2_0 (u_fsm_n_607),
-        .\mask[7]_i_2_0 (u_fsm_n_605),
-        .\mask[8]_i_2_0 (u_fsm_n_584),
-        .\mask[9]_i_2_0 (u_fsm_n_604),
-        .\mask_reg[33] (u_fsm_n_569),
-        .\mask_reg[46] (u_fsm_n_545),
+        .\mask[0]_i_2_0 (u_fsm_n_596),
+        .\mask[10]_i_2_0 (u_fsm_n_587),
+        .\mask[11]_i_2_0 (u_fsm_n_567),
+        .\mask[12]_i_2_0 (u_fsm_n_585),
+        .\mask[13]_i_2_0 (u_fsm_n_598),
+        .\mask[14]_i_3_0 (u_fsm_n_586),
+        .\mask[15]_i_2_0 (u_fsm_n_597),
+        .\mask[16]_i_4_0 (u_fsm_n_581),
+        .\mask[17]_i_2_0 (u_fsm_n_582),
+        .\mask[18]_i_2_0 (u_fsm_n_579),
+        .\mask[19]_i_2_0 (u_fsm_n_580),
+        .\mask[1]_i_2_0 (u_fsm_n_590),
+        .\mask[20]_i_2_0 (u_fsm_n_577),
+        .\mask[21]_i_2_0 (u_fsm_n_578),
+        .\mask[22]_i_2_0 (u_fsm_n_575),
+        .\mask[23]_i_2_0 (u_fsm_n_576),
+        .\mask[24]_i_2_0 (u_fsm_n_573),
+        .\mask[25]_i_2_0 (u_fsm_n_574),
+        .\mask[26]_i_2_0 (u_fsm_n_584),
+        .\mask[27]_i_2_0 (u_fsm_n_572),
+        .\mask[28]_i_3 (u_fsm_n_569),
+        .\mask[29]_i_2_0 (u_fsm_n_583),
+        .\mask[2]_i_2_0 (u_fsm_n_594),
+        .\mask[2]_i_5_0 (u_fsm_n_550),
+        .\mask[30]_i_3 (u_fsm_n_570),
+        .\mask[31]_i_3 (u_fsm_n_571),
+        .\mask[32]_i_2_0 (u_fsm_n_566),
+        .\mask[33]_i_2_0 (u_fsm_n_549),
+        .\mask[34]_i_2_0 (u_fsm_n_564),
+        .\mask[35]_i_2_0 (u_fsm_n_565),
+        .\mask[36]_i_2_0 (u_fsm_n_557),
+        .\mask[37]_i_2_0 (u_fsm_n_563),
+        .\mask[38]_i_2_0 (u_fsm_n_555),
+        .\mask[39]_i_2_0 (u_fsm_n_556),
+        .\mask[3]_i_2_0 (u_fsm_n_595),
+        .\mask[40]_i_2_0 (u_fsm_n_562),
+        .\mask[41]_i_2_0 (u_fsm_n_554),
+        .\mask[42]_i_2_0 (u_fsm_n_552),
+        .\mask[43]_i_2_0 (u_fsm_n_561),
+        .\mask[44]_i_2_0 (u_fsm_n_560),
+        .\mask[45]_i_2_0 (u_fsm_n_551),
+        .\mask[46]_i_3 (u_fsm_n_558),
+        .\mask[47]_i_7 (u_fsm_n_559),
+        .\mask[4]_i_2_0 (u_fsm_n_592),
+        .\mask[5]_i_2_0 (u_fsm_n_593),
+        .\mask[6]_i_2_0 (u_fsm_n_591),
+        .\mask[7]_i_2_0 (u_fsm_n_589),
+        .\mask[8]_i_2_0 (u_fsm_n_568),
+        .\mask[9]_i_2_0 (u_fsm_n_588),
+        .\mask_reg[33] (u_fsm_n_553),
+        .\mask_reg[46] (u_fsm_n_529),
         .mclk(mclk),
         .\misc_cnfg_bits_reg[111]_0 ({u_spi_slave_rram_n_376,u_spi_slave_rram_n_377,u_spi_slave_rram_n_378}),
         .\misc_cnfg_bits_reg[117]_0 ({u_spi_slave_rram_n_373,u_spi_slave_rram_n_374,u_spi_slave_rram_n_375}),
@@ -40640,128 +40658,127 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\paddr_reg[3]_rep (u_spi_slave_rram_n_4),
         .\paddr_reg[3]_rep_0 (u_spi_slave_rram_n_219),
         .\paddr_reg[4]_rep__0 (u_spi_slave_rram_n_218),
-        .\prdata_sr[0]_i_2 (u_fsm_n_191),
-        .\prdata_sr[10]_i_2 (u_fsm_n_390),
-        .\prdata_sr[11]_i_2 (u_fsm_n_391),
-        .\prdata_sr[124]_i_2 (u_fsm_n_529),
-        .\prdata_sr[124]_i_2_0 (u_fsm_n_528),
-        .\prdata_sr[12]_i_2 (u_fsm_n_392),
-        .\prdata_sr[13]_i_2 (u_fsm_n_393),
-        .\prdata_sr[14]_i_3 (u_fsm_n_394),
+        .\prdata_sr[0]_i_2 (u_fsm_n_175),
+        .\prdata_sr[10]_i_2 (u_fsm_n_374),
+        .\prdata_sr[11]_i_2 (u_fsm_n_375),
+        .\prdata_sr[124]_i_2 (u_fsm_n_513),
+        .\prdata_sr[124]_i_2_0 (u_fsm_n_512),
+        .\prdata_sr[12]_i_2 (u_fsm_n_376),
+        .\prdata_sr[13]_i_2 (u_fsm_n_377),
+        .\prdata_sr[14]_i_3 (u_fsm_n_378),
         .\prdata_sr[152]_i_41_0 (attempts_counter_incr_en134_in),
-        .\prdata_sr[15]_i_2 (u_fsm_n_395),
-        .\prdata_sr[16]_i_2 (u_fsm_n_396),
-        .\prdata_sr[17]_i_3 (u_fsm_n_397),
-        .\prdata_sr[18]_i_2 (u_fsm_n_398),
-        .\prdata_sr[19]_i_2 (u_fsm_n_181),
-        .\prdata_sr[1]_i_2 (u_fsm_n_384),
+        .\prdata_sr[15]_i_2 (u_fsm_n_379),
+        .\prdata_sr[16]_i_2 (u_fsm_n_380),
+        .\prdata_sr[17]_i_3 (u_fsm_n_381),
+        .\prdata_sr[18]_i_2 (u_fsm_n_382),
+        .\prdata_sr[19]_i_2 (u_fsm_n_165),
+        .\prdata_sr[1]_i_2 (u_fsm_n_368),
         .\prdata_sr[1]_i_4 ({state[4],state[2:0]}),
-        .\prdata_sr[20]_i_3 (u_fsm_n_399),
-        .\prdata_sr[21]_i_2 (u_fsm_n_182),
-        .\prdata_sr[22]_i_4 (u_fsm_n_400),
-        .\prdata_sr[23]_i_2 (u_fsm_n_183),
+        .\prdata_sr[20]_i_3 (u_fsm_n_383),
+        .\prdata_sr[21]_i_2 (u_fsm_n_166),
+        .\prdata_sr[22]_i_4 (u_fsm_n_384),
+        .\prdata_sr[23]_i_2 (u_fsm_n_167),
         .\prdata_sr[24]_i_4 ({diag_bits[24],diag_bits[22],diag_bits[20],diag_bits[18:10],diag_bits[8],diag_bits[6],diag_bits[4:0]}),
-        .\prdata_sr[24]_i_4_0 (u_fsm_n_401),
-        .\prdata_sr[25]_i_2 (u_fsm_n_184),
-        .\prdata_sr[26]_i_2 (u_fsm_n_185),
-        .\prdata_sr[27]_i_2 (u_fsm_n_186),
-        .\prdata_sr[28]_i_2 (u_fsm_n_187),
-        .\prdata_sr[29]_i_2 (u_fsm_n_188),
-        .\prdata_sr[2]_i_3 (u_fsm_n_385),
-        .\prdata_sr[30]_i_2 (u_fsm_n_189),
-        .\prdata_sr[31]_i_2 (u_fsm_n_190),
-        .\prdata_sr[32]_i_4 (u_fsm_n_402),
-        .\prdata_sr[33]_i_4 (u_fsm_n_403),
-        .\prdata_sr[34]_i_4 (u_fsm_n_404),
-        .\prdata_sr[35]_i_4 (u_fsm_n_405),
-        .\prdata_sr[36]_i_4 (u_fsm_n_406),
-        .\prdata_sr[37]_i_4 (u_fsm_n_407),
-        .\prdata_sr[38]_i_4 (u_fsm_n_408),
-        .\prdata_sr[39]_i_4 (u_fsm_n_409),
-        .\prdata_sr[3]_i_3 (u_fsm_n_386),
-        .\prdata_sr[40]_i_4 (u_fsm_n_410),
-        .\prdata_sr[41]_i_4 (u_fsm_n_411),
-        .\prdata_sr[42]_i_4 (u_fsm_n_412),
-        .\prdata_sr[43]_i_4 (u_fsm_n_413),
-        .\prdata_sr[44]_i_4 (u_fsm_n_414),
-        .\prdata_sr[45]_i_4 (u_fsm_n_415),
-        .\prdata_sr[46]_i_4 (u_fsm_n_416),
-        .\prdata_sr[47]_i_4 (u_fsm_n_417),
-        .\prdata_sr[4]_i_2 (u_fsm_n_387),
-        .\prdata_sr[6]_i_3 (u_fsm_n_388),
-        .\prdata_sr[78]_i_2 (u_fsm_n_563),
-        .\prdata_sr[78]_i_2_0 (u_fsm_n_540),
-        .\prdata_sr[7]_i_28 (u_fsm_n_499),
-        .\prdata_sr[7]_i_28_0 (u_fsm_n_538),
-        .\prdata_sr[8]_i_4 (u_fsm_n_389),
+        .\prdata_sr[24]_i_4_0 (u_fsm_n_385),
+        .\prdata_sr[25]_i_2 (u_fsm_n_168),
+        .\prdata_sr[26]_i_2 (u_fsm_n_169),
+        .\prdata_sr[27]_i_2 (u_fsm_n_170),
+        .\prdata_sr[28]_i_2 (u_fsm_n_171),
+        .\prdata_sr[29]_i_2 (u_fsm_n_172),
+        .\prdata_sr[2]_i_3 (u_fsm_n_369),
+        .\prdata_sr[30]_i_2 (u_fsm_n_173),
+        .\prdata_sr[31]_i_2 (u_fsm_n_174),
+        .\prdata_sr[32]_i_4 (u_fsm_n_386),
+        .\prdata_sr[33]_i_4 (u_fsm_n_387),
+        .\prdata_sr[34]_i_4 (u_fsm_n_388),
+        .\prdata_sr[35]_i_4 (u_fsm_n_389),
+        .\prdata_sr[36]_i_4 (u_fsm_n_390),
+        .\prdata_sr[37]_i_4 (u_fsm_n_391),
+        .\prdata_sr[38]_i_4 (u_fsm_n_392),
+        .\prdata_sr[39]_i_4 (u_fsm_n_393),
+        .\prdata_sr[3]_i_3 (u_fsm_n_370),
+        .\prdata_sr[40]_i_4 (u_fsm_n_394),
+        .\prdata_sr[41]_i_4 (u_fsm_n_395),
+        .\prdata_sr[42]_i_4 (u_fsm_n_396),
+        .\prdata_sr[43]_i_4 (u_fsm_n_397),
+        .\prdata_sr[44]_i_4 (u_fsm_n_398),
+        .\prdata_sr[45]_i_4 (u_fsm_n_399),
+        .\prdata_sr[46]_i_4 (u_fsm_n_400),
+        .\prdata_sr[47]_i_4 (u_fsm_n_401),
+        .\prdata_sr[4]_i_2 (u_fsm_n_371),
+        .\prdata_sr[6]_i_3 (u_fsm_n_372),
+        .\prdata_sr[78]_i_2 (u_fsm_n_547),
+        .\prdata_sr[78]_i_2_0 (u_fsm_n_524),
+        .\prdata_sr[7]_i_28 (u_fsm_n_483),
+        .\prdata_sr[7]_i_28_0 (u_fsm_n_522),
+        .\prdata_sr[8]_i_4 (u_fsm_n_373),
         .\prdata_sr_reg[0] (\prdata_sr[159]_i_3_n_0 ),
-        .\prdata_sr_reg[104] (u_fsm_n_535),
-        .\prdata_sr_reg[104]_0 (u_fsm_n_539),
-        .\prdata_sr_reg[104]_1 (u_fsm_n_525),
-        .\prdata_sr_reg[113] (u_fsm_n_543),
-        .\prdata_sr_reg[113]_0 (u_fsm_n_544),
-        .\prdata_sr_reg[113]_1 (u_fsm_n_536),
-        .\prdata_sr_reg[115] (u_fsm_n_157),
+        .\prdata_sr_reg[104] (u_fsm_n_519),
+        .\prdata_sr_reg[104]_0 (u_fsm_n_523),
+        .\prdata_sr_reg[104]_1 (u_fsm_n_509),
+        .\prdata_sr_reg[113] (u_fsm_n_527),
+        .\prdata_sr_reg[113]_0 (u_fsm_n_528),
+        .\prdata_sr_reg[113]_1 (u_fsm_n_520),
+        .\prdata_sr_reg[115] (u_fsm_n_141),
         .\prdata_sr_reg[118] (rangei),
-        .\prdata_sr_reg[119] (u_fsm_n_527),
-        .\prdata_sr_reg[119]_0 (u_fsm_n_534),
-        .\prdata_sr_reg[120] (u_fsm_n_530),
-        .\prdata_sr_reg[121] (u_fsm_n_531),
-        .\prdata_sr_reg[122] (u_fsm_n_532),
-        .\prdata_sr_reg[123] (u_fsm_n_533),
-        .\prdata_sr_reg[152] (u_fsm_n_537),
-        .\prdata_sr_reg[152]_0 (u_fsm_n_541),
-        .\prdata_sr_reg[152]_i_29_0 (u_fsm_n_557),
-        .\prdata_sr_reg[152]_i_29_1 (u_fsm_n_556),
-        .\prdata_sr_reg[152]_i_29_2 (u_fsm_n_560),
-        .\prdata_sr_reg[152]_i_29_3 (u_fsm_n_558),
-        .\prdata_sr_reg[152]_i_29_4 (u_fsm_n_559),
-        .\prdata_sr_reg[152]_i_29_5 (u_fsm_n_561),
-        .\prdata_sr_reg[152]_i_33_0 (u_fsm_n_480),
-        .\prdata_sr_reg[152]_i_33_1 (u_fsm_n_479),
-        .\prdata_sr_reg[152]_i_33_2 (u_fsm_n_476),
-        .\prdata_sr_reg[152]_i_33_3 (u_fsm_n_478),
-        .\prdata_sr_reg[152]_i_33_4 (u_fsm_n_483),
-        .\prdata_sr_reg[152]_i_33_5 (u_fsm_n_477),
-        .\prdata_sr_reg[152]_i_33_6 (u_fsm_n_481),
-        .\prdata_sr_reg[152]_i_33_7 (u_fsm_n_482),
-        .\prdata_sr_reg[153]_i_4 ({u_fsm_n_546,u_fsm_n_547}),
-        .\prdata_sr_reg[158] ({fsm_bits[158:153],fsm_bits[151:127],fsm_bits[114],fsm_bits[112:105],fsm_bits[103:101],fsm_bits[99:84],fsm_bits[18:13],fsm_bits[11:10],fsm_bits[6],fsm_bits[4:2],fsm_bits[0]}),
+        .\prdata_sr_reg[119] (u_fsm_n_511),
+        .\prdata_sr_reg[119]_0 (u_fsm_n_518),
+        .\prdata_sr_reg[120] (u_fsm_n_514),
+        .\prdata_sr_reg[121] (u_fsm_n_515),
+        .\prdata_sr_reg[122] (u_fsm_n_516),
+        .\prdata_sr_reg[123] (u_fsm_n_517),
+        .\prdata_sr_reg[152] (u_fsm_n_521),
+        .\prdata_sr_reg[152]_0 (u_fsm_n_525),
+        .\prdata_sr_reg[152]_i_29_0 (u_fsm_n_541),
+        .\prdata_sr_reg[152]_i_29_1 (u_fsm_n_540),
+        .\prdata_sr_reg[152]_i_29_2 (u_fsm_n_544),
+        .\prdata_sr_reg[152]_i_29_3 (u_fsm_n_542),
+        .\prdata_sr_reg[152]_i_29_4 (u_fsm_n_543),
+        .\prdata_sr_reg[152]_i_29_5 (u_fsm_n_545),
+        .\prdata_sr_reg[152]_i_33_0 (u_fsm_n_464),
+        .\prdata_sr_reg[152]_i_33_1 (u_fsm_n_463),
+        .\prdata_sr_reg[152]_i_33_2 (u_fsm_n_460),
+        .\prdata_sr_reg[152]_i_33_3 (u_fsm_n_462),
+        .\prdata_sr_reg[152]_i_33_4 (u_fsm_n_467),
+        .\prdata_sr_reg[152]_i_33_5 (u_fsm_n_461),
+        .\prdata_sr_reg[152]_i_33_6 (u_fsm_n_465),
+        .\prdata_sr_reg[152]_i_33_7 (u_fsm_n_466),
+        .\prdata_sr_reg[158] ({fsm_bits[158:153],fsm_bits[151:127],fsm_bits[114],fsm_bits[112:105],fsm_bits[103:101],fsm_bits[18:13],fsm_bits[11:10],fsm_bits[6],fsm_bits[4:2],fsm_bits[0]}),
         .\prdata_sr_reg[159] (\prdata_sr[159]_i_9_n_0 ),
-        .\prdata_sr_reg[5] (u_fsm_n_177),
-        .\prdata_sr_reg[72] ({p_1_in144_in,p_1_in147_in,p_1_in150_in,p_1_in153_in,p_1_in156_in,p_1_in159_in,p_1_in162_in,p_1_in165_in,p_1_in168_in,p_1_in171_in,p_1_in174_in,p_1_in177_in,p_1_in180_in,p_1_in183_in,p_1_in186_in,p_1_in189_in,p_1_in192_in,p_1_in195_in,p_1_in198_in,p_1_in201_in,p_1_in204_in,p_1_in207_in,p_1_in210_in,p_1_in213_in,p_1_in216_in,p_1_in219_in,p_1_in222_in,p_1_in225_in,p_1_in228_in,p_1_in231_in,p_1_in234_in,p_1_in237_in,p_1_in240_in,p_1_in243_in,p_1_in246_in,p_1_in249_in,p_1_in252_in,p_1_in255_in,p_1_in258_in,p_1_in261_in,p_1_in264_in,p_1_in267_in,p_1_in270_in,p_1_in273_in,p_1_in276_in,p_1_in279_in,p_1_in282_in,u_fsm_n_156}),
-        .\prdata_sr_reg[73] (u_fsm_n_526),
-        .\prdata_sr_reg[77] (u_fsm_n_158),
-        .\prdata_sr_reg[78] (u_fsm_n_564),
-        .\prdata_sr_reg[7] (u_fsm_n_175),
-        .\prdata_sr_reg[7]_0 (u_fsm_n_179),
-        .\prdata_sr_reg[8] (u_fsm_n_176),
-        .\prdata_sr_reg[9] (u_fsm_n_180),
-        .\prdata_sr_reg[9]_0 (u_fsm_n_174),
-        .\prdata_sr_reg[9]_1 (u_fsm_n_497),
-        .\pw_loop[7]_i_13 (u_fsm_n_554),
-        .\pw_loop[7]_i_3_0 (u_fsm_n_97),
-        .\pw_loop[7]_i_3_1 (u_fsm_n_495),
+        .\prdata_sr_reg[5] (u_fsm_n_161),
+        .\prdata_sr_reg[72] ({p_1_in144_in,p_1_in147_in,p_1_in150_in,p_1_in153_in,p_1_in156_in,p_1_in159_in,p_1_in162_in,p_1_in165_in,p_1_in168_in,p_1_in171_in,p_1_in174_in,p_1_in177_in,p_1_in180_in,p_1_in183_in,p_1_in186_in,p_1_in189_in,p_1_in192_in,p_1_in195_in,p_1_in198_in,p_1_in201_in,p_1_in204_in,p_1_in207_in,p_1_in210_in,p_1_in213_in,p_1_in216_in,p_1_in219_in,p_1_in222_in,p_1_in225_in,p_1_in228_in,p_1_in231_in,p_1_in234_in,p_1_in237_in,p_1_in240_in,p_1_in243_in,p_1_in246_in,p_1_in249_in,p_1_in252_in,p_1_in255_in,p_1_in258_in,p_1_in261_in,p_1_in264_in,p_1_in267_in,p_1_in270_in,p_1_in273_in,p_1_in276_in,p_1_in279_in,p_1_in282_in,u_fsm_n_140}),
+        .\prdata_sr_reg[73] (u_fsm_n_510),
+        .\prdata_sr_reg[77] (u_fsm_n_142),
+        .\prdata_sr_reg[78] (u_fsm_n_548),
+        .\prdata_sr_reg[7] (u_fsm_n_159),
+        .\prdata_sr_reg[7]_0 (u_fsm_n_163),
+        .\prdata_sr_reg[8] (u_fsm_n_160),
+        .\prdata_sr_reg[9] (u_fsm_n_164),
+        .\prdata_sr_reg[9]_0 (u_fsm_n_158),
+        .\prdata_sr_reg[9]_1 (u_fsm_n_481),
+        .\pw_loop[7]_i_13 (u_fsm_n_538),
+        .\pw_loop[7]_i_3_0 (u_fsm_n_81),
+        .\pw_loop[7]_i_3_1 (u_fsm_n_479),
         .\pw_loop[7]_i_6_0 (pw_loop),
         .\pw_loop_reg[0] (u_spi_slave_rram_n_350),
-        .\pw_loop_reg[0]_0 (u_fsm_n_473),
-        .\pw_loop_reg[1] (u_fsm_n_458),
-        .\pw_loop_reg[2] (u_fsm_n_471),
-        .\pw_loop_reg[3] (u_fsm_n_474),
+        .\pw_loop_reg[0]_0 (u_fsm_n_457),
+        .\pw_loop_reg[1] (u_fsm_n_442),
+        .\pw_loop_reg[2] (u_fsm_n_455),
+        .\pw_loop_reg[3] (u_fsm_n_458),
         .\pw_loop_reg[4] (u_spi_slave_rram_n_349),
-        .\pw_loop_reg[4]_0 (u_fsm_n_469),
-        .\pw_loop_reg[5] (u_fsm_n_472),
+        .\pw_loop_reg[4]_0 (u_fsm_n_453),
+        .\pw_loop_reg[5] (u_fsm_n_456),
         .\pw_loop_reg[6] (u_spi_slave_rram_n_11),
         .\pw_loop_reg[6]_0 (next_bsl_loop2),
-        .\pw_loop_reg[6]_1 (u_fsm_n_470),
-        .\pw_loop_reg[7] (u_fsm_n_459),
-        .\pw_loop_reg[7]_0 (u_fsm_n_160),
-        .\pw_loop_reg[7]_1 (u_fsm_n_108),
-        .\pw_loop_reg[7]_2 (u_fsm_n_106),
-        .\pw_loop_reg[7]_3 (u_fsm_n_552),
-        .\pw_loop_reg[7]_4 (u_fsm_n_553),
+        .\pw_loop_reg[6]_1 (u_fsm_n_454),
+        .\pw_loop_reg[7] (u_fsm_n_443),
+        .\pw_loop_reg[7]_0 (u_fsm_n_144),
+        .\pw_loop_reg[7]_1 (u_fsm_n_92),
+        .\pw_loop_reg[7]_2 (u_fsm_n_90),
+        .\pw_loop_reg[7]_3 (u_fsm_n_536),
+        .\pw_loop_reg[7]_4 (u_fsm_n_537),
         .\pw_loop_reg[7]_i_47_0 (u_fsm_n_623),
-        .\pw_loop_reg[7]_i_62_0 (u_fsm_n_507),
+        .\pw_loop_reg[7]_i_62_0 (u_fsm_n_491),
         .\rangei_reg[2] (u_spi_slave_rram_n_310),
         .\rangei_reg[2]_rep (u_spi_slave_rram_n_283),
         .\rangei_reg[2]_rep_0 (u_spi_slave_rram_n_284),
@@ -40803,6 +40820,8 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .\read_data_bits[3]_23 (\read_data_bits[3]_23 ),
         .\read_data_bits_reg[0][28] (u_spi_slave_rram_n_428),
         .\read_data_bits_reg[0][31] (u_spi_slave_rram_n_429),
+        .rram_addr(rram_addr),
+        .\rram_addr_reg[15]_i_10 ({u_fsm_n_530,u_fsm_n_531}),
         .rst_n(rst_n),
         .sclk(sclk),
         .set_rst_loop(set_rst_loop),
@@ -40826,32 +40845,32 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top
         .set_rst_loop_reg_7(u_spi_slave_rram_n_26),
         .set_rst_loop_reg_8(u_spi_slave_rram_n_323),
         .set_rst_loop_reg_9(u_spi_slave_rram_n_325),
-        .\wl_loop[3]_i_14 (u_fsm_n_486),
-        .\wl_loop[3]_i_14_0 (u_fsm_n_484),
-        .\wl_loop[3]_i_14_1 (u_fsm_n_485),
-        .\wl_loop[6]_i_6_0 (u_fsm_n_456),
+        .\wl_loop[3]_i_14 (u_fsm_n_470),
+        .\wl_loop[3]_i_14_0 (u_fsm_n_468),
+        .\wl_loop[3]_i_14_1 (u_fsm_n_469),
+        .\wl_loop[6]_i_6_0 (u_fsm_n_440),
         .\wl_loop[7]_i_21_0 (wl_loop),
-        .\wl_loop[7]_i_45 (u_fsm_n_508),
-        .\wl_loop[7]_i_9_0 (u_fsm_n_562),
-        .\wl_loop_reg[0] (u_fsm_n_420),
-        .\wl_loop_reg[1] (u_fsm_n_422),
+        .\wl_loop[7]_i_45 (u_fsm_n_492),
+        .\wl_loop[7]_i_9_0 (u_fsm_n_546),
+        .\wl_loop_reg[0] (u_fsm_n_404),
+        .\wl_loop_reg[1] (u_fsm_n_406),
         .\wl_loop_reg[2] (u_spi_slave_rram_n_328),
-        .\wl_loop_reg[2]_0 (u_fsm_n_424),
-        .\wl_loop_reg[3] (u_fsm_n_172),
-        .\wl_loop_reg[3]_0 (u_fsm_n_426),
-        .\wl_loop_reg[4] (u_fsm_n_428),
+        .\wl_loop_reg[2]_0 (u_fsm_n_408),
+        .\wl_loop_reg[3] (u_fsm_n_156),
+        .\wl_loop_reg[3]_0 (u_fsm_n_410),
+        .\wl_loop_reg[4] (u_fsm_n_412),
         .\wl_loop_reg[5] (u_spi_slave_rram_n_324),
-        .\wl_loop_reg[5]_0 (u_fsm_n_430),
+        .\wl_loop_reg[5]_0 (u_fsm_n_414),
         .\wl_loop_reg[6] (next_pw_loop2),
         .\wl_loop_reg[6]_0 (next_wl_loop217_in),
         .\wl_loop_reg[6]_1 (attempts_counter_incr_en114_in),
-        .\wl_loop_reg[6]_2 (u_fsm_n_432),
+        .\wl_loop_reg[6]_2 (u_fsm_n_416),
         .\wl_loop_reg[7] (next_bsl_loop25_in),
         .\wl_loop_reg[7]_0 (attempts_counter_incr_en120_in),
-        .\wl_loop_reg[7]_1 (u_fsm_n_107),
-        .\wl_loop_reg[7]_2 (u_fsm_n_104),
-        .\wl_loop_reg[7]_3 (u_fsm_n_449),
-        .\wl_loop_reg[7]_4 (u_fsm_n_161),
+        .\wl_loop_reg[7]_1 (u_fsm_n_91),
+        .\wl_loop_reg[7]_2 (u_fsm_n_88),
+        .\wl_loop_reg[7]_3 (u_fsm_n_433),
+        .\wl_loop_reg[7]_4 (u_fsm_n_145),
         .\wl_loop_reg[7]_i_54_0 (u_fsm_n_625),
         .\write_data_bits_reg[3][47]_0 (\write_data_bits[3]_16 ));
 endmodule
@@ -40859,6 +40878,7 @@ endmodule
 (* ORIG_REF_NAME = "rram_top_wrapper" *) 
 module ember_fpga_rram_top_wrapper_0_0_rram_top_wrapper
    (miso,
+    rram_addr,
     rram_busy,
     sa_rdy,
     rst_n,
@@ -40868,6 +40888,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top_wrapper
     sc,
     mclk_pause);
   output miso;
+  output [15:0]rram_addr;
   output rram_busy;
   input sa_rdy;
   input rst_n;
@@ -40880,6 +40901,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top_wrapper
   wire mclk_pause;
   wire miso;
   wire mosi;
+  wire [15:0]rram_addr;
   wire rram_busy;
   wire rst_n;
   wire [47:0]sa_do;
@@ -40891,6 +40913,7 @@ module ember_fpga_rram_top_wrapper_0_0_rram_top_wrapper
        (.mclk_pause(mclk_pause),
         .miso(miso),
         .mosi(mosi),
+        .rram_addr(rram_addr),
         .rram_busy(rram_busy),
         .rst_n(rst_n),
         .sa_do(sa_do),
@@ -41139,6 +41162,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \prdata_sr[31]_i_2 ,
     \prdata_sr_reg[77] ,
     \prdata_sr_reg[78] ,
+    rram_addr,
     mclk,
     \prdata_sr_reg[104] ,
     \prdata_sr_reg[104]_0 ,
@@ -41329,7 +41353,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     S,
     \FSM_sequential_state[0]_i_69 ,
     \FSM_sequential_state[0]_i_69_0 ,
-    \prdata_sr_reg[153]_i_4 ,
+    \rram_addr_reg[15]_i_10 ,
     \FSM_sequential_state[0]_i_27 ,
     DI,
     fsm_go_reg_2,
@@ -41553,7 +41577,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   input \bsl_loop[2]_i_26_1 ;
   input [3:0]\prdata_sr[1]_i_4 ;
   input \pw_loop_reg[7]_0 ;
-  input [71:0]\prdata_sr_reg[158] ;
+  input [55:0]\prdata_sr_reg[158] ;
   input \prdata_sr[0]_i_2 ;
   input \prdata_sr[1]_i_2 ;
   input \prdata_sr_reg[7] ;
@@ -41577,6 +41601,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   input \prdata_sr[31]_i_2 ;
   input \prdata_sr_reg[77] ;
   input \prdata_sr_reg[78] ;
+  input [15:0]rram_addr;
   input mclk;
   input \prdata_sr_reg[104] ;
   input \prdata_sr_reg[104]_0 ;
@@ -41767,7 +41792,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   input [0:0]S;
   input [0:0]\FSM_sequential_state[0]_i_69 ;
   input [1:0]\FSM_sequential_state[0]_i_69_0 ;
-  input [1:0]\prdata_sr_reg[153]_i_4 ;
+  input [1:0]\rram_addr_reg[15]_i_10 ;
   input [0:0]\FSM_sequential_state[0]_i_27 ;
   input [0:0]DI;
   input fsm_go_reg_2;
@@ -41786,21 +41811,21 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   wire \FSM_sequential_state[0]_i_28 ;
   wire [0:0]\FSM_sequential_state[0]_i_69 ;
   wire [1:0]\FSM_sequential_state[0]_i_69_0 ;
+  wire \FSM_sequential_state[1]_i_24_n_0 ;
   wire \FSM_sequential_state[1]_i_25_n_0 ;
   wire \FSM_sequential_state[1]_i_26_n_0 ;
   wire \FSM_sequential_state[1]_i_27_n_0 ;
   wire \FSM_sequential_state[1]_i_28_n_0 ;
-  wire \FSM_sequential_state[1]_i_29_n_0 ;
-  wire \FSM_sequential_state[1]_i_31_n_0 ;
+  wire \FSM_sequential_state[1]_i_30_n_0 ;
+  wire \FSM_sequential_state[1]_i_46_n_0 ;
   wire \FSM_sequential_state[1]_i_47_n_0 ;
-  wire \FSM_sequential_state[1]_i_48_n_0 ;
+  wire \FSM_sequential_state[1]_i_50_n_0 ;
   wire \FSM_sequential_state[1]_i_51_n_0 ;
   wire \FSM_sequential_state[1]_i_52_n_0 ;
   wire \FSM_sequential_state[1]_i_53_n_0 ;
   wire \FSM_sequential_state[1]_i_54_n_0 ;
-  wire \FSM_sequential_state[1]_i_57_n_0 ;
-  wire \FSM_sequential_state[1]_i_58_n_0 ;
-  wire \FSM_sequential_state[1]_i_59_n_0 ;
+  wire \FSM_sequential_state[1]_i_55_n_0 ;
+  wire \FSM_sequential_state[1]_i_56_n_0 ;
   wire \FSM_sequential_state[3]_i_2 ;
   wire \FSM_sequential_state[3]_i_9 ;
   wire \FSM_sequential_state_reg[0] ;
@@ -42659,8 +42684,8 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   wire \mask[45]_i_7_n_0 ;
   wire \mask[45]_i_8_n_0 ;
   wire \mask[46]_i_3 ;
-  wire \mask[47]_i_14_n_0 ;
-  wire \mask[47]_i_15_n_0 ;
+  wire \mask[47]_i_12_n_0 ;
+  wire \mask[47]_i_13_n_0 ;
   wire \mask[47]_i_7 ;
   wire \mask[4]_i_2_0 ;
   wire \mask[4]_i_4_n_0 ;
@@ -42906,8 +42931,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   wire \prdata_sr_reg[152]_i_33_n_1 ;
   wire \prdata_sr_reg[152]_i_33_n_2 ;
   wire \prdata_sr_reg[152]_i_33_n_3 ;
-  wire [1:0]\prdata_sr_reg[153]_i_4 ;
-  wire [71:0]\prdata_sr_reg[158] ;
+  wire [55:0]\prdata_sr_reg[158] ;
   wire \prdata_sr_reg[159] ;
   wire \prdata_sr_reg[5] ;
   wire [47:0]\prdata_sr_reg[72] ;
@@ -43231,6 +43255,8 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   wire [47:0]\read_data_bits[3]_23 ;
   wire \read_data_bits_reg[0][28] ;
   wire \read_data_bits_reg[0][31] ;
+  wire [15:0]rram_addr;
+  wire [1:0]\rram_addr_reg[15]_i_10 ;
   wire rst_n;
   wire sclk;
   wire set_rst_loop;
@@ -43560,7 +43586,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   LUT4 #(
     .INIT(16'hFFFE)) 
     \FSM_sequential_state[1]_i_13 
-       (.I0(\FSM_sequential_state[1]_i_25_n_0 ),
+       (.I0(\FSM_sequential_state[1]_i_24_n_0 ),
         .I1(\misc_cnfg_bits_reg[57]_1 ),
         .I2(next_mask132_out),
         .I3(next_mask126_out),
@@ -43569,86 +43595,86 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     .INIT(32'hFFFFFFFE)) 
     \FSM_sequential_state[1]_i_14 
        (.I0(next_mask117_out),
-        .I1(\FSM_sequential_state[1]_i_26_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_25_n_0 ),
         .I2(\misc_cnfg_bits_reg[63]_0 ),
         .I3(next_mask114_out),
-        .I4(\FSM_sequential_state[1]_i_27_n_0 ),
+        .I4(\FSM_sequential_state[1]_i_26_n_0 ),
         .O(\misc_cnfg_bits_reg[65]_0 ));
   LUT6 #(
     .INIT(64'h0000000000000001)) 
     \FSM_sequential_state[1]_i_15 
-       (.I0(\FSM_sequential_state[1]_i_28_n_0 ),
-        .I1(\FSM_sequential_state[1]_i_29_n_0 ),
+       (.I0(\FSM_sequential_state[1]_i_27_n_0 ),
+        .I1(\FSM_sequential_state[1]_i_28_n_0 ),
         .I2(u_itrx_apbm_spi_n_62),
         .I3(next_mask63_out),
         .I4(next_mask57_out),
-        .I5(\FSM_sequential_state[1]_i_31_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_30_n_0 ),
         .O(\misc_cnfg_bits_reg[86]_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_25 
+    \FSM_sequential_state[1]_i_24 
        (.I0(\misc_cnfg_bits_reg[59]_0 ),
         .I1(\misc_cnfg_bits_reg[56]_0 ),
         .I2(\misc_cnfg_bits_reg[61]_0 ),
         .I3(next_mask138_out),
-        .O(\FSM_sequential_state[1]_i_25_n_0 ));
+        .O(\FSM_sequential_state[1]_i_24_n_0 ));
   LUT3 #(
     .INIT(8'hF4)) 
-    \FSM_sequential_state[1]_i_26 
+    \FSM_sequential_state[1]_i_25 
        (.I0(next_mask127_out),
         .I1(\misc_cnfg_bits_reg[147]_0 [58]),
         .I2(next_mask108_out),
-        .O(\FSM_sequential_state[1]_i_26_n_0 ));
+        .O(\FSM_sequential_state[1]_i_25_n_0 ));
   LUT3 #(
     .INIT(8'hFE)) 
-    \FSM_sequential_state[1]_i_27 
+    \FSM_sequential_state[1]_i_26 
        (.I0(next_mask105_out),
         .I1(next_mask111_out),
         .I2(next_mask120_out),
-        .O(\FSM_sequential_state[1]_i_27_n_0 ));
+        .O(\FSM_sequential_state[1]_i_26_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[1]_i_28 
+    \FSM_sequential_state[1]_i_27 
        (.I0(next_mask36_out),
         .I1(next_mask45_out),
         .I2(next_mask30_out),
         .I3(next_mask39_out),
-        .I4(\FSM_sequential_state[1]_i_57_n_0 ),
-        .I5(\FSM_sequential_state[1]_i_58_n_0 ),
-        .O(\FSM_sequential_state[1]_i_28_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_54_n_0 ),
+        .I5(\FSM_sequential_state[1]_i_55_n_0 ),
+        .O(\FSM_sequential_state[1]_i_27_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_29 
+    \FSM_sequential_state[1]_i_28 
        (.I0(next_mask75_out),
         .I1(next_mask72_out),
         .I2(next_mask69_out),
         .I3(next_mask66_out),
-        .O(\FSM_sequential_state[1]_i_29_n_0 ));
+        .O(\FSM_sequential_state[1]_i_28_n_0 ));
   LUT5 #(
     .INIT(32'hFFFFFFFE)) 
-    \FSM_sequential_state[1]_i_31 
+    \FSM_sequential_state[1]_i_30 
        (.I0(next_mask90_out),
         .I1(next_mask93_out),
         .I2(next_mask96_out),
         .I3(next_mask99_out),
-        .I4(\FSM_sequential_state[1]_i_59_n_0 ),
-        .O(\FSM_sequential_state[1]_i_31_n_0 ));
+        .I4(\FSM_sequential_state[1]_i_56_n_0 ),
+        .O(\FSM_sequential_state[1]_i_30_n_0 ));
   LUT4 #(
     .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_47 
+    \FSM_sequential_state[1]_i_46 
        (.I0(in95[15]),
         .I1(address_stop[15]),
         .I2(in95[14]),
         .I3(address_stop[14]),
-        .O(\FSM_sequential_state[1]_i_47_n_0 ));
+        .O(\FSM_sequential_state[1]_i_46_n_0 ));
   LUT4 #(
     .INIT(16'h22B2)) 
-    \FSM_sequential_state[1]_i_48 
+    \FSM_sequential_state[1]_i_47 
        (.I0(in95[13]),
         .I1(address_stop[13]),
         .I2(in95[12]),
         .I3(address_stop[12]),
-        .O(\FSM_sequential_state[1]_i_48_n_0 ));
+        .O(\FSM_sequential_state[1]_i_47_n_0 ));
   LUT6 #(
     .INIT(64'h3535353F35353535)) 
     \FSM_sequential_state[1]_i_5 
@@ -43661,67 +43687,67 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\FSM_sequential_state_reg[2]_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_51 
+    \FSM_sequential_state[1]_i_50 
        (.I0(address_stop[15]),
         .I1(in95[15]),
         .I2(address_stop[14]),
         .I3(in95[14]),
-        .O(\FSM_sequential_state[1]_i_51_n_0 ));
+        .O(\FSM_sequential_state[1]_i_50_n_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_52 
+    \FSM_sequential_state[1]_i_51 
        (.I0(address_stop[13]),
         .I1(in95[13]),
         .I2(address_stop[12]),
         .I3(in95[12]),
-        .O(\FSM_sequential_state[1]_i_52_n_0 ));
+        .O(\FSM_sequential_state[1]_i_51_n_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_53 
+    \FSM_sequential_state[1]_i_52 
        (.I0(\addr_bits_reg[47]_0 [27]),
         .I1(in95[11]),
         .I2(\addr_bits_reg[47]_0 [26]),
         .I3(in95[10]),
-        .O(\FSM_sequential_state[1]_i_53_n_0 ));
+        .O(\FSM_sequential_state[1]_i_52_n_0 ));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_54 
+    \FSM_sequential_state[1]_i_53 
        (.I0(\addr_bits_reg[47]_0 [25]),
         .I1(in95[9]),
         .I2(\addr_bits_reg[47]_0 [24]),
         .I3(in95[8]),
-        .O(\FSM_sequential_state[1]_i_54_n_0 ));
+        .O(\FSM_sequential_state[1]_i_53_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[1]_i_57 
+    \FSM_sequential_state[1]_i_54 
        (.I0(next_mask15_out),
         .I1(next_mask9_out),
         .I2(next_mask21_out),
         .I3(next_mask12_out),
         .I4(next_mask42_out),
         .I5(next_mask48_out),
-        .O(\FSM_sequential_state[1]_i_57_n_0 ));
+        .O(\FSM_sequential_state[1]_i_54_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    \FSM_sequential_state[1]_i_58 
+    \FSM_sequential_state[1]_i_55 
        (.I0(next_mask27_out),
         .I1(next_mask18_out),
         .I2(next_mask33_out),
         .I3(next_mask24_out),
         .I4(u_itrx_apbm_spi_n_59),
         .I5(u_itrx_apbm_spi_n_63),
-        .O(\FSM_sequential_state[1]_i_58_n_0 ));
+        .O(\FSM_sequential_state[1]_i_55_n_0 ));
   LUT4 #(
     .INIT(16'hFFFE)) 
-    \FSM_sequential_state[1]_i_59 
+    \FSM_sequential_state[1]_i_56 
        (.I0(next_mask87_out),
         .I1(next_mask84_out),
         .I2(next_mask81_out),
         .I3(next_mask78_out),
-        .O(\FSM_sequential_state[1]_i_59_n_0 ));
+        .O(\FSM_sequential_state[1]_i_56_n_0 ));
   LUT6 #(
     .INIT(64'h0008080008080800)) 
-    \FSM_sequential_state[1]_i_74 
+    \FSM_sequential_state[1]_i_71 
        (.I0(\prdata_sr_reg[113] ),
         .I1(fsm_go),
         .I2(\prdata_sr[1]_i_4 [0]),
@@ -43731,7 +43757,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(fsm_go_reg_1));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_85 
+    \FSM_sequential_state[1]_i_82 
        (.I0(\addr_bits_reg[47]_0 [23]),
         .I1(in95[7]),
         .I2(\addr_bits_reg[47]_0 [22]),
@@ -43739,7 +43765,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\addr_bits_reg[23]_0 [3]));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_86 
+    \FSM_sequential_state[1]_i_83 
        (.I0(\addr_bits_reg[47]_0 [21]),
         .I1(in95[5]),
         .I2(\addr_bits_reg[47]_0 [20]),
@@ -43747,7 +43773,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\addr_bits_reg[23]_0 [2]));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_87 
+    \FSM_sequential_state[1]_i_84 
        (.I0(\addr_bits_reg[47]_0 [19]),
         .I1(in95[3]),
         .I2(\addr_bits_reg[47]_0 [18]),
@@ -43755,7 +43781,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\addr_bits_reg[23]_0 [1]));
   LUT4 #(
     .INIT(16'h9009)) 
-    \FSM_sequential_state[1]_i_88 
+    \FSM_sequential_state[1]_i_85 
        (.I0(\addr_bits_reg[47]_0 [17]),
         .I1(in95[1]),
         .I2(\addr_bits_reg[47]_0 [16]),
@@ -43784,7 +43810,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
   LUT4 #(
     .INIT(16'hEEFE)) 
     \FSM_sequential_state[3]_i_29 
-       (.I0(\prdata_sr_reg[158] [63]),
+       (.I0(\prdata_sr_reg[158] [47]),
         .I1(CO),
         .I2(Q[3]),
         .I3(\addr_bits_reg[31]_0 ),
@@ -43799,7 +43825,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\FSM_sequential_state_reg[4]_rep__0 ));
   LUT3 #(
     .INIT(8'hF7)) 
-    \FSM_sequential_state[4]_i_7 
+    \FSM_sequential_state[4]_i_6 
        (.I0(Q[2]),
         .I1(Q[1]),
         .I2(Q[0]),
@@ -43809,9 +43835,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
        (.CI(\FSM_sequential_state[0]_i_69 ),
         .CO({\addr_bits_reg[31]_0 ,\FSM_sequential_state_reg[1]_i_22_n_1 ,\FSM_sequential_state_reg[1]_i_22_n_2 ,\FSM_sequential_state_reg[1]_i_22_n_3 }),
         .CYINIT(1'b0),
-        .DI({\FSM_sequential_state[1]_i_47_n_0 ,\FSM_sequential_state[1]_i_48_n_0 ,\FSM_sequential_state[0]_i_69_0 }),
+        .DI({\FSM_sequential_state[1]_i_46_n_0 ,\FSM_sequential_state[1]_i_47_n_0 ,\FSM_sequential_state[0]_i_69_0 }),
         .O(\NLW_FSM_sequential_state_reg[1]_i_22_O_UNCONNECTED [3:0]),
-        .S({\FSM_sequential_state[1]_i_51_n_0 ,\FSM_sequential_state[1]_i_52_n_0 ,\FSM_sequential_state[1]_i_53_n_0 ,\FSM_sequential_state[1]_i_54_n_0 }));
+        .S({\FSM_sequential_state[1]_i_50_n_0 ,\FSM_sequential_state[1]_i_51_n_0 ,\FSM_sequential_state[1]_i_52_n_0 ,\FSM_sequential_state[1]_i_53_n_0 }));
   FDCE \addr_bits_reg[0] 
        (.C(sclk),
         .CE(addr_bits),
@@ -49501,9 +49527,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[0]_i_4 
        (.I0(\mask[0]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [0]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [0]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[0]_i_2_0 ),
         .O(\mask[0]_i_4_n_0 ));
   LUT6 #(
@@ -49551,9 +49577,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[10]_i_4 
        (.I0(\mask[10]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [10]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [10]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[10]_i_2_0 ),
         .O(\mask[10]_i_4_n_0 ));
   LUT6 #(
@@ -49601,9 +49627,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[11]_i_4 
        (.I0(\mask[11]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [11]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [11]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[11]_i_2_0 ),
         .O(\mask[11]_i_4_n_0 ));
   LUT6 #(
@@ -49651,9 +49677,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[12]_i_4 
        (.I0(\mask[12]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [12]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [12]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[12]_i_2_0 ),
         .O(\mask[12]_i_4_n_0 ));
   LUT6 #(
@@ -49701,9 +49727,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[13]_i_4 
        (.I0(\mask[13]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [13]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [13]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[13]_i_2_0 ),
         .O(\mask[13]_i_4_n_0 ));
   LUT6 #(
@@ -49750,9 +49776,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[14]_i_4 
        (.I0(\mask[14]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [14]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [14]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[14]_i_3_0 ),
         .O(\mask[14]_i_4_n_0 ));
   LUT6 #(
@@ -49800,9 +49826,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[15]_i_4 
        (.I0(\mask[15]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [15]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [15]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[15]_i_2_0 ),
         .O(\mask[15]_i_4_n_0 ));
   LUT6 #(
@@ -49860,9 +49886,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[16]_i_6 
        (.I0(\mask[16]_i_7_n_0 ),
         .I1(\write_data_bits[1]_18 [16]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [16]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[16]_i_4_0 ),
         .O(\mask[16]_i_6_n_0 ));
   LUT6 #(
@@ -49900,9 +49926,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[17]_i_4 
        (.I0(\mask[17]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [17]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [17]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[17]_i_2_0 ),
         .O(\mask[17]_i_4_n_0 ));
   LUT6 #(
@@ -49950,9 +49976,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[18]_i_4 
        (.I0(\mask[18]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [18]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [18]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[18]_i_2_0 ),
         .O(\mask[18]_i_4_n_0 ));
   LUT6 #(
@@ -50000,9 +50026,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[19]_i_4 
        (.I0(\mask[19]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [19]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [19]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[19]_i_2_0 ),
         .O(\mask[19]_i_4_n_0 ));
   LUT6 #(
@@ -50050,9 +50076,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[1]_i_4 
        (.I0(\mask[1]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [1]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [1]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[1]_i_2_0 ),
         .O(\mask[1]_i_4_n_0 ));
   LUT6 #(
@@ -50100,9 +50126,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[20]_i_4 
        (.I0(\mask[20]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [20]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [20]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[20]_i_2_0 ),
         .O(\mask[20]_i_4_n_0 ));
   LUT6 #(
@@ -50150,9 +50176,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[21]_i_4 
        (.I0(\mask[21]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [21]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [21]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[21]_i_2_0 ),
         .O(\mask[21]_i_4_n_0 ));
   LUT6 #(
@@ -50200,9 +50226,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[22]_i_4 
        (.I0(\mask[22]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [22]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [22]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[22]_i_2_0 ),
         .O(\mask[22]_i_4_n_0 ));
   LUT6 #(
@@ -50250,9 +50276,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[23]_i_4 
        (.I0(\mask[23]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [23]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [23]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[23]_i_2_0 ),
         .O(\mask[23]_i_4_n_0 ));
   LUT6 #(
@@ -50300,9 +50326,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[24]_i_4 
        (.I0(\mask[24]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [24]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [24]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[24]_i_2_0 ),
         .O(\mask[24]_i_4_n_0 ));
   LUT6 #(
@@ -50350,9 +50376,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[25]_i_4 
        (.I0(\mask[25]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [25]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [25]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[25]_i_2_0 ),
         .O(\mask[25]_i_4_n_0 ));
   LUT6 #(
@@ -50400,9 +50426,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[26]_i_4 
        (.I0(\mask[26]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [26]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [26]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[26]_i_2_0 ),
         .O(\mask[26]_i_4_n_0 ));
   LUT6 #(
@@ -50450,9 +50476,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[27]_i_4 
        (.I0(\mask[27]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [27]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [27]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[27]_i_2_0 ),
         .O(\mask[27]_i_4_n_0 ));
   LUT6 #(
@@ -50500,9 +50526,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[29]_i_4 
        (.I0(\mask[29]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [29]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [29]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[29]_i_2_0 ),
         .O(\mask[29]_i_4_n_0 ));
   LUT6 #(
@@ -50550,9 +50576,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[2]_i_4 
        (.I0(\mask[2]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [2]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [2]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[2]_i_2_0 ),
         .O(\mask[2]_i_4_n_0 ));
   LUT6 #(
@@ -50600,9 +50626,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[32]_i_4 
        (.I0(\mask[32]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [32]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [32]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[32]_i_2_0 ),
         .O(\mask[32]_i_4_n_0 ));
   LUT6 #(
@@ -50650,9 +50676,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[33]_i_4 
        (.I0(\mask[33]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [33]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [33]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[33]_i_2_0 ),
         .O(\mask[33]_i_4_n_0 ));
   LUT6 #(
@@ -50700,9 +50726,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[34]_i_4 
        (.I0(\mask[34]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [34]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [34]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[34]_i_2_0 ),
         .O(\mask[34]_i_4_n_0 ));
   LUT6 #(
@@ -50750,9 +50776,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[35]_i_4 
        (.I0(\mask[35]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [35]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [35]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[35]_i_2_0 ),
         .O(\mask[35]_i_4_n_0 ));
   LUT6 #(
@@ -50800,9 +50826,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[36]_i_4 
        (.I0(\mask[36]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [36]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [36]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[36]_i_2_0 ),
         .O(\mask[36]_i_4_n_0 ));
   LUT6 #(
@@ -50850,9 +50876,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[37]_i_4 
        (.I0(\mask[37]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [37]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [37]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[37]_i_2_0 ),
         .O(\mask[37]_i_4_n_0 ));
   LUT6 #(
@@ -50900,9 +50926,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[38]_i_4 
        (.I0(\mask[38]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [38]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [38]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[38]_i_2_0 ),
         .O(\mask[38]_i_4_n_0 ));
   LUT6 #(
@@ -50950,9 +50976,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[39]_i_4 
        (.I0(\mask[39]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [39]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [39]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[39]_i_2_0 ),
         .O(\mask[39]_i_4_n_0 ));
   LUT6 #(
@@ -51000,9 +51026,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[3]_i_4 
        (.I0(\mask[3]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [3]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [3]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[3]_i_2_0 ),
         .O(\mask[3]_i_4_n_0 ));
   LUT6 #(
@@ -51050,9 +51076,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[40]_i_4 
        (.I0(\mask[40]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [40]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [40]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[40]_i_2_0 ),
         .O(\mask[40]_i_4_n_0 ));
   LUT6 #(
@@ -51100,9 +51126,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[41]_i_4 
        (.I0(\mask[41]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [41]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [41]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[41]_i_2_0 ),
         .O(\mask[41]_i_4_n_0 ));
   LUT6 #(
@@ -51150,9 +51176,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[42]_i_4 
        (.I0(\mask[42]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [42]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [42]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[42]_i_2_0 ),
         .O(\mask[42]_i_4_n_0 ));
   LUT6 #(
@@ -51200,9 +51226,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[43]_i_4 
        (.I0(\mask[43]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [43]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [43]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[43]_i_2_0 ),
         .O(\mask[43]_i_4_n_0 ));
   LUT6 #(
@@ -51250,9 +51276,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[44]_i_4 
        (.I0(\mask[44]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [44]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [44]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[44]_i_2_0 ),
         .O(\mask[44]_i_4_n_0 ));
   LUT6 #(
@@ -51300,9 +51326,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[45]_i_4 
        (.I0(\mask[45]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [45]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [45]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[45]_i_2_0 ),
         .O(\mask[45]_i_4_n_0 ));
   LUT6 #(
@@ -51337,20 +51363,20 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .O(\mask[45]_i_8_n_0 ));
   LUT4 #(
     .INIT(16'h00BF)) 
-    \mask[47]_i_14 
+    \mask[47]_i_12 
        (.I0(Q[0]),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(\bsl_loop_reg[4]_i_264_0 ),
-        .O(\mask[47]_i_14_n_0 ));
+        .O(\mask[47]_i_12_n_0 ));
   LUT4 #(
     .INIT(16'h0040)) 
-    \mask[47]_i_15 
+    \mask[47]_i_13 
        (.I0(Q[0]),
         .I1(Q[1]),
         .I2(Q[2]),
         .I3(\bsl_loop_reg[4]_i_264_0 ),
-        .O(\mask[47]_i_15_n_0 ));
+        .O(\mask[47]_i_13_n_0 ));
   LUT6 #(
     .INIT(64'h00008A2000008A2A)) 
     \mask[4]_i_2 
@@ -51366,9 +51392,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[4]_i_4 
        (.I0(\mask[4]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [4]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [4]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[4]_i_2_0 ),
         .O(\mask[4]_i_4_n_0 ));
   LUT6 #(
@@ -51416,9 +51442,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[5]_i_4 
        (.I0(\mask[5]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [5]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [5]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[5]_i_2_0 ),
         .O(\mask[5]_i_4_n_0 ));
   LUT6 #(
@@ -51466,9 +51492,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[6]_i_4 
        (.I0(\mask[6]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [6]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [6]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[6]_i_2_0 ),
         .O(\mask[6]_i_4_n_0 ));
   LUT6 #(
@@ -51516,9 +51542,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[7]_i_4 
        (.I0(\mask[7]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [7]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [7]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[7]_i_2_0 ),
         .O(\mask[7]_i_4_n_0 ));
   LUT6 #(
@@ -51566,9 +51592,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[8]_i_4 
        (.I0(\mask[8]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [8]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [8]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[8]_i_2_0 ),
         .O(\mask[8]_i_4_n_0 ));
   LUT6 #(
@@ -51616,9 +51642,9 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \mask[9]_i_4 
        (.I0(\mask[9]_i_5_n_0 ),
         .I1(\write_data_bits[1]_18 [9]),
-        .I2(\mask[47]_i_14_n_0 ),
+        .I2(\mask[47]_i_12_n_0 ),
         .I3(\read_data_bits[1]_21 [9]),
-        .I4(\mask[47]_i_15_n_0 ),
+        .I4(\mask[47]_i_13_n_0 ),
         .I5(\mask[9]_i_2_0 ),
         .O(\mask[9]_i_4_n_0 ));
   LUT6 #(
@@ -52544,24 +52570,24 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
     \prdata_sr[150]_i_37 
        (.I0(\misc_cnfg_bits_reg[147]_0 [123]),
         .I1(\misc_cnfg_bits_reg[147]_0 [122]),
-        .I2(\prdata_sr_reg[158] [45]),
-        .I3(\prdata_sr_reg[158] [46]),
+        .I2(\prdata_sr_reg[158] [29]),
+        .I3(\prdata_sr_reg[158] [30]),
         .O(\misc_cnfg_bits_reg[135]_0 [2]));
   LUT4 #(
     .INIT(16'h8241)) 
     \prdata_sr[150]_i_38 
        (.I0(\misc_cnfg_bits_reg[147]_0 [121]),
         .I1(\misc_cnfg_bits_reg[147]_0 [120]),
-        .I2(\prdata_sr_reg[158] [43]),
-        .I3(\prdata_sr_reg[158] [44]),
+        .I2(\prdata_sr_reg[158] [27]),
+        .I3(\prdata_sr_reg[158] [28]),
         .O(\misc_cnfg_bits_reg[135]_0 [1]));
   LUT4 #(
     .INIT(16'h8421)) 
     \prdata_sr[150]_i_39 
        (.I0(\misc_cnfg_bits_reg[147]_0 [119]),
         .I1(\misc_cnfg_bits_reg[147]_0 [118]),
-        .I2(\prdata_sr_reg[158] [42]),
-        .I3(\prdata_sr_reg[158] [41]),
+        .I2(\prdata_sr_reg[158] [26]),
+        .I3(\prdata_sr_reg[158] [25]),
         .O(\misc_cnfg_bits_reg[135]_0 [0]));
   (* SOFT_HLUTNM = "soft_lutpair193" *) 
   LUT2 #(
@@ -70301,12 +70327,12 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .\mask[30]_i_3 (\mask[30]_i_3 ),
         .\mask[31]_i_3 (\mask[31]_i_3 ),
         .\mask[31]_i_5 (\bsl_loop_reg[4]_i_264_0 ),
-        .\mask[46]_i_3 (\mask[47]_i_14_n_0 ),
-        .\mask[46]_i_3_0 (\mask[47]_i_15_n_0 ),
+        .\mask[46]_i_3 (\mask[47]_i_12_n_0 ),
+        .\mask[46]_i_3_0 (\mask[47]_i_13_n_0 ),
         .\mask[46]_i_3_1 (\mask[46]_i_3 ),
-        .\mask[47]_i_11 (\bsl_loop_reg[0]_i_4_0 ),
-        .\mask[47]_i_13 (\write_data_bits_reg[3][47]_0 ),
-        .\mask[47]_i_13_0 (\mask[2]_i_5_0 ),
+        .\mask[47]_i_10 (\bsl_loop_reg[0]_i_4_0 ),
+        .\mask[47]_i_11 (\write_data_bits_reg[3][47]_0 ),
+        .\mask[47]_i_11_0 (\mask[2]_i_5_0 ),
         .\mask[47]_i_7 (\mask[47]_i_7 ),
         .\mask_reg[46] (\fsm_cmd_bits_reg[2]_2 ),
         .\mask_reg[46]_0 (\mask_reg[46] ),
@@ -70455,7 +70481,7 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .\prdata_sr[7]_i_28_0 (\FSM_sequential_state_reg[2]_1 ),
         .\prdata_sr[7]_i_28_1 (\prdata_sr[7]_i_28_0 ),
         .\prdata_sr[8]_i_4 (\prdata_sr[8]_i_4 ),
-        .\prdata_sr[9]_i_19 (\FSM_sequential_state[1]_i_26_n_0 ),
+        .\prdata_sr[9]_i_19 (\FSM_sequential_state[1]_i_25_n_0 ),
         .\prdata_sr_reg[0] (\prdata_sr_reg[0] ),
         .\prdata_sr_reg[104] (\prdata_sr_reg[104] ),
         .\prdata_sr_reg[104]_0 (\prdata_sr_reg[104]_0 ),
@@ -70474,7 +70500,6 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .\prdata_sr_reg[147] ({\misc_cnfg_bits_reg[147]_0 [135:43],pw_rst_cycle,\misc_cnfg_bits_reg[147]_0 [42:25],pw_set_cycle,\misc_cnfg_bits_reg[147]_0 [24:8],\misc_cnfg_bits_reg_n_0_[8] ,\misc_cnfg_bits_reg[147]_0 [7:0]}),
         .\prdata_sr_reg[152] (\FSM_sequential_state_reg[0] ),
         .\prdata_sr_reg[152]_0 (\prdata_sr_reg[152]_0 ),
-        .\prdata_sr_reg[153]_i_4 (\prdata_sr_reg[153]_i_4 ),
         .\prdata_sr_reg[158] (\prdata_sr_reg[158] ),
         .\prdata_sr_reg[159] (\prdata_sr_reg[159] ),
         .\prdata_sr_reg[159]_i_7 (\prog_cnfg_bits_reg[3]_12 ),
@@ -70516,6 +70541,8 @@ module ember_fpga_rram_top_wrapper_0_0_spi_slave_rram
         .\read_data_bits[3]_23 ({\read_data_bits[3]_23 [47:46],\read_data_bits[3]_23 [31:30],\read_data_bits[3]_23 [28]}),
         .\read_data_bits_reg[0][28] (\read_data_bits_reg[0][28] ),
         .\read_data_bits_reg[0][31] (\read_data_bits_reg[0][31] ),
+        .rram_addr(rram_addr),
+        .\rram_addr_reg[15]_i_10 (\rram_addr_reg[15]_i_10 ),
         .rst_n(rst_n),
         .sclk(sclk));
   LUT6 #(

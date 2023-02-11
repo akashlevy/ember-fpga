@@ -62,6 +62,7 @@ module ember_fpga_rram_top_wrapper_0_0 (
   sc,
   mosi,
   miso,
+  rram_addr,
   sa_do,
   sa_rdy
 );
@@ -75,6 +76,7 @@ input wire sclk;
 input wire sc;
 input wire mosi;
 output wire miso;
+output wire [15 : 0] rram_addr;
 input wire [47 : 0] sa_do;
 input wire sa_rdy;
 
@@ -86,6 +88,7 @@ input wire sa_rdy;
     .sc(sc),
     .mosi(mosi),
     .miso(miso),
+    .rram_addr(rram_addr),
     .sa_do(sa_do),
     .sa_rdy(sa_rdy)
   );

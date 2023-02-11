@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Tue Feb  7 21:54:37 2023
--- Host        : r7cad-tsmc40r running 64-bit CentOS Linux release 7.6.1810 (Core)
+-- Date        : Fri Feb 10 18:18:39 2023
+-- Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 -- Command     : write_vhdl -force -mode funcsim
 --               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0_sim_netlist.vhdl
 -- Design      : ember_fpga_clk_wiz_0
@@ -17,6 +17,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz is
   port (
     clk_out1 : out STD_LOGIC;
+    clk_out2 : out STD_LOGIC;
     resetn : in STD_LOGIC;
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
@@ -28,13 +29,13 @@ end ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz;
 architecture STRUCTURE of ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz is
   signal clk_in1_ember_fpga_clk_wiz_0 : STD_LOGIC;
   signal clk_out1_ember_fpga_clk_wiz_0 : STD_LOGIC;
+  signal clk_out2_ember_fpga_clk_wiz_0 : STD_LOGIC;
   signal clkfbout_ember_fpga_clk_wiz_0 : STD_LOGIC;
   signal reset_high : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
@@ -56,6 +57,7 @@ architecture STRUCTURE of ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz is
   attribute IFD_DELAY_VALUE : string;
   attribute IFD_DELAY_VALUE of clkin1_ibufgds : label is "AUTO";
   attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
+  attribute BOX_TYPE of clkout2_buf : label is "PRIMITIVE";
   attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
 begin
 clkin1_ibufgds: unisim.vcomponents.IBUFDS
@@ -72,6 +74,11 @@ clkout1_buf: unisim.vcomponents.BUFG
       I => clk_out1_ember_fpga_clk_wiz_0,
       O => clk_out1
     );
+clkout2_buf: unisim.vcomponents.BUFG
+     port map (
+      I => clk_out2_ember_fpga_clk_wiz_0,
+      O => clk_out2
+    );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
@@ -84,8 +91,8 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 1,
-      CLKOUT1_DUTY_CYCLE => 0.500000,
+      CLKOUT1_DIVIDE => 10,
+      CLKOUT1_DUTY_CYCLE => 0.750000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT1_USE_FINE_PS => false,
       CLKOUT2_DIVIDE => 1,
@@ -134,7 +141,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKINSTOPPED => NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED,
       CLKOUT0 => clk_out1_ember_fpga_clk_wiz_0,
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
-      CLKOUT1 => NLW_mmcm_adv_inst_CLKOUT1_UNCONNECTED,
+      CLKOUT1 => clk_out2_ember_fpga_clk_wiz_0,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
       CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
       CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
@@ -174,6 +181,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity ember_fpga_clk_wiz_0 is
   port (
     clk_out1 : out STD_LOGIC;
+    clk_out2 : out STD_LOGIC;
     resetn : in STD_LOGIC;
     clk_in1_p : in STD_LOGIC;
     clk_in1_n : in STD_LOGIC
@@ -189,6 +197,7 @@ inst: entity work.ember_fpga_clk_wiz_0_ember_fpga_clk_wiz_0_clk_wiz
       clk_in1_n => clk_in1_n,
       clk_in1_p => clk_in1_p,
       clk_out1 => clk_out1,
+      clk_out2 => clk_out2,
       resetn => resetn
     );
 end STRUCTURE;

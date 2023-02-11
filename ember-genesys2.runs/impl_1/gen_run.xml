@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1676068028">
+<GenRun Id="impl_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1676087663">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BITSTR-SYSDEF" Name="ember_fpga_wrapper.sysdef"/>
   <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
@@ -77,6 +77,13 @@
   <File Type="PA-TCL" Name="ember_fpga_wrapper.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/clkmux.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../emblem-digital/rtl/clock_gen.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -141,13 +148,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/clkmux.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../emblem-digital/rtl/globals.v">
       <FileInfo SFType="VHeader">
         <Attr Name="IsGlobalInclude" Val="1"/>
@@ -203,9 +203,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Performance_Explore" Flow="Vivado Implementation 2020">
-      <Desc>Uses multiple algorithms for optimization, placement, and routing to get potentially better results.</Desc>
-    </StratHandle>
+    <StratHandle Name="Performance_Explore" Flow="Vivado Implementation 2020"/>
     <Step Id="init_design"/>
     <Step Id="opt_design">
       <Option Id="Directive">0</Option>
@@ -224,8 +222,9 @@
     <Step Id="post_route_phys_opt_design" EnableStepBool="1"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_ila_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_rram_top_wrapper_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_util_vector_logic_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clkmux_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_rram_top_wrapper_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clk_wiz_0"/>
 </GenRun>

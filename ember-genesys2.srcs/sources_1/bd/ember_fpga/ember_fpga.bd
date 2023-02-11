@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x4C0E201DA7D6D356",
+      "boundary_crc": "0x2B6C68B91C6B9E2C",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -12,10 +12,15 @@
     },
     "design_tree": {
       "clk_wiz": "",
-      "vio_0": "",
-      "rram_top_wrapper_0": "",
       "clkmux_0": "",
-      "util_vector_logic_0": ""
+      "util_vector_logic_0": "",
+      "xlconstant_0": "",
+      "xlconstant_1": "",
+      "ila_0": "",
+      "xlconstant_2": "",
+      "rram_top_wrapper_0": "",
+      "xlconstant_3": "",
+      "xlconstant_4": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -215,6 +220,115 @@
             "value_src": "user_prop"
           }
         }
+      },
+      "aclk": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "bl_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "wl_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "sl_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "read_dac_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "bleed_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "clamp_ref": {
+        "direction": "O",
+        "left": "5",
+        "right": "0"
+      },
+      "di": {
+        "direction": "O",
+        "left": "47",
+        "right": "0"
+      },
+      "read_dac_config": {
+        "direction": "O",
+        "left": "3",
+        "right": "0"
+      },
+      "read_ref": {
+        "direction": "O",
+        "left": "5",
+        "right": "0"
+      },
+      "rram_addr": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      },
+      "sa_clk": {
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "ember_fpga_clk_wiz_0_clk_out1",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "ip_prop"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "sa_en": {
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "ember_fpga_clk_wiz_0_clk_out1",
+            "value_src": "ip_prop"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "ip_prop"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "set_rst": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "wl_dac_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "bsl_dac_en": {
+        "direction": "O",
+        "left": "0",
+        "right": "0"
+      },
+      "sw": {
+        "direction": "I",
+        "left": "5",
+        "right": "0"
       }
     },
     "components": {
@@ -258,16 +372,19 @@
             "value": "BUFG"
           },
           "CLKOUT2_JITTER": {
-            "value": "98.146"
+            "value": "112.316"
           },
           "CLKOUT2_PHASE_ERROR": {
             "value": "89.971"
           },
+          "CLKOUT2_REQUESTED_DUTY_CYCLE": {
+            "value": "75"
+          },
           "CLKOUT2_REQUESTED_OUT_FREQ": {
-            "value": "200.000"
+            "value": "100"
           },
           "CLKOUT2_USED": {
-            "value": "false"
+            "value": "true"
           },
           "CLKOUT3_DRIVES": {
             "value": "BUFG"
@@ -339,7 +456,10 @@
             "value": "10.000"
           },
           "MMCM_CLKOUT1_DIVIDE": {
-            "value": "1"
+            "value": "10"
+          },
+          "MMCM_CLKOUT1_DUTY_CYCLE": {
+            "value": "0.750"
           },
           "MMCM_CLKOUT2_DIVIDE": {
             "value": "1"
@@ -354,7 +474,7 @@
             "value": "0.010"
           },
           "NUM_OUT_CLKS": {
-            "value": "1"
+            "value": "2"
           },
           "PHASE_DUTY_CONFIG": {
             "value": "false"
@@ -400,97 +520,6 @@
           },
           "USE_RESET": {
             "value": "true"
-          }
-        }
-      },
-      "vio_0": {
-        "vlnv": "xilinx.com:ip:vio:3.0",
-        "xci_name": "ember_fpga_vio_0_0",
-        "xci_path": "ip/ember_fpga_vio_0_0/ember_fpga_vio_0_0.xci",
-        "inst_hier_path": "vio_0",
-        "parameters": {
-          "C_NUM_PROBE_IN": {
-            "value": "3"
-          },
-          "C_NUM_PROBE_OUT": {
-            "value": "0"
-          }
-        }
-      },
-      "rram_top_wrapper_0": {
-        "vlnv": "xilinx.com:module_ref:rram_top_wrapper:1.0",
-        "xci_name": "ember_fpga_rram_top_wrapper_0_0",
-        "xci_path": "ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0.xci",
-        "inst_hier_path": "rram_top_wrapper_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "rram_top_wrapper",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "mclk_pause": {
-            "direction": "I"
-          },
-          "rst_n": {
-            "type": "rst",
-            "direction": "I",
-            "parameters": {
-              "POLARITY": {
-                "value": "ACTIVE_LOW",
-                "value_src": "constant"
-              },
-              "INSERT_VIP": {
-                "value": "0",
-                "value_src": "constant"
-              }
-            }
-          },
-          "rram_busy": {
-            "direction": "O"
-          },
-          "sclk": {
-            "direction": "I",
-            "parameters": {
-              "FREQ_HZ": {
-                "value": "33000000",
-                "value_src": "user_prop"
-              },
-              "PHASE": {
-                "value": "0.000",
-                "value_src": "default_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "ember_fpga_PROG_SCK",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "sc": {
-            "direction": "I",
-            "parameters": {
-              "PortType": {
-                "value": "undef",
-                "value_src": "ip_prop"
-              },
-              "PortType.PROP_SRC": {
-                "value": "false",
-                "value_src": "ip_prop"
-              }
-            }
-          },
-          "mosi": {
-            "direction": "I"
-          },
-          "miso": {
-            "direction": "O"
-          },
-          "sa_do": {
-            "direction": "I",
-            "left": "47",
-            "right": "0"
-          },
-          "sa_rdy": {
-            "direction": "I"
           }
         }
       },
@@ -577,6 +606,184 @@
             "value": "1"
           }
         }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_0_0",
+        "xci_path": "ip/ember_fpga_xlconstant_0_0/ember_fpga_xlconstant_0_0.xci",
+        "inst_hier_path": "xlconstant_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          },
+          "CONST_WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_0_1",
+        "xci_path": "ip/ember_fpga_xlconstant_0_1/ember_fpga_xlconstant_0_1.xci",
+        "inst_hier_path": "xlconstant_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1"
+          },
+          "CONST_WIDTH": {
+            "value": "1"
+          }
+        }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "xci_name": "ember_fpga_ila_0_0",
+        "xci_path": "ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0.xci",
+        "inst_hier_path": "ila_0",
+        "parameters": {
+          "C_DATA_DEPTH": {
+            "value": "131072"
+          },
+          "C_ENABLE_ILA_AXI_MON": {
+            "value": "false"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "3"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "1"
+          },
+          "C_PROBE0_WIDTH": {
+            "value": "48"
+          }
+        }
+      },
+      "xlconstant_2": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_2_0",
+        "xci_path": "ip/ember_fpga_xlconstant_2_0/ember_fpga_xlconstant_2_0.xci",
+        "inst_hier_path": "xlconstant_2",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "7"
+          },
+          "CONST_WIDTH": {
+            "value": "4"
+          }
+        }
+      },
+      "rram_top_wrapper_0": {
+        "vlnv": "xilinx.com:module_ref:rram_top_wrapper:1.0",
+        "xci_name": "ember_fpga_rram_top_wrapper_0_0",
+        "xci_path": "ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0.xci",
+        "inst_hier_path": "rram_top_wrapper_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "rram_top_wrapper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "mclk_pause": {
+            "direction": "I"
+          },
+          "rst_n": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              },
+              "INSERT_VIP": {
+                "value": "0",
+                "value_src": "constant"
+              }
+            }
+          },
+          "rram_busy": {
+            "direction": "O"
+          },
+          "sclk": {
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "33000000",
+                "value_src": "user_prop"
+              },
+              "PHASE": {
+                "value": "0.000",
+                "value_src": "default_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "ember_fpga_PROG_SCK",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "sc": {
+            "direction": "I",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "mosi": {
+            "direction": "I"
+          },
+          "miso": {
+            "direction": "O"
+          },
+          "rram_addr": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "sa_do": {
+            "direction": "I",
+            "left": "47",
+            "right": "0"
+          },
+          "sa_rdy": {
+            "direction": "I"
+          }
+        }
+      },
+      "xlconstant_3": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_3_0",
+        "xci_path": "ip/ember_fpga_xlconstant_3_0/ember_fpga_xlconstant_3_0.xci",
+        "inst_hier_path": "xlconstant_3",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1"
+          },
+          "CONST_WIDTH": {
+            "value": "6"
+          }
+        }
+      },
+      "xlconstant_4": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_4_0",
+        "xci_path": "ip/ember_fpga_xlconstant_4_0/ember_fpga_xlconstant_4_0.xci",
+        "inst_hier_path": "xlconstant_4",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "281474976710655"
+          },
+          "CONST_WIDTH": {
+            "value": "48"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -616,8 +823,8 @@
           "rram_busy_in",
           "rram_busy_led",
           "rram_busy_out",
-          "vio_0/probe_in2",
-          "clkmux_0/rram_busy"
+          "clkmux_0/rram_busy",
+          "ila_0/probe2"
         ]
       },
       "clkmux_0_sclk_out": {
@@ -637,14 +844,14 @@
       "sa_rdy_1": {
         "ports": [
           "sa_rdy",
-          "vio_0/probe_in1",
+          "ila_0/probe1",
           "rram_top_wrapper_0/sa_rdy"
         ]
       },
       "sa_do_1": {
         "ports": [
           "sa_do",
-          "vio_0/probe_in0",
+          "ila_0/probe0",
           "rram_top_wrapper_0/sa_do"
         ]
       },
@@ -664,8 +871,8 @@
       "clk_wiz_clk_out1": {
         "ports": [
           "clk_wiz/clk_out1",
-          "vio_0/clk",
-          "clkmux_0/fastclk"
+          "clkmux_0/fastclk",
+          "ila_0/clk"
         ]
       },
       "PROG_SPIEN_1": {
@@ -679,8 +886,8 @@
           "reset",
           "clk_wiz/resetn",
           "rst_n_out",
-          "rram_top_wrapper_0/rst_n",
-          "rst_n_led"
+          "rst_n_led",
+          "rram_top_wrapper_0/rst_n"
         ]
       },
       "clksel_1": {
@@ -693,6 +900,61 @@
         "ports": [
           "PROG_SS",
           "util_vector_logic_0/Op1"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "aclk",
+          "bsl_dac_en",
+          "wl_dac_en",
+          "set_rst"
+        ]
+      },
+      "xlconstant_0_dout1": {
+        "ports": [
+          "xlconstant_1/dout",
+          "bl_en",
+          "wl_en",
+          "sl_en",
+          "read_dac_en",
+          "bleed_en"
+        ]
+      },
+      "clk_wiz_clk_out2": {
+        "ports": [
+          "clk_wiz/clk_out2",
+          "sa_en"
+        ]
+      },
+      "xlconstant_2_dout": {
+        "ports": [
+          "xlconstant_2/dout",
+          "read_dac_config"
+        ]
+      },
+      "sw_1": {
+        "ports": [
+          "sw",
+          "read_ref"
+        ]
+      },
+      "rram_top_wrapper_0_rram_addr": {
+        "ports": [
+          "rram_top_wrapper_0/rram_addr",
+          "rram_addr"
+        ]
+      },
+      "xlconstant_3_dout": {
+        "ports": [
+          "xlconstant_3/dout",
+          "clamp_ref"
+        ]
+      },
+      "xlconstant_4_dout": {
+        "ports": [
+          "xlconstant_4/dout",
+          "di"
         ]
       }
     }
