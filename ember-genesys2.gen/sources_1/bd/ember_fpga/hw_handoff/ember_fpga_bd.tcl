@@ -364,7 +364,7 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net PROG_SPIEN_1 [get_bd_ports PROG_SPIEN] [get_bd_ports spien_led]
   connect_bd_net -net PROG_SS_1 [get_bd_ports PROG_SS] [get_bd_pins util_vector_logic_0/Op1]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports sa_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
   connect_bd_net -net clk_wiz_clk_out2 [get_bd_ports sa_en] [get_bd_pins clk_wiz/clk_out2]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net clksel_1 [get_bd_ports clksel] [get_bd_pins clkmux_0/clksel]

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Sat Feb 11 11:36:22 2023
+| Date         : Sun Feb 12 00:00:22 2023
 | Host         : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_clock_utilization -file ember_fpga_wrapper_clock_utilization_routed.rpt
 | Design       : ember_fpga_wrapper
@@ -59,10 +59,10 @@ Table of Contents
 +-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+------------------------------------------------------------+
 | g0        | src0      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y0  | n/a          |                 4 |        3323 |               2 |       10.000 | sclk                                                                                       | ember_fpga_i/clkmux_0/inst/BUFGMUX_inst0/O                           | ember_fpga_i/clkmux_0/inst/clk_out                         |
 | g0        | src1      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y0  | n/a          |                 4 |        3323 |               2 |       10.000 | clk_out1_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clkmux_0/inst/BUFGMUX_inst0/O                           | ember_fpga_i/clkmux_0/inst/clk_out                         |
-| g1        | src2      | BUFG/O          | None       | BUFGCTRL_X0Y15 | n/a          |                11 |        2165 |               0 |       10.000 | clk_out1_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clkout1_buf/O                              | ember_fpga_i/clk_wiz/inst/clk_out1                         |
+| g1        | src2      | BUFG/O          | None       | BUFGCTRL_X0Y15 | n/a          |                11 |        2165 |               1 |       10.000 | clk_out1_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clkout1_buf/O                              | ember_fpga_i/clk_wiz/inst/clk_out1                         |
 | g2        | src3      | BUFG/O          | None       | BUFGCTRL_X0Y4  | n/a          |                 1 |         461 |               0 |       33.000 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.u_bufg_icon_tck/O | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i                     |
-| g3        | src4      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1  | n/a          |                 1 |         361 |               1 |       10.000 | sclk                                                                                       | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/BUFGCE_inst/O  | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
-| g3        | src5      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1  | n/a          |                 1 |         361 |               1 |       10.000 |                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/BUFGCE_inst/O  | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
+| g3        | src4      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1  | n/a          |                 2 |         362 |               1 |       10.000 | sclk                                                                                       | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/BUFGCE_inst/O  | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
+| g3        | src5      | BUFGCTRL/O      | None       | BUFGCTRL_X0Y1  | n/a          |                 2 |         362 |               1 |       10.000 |                                                                                            | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/BUFGCE_inst/O  | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
 | g4        | src6      | BUFG/O          | None       | BUFGCTRL_X0Y2  | n/a          |                 1 |           0 |               1 |       30.000 | clk_out2_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clkout2_buf/O                              | ember_fpga_i/clk_wiz/inst/clk_out2                         |
 +-----------+-----------+-----------------+------------+----------------+--------------+-------------------+-------------+-----------------+--------------+--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
@@ -99,16 +99,16 @@ Table of Contents
 | X1Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3700 |    0 |  1200 |    0 |    80 |    0 |    40 |    0 |    60 |
 | X0Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4000 |    0 |  1150 |    0 |    60 |    0 |    30 |    0 |    60 |
 | X1Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3700 |    0 |  1200 |    0 |    80 |    0 |    40 |    0 |    60 |
-| X0Y2              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    7 |  3400 |    9 |  1150 |    0 |    60 |   23 |    30 |    0 |    60 |
-| X1Y2              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3700 |    0 |  1200 |    0 |    80 |    9 |    40 |    0 |    60 |
-| X0Y3              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   12 |  3400 |    7 |  1150 |    0 |    60 |   27 |    30 |    0 |    60 |
-| X1Y3              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     1 |    0 |     0 |    0 |     0 |   15 |  3150 |   10 |  1050 |    0 |    50 |   22 |    25 |    0 |    60 |
-| X0Y4              |    3 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 2959 |  4000 |  899 |  1150 |    0 |    60 |   24 |    30 |    0 |    60 |
-| X1Y4              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |   22 |  3300 |    8 |  1100 |    0 |    60 |   19 |    30 |    0 |    60 |
-| X0Y5              |    3 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 2779 |  4000 |  799 |  1150 |    0 |    60 |   25 |    30 |    0 |    60 |
-| X1Y5              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |   13 |  3300 |    8 |  1100 |    0 |    60 |   25 |    30 |    0 |    60 |
-| X0Y6              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4000 |    0 |  1150 |    0 |    60 |    7 |    30 |    0 |    60 |
-| X1Y6              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  3300 |    0 |  1100 |    0 |    60 |    3 |    30 |    0 |    60 |
+| X0Y2              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3400 |    0 |  1150 |    0 |    60 |   16 |    30 |    0 |    60 |
+| X1Y2              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  3700 |    0 |  1200 |    0 |    80 |    7 |    40 |    0 |    60 |
+| X0Y3              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    9 |  3400 |    0 |  1150 |    0 |    60 |   22 |    30 |    0 |    60 |
+| X1Y3              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     1 |    0 |     0 |    0 |     0 |   16 |  3150 |   14 |  1050 |    0 |    50 |   24 |    25 |    0 |    60 |
+| X0Y4              |    4 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 3355 |  4000 | 1017 |  1150 |    0 |    60 |   28 |    30 |    0 |    60 |
+| X1Y4              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |   69 |  3300 |   31 |  1100 |    0 |    60 |   26 |    30 |    0 |    60 |
+| X0Y5              |    3 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 | 2341 |  4000 |  748 |  1150 |    0 |    60 |   23 |    30 |    0 |    60 |
+| X1Y5              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |   18 |  3300 |    9 |  1100 |    0 |    60 |   25 |    30 |    0 |    60 |
+| X0Y6              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  4000 |    0 |  1150 |    0 |    60 |    9 |    30 |    0 |    60 |
+| X1Y6              |    1 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     4 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |  3300 |    0 |  1100 |    0 |    60 |    4 |    30 |    0 |    60 |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 * Global Clock column represents track count; while other columns represents cell counts
 
@@ -122,7 +122,7 @@ All Modules
 +----+----+----+
 | Y6 |  1 |  1 |
 | Y5 |  3 |  1 |
-| Y4 |  3 |  1 |
+| Y4 |  4 |  1 |
 | Y3 |  2 |  1 |
 | Y2 |  2 |  1 |
 | Y1 |  0 |  0 |
@@ -148,8 +148,8 @@ All Modules
 |    | X0    | X1 | HORIZONTAL PROG DELAY |
 +----+-------+----+-----------------------+
 | Y6 |     0 |  0 |                     0 |
-| Y5 |  2324 |  0 |                     0 |
-| Y4 |   998 |  0 |                     0 |
+| Y5 |  1875 |  0 |                     0 |
+| Y4 |  1447 |  0 |                     0 |
 | Y3 |     0 |  0 |                     0 |
 | Y2 |     2 |  0 |                     0 |
 | Y1 |     0 |  0 |                     0 |
@@ -163,7 +163,7 @@ All Modules
 +-----------+-----------------+-------------------+-------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock                         | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                |
 +-----------+-----------------+-------------------+-------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
-| g1        | BUFG/O          | n/a               | clk_out1_ember_fpga_clk_wiz_0 |      10.000 | {0.000 5.000} |        1929 |        0 |              1 |        0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | BUFG/O          | n/a               | clk_out1_ember_fpga_clk_wiz_0 |      10.000 | {0.000 5.000} |        1929 |        1 |              1 |        0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-----------------+-------------------+-------------------------------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -174,11 +174,11 @@ All Modules
 +----+-------+-----+-----------------------+
 |    | X0    | X1  | HORIZONTAL PROG DELAY |
 +----+-------+-----+-----------------------+
-| Y6 |     7 |   3 |                     0 |
-| Y5 |   151 |  38 |                     0 |
-| Y4 |  1572 |  41 |                     0 |
-| Y3 |    39 |  37 |                     0 |
-| Y2 |    32 |   9 |                     0 |
+| Y6 |    10 |   4 |                     0 |
+| Y5 |   171 |  43 |                     0 |
+| Y4 |  1511 |  95 |                     0 |
+| Y3 |    31 |  42 |                     0 |
+| Y2 |    16 |   7 |                     0 |
 | Y1 |     0 |   0 |                     0 |
 | Y0 |     0 |   0 |                     0 |
 +----+-------+-----+-----------------------+
@@ -217,7 +217,7 @@ All Modules
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock    | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                                        |
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------+
-| g3        | BUFGCTRL/O      | n/a               | Multiple |      10.000 | {0.000 5.000} |         362 |        0 |              0 |        0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
+| g3        | BUFGCTRL/O      | n/a               | Multiple |      10.000 | {0.000 5.000} |         363 |        0 |              0 |        0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
 +-----------+-----------------+-------------------+----------+-------------+---------------+-------------+----------+----------------+----------+------------------------------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -229,8 +229,8 @@ All Modules
 |    | X0   | X1 | HORIZONTAL PROG DELAY |
 +----+------+----+-----------------------+
 | Y6 |    0 |  0 |                     0 |
-| Y5 |  362 |  0 |                     0 |
-| Y4 |    0 |  0 |                     0 |
+| Y5 |  359 |  0 |                     0 |
+| Y4 |    4 |  0 |                     0 |
 | Y3 |    0 |  0 |                     0 |
 | Y2 |    0 |  0 |                     0 |
 | Y1 |    0 |  0 |                     0 |
@@ -272,7 +272,7 @@ All Modules
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | g0        | n/a   | BUFGCTRL/O      | None       |           0 |               2 |  0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clkmux_0/inst/clk_out |
-| g1        | n/a   | BUFG/O          | None       |          32 |               0 |  7 |      2 |   23 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |          16 |               0 |  0 |      0 |   16 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -285,7 +285,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |           9 |               0 |  0 |      0 |    9 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |           7 |               0 |  0 |      0 |    7 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -298,7 +298,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |          39 |               0 | 12 |      0 |   27 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |          31 |               0 |  9 |      0 |   22 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 | g4        | n/a   | BUFG/O          | None       |           0 |               1 |  0 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out2 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
@@ -312,7 +312,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |          37 |               0 | 15 |      0 |   22 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |          42 |               0 | 16 |      2 |   24 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -322,13 +322,14 @@ All Modules
 15. Clock Region Cell Placement per Global Clock: Region X0Y4
 -------------------------------------------------------------
 
-+-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------------------+
-| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                    |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------------------+
-| g0        | n/a   | BUFGCTRL/O      | None       |         998 |               0 |  998 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clkmux_0/inst/clk_out     |
-| g1        | n/a   | BUFG/O          | None       |        1572 |               0 | 1503 |     45 |   24 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1     |
-| g2        | n/a   | BUFG/O          | None       |         458 |               0 |  458 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i |
-+-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+----------------------------------------+
++-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
+| Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                        |
++-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
+| g0        | n/a   | BUFGCTRL/O      | None       |        1447 |               0 | 1447 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clkmux_0/inst/clk_out                         |
+| g1        | n/a   | BUFG/O          | None       |        1511 |               0 | 1446 |     37 |   28 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1                         |
+| g2        | n/a   | BUFG/O          | None       |         458 |               0 |  458 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | dbg_hub/inst/BSCANID.u_xsdbm_id/itck_i                     |
+| g3        | n/a   | BUFGCTRL/O      | None       |           4 |               0 |    4 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
++-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
 *** Columns FF, LUTRAM, RAMB through 'Hard IP' represents load cell counts
@@ -340,7 +341,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |          41 |               0 | 22 |      0 |   19 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |          95 |               0 | 69 |      0 |   26 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -353,9 +354,9 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF   | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                                        |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
-| g0        | n/a   | BUFGCTRL/O      | None       |        2324 |               0 | 2324 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clkmux_0/inst/clk_out                         |
-| g1        | n/a   | BUFG/O          | None       |         151 |               0 |   94 |     32 |   25 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1                         |
-| g3        | n/a   | BUFGCTRL/O      | None       |         361 |               1 |  361 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
+| g0        | n/a   | BUFGCTRL/O      | None       |        1875 |               0 | 1875 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clkmux_0/inst/clk_out                         |
+| g1        | n/a   | BUFG/O          | None       |         171 |               0 |  108 |     40 |   23 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1                         |
+| g3        | n/a   | BUFGCTRL/O      | None       |         358 |               1 |  358 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk |
 +-----------+-------+-----------------+------------+-------------+-----------------+------+--------+------+-----+----+------+-----+---------+------------------------------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -368,7 +369,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |          38 |               0 | 13 |      0 |   25 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |          43 |               0 | 18 |      0 |   25 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -381,7 +382,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |           7 |               0 |  0 |      0 |    7 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |           9 |               1 |  0 |      0 |    9 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -394,7 +395,7 @@ All Modules
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
-| g1        | n/a   | BUFG/O          | None       |           3 |               0 |  0 |      0 |    3 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
+| g1        | n/a   | BUFG/O          | None       |           4 |               0 |  0 |      0 |    4 |   0 |  0 |    0 |   0 |       0 | ember_fpga_i/clk_wiz/inst/clk_out1 |
 +-----------+-------+-----------------+------------+-------------+-----------------+----+--------+------+-----+----+------+-----+---------+------------------------------------+
 * Clock Loads column represents the clock pin loads (pin count)
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -413,6 +414,7 @@ set_property LOC BUFGCTRL_X0Y4 [get_cells dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH
 set_property LOC IOB_X0Y121 [get_cells sclk_out_OBUF_inst]
 set_property LOC IOB_X0Y127 [get_cells sclk_led_OBUF_inst]
 set_property LOC IOB_X0Y185 [get_cells sa_en_OBUF_inst]
+set_property LOC IOB_X0Y324 [get_cells sa_clk_OBUF_inst]
 
 # Location of clock ports
 set_property LOC IOB_X0Y78 [get_ports PROG_SCK]
@@ -423,7 +425,7 @@ set_property LOC IOB_X1Y76 [get_ports sys_diff_clock_clk_p]
 #startgroup
 create_pblock {CLKAG_ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk}
 add_cells_to_pblock [get_pblocks  {CLKAG_ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk"}]]]
-resize_pblock [get_pblocks {CLKAG_ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk}] -add {CLOCKREGION_X0Y5:CLOCKREGION_X0Y5}
+resize_pblock [get_pblocks {CLKAG_ember_fpga_i/rram_top_wrapper_0/inst/inst/u_clock_gen/mclk}] -add {CLOCKREGION_X0Y4:CLOCKREGION_X0Y4 CLOCKREGION_X0Y5:CLOCKREGION_X0Y5}
 #endgroup
 
 # Clock net "ember_fpga_i/clkmux_0/inst/clk_out" driven by instance "ember_fpga_i/clkmux_0/inst/BUFGMUX_inst0" located at site "BUFGCTRL_X0Y0"
@@ -436,7 +438,7 @@ resize_pblock [get_pblocks {CLKAG_ember_fpga_i/clkmux_0/inst/clk_out}] -add {CLO
 # Clock net "ember_fpga_i/clk_wiz/inst/clk_out1" driven by instance "ember_fpga_i/clk_wiz/inst/clkout1_buf" located at site "BUFGCTRL_X0Y15"
 #startgroup
 create_pblock {CLKAG_ember_fpga_i/clk_wiz/inst/clk_out1}
-add_cells_to_pblock [get_pblocks  {CLKAG_ember_fpga_i/clk_wiz/inst/clk_out1}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=ember_fpga_i/clkmux_0/inst/BUFGMUX_inst0} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="ember_fpga_i/clk_wiz/inst/clk_out1"}]]]
+add_cells_to_pblock [get_pblocks  {CLKAG_ember_fpga_i/clk_wiz/inst/clk_out1}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL && NAME!=sa_clk_OBUF_inst && NAME!=ember_fpga_i/clkmux_0/inst/BUFGMUX_inst0} -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="ember_fpga_i/clk_wiz/inst/clk_out1"}]]]
 resize_pblock [get_pblocks {CLKAG_ember_fpga_i/clk_wiz/inst/clk_out1}] -add {CLOCKREGION_X0Y2:CLOCKREGION_X0Y2 CLOCKREGION_X0Y3:CLOCKREGION_X0Y3 CLOCKREGION_X0Y4:CLOCKREGION_X0Y4 CLOCKREGION_X0Y5:CLOCKREGION_X0Y5 CLOCKREGION_X0Y6:CLOCKREGION_X0Y6 CLOCKREGION_X1Y2:CLOCKREGION_X1Y2 CLOCKREGION_X1Y3:CLOCKREGION_X1Y3 CLOCKREGION_X1Y4:CLOCKREGION_X1Y4 CLOCKREGION_X1Y5:CLOCKREGION_X1Y5 CLOCKREGION_X1Y6:CLOCKREGION_X1Y6}
 #endgroup
 

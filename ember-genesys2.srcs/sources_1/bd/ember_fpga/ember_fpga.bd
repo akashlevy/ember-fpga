@@ -872,7 +872,8 @@
         "ports": [
           "clk_wiz/clk_out1",
           "clkmux_0/fastclk",
-          "ila_0/clk"
+          "ila_0/clk",
+          "sa_clk"
         ]
       },
       "PROG_SPIEN_1": {
