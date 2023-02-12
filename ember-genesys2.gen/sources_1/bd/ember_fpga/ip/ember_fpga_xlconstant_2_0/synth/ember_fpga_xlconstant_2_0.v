@@ -52,7 +52,7 @@
 
 (* X_CORE_INFO = "xlconstant_v1_1_7_xlconstant,Vivado 2020.2" *)
 (* CHECK_LICENSE_TYPE = "ember_fpga_xlconstant_2_0,xlconstant_v1_1_7_xlconstant,{}" *)
-(* CORE_GENERATION_INFO = "ember_fpga_xlconstant_2_0,xlconstant_v1_1_7_xlconstant,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CONST_WIDTH=4,CONST_VAL=0x7}" *)
+(* CORE_GENERATION_INFO = "ember_fpga_xlconstant_2_0,xlconstant_v1_1_7_xlconstant,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=xlconstant,x_ipVersion=1.1,x_ipCoreRevision=7,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED,CONST_WIDTH=4,CONST_VAL=0x1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module ember_fpga_xlconstant_2_0 (
   dout
@@ -62,7 +62,7 @@ output wire [3 : 0] dout;
 
   xlconstant_v1_1_7_xlconstant #(
     .CONST_WIDTH(4),
-    .CONST_VAL(4'H7)
+    .CONST_VAL(4'H1)
   ) inst (
     .dout(dout)
   );
