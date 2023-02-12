@@ -302,3 +302,26 @@ wait_on_run impl_1
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
+delete_bd_objs [get_bd_nets clk_wiz_clk_out2]
+startgroup
+set_property -dict [list CONFIG.CLKOUT2_USED {false} CONFIG.MMCM_CLKOUT1_DIVIDE {1} CONFIG.NUM_OUT_CLKS {1}] [get_bd_cells clk_wiz]
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_1
+endgroup
+set_property -dict [list CONFIG.C_SIZE {1} CONFIG.C_OPERATION {not} CONFIG.LOGO_FILE {data/sym_notgate.png}] [get_bd_cells util_vector_logic_1]
+connect_bd_net [get_bd_ports sa_en] [get_bd_pins util_vector_logic_1/Res]
+connect_bd_net [get_bd_ports sa_rdy] [get_bd_pins util_vector_logic_1/Op1]
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+reset_run ember_fpga_clk_wiz_0_synth_1
+launch_runs ember_fpga_clk_wiz_0_synth_1
+wait_on_run ember_fpga_clk_wiz_0_synth_1
+close_design
+reset_run ember_fpga_clk_wiz_0_synth_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+open_run impl_1

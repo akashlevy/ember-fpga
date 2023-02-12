@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x2B6C68B96A8BCC3B",
+      "boundary_crc": "0x55743328CFA2A1AF",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -20,7 +20,8 @@
       "xlconstant_2": "",
       "rram_top_wrapper_0": "",
       "xlconstant_3": "",
-      "xlconstant_4": ""
+      "xlconstant_4": "",
+      "util_vector_logic_1": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -167,7 +168,17 @@
         }
       },
       "sa_rdy": {
-        "direction": "I"
+        "direction": "I",
+        "parameters": {
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
+          }
+        }
       },
       "PROG_MISO": {
         "direction": "O"
@@ -295,6 +306,8 @@
       },
       "sa_en": {
         "direction": "O",
+        "left": "0",
+        "right": "0",
         "parameters": {
           "CLK_DOMAIN": {
             "value": "ember_fpga_clk_wiz_0_clk_out1",
@@ -306,6 +319,14 @@
           },
           "PHASE": {
             "value": "0.0",
+            "value_src": "ip_prop"
+          },
+          "PortType": {
+            "value": "undef",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
             "value_src": "ip_prop"
           }
         }
@@ -384,7 +405,7 @@
             "value": "25"
           },
           "CLKOUT2_USED": {
-            "value": "true"
+            "value": "false"
           },
           "CLKOUT3_DRIVES": {
             "value": "BUFG"
@@ -456,7 +477,7 @@
             "value": "10.000"
           },
           "MMCM_CLKOUT1_DIVIDE": {
-            "value": "40"
+            "value": "1"
           },
           "MMCM_CLKOUT1_DUTY_CYCLE": {
             "value": "0.750"
@@ -474,7 +495,7 @@
             "value": "0.010"
           },
           "NUM_OUT_CLKS": {
-            "value": "2"
+            "value": "1"
           },
           "PHASE_DUTY_CONFIG": {
             "value": "false"
@@ -768,7 +789,17 @@
             "right": "0"
           },
           "sa_rdy": {
-            "direction": "I"
+            "direction": "I",
+            "parameters": {
+              "PortType": {
+                "value": "undef",
+                "value_src": "ip_prop"
+              },
+              "PortType.PROP_SRC": {
+                "value": "false",
+                "value_src": "ip_prop"
+              }
+            }
           }
         }
       },
@@ -797,6 +828,20 @@
           },
           "CONST_WIDTH": {
             "value": "48"
+          }
+        }
+      },
+      "util_vector_logic_1": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_1_0",
+        "xci_path": "ip/ember_fpga_util_vector_logic_1_0/ember_fpga_util_vector_logic_1_0.xci",
+        "inst_hier_path": "util_vector_logic_1",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
           }
         }
       }
@@ -860,7 +905,8 @@
         "ports": [
           "sa_rdy",
           "ila_0/probe1",
-          "rram_top_wrapper_0/sa_rdy"
+          "rram_top_wrapper_0/sa_rdy",
+          "util_vector_logic_1/Op1"
         ]
       },
       "sa_do_1": {
@@ -937,12 +983,6 @@
           "bleed_en"
         ]
       },
-      "clk_wiz_clk_out2": {
-        "ports": [
-          "clk_wiz/clk_out2",
-          "sa_en"
-        ]
-      },
       "xlconstant_2_dout": {
         "ports": [
           "xlconstant_2/dout",
@@ -971,6 +1011,12 @@
         "ports": [
           "xlconstant_4/dout",
           "di"
+        ]
+      },
+      "util_vector_logic_1_Res": {
+        "ports": [
+          "util_vector_logic_1/Res",
+          "sa_en"
         ]
       }
     }

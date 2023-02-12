@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date                      : Sun Feb 12 02:39:28 2023
+| Date                      : Sun Feb 12 03:26:52 2023
 | Host                      : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command                   : report_io -file ember_fpga_wrapper_io_placed.rpt
 | Design                    : ember_fpga_wrapper
@@ -573,7 +573,7 @@ Table of Contents
 | H26        | rram_addr[11]        | High Range       | IO_L23P_T3_16                | OUTPUT        | LVCMOS25    |      16 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | H27        | di[35]               | High Range       | IO_L23N_T3_16                | OUTPUT        | LVCMOS25    |      16 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | H28        |                      | High Range       | VCCO_16                      | VCCO          |             |      16 |            |      |                     |                      |      2.50 |            |           |          |      |                  |              |                   |              |
-| H29        | sa_en                | High Range       | IO_L7N_T1_AD10N_15           | OUTPUT        | LVCMOS25    |      15 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
+| H29        | sa_en[0]             | High Range       | IO_L7N_T1_AD10N_15           | OUTPUT        | LVCMOS25    |      15 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | H30        | rram_addr[1]         | High Range       | IO_L24P_T3_16                | OUTPUT        | LVCMOS25    |      16 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | J1         |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
 | J2         |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
