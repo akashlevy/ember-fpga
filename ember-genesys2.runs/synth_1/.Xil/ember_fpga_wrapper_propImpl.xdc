@@ -342,7 +342,7 @@ set_clock_uncertainty -setup 0.300 [get_clocks sclk]
 set_property src_info {type:XDC file:1 line:602 export:INPUT save:INPUT read:READ} [current_design]
 set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 set_property src_info {type:XDC file:1 line:636 export:INPUT save:INPUT read:READ} [current_design]
-create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets { sl_iport0[1] }] -objects [get_pins { dbg_hub/sl_iport0_o[1] ember_fpga_i/sl_iport0[1] }] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
+create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
 set_property src_info {type:XDC file:1 line:637 export:INPUT save:INPUT read:READ} [current_design]
 create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 set_property src_info {type:XDC file:1 line:638 export:INPUT save:INPUT read:READ} [current_design]

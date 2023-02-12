@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x2B6C68B91C6B9E2C",
+      "boundary_crc": "0x2B6C68B94C6E3E28",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -301,7 +301,7 @@
             "value_src": "ip_prop"
           },
           "FREQ_HZ": {
-            "value": "100000000",
+            "value": "33333333",
             "value_src": "ip_prop"
           },
           "PHASE": {
@@ -372,16 +372,16 @@
             "value": "BUFG"
           },
           "CLKOUT2_JITTER": {
-            "value": "112.316"
+            "value": "140.399"
           },
           "CLKOUT2_PHASE_ERROR": {
             "value": "89.971"
           },
           "CLKOUT2_REQUESTED_DUTY_CYCLE": {
-            "value": "75"
+            "value": "66.7"
           },
           "CLKOUT2_REQUESTED_OUT_FREQ": {
-            "value": "100"
+            "value": "33.33333"
           },
           "CLKOUT2_USED": {
             "value": "true"
@@ -456,10 +456,10 @@
             "value": "10.000"
           },
           "MMCM_CLKOUT1_DIVIDE": {
-            "value": "10"
+            "value": "30"
           },
           "MMCM_CLKOUT1_DUTY_CYCLE": {
-            "value": "0.750"
+            "value": "0.667"
           },
           "MMCM_CLKOUT2_DIVIDE": {
             "value": "1"

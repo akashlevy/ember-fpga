@@ -252,9 +252,9 @@
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[16]/CE|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[0]/CE|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[42]/D|
-| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[27]/CE|
-| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[28]/CE|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[30]/CE|
+| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[28]/CE|
+| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[27]/CE|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[155]/D|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[47]/CE|
 | clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |                                           ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[12]/CE|
