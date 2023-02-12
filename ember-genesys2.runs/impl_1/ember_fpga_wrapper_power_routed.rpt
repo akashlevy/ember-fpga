@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date             : Sun Feb 12 00:20:50 2023
+| Date             : Sun Feb 12 00:55:06 2023
 | Host             : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command          : report_power -file ember_fpga_wrapper_power_routed.rpt -pb ember_fpga_wrapper_power_summary_routed.pb -rpx ember_fpga_wrapper_power_routed.rpx
 | Design           : ember_fpga_wrapper
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.411        |
+| Total On-Chip Power (W)  | 0.412        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.239        |
+| Dynamic (W)              | 0.240        |
 | Device Static (W)        | 0.172        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 84.3         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.034 |        8 |       --- |             --- |
+| Clocks                   |     0.035 |        8 |       --- |             --- |
 | Slice Logic              |     0.008 |    14072 |       --- |             --- |
-|   LUT as Logic           |     0.007 |     5389 |    203800 |            2.64 |
+|   LUT as Logic           |     0.007 |     5430 |    203800 |            2.66 |
 |   Register               |    <0.001 |     5962 |    407600 |            1.46 |
 |   CARRY4                 |    <0.001 |      107 |     50950 |            0.21 |
 |   LUT as Shift Register  |    <0.001 |      118 |     64000 |            0.18 |
 |   F7/F8 Muxes            |    <0.001 |     1045 |    203800 |            0.51 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     64000 |            0.04 |
 |   Others                 |     0.000 |      776 |       --- |             --- |
-| Signals                  |     0.018 |    11082 |       --- |             --- |
+| Signals                  |     0.019 |    11084 |       --- |             --- |
 | Block RAM                |     0.012 |      184 |       445 |           41.35 |
 | MMCM                     |     0.107 |        1 |        10 |           10.00 |
-| I/O                      |     0.060 |      171 |       500 |           34.20 |
+| I/O                      |     0.059 |      171 |       500 |           34.20 |
 | Static Power             |     0.172 |          |           |                 |
-| Total                    |     0.411 |          |           |                 |
+| Total                    |     0.412 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.147 |       0.073 |      0.074 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.149 |       0.075 |      0.074 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.091 |       0.063 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.017 |       0.016 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -134,7 +134,7 @@ Table of Contents
 | Clock                                                                                      | Domain                                                               | Constraint (ns) |
 +--------------------------------------------------------------------------------------------+----------------------------------------------------------------------+-----------------+
 | clk_out1_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clk_out1_ember_fpga_clk_wiz_0              |            10.0 |
-| clk_out2_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clk_out2_ember_fpga_clk_wiz_0              |            30.0 |
+| clk_out2_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clk_out2_ember_fpga_clk_wiz_0              |            40.0 |
 | clkfbout_ember_fpga_clk_wiz_0                                                              | ember_fpga_i/clk_wiz/inst/clkfbout_ember_fpga_clk_wiz_0              |             5.0 |
 | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/SERIES7_BSCAN.bscan_inst/TCK | dbg_hub/inst/BSCANID.u_xsdbm_id/SWITCH_N_EXT_BSCAN.bscan_inst/tck_bs |            33.0 |
 | sclk                                                                                       | PROG_SCK                                                             |            10.0 |
@@ -151,15 +151,15 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| ember_fpga_wrapper       |     0.239 |
+| ember_fpga_wrapper       |     0.240 |
 |   dbg_hub                |     0.004 |
 |     inst                 |     0.004 |
 |       BSCANID.u_xsdbm_id |     0.004 |
-|   ember_fpga_i           |     0.176 |
+|   ember_fpga_i           |     0.178 |
 |     clk_wiz              |     0.111 |
 |       inst               |     0.111 |
-|     ila_0                |     0.034 |
-|       inst               |     0.034 |
+|     ila_0                |     0.036 |
+|       inst               |     0.036 |
 |     rram_top_wrapper_0   |     0.031 |
 |       inst               |     0.031 |
 +--------------------------+-----------+

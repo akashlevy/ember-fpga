@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Sun Feb 12 00:20:46 2023
+| Date         : Sun Feb 12 00:55:01 2023
 | Host         : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_methodology -file ember_fpga_wrapper_methodology_drc_routed.rpt -pb ember_fpga_wrapper_methodology_drc_routed.pb -rpx ember_fpga_wrapper_methodology_drc_routed.rpx
 | Design       : ember_fpga_wrapper
@@ -23,124 +23,13 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 22
+             Violations found: 0
              Violations waived: 15
-+-----------+----------+-----------------------+------------+
-| Rule      | Severity | Description           | Violations |
-+-----------+----------+-----------------------+------------+
-| TIMING-16 | Warning  | Large setup violation | 22         |
-+-----------+----------+-----------------------+------------+
++------+----------+-------------+------------+
+| Rule | Severity | Description | Violations |
++------+----------+-------------+------------+
++------+----------+-------------+------------+
 
 2. REPORT DETAILS
 -----------------
-TIMING-16#1 Warning
-Large setup violation  
-There is a large setup violation of -1.065 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[5]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#2 Warning
-Large setup violation  
-There is a large setup violation of -1.168 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[156]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#3 Warning
-Large setup violation  
-There is a large setup violation of -1.283 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[6]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#4 Warning
-Large setup violation  
-There is a large setup violation of -1.305 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[157]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#5 Warning
-Large setup violation  
-There is a large setup violation of -1.468 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]_rep__1/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#6 Warning
-Large setup violation  
-There is a large setup violation of -1.501 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]_rep__2/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#7 Warning
-Large setup violation  
-There is a large setup violation of -1.514 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]_rep__0/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#8 Warning
-Large setup violation  
-There is a large setup violation of -1.529 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]_rep/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#9 Warning
-Large setup violation  
-There is a large setup violation of -1.530 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/FSM_sequential_state_reg[4]_rep__0/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#10 Warning
-Large setup violation  
-There is a large setup violation of -1.581 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/FSM_sequential_state_reg[4]_rep/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#11 Warning
-Large setup violation  
-There is a large setup violation of -1.587 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#12 Warning
-Large setup violation  
-There is a large setup violation of -1.589 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[1]_rep__3/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#13 Warning
-Large setup violation  
-There is a large setup violation of -1.738 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[158]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#14 Warning
-Large setup violation  
-There is a large setup violation of -1.793 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[3]_rep__0/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#15 Warning
-Large setup violation  
-There is a large setup violation of -1.817 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[2]_rep__0/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#16 Warning
-Large setup violation  
-There is a large setup violation of -1.818 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/FSM_sequential_state_reg[3]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#17 Warning
-Large setup violation  
-There is a large setup violation of -1.850 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[2]_rep/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#18 Warning
-Large setup violation  
-There is a large setup violation of -1.878 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[3]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#19 Warning
-Large setup violation  
-There is a large setup violation of -1.891 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[2]_rep__1/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#20 Warning
-Large setup violation  
-There is a large setup violation of -1.906 ns between sa_do[16] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/rangei_reg[2]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#21 Warning
-Large setup violation  
-There is a large setup violation of -1.937 ns between sa_do[29] (clocked by clk_out1_ember_fpga_clk_wiz_0) and ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/FSM_sequential_state_reg[0]/D (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
-TIMING-16#22 Warning
-Large setup violation  
-There is a large setup violation of -5.158 ns between ember_fpga_i/clk_wiz/inst/mmcm_adv_inst/CLKOUT0 (clocked by clk_out1_ember_fpga_clk_wiz_0) and sa_clk (clocked by clk_out1_ember_fpga_clk_wiz_0). Large setup violations at the end of those stages might be difficult to fix during the post-placement implementation flow and could be the result of non-optimal XDC constraints or non-optimal design architecture
-Related violations: <none>
-
 
