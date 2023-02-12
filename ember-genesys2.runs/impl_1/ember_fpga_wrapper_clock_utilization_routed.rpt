@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Sun Feb 12 04:15:59 2023
+| Date         : Sun Feb 12 04:39:44 2023
 | Host         : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_clock_utilization -file ember_fpga_wrapper_clock_utilization_routed.rpt
 | Design       : ember_fpga_wrapper
@@ -275,7 +275,7 @@ All Modules
 +-----------+-----------------+-------------------+-------------------------------+-------------+-----------------+-------------+----------+----------------+----------+------------------------------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock                         | Period (ns) | Waveform (ns)   | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net                                |
 +-----------+-----------------+-------------------+-------------------------------+-------------+-----------------+-------------+----------+----------------+----------+------------------------------------+
-| g5        | BUFG/O          | n/a               | clk_out2_ember_fpga_clk_wiz_0 |      20.000 | {-5.000 10.000} |           0 |        1 |              0 |        0 | ember_fpga_i/clk_wiz/inst/clk_out2 |
+| g5        | BUFG/O          | n/a               | clk_out2_ember_fpga_clk_wiz_0 |      20.000 | {-3.000 13.000} |           0 |        1 |              0 |        0 | ember_fpga_i/clk_wiz/inst/clk_out2 |
 +-----------+-----------------+-------------------+-------------------------------+-------------+-----------------+-------------+----------+----------------+----------+------------------------------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types

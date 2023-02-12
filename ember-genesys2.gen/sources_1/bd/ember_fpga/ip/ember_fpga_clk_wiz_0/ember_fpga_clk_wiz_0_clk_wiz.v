@@ -57,7 +57,7 @@
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
 // clk_out1__100.00000______0.000______50.0______112.316_____89.971
-// clk_out2__50.00000____-90.000______75.0______129.198_____89.971
+// clk_out2__50.00000____-54.000______80.0______129.198_____89.971
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -138,8 +138,8 @@ wire clk_in2_ember_fpga_clk_wiz_0;
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
     .CLKOUT1_DIVIDE       (20),
-    .CLKOUT1_PHASE        (-90.000),
-    .CLKOUT1_DUTY_CYCLE   (0.750),
+    .CLKOUT1_PHASE        (-54.000),
+    .CLKOUT1_DUTY_CYCLE   (0.800),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (5.000))
   mmcm_adv_inst

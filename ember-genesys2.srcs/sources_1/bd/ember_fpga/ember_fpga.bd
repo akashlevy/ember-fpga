@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x557433287B04A4E5",
+      "boundary_crc": "0x557433289BB859B3",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -317,7 +317,7 @@
             "value_src": "ip_prop"
           },
           "PHASE": {
-            "value": "-90.0",
+            "value": "-54.0",
             "value_src": "ip_prop"
           },
           "PortType": {
@@ -401,13 +401,13 @@
             "value": "89.971"
           },
           "CLKOUT2_REQUESTED_DUTY_CYCLE": {
-            "value": "75"
+            "value": "80"
           },
           "CLKOUT2_REQUESTED_OUT_FREQ": {
             "value": "50"
           },
           "CLKOUT2_REQUESTED_PHASE": {
-            "value": "-90"
+            "value": "-54"
           },
           "CLKOUT2_USED": {
             "value": "true"
@@ -485,10 +485,10 @@
             "value": "20"
           },
           "MMCM_CLKOUT1_DUTY_CYCLE": {
-            "value": "0.750"
+            "value": "0.800"
           },
           "MMCM_CLKOUT1_PHASE": {
-            "value": "-90.000"
+            "value": "-54.000"
           },
           "MMCM_CLKOUT2_DIVIDE": {
             "value": "1"
