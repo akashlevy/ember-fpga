@@ -630,7 +630,7 @@ set_max_delay -to [get_ports PROG_MISO] 20.000
 
 ## Mark {reset, clock multiplexing, LED indicator, out signal} paths as false
 set_false_path -from [get_ports {reset PROG_SS clksel}]
-set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out sa_en {read_ref[*]} {rram_addr[*]}}]
+set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out sa_en sa_clk {read_ref[*]} {rram_addr[*]}}]
 
 ## Create waivers
 create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
