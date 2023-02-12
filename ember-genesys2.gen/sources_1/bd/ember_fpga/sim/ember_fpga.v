@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Feb 12 03:21:39 2023
+//Date        : Sun Feb 12 04:06:03 2023
 //Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
+(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=10,numReposBlks=10,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
 module ember_fpga
    (PROG_MISO,
     PROG_MOSI,
@@ -103,6 +103,7 @@ module ember_fpga
   wire PROG_SPIEN_1;
   wire PROG_SS_1;
   wire clk_wiz_clk_out1;
+  wire clk_wiz_clk_out2;
   wire clkmux_0_sclk_out;
   wire clksel_1;
   wire mclk_pause_in;
@@ -119,7 +120,6 @@ module ember_fpga
   wire [5:0]sw_1;
   wire sys_diff_clock_1_CLK_N;
   wire sys_diff_clock_1_CLK_P;
-  wire [0:0]util_vector_logic_1_Res;
   wire [0:0]xlconstant_0_dout;
   wire [0:0]xlconstant_0_dout1;
   wire [3:0]xlconstant_2_dout;
@@ -154,7 +154,7 @@ module ember_fpga
   assign rst_n_out = reset_2;
   assign sa_clk = clk_wiz_clk_out1;
   assign sa_do_1 = sa_do[47:0];
-  assign sa_en[0] = util_vector_logic_1_Res;
+  assign sa_en[0] = clk_wiz_clk_out2;
   assign sa_rdy_1 = sa_rdy;
   assign sc_led[0] = sc_in;
   assign sc_out[0] = sc_in;
@@ -173,6 +173,7 @@ module ember_fpga
        (.clk_in1_n(sys_diff_clock_1_CLK_N),
         .clk_in1_p(sys_diff_clock_1_CLK_P),
         .clk_out1(clk_wiz_clk_out1),
+        .clk_out2(clk_wiz_clk_out2),
         .resetn(reset_2));
   ember_fpga_clkmux_0_0 clkmux_0
        (.clk_out(clkmux_0_sclk_out),
@@ -199,9 +200,6 @@ module ember_fpga
   ember_fpga_util_vector_logic_0_0 util_vector_logic_0
        (.Op1(PROG_SS_1),
         .Res(sc_in));
-  ember_fpga_util_vector_logic_1_0 util_vector_logic_1
-       (.Op1(sa_rdy_1),
-        .Res(util_vector_logic_1_Res));
   ember_fpga_xlconstant_0_0 xlconstant_0
        (.dout(xlconstant_0_dout));
   ember_fpga_xlconstant_0_1 xlconstant_1
