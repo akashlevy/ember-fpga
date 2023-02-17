@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Feb 12 04:29:58 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 17 11:31:39 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -128,6 +128,7 @@
         <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
         <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
+        <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rst_n"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="clksel" SIGIS="undef" SIGNAME="External_Ports_clksel">
@@ -190,9 +191,9 @@
         <CONNECTION INSTANCE="External_Ports" PORT="sw"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
+    <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_addr"/>
+        <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rram_addr"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="clk_wiz_clk_out1">
@@ -249,6 +250,47 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/addr_loop_counter_0" HWVERSION="1.0" INSTANCE="addr_loop_counter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="addr_loop_counter" VLNV="xilinx.com:module_ref:addr_loop_counter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_addr_loop_counter_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_clk_out1">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="clk_wiz" PORT="clk_out1"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="address_start" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_start">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_start"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="address_stop" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_stop">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_stop"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="15" NAME="address_step" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_step">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_step"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
     <MODULE COREREVISION="6" FULLNAME="/clk_wiz" HWVERSION="6.0" INSTANCE="clk_wiz" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:6.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v6_0;d=pg065-clk-wiz.pdf"/>
@@ -342,7 +384,7 @@
         <PARAMETER NAME="C_CLKOUT7_REQUESTED_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT1_REQUESTED_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT2_REQUESTED_PHASE" VALUE="-54"/>
-        <PARAMETER NAME="C_CLKOUT3_REQUESTED_PHASE" VALUE="0.000"/>
+        <PARAMETER NAME="C_CLKOUT3_REQUESTED_PHASE" VALUE="180"/>
         <PARAMETER NAME="C_CLKOUT4_REQUESTED_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT5_REQUESTED_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT6_REQUESTED_PHASE" VALUE="0.000"/>
@@ -356,21 +398,21 @@
         <PARAMETER NAME="C_CLKOUT7_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="C_CLKOUT1_OUT_FREQ" VALUE="100.00000"/>
         <PARAMETER NAME="C_CLKOUT2_OUT_FREQ" VALUE="50.00000"/>
-        <PARAMETER NAME="C_CLKOUT3_OUT_FREQ" VALUE="100.000"/>
+        <PARAMETER NAME="C_CLKOUT3_OUT_FREQ" VALUE="50.00000"/>
         <PARAMETER NAME="C_CLKOUT4_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT5_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT6_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT7_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT1_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT2_PHASE" VALUE="-54.000"/>
-        <PARAMETER NAME="C_CLKOUT3_PHASE" VALUE="0.000"/>
+        <PARAMETER NAME="C_CLKOUT3_PHASE" VALUE="180.000"/>
         <PARAMETER NAME="C_CLKOUT4_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT5_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT6_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT7_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_CLKOUT1_DUTY_CYCLE" VALUE="50.0"/>
         <PARAMETER NAME="C_CLKOUT2_DUTY_CYCLE" VALUE="80.0"/>
-        <PARAMETER NAME="C_CLKOUT3_DUTY_CYCLE" VALUE="50.000"/>
+        <PARAMETER NAME="C_CLKOUT3_DUTY_CYCLE" VALUE="50.0"/>
         <PARAMETER NAME="C_CLKOUT4_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="C_CLKOUT5_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="C_CLKOUT6_DUTY_CYCLE" VALUE="50.000"/>
@@ -413,7 +455,7 @@
         <PARAMETER NAME="C_MMCM_CLKFBOUT_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT0_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT1_PHASE" VALUE="-54.000"/>
-        <PARAMETER NAME="C_MMCM_CLKOUT2_PHASE" VALUE="0.000"/>
+        <PARAMETER NAME="C_MMCM_CLKOUT2_PHASE" VALUE="180.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT3_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT4_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT5_PHASE" VALUE="0.000"/>
@@ -556,7 +598,7 @@
         <PARAMETER NAME="C_CLKOUT7_MATCHED_ROUTING" VALUE="false"/>
         <PARAMETER NAME="C_CLKOUT0_ACTUAL_FREQ" VALUE="100.00000"/>
         <PARAMETER NAME="C_CLKOUT1_ACTUAL_FREQ" VALUE="50.00000"/>
-        <PARAMETER NAME="C_CLKOUT2_ACTUAL_FREQ" VALUE="100.000"/>
+        <PARAMETER NAME="C_CLKOUT2_ACTUAL_FREQ" VALUE="50.00000"/>
         <PARAMETER NAME="C_CLKOUT3_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT4_ACTUAL_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="C_CLKOUT5_ACTUAL_FREQ" VALUE="100.000"/>
@@ -652,7 +694,7 @@
         <PARAMETER NAME="CLKOUT2_REQUESTED_PHASE" VALUE="-54"/>
         <PARAMETER NAME="CLKOUT2_REQUESTED_DUTY_CYCLE" VALUE="80"/>
         <PARAMETER NAME="CLKOUT3_REQUESTED_OUT_FREQ" VALUE="50.000"/>
-        <PARAMETER NAME="CLKOUT3_REQUESTED_PHASE" VALUE="0.000"/>
+        <PARAMETER NAME="CLKOUT3_REQUESTED_PHASE" VALUE="180"/>
         <PARAMETER NAME="CLKOUT3_REQUESTED_DUTY_CYCLE" VALUE="50.000"/>
         <PARAMETER NAME="CLKOUT4_REQUESTED_OUT_FREQ" VALUE="100.000"/>
         <PARAMETER NAME="CLKOUT4_REQUESTED_PHASE" VALUE="0.000"/>
@@ -738,7 +780,7 @@
         <PARAMETER NAME="MMCM_CLKOUT1_USE_FINE_PS" VALUE="false"/>
         <PARAMETER NAME="MMCM_CLKOUT2_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="MMCM_CLKOUT2_DUTY_CYCLE" VALUE="0.500"/>
-        <PARAMETER NAME="MMCM_CLKOUT2_PHASE" VALUE="0.000"/>
+        <PARAMETER NAME="MMCM_CLKOUT2_PHASE" VALUE="180.000"/>
         <PARAMETER NAME="MMCM_CLKOUT2_USE_FINE_PS" VALUE="false"/>
         <PARAMETER NAME="MMCM_CLKOUT3_DIVIDE" VALUE="1"/>
         <PARAMETER NAME="MMCM_CLKOUT3_DUTY_CYCLE" VALUE="0.500"/>
@@ -847,6 +889,7 @@
             <CONNECTION INSTANCE="clkmux_0" PORT="fastclk"/>
             <CONNECTION INSTANCE="ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
+            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="clk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out2" SIGIS="clk" SIGNAME="clk_wiz_clk_out2">
@@ -923,7 +966,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="3"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="4"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="131072"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -950,7 +993,7 @@
         <PARAMETER NAME="C_PROBE0_WIDTH" VALUE="48"/>
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
-        <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="16"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
@@ -2998,7 +3041,7 @@
         <PARAMETER NAME="C_PROBE0_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE1_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE3_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE3_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE4_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE5_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_MU_CNT" VALUE="1"/>
@@ -4063,6 +4106,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rram_addr"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -4109,11 +4157,6 @@
             <CONNECTION INSTANCE="External_Ports" PORT="miso_led"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_do"/>
@@ -4122,6 +4165,21 @@
         <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="address_start" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_start">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_start"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="address_stop" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_stop">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_stop"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="address_step" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_step">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_step"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date             : Sun Feb 12 04:39:41 2023
+| Date             : Fri Feb 17 12:44:56 2023
 | Host             : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command          : report_power -file ember_fpga_wrapper_power_routed.rpt -pb ember_fpga_wrapper_power_summary_routed.pb -rpx ember_fpga_wrapper_power_routed.rpx
 | Design           : ember_fpga_wrapper
@@ -30,11 +30,11 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.393        |
+| Total On-Chip Power (W)  | 0.404        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.219        |
-| Device Static (W)        | 0.174        |
+| Dynamic (W)              | 0.227        |
+| Device Static (W)        | 0.178        |
 | Effective TJA (C/W)      | 1.8          |
 | Max Ambient (C)          | 84.3         |
 | Junction Temperature (C) | 25.7         |
@@ -52,21 +52,21 @@ Table of Contents
 +--------------------------+-----------+----------+-----------+-----------------+
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
-| Clocks                   |     0.036 |        8 |       --- |             --- |
-| Slice Logic              |     0.008 |    14072 |       --- |             --- |
-|   LUT as Logic           |     0.007 |     5412 |    203800 |            2.66 |
-|   Register               |    <0.001 |     5962 |    407600 |            1.46 |
-|   CARRY4                 |    <0.001 |      107 |     50950 |            0.21 |
-|   LUT as Shift Register  |    <0.001 |      118 |     64000 |            0.18 |
-|   F7/F8 Muxes            |    <0.001 |     1045 |    203800 |            0.51 |
+| Clocks                   |     0.040 |        8 |       --- |             --- |
+| Slice Logic              |     0.008 |    14841 |       --- |             --- |
+|   LUT as Logic           |     0.008 |     5629 |    203800 |            2.76 |
+|   CARRY4                 |    <0.001 |      123 |     50950 |            0.24 |
+|   Register               |    <0.001 |     6175 |    407600 |            1.51 |
+|   LUT as Shift Register  |    <0.001 |      144 |     64000 |            0.23 |
+|   F7/F8 Muxes            |    <0.001 |     1125 |    203800 |            0.55 |
 |   LUT as Distributed RAM |    <0.001 |       24 |     64000 |            0.04 |
-|   Others                 |     0.000 |      776 |       --- |             --- |
-| Signals                  |     0.018 |    11079 |       --- |             --- |
-| Block RAM                |     0.012 |      184 |       445 |           41.35 |
+|   Others                 |     0.000 |      981 |       --- |             --- |
+| Signals                  |     0.020 |    11876 |       --- |             --- |
+| Block RAM                |     0.007 |      240 |       445 |           53.93 |
 | MMCM                     |     0.107 |        1 |        10 |           10.00 |
-| I/O                      |     0.038 |      171 |       500 |           34.20 |
-| Static Power             |     0.174 |          |           |                 |
-| Total                    |     0.393 |          |           |                 |
+| I/O                      |     0.044 |      171 |       500 |           34.20 |
+| Static Power             |     0.178 |          |           |                 |
+| Total                    |     0.404 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,16 +76,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.149 |       0.075 |      0.074 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.152 |       0.077 |      0.075 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.091 |       0.062 |      0.028 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
-| Vcco25    |       2.500 |     0.013 |       0.012 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco25    |       2.500 |     0.015 |       0.014 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.008 |       0.001 |      0.007 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.010 |       0.001 |      0.009 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -151,17 +151,19 @@ Table of Contents
 +--------------------------+-----------+
 | Name                     | Power (W) |
 +--------------------------+-----------+
-| ember_fpga_wrapper       |     0.219 |
-|   dbg_hub                |     0.004 |
-|     inst                 |     0.004 |
-|       BSCANID.u_xsdbm_id |     0.004 |
-|   ember_fpga_i           |     0.178 |
+| ember_fpga_wrapper       |     0.227 |
+|   dbg_hub                |     0.005 |
+|     inst                 |     0.005 |
+|       BSCANID.u_xsdbm_id |     0.005 |
+|   ember_fpga_i           |     0.179 |
+|     addr_loop_counter_0  |     0.001 |
+|       inst               |     0.001 |
 |     clk_wiz              |     0.113 |
 |       inst               |     0.113 |
-|     ila_0                |     0.035 |
-|       inst               |     0.035 |
-|     rram_top_wrapper_0   |     0.029 |
-|       inst               |     0.029 |
+|     ila_0                |     0.034 |
+|       inst               |     0.034 |
+|     rram_top_wrapper_0   |     0.030 |
+|       inst               |     0.030 |
 +--------------------------+-----------+
 
 

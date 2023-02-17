@@ -604,7 +604,7 @@ set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 ## Add sclk constraints
 set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {{sw[*]} PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {{sw[*]} PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
-set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks sclk] -min -add_delay 1.200 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
 set_input_delay -clock [get_clocks sclk] -clock_fall -max -add_delay 3.000 [get_ports PROG_MOSI]
@@ -637,3 +637,4 @@ create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core ha
 create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 create_waiver -type METHODOLOGY -id {TIMING-17} -user "akashl" -desc "Debug core has low visibility" -objects [get_pins {ember_fpga_i/ila_0/inst/* ember_fpga_i/ila_0/inst/*/* ember_fpga_i/ila_0/inst/*/*/* ember_fpga_i/ila_0/inst/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/*/*}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
+create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"

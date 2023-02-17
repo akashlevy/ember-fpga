@@ -16,7 +16,7 @@ module rram_top_wrapper (
 //  read_dac_config,
 //  read_dac_en,
 //  read_ref,
-  rram_addr,
+//  rram_addr,
 //  sa_clk,
 //  sa_en,
 //  set_rst,
@@ -26,7 +26,11 @@ module rram_top_wrapper (
 //  wl_dac_en,
 //  wl_en,
   sa_do,
-  sa_rdy
+  sa_rdy,
+  
+  address_start,
+  address_stop,
+  address_step
 );
 
 input wire mclk_pause;
@@ -46,7 +50,7 @@ output wire miso;
 //output wire [3 : 0] read_dac_config;
 //output wire read_dac_en;
 //output wire [5 : 0] read_ref;
-output wire [15 : 0] rram_addr;
+//output wire [15 : 0] rram_addr;
 //output wire sa_clk;
 //output wire sa_en;
 //output wire set_rst;
@@ -57,6 +61,10 @@ output wire [15 : 0] rram_addr;
 //output wire wl_en;
 input wire [47 : 0] sa_do;
 input wire sa_rdy;
+
+output wire [15 : 0] address_start;
+output wire [15 : 0] address_stop;
+output wire [15 : 0] address_step;
 
   rram_top inst (
     .mclk_pause(mclk_pause),
@@ -86,6 +94,10 @@ input wire sa_rdy;
 //    .wl_dac_en(wl_dac_en),
 //    .wl_en(wl_en),
     .sa_do(sa_do),
-    .sa_rdy(sa_rdy)
+    .sa_rdy(sa_rdy),
+    
+    .address_start(address_start),
+    .address_stop(address_stop),
+    .address_step(address_step)
   );
 endmodule

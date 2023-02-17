@@ -38,4 +38,7 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_
 # IP: bd/ember_fpga/ip/ember_fpga_xlconstant_4_0/ember_fpga_xlconstant_4_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_xlconstant_4_0 || ORIG_REF_NAME==ember_fpga_xlconstant_4_0} -quiet] -quiet
 
+# IP: bd/ember_fpga/ip/ember_fpga_addr_loop_counter_0_0/ember_fpga_addr_loop_counter_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_addr_loop_counter_0_0 || ORIG_REF_NAME==ember_fpga_addr_loop_counter_0_0} -quiet] -quiet
+
 # XDC: /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ember_fpga_ooc.xdc

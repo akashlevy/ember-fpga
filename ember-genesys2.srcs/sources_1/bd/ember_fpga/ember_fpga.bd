@@ -18,9 +18,10 @@
       "xlconstant_1": "",
       "ila_0": "",
       "xlconstant_2": "",
-      "rram_top_wrapper_0": "",
       "xlconstant_3": "",
-      "xlconstant_4": ""
+      "xlconstant_4": "",
+      "rram_top_wrapper_0": "",
+      "addr_loop_counter_0": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -424,6 +425,9 @@
           "CLKOUT3_REQUESTED_OUT_FREQ": {
             "value": "50.000"
           },
+          "CLKOUT3_REQUESTED_PHASE": {
+            "value": "180"
+          },
           "CLKOUT3_USED": {
             "value": "false"
           },
@@ -492,6 +496,9 @@
           },
           "MMCM_CLKOUT2_DIVIDE": {
             "value": "1"
+          },
+          "MMCM_CLKOUT2_PHASE": {
+            "value": "180.000"
           },
           "MMCM_COMPENSATION": {
             "value": "ZHOLD"
@@ -686,7 +693,7 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "3"
+            "value": "4"
           },
           "C_PROBE0_MU_CNT": {
             "value": "2"
@@ -702,6 +709,12 @@
           },
           "C_PROBE2_MU_CNT": {
             "value": "2"
+          },
+          "C_PROBE3_MU_CNT": {
+            "value": "2"
+          },
+          "C_PROBE3_WIDTH": {
+            "value": "16"
           }
         }
       },
@@ -716,6 +729,34 @@
           },
           "CONST_WIDTH": {
             "value": "4"
+          }
+        }
+      },
+      "xlconstant_3": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_3_0",
+        "xci_path": "ip/ember_fpga_xlconstant_3_0/ember_fpga_xlconstant_3_0.xci",
+        "inst_hier_path": "xlconstant_3",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1"
+          },
+          "CONST_WIDTH": {
+            "value": "6"
+          }
+        }
+      },
+      "xlconstant_4": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "ember_fpga_xlconstant_4_0",
+        "xci_path": "ip/ember_fpga_xlconstant_4_0/ember_fpga_xlconstant_4_0.xci",
+        "inst_hier_path": "xlconstant_4",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "281474976710655"
+          },
+          "CONST_WIDTH": {
+            "value": "48"
           }
         }
       },
@@ -786,11 +827,6 @@
           "miso": {
             "direction": "O"
           },
-          "rram_addr": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          },
           "sa_do": {
             "direction": "I",
             "left": "47",
@@ -808,34 +844,82 @@
                 "value_src": "ip_prop"
               }
             }
+          },
+          "address_start": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "address_stop": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "address_step": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           }
         }
       },
-      "xlconstant_3": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "ember_fpga_xlconstant_3_0",
-        "xci_path": "ip/ember_fpga_xlconstant_3_0/ember_fpga_xlconstant_3_0.xci",
-        "inst_hier_path": "xlconstant_3",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "1"
+      "addr_loop_counter_0": {
+        "vlnv": "xilinx.com:module_ref:addr_loop_counter:1.0",
+        "xci_name": "ember_fpga_addr_loop_counter_0_0",
+        "xci_path": "ip/ember_fpga_addr_loop_counter_0_0/ember_fpga_addr_loop_counter_0_0.xci",
+        "inst_hier_path": "addr_loop_counter_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "addr_loop_counter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "ember_fpga_clk_wiz_0_clk_out1",
+                "value_src": "default_prop"
+              }
+            }
           },
-          "CONST_WIDTH": {
-            "value": "6"
-          }
-        }
-      },
-      "xlconstant_4": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "xci_name": "ember_fpga_xlconstant_4_0",
-        "xci_path": "ip/ember_fpga_xlconstant_4_0/ember_fpga_xlconstant_4_0.xci",
-        "inst_hier_path": "xlconstant_4",
-        "parameters": {
-          "CONST_VAL": {
-            "value": "281474976710655"
+          "rst_n": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_LOW",
+                "value_src": "constant"
+              }
+            }
           },
-          "CONST_WIDTH": {
-            "value": "48"
+          "address_start": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "address_stop": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "address_step": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "rram_addr": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           }
         }
       }
@@ -927,7 +1011,8 @@
           "clk_wiz/clk_out1",
           "clkmux_0/fastclk",
           "ila_0/clk",
-          "sa_clk"
+          "sa_clk",
+          "addr_loop_counter_0/clk"
         ]
       },
       "PROG_SPIEN_1": {
@@ -942,7 +1027,8 @@
           "clk_wiz/resetn",
           "rst_n_out",
           "rst_n_led",
-          "rram_top_wrapper_0/rst_n"
+          "rram_top_wrapper_0/rst_n",
+          "addr_loop_counter_0/rst_n"
         ]
       },
       "clksel_1": {
@@ -988,12 +1074,6 @@
           "read_ref"
         ]
       },
-      "rram_top_wrapper_0_rram_addr": {
-        "ports": [
-          "rram_top_wrapper_0/rram_addr",
-          "rram_addr"
-        ]
-      },
       "xlconstant_3_dout": {
         "ports": [
           "xlconstant_3/dout",
@@ -1010,6 +1090,31 @@
         "ports": [
           "clk_wiz/clk_out2",
           "sa_en"
+        ]
+      },
+      "rram_top_wrapper_0_address_start": {
+        "ports": [
+          "rram_top_wrapper_0/address_start",
+          "addr_loop_counter_0/address_start"
+        ]
+      },
+      "rram_top_wrapper_0_address_stop": {
+        "ports": [
+          "rram_top_wrapper_0/address_stop",
+          "addr_loop_counter_0/address_stop"
+        ]
+      },
+      "rram_top_wrapper_0_address_step": {
+        "ports": [
+          "rram_top_wrapper_0/address_step",
+          "addr_loop_counter_0/address_step"
+        ]
+      },
+      "addr_loop_counter_0_rram_addr": {
+        "ports": [
+          "addr_loop_counter_0/rram_addr",
+          "rram_addr",
+          "ila_0/probe3"
         ]
       }
     }

@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# clkmux, rram_top_wrapper
+# addr_loop_counter, clkmux, rram_top_wrapper
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -216,6 +216,17 @@ proc create_root_design { parentCell } {
   set wl_dac_en [ create_bd_port -dir O -from 0 -to 0 wl_dac_en ]
   set wl_en [ create_bd_port -dir O -from 0 -to 0 wl_en ]
 
+  # Create instance: addr_loop_counter_0, and set properties
+  set block_name addr_loop_counter
+  set block_cell_name addr_loop_counter_0
+  if { [catch {set addr_loop_counter_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $addr_loop_counter_0 eq "" } {
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: clk_wiz, and set properties
   set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
   set_property -dict [ list \
@@ -241,6 +252,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT3_JITTER {129.198} \
    CONFIG.CLKOUT3_PHASE_ERROR {89.971} \
    CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {50.000} \
+   CONFIG.CLKOUT3_REQUESTED_PHASE {180} \
    CONFIG.CLKOUT3_USED {false} \
    CONFIG.CLKOUT4_DRIVES {BUFG} \
    CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {100.000} \
@@ -264,6 +276,7 @@ proc create_root_design { parentCell } {
    CONFIG.MMCM_CLKOUT1_DUTY_CYCLE {0.800} \
    CONFIG.MMCM_CLKOUT1_PHASE {-54.000} \
    CONFIG.MMCM_CLKOUT2_DIVIDE {1} \
+   CONFIG.MMCM_CLKOUT2_PHASE {180.000} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.MMCM_REF_JITTER2 {0.010} \
@@ -304,12 +317,14 @@ proc create_root_design { parentCell } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_EN_STRG_QUAL {1} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {3} \
+   CONFIG.C_NUM_OF_PROBES {4} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE0_TYPE {1} \
    CONFIG.C_PROBE0_WIDTH {48} \
    CONFIG.C_PROBE1_MU_CNT {2} \
    CONFIG.C_PROBE2_MU_CNT {2} \
+   CONFIG.C_PROBE3_MU_CNT {2} \
+   CONFIG.C_PROBE3_WIDTH {16} \
  ] $ila_0
 
   # Create instance: rram_top_wrapper_0, and set properties
@@ -372,16 +387,19 @@ proc create_root_design { parentCell } {
   # Create port connections
   connect_bd_net -net PROG_SPIEN_1 [get_bd_ports PROG_SPIEN] [get_bd_ports spien_led]
   connect_bd_net -net PROG_SS_1 [get_bd_ports PROG_SS] [get_bd_pins util_vector_logic_0/Op1]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports sa_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
+  connect_bd_net -net addr_loop_counter_0_rram_addr [get_bd_ports rram_addr] [get_bd_pins addr_loop_counter_0/rram_addr] [get_bd_pins ila_0/probe3]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports sa_clk] [get_bd_pins addr_loop_counter_0/clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
   connect_bd_net -net clk_wiz_clk_out2 [get_bd_ports sa_en] [get_bd_pins clk_wiz/clk_out2]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net clksel_1 [get_bd_ports clksel] [get_bd_pins clkmux_0/clksel]
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
   connect_bd_net -net mosi_in [get_bd_ports PROG_MOSI] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
-  connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
+  connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins addr_loop_counter_0/rst_n] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
   connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led] [get_bd_ports rram_busy_out] [get_bd_pins clkmux_0/rram_busy] [get_bd_pins ila_0/probe2]
+  connect_bd_net -net rram_top_wrapper_0_address_start [get_bd_pins addr_loop_counter_0/address_start] [get_bd_pins rram_top_wrapper_0/address_start]
+  connect_bd_net -net rram_top_wrapper_0_address_step [get_bd_pins addr_loop_counter_0/address_step] [get_bd_pins rram_top_wrapper_0/address_step]
+  connect_bd_net -net rram_top_wrapper_0_address_stop [get_bd_pins addr_loop_counter_0/address_stop] [get_bd_pins rram_top_wrapper_0/address_stop]
   connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports PROG_MISO] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
-  connect_bd_net -net rram_top_wrapper_0_rram_addr [get_bd_ports rram_addr] [get_bd_pins rram_top_wrapper_0/rram_addr]
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
   connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/probe1] [get_bd_pins rram_top_wrapper_0/sa_rdy]
