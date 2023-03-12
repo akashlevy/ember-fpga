@@ -2,3 +2,6 @@
 *.str
 *.jou
 *.cache
+.Xil
+.jobs
+.nfs*
