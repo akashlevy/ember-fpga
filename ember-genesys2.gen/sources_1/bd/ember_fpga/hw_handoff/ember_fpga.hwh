@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar 12 01:48:27 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar 12 06:14:38 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -185,9 +185,9 @@
         <CONNECTION INSTANCE="xlconstant_2" PORT="dout"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="5" NAME="read_ref" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sw">
+    <PORT DIR="O" LEFT="5" NAME="read_ref" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_read_ref">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="sw"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="read_ref"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
@@ -218,11 +218,6 @@
     <PORT DIR="O" LEFT="0" NAME="bsl_dac_en" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
       <CONNECTIONS>
         <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="I" LEFT="5" NAME="sw" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sw">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="read_ref"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="sys_diff_clock_clk_n" SIGIS="clk" SIGNAME="clk_wiz_clk_in1_n">
@@ -923,7 +918,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="5"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="6"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="131072"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -938,7 +933,7 @@
         <PARAMETER NAME="C_RAM_STYLE" VALUE="SUBCORE"/>
         <PARAMETER NAME="C_TRIGOUT_EN" VALUE="0"/>
         <PARAMETER NAME="C_TRIGIN_EN" VALUE="0"/>
-        <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_SLOT_0_AXIS_TUSER_WIDTH" VALUE="6"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXIS_TID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_SLOT_0_AXI_ID_WIDTH" VALUE="1"/>
@@ -952,7 +947,7 @@
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="16"/>
         <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="48"/>
-        <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="6"/>
         <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE8_WIDTH" VALUE="1"/>
@@ -3000,7 +2995,7 @@
         <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE3_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE4_MU_CNT" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE5_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE5_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE6_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE8_MU_CNT" VALUE="1"/>
@@ -4073,6 +4068,11 @@
             <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="di"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="5" NAME="probe5" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_read_ref">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="read_ref"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
@@ -4123,6 +4123,12 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="di"/>
             <CONNECTION INSTANCE="ila_0" PORT="probe4"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="5" NAME="read_ref" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_read_ref">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="read_ref"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe5"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">

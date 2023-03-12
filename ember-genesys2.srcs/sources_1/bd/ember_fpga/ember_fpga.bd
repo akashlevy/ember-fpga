@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x557433289BB859B3",
+      "boundary_crc": "0xC54B4C73682683B4",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -343,11 +343,6 @@
         "direction": "O",
         "left": "0",
         "right": "0"
-      },
-      "sw": {
-        "direction": "I",
-        "left": "5",
-        "right": "0"
       }
     },
     "components": {
@@ -621,7 +616,7 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "5"
+            "value": "6"
           },
           "C_PROBE0_MU_CNT": {
             "value": "2"
@@ -649,6 +644,12 @@
           },
           "C_PROBE4_WIDTH": {
             "value": "48"
+          },
+          "C_PROBE5_MU_CNT": {
+            "value": "2"
+          },
+          "C_PROBE5_WIDTH": {
+            "value": "6"
           }
         }
       },
@@ -822,6 +823,11 @@
             "left": "47",
             "right": "0"
           },
+          "read_ref": {
+            "direction": "O",
+            "left": "5",
+            "right": "0"
+          },
           "rram_addr": {
             "direction": "O",
             "left": "15",
@@ -990,12 +996,6 @@
           "read_dac_config"
         ]
       },
-      "sw_1": {
-        "ports": [
-          "sw",
-          "read_ref"
-        ]
-      },
       "xlconstant_3_dout": {
         "ports": [
           "xlconstant_3/dout",
@@ -1020,6 +1020,13 @@
           "rram_top_wrapper_0/di",
           "di",
           "ila_0/probe4"
+        ]
+      },
+      "rram_top_wrapper_0_read_ref": {
+        "ports": [
+          "rram_top_wrapper_0/read_ref",
+          "read_ref",
+          "ila_0/probe5"
         ]
       }
     }

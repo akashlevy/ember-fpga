@@ -15,7 +15,7 @@ module rram_top_wrapper (
   di,
 //  read_dac_config,
 //  read_dac_en,
-//  read_ref,
+  read_ref,
   rram_addr,
 //  sa_clk,
 //  sa_en,
@@ -45,7 +45,7 @@ output wire miso;
 output wire [47 : 0] di;
 //output wire [3 : 0] read_dac_config;
 //output wire read_dac_en;
-//output wire [5 : 0] read_ref;
+output wire [5 : 0] read_ref;
 output wire [15 : 0] rram_addr;
 //output wire sa_clk;
 //output wire sa_en;
@@ -75,7 +75,7 @@ input wire sa_rdy;
     .di(di),
 //    .read_dac_config(read_dac_config),
 //    .read_dac_en(read_dac_en),
-//    .read_ref(read_ref),
+    .read_ref(read_ref),
     .rram_addr(rram_addr),
 //    .sa_clk(sa_clk),
 //    .sa_en(sa_en),

@@ -1,7 +1,7 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Sun Mar 12 01:50:23 2023
+-- Date        : Sun Mar 12 06:16:12 2023
 -- Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 --               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ ember_fpga_rram_top_wrapper_0_0_stub.vhdl
@@ -22,6 +22,7 @@ entity decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix is
     mosi : in STD_LOGIC;
     miso : out STD_LOGIC;
     di : out STD_LOGIC_VECTOR ( 47 downto 0 );
+    read_ref : out STD_LOGIC_VECTOR ( 5 downto 0 );
     rram_addr : out STD_LOGIC_VECTOR ( 15 downto 0 );
     sa_do : in STD_LOGIC_VECTOR ( 47 downto 0 );
     sa_rdy : in STD_LOGIC
@@ -33,7 +34,7 @@ architecture stub of decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,di[47:0],rram_addr[15:0],sa_do[47:0],sa_rdy";
+attribute black_box_pad_pin of stub : architecture is "mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,di[47:0],read_ref[5:0],rram_addr[15:0],sa_do[47:0],sa_rdy";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "rram_top_wrapper,Vivado 2020.2";
 begin

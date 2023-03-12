@@ -28,12 +28,12 @@ set_property -dict {PACKAGE_PIN W23 IOSTANDARD LVCMOS25} [get_ports rst_n_led]
 ## Switches
 set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS25} [get_ports clksel]
 #set_property -dict {PACKAGE_PIN G25 IOSTANDARD LVCMOS25} [get_ports {clksel[1]}]
-set_property -dict {PACKAGE_PIN H24 IOSTANDARD LVCMOS25} [get_ports {sw[0]}]
-set_property -dict {PACKAGE_PIN K19 IOSTANDARD LVCMOS25} [get_ports {sw[1]}]
-set_property -dict {PACKAGE_PIN N19 IOSTANDARD LVCMOS25} [get_ports {sw[2]}]
-set_property -dict {PACKAGE_PIN P19 IOSTANDARD LVCMOS25} [get_ports {sw[3]}]
-set_property -dict {PACKAGE_PIN P26 IOSTANDARD LVCMOS25} [get_ports {sw[4]}]
-set_property -dict {PACKAGE_PIN P27 IOSTANDARD LVCMOS25} [get_ports {sw[5]}]
+#set_property -dict {PACKAGE_PIN H24 IOSTANDARD LVCMOS25} [get_ports {sw[0]}]
+#set_property -dict {PACKAGE_PIN K19 IOSTANDARD LVCMOS25} [get_ports {sw[1]}]
+#set_property -dict {PACKAGE_PIN N19 IOSTANDARD LVCMOS25} [get_ports {sw[2]}]
+#set_property -dict {PACKAGE_PIN P19 IOSTANDARD LVCMOS25} [get_ports {sw[3]}]
+#set_property -dict {PACKAGE_PIN P26 IOSTANDARD LVCMOS25} [get_ports {sw[4]}]
+#set_property -dict {PACKAGE_PIN P27 IOSTANDARD LVCMOS25} [get_ports {sw[5]}]
 
 ## USB HIDs For Both Mouse and Keyboard
 #set_property -dict { PACKAGE_PIN AD23  IOSTANDARD LVCMOS33  PULLUP true } [get_ports { ps2_clk_0 }]; #IO_L12P_T1_MRCC_12 Sch=ps2_clk[0]

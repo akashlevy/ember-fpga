@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Sun Mar 12 01:50:26 2023
+// Date        : Sun Mar 12 06:16:15 2023
 // Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode synth_stub
 //               /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0_stub.v
@@ -15,8 +15,8 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "rram_top_wrapper,Vivado 2020.2" *)
 module ember_fpga_rram_top_wrapper_0_0(mclk_pause, rst_n, rram_busy, sclk, sc, mosi, miso, di, 
-  rram_addr, sa_do, sa_rdy)
-/* synthesis syn_black_box black_box_pad_pin="mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,di[47:0],rram_addr[15:0],sa_do[47:0],sa_rdy" */;
+  read_ref, rram_addr, sa_do, sa_rdy)
+/* synthesis syn_black_box black_box_pad_pin="mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,di[47:0],read_ref[5:0],rram_addr[15:0],sa_do[47:0],sa_rdy" */;
   input mclk_pause;
   input rst_n;
   output rram_busy;
@@ -25,6 +25,7 @@ module ember_fpga_rram_top_wrapper_0_0(mclk_pause, rst_n, rram_busy, sclk, sc, m
   input mosi;
   output miso;
   output [47:0]di;
+  output [5:0]read_ref;
   output [15:0]rram_addr;
   input [47:0]sa_do;
   input sa_rdy;

@@ -212,7 +212,6 @@ proc create_root_design { parentCell } {
   set set_rst [ create_bd_port -dir O -from 0 -to 0 set_rst ]
   set sl_en [ create_bd_port -dir O -from 0 -to 0 sl_en ]
   set spien_led [ create_bd_port -dir O spien_led ]
-  set sw [ create_bd_port -dir I -from 5 -to 0 sw ]
   set wl_dac_en [ create_bd_port -dir O -from 0 -to 0 wl_dac_en ]
   set wl_en [ create_bd_port -dir O -from 0 -to 0 wl_en ]
 
@@ -306,7 +305,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_EN_STRG_QUAL {1} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {5} \
+   CONFIG.C_NUM_OF_PROBES {6} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE0_TYPE {1} \
    CONFIG.C_PROBE0_WIDTH {48} \
@@ -316,6 +315,8 @@ proc create_root_design { parentCell } {
    CONFIG.C_PROBE3_WIDTH {16} \
    CONFIG.C_PROBE4_MU_CNT {2} \
    CONFIG.C_PROBE4_WIDTH {48} \
+   CONFIG.C_PROBE5_MU_CNT {2} \
+   CONFIG.C_PROBE5_WIDTH {6} \
  ] $ila_0
 
   # Create instance: rram_top_wrapper_0, and set properties
@@ -382,12 +383,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led] [get_bd_ports rram_busy_out] [get_bd_pins clkmux_0/rram_busy] [get_bd_pins ila_0/probe2]
   connect_bd_net -net rram_top_wrapper_0_di [get_bd_ports di] [get_bd_pins ila_0/probe4] [get_bd_pins rram_top_wrapper_0/di]
   connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports PROG_MISO] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
+  connect_bd_net -net rram_top_wrapper_0_read_ref [get_bd_ports read_ref] [get_bd_pins ila_0/probe5] [get_bd_pins rram_top_wrapper_0/read_ref]
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
   connect_bd_net -net sa_rdy_1 [get_bd_ports sa_rdy] [get_bd_pins ila_0/probe1] [get_bd_pins rram_top_wrapper_0/sa_rdy]
   connect_bd_net -net sc_in [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net sclk_in_1 [get_bd_ports PROG_SCK] [get_bd_pins clkmux_0/sclk]
-  connect_bd_net -net sw_1 [get_bd_ports read_ref] [get_bd_ports sw]
   connect_bd_net -net xlconstant_0_dout [get_bd_ports aclk] [get_bd_ports bsl_dac_en] [get_bd_ports set_rst] [get_bd_ports wl_dac_en] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_0_dout1 [get_bd_ports bl_en] [get_bd_ports bleed_en] [get_bd_ports read_dac_en] [get_bd_ports sl_en] [get_bd_ports wl_en] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_ports read_dac_config] [get_bd_pins xlconstant_2/dout]

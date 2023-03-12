@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Mar 12 01:48:25 2023
+//Date        : Sun Mar 12 06:14:37 2023
 //Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga_wrapper.bd
 //Design      : ember_fpga_wrapper
@@ -49,7 +49,6 @@ module ember_fpga_wrapper
     set_rst,
     sl_en,
     spien_led,
-    sw,
     sys_diff_clock_clk_n,
     sys_diff_clock_clk_p,
     wl_dac_en,
@@ -93,7 +92,6 @@ module ember_fpga_wrapper
   output [0:0]set_rst;
   output [0:0]sl_en;
   output spien_led;
-  input [5:0]sw;
   input sys_diff_clock_clk_n;
   input sys_diff_clock_clk_p;
   output [0:0]wl_dac_en;
@@ -138,7 +136,6 @@ module ember_fpga_wrapper
   wire [0:0]set_rst;
   wire [0:0]sl_en;
   wire spien_led;
-  wire [5:0]sw;
   wire sys_diff_clock_clk_n;
   wire sys_diff_clock_clk_p;
   wire [0:0]wl_dac_en;
@@ -184,7 +181,6 @@ module ember_fpga_wrapper
         .set_rst(set_rst),
         .sl_en(sl_en),
         .spien_led(spien_led),
-        .sw(sw),
         .sys_diff_clock_clk_n(sys_diff_clock_clk_n),
         .sys_diff_clock_clk_p(sys_diff_clock_clk_p),
         .wl_dac_en(wl_dac_en),

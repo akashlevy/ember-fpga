@@ -1,90 +1,89 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.431746",
-   "Default View_TopLeft":"-704,0",
+   "Default View_ScaleFactor":"0.427273",
+   "Default View_TopLeft":"-707,2",
    "ExpandedHierarchyInLayout":"",
    "PinnedBlocks":"",
    "PinnedPorts":"",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port sys_diff_clock -pg 1 -lvl 0 -x 0 -y 640 -defaultsOSRD
-preplace port PROG_SS -pg 1 -lvl 0 -x 0 -y 760 -defaultsOSRD
-preplace port PROG_MOSI -pg 1 -lvl 0 -x 0 -y 160 -defaultsOSRD
-preplace port sclk_led -pg 1 -lvl 3 -x 630 -y 550 -defaultsOSRD
-preplace port mosi_led -pg 1 -lvl 3 -x 630 -y 270 -defaultsOSRD
-preplace port mosi_out -pg 1 -lvl 3 -x 630 -y 290 -defaultsOSRD
-preplace port sclk_out -pg 1 -lvl 3 -x 630 -y 570 -defaultsOSRD
-preplace port mclk_pause_out -pg 1 -lvl 3 -x 630 -y 20 -defaultsOSRD
-preplace port rram_busy_in -pg 1 -lvl 0 -x 0 -y 520 -defaultsOSRD
-preplace port rram_busy_led -pg 1 -lvl 3 -x 630 -y 510 -defaultsOSRD
-preplace port rram_busy_out -pg 1 -lvl 3 -x 630 -y 530 -defaultsOSRD
-preplace port PROG_SCK -pg 1 -lvl 0 -x 0 -y 460 -defaultsOSRD
-preplace port sa_rdy -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
-preplace port PROG_MISO -pg 1 -lvl 3 -x 630 -y 130 -defaultsOSRD
-preplace port rram_busy_fpga_led -pg 1 -lvl 3 -x 630 -y 110 -defaultsOSRD
-preplace port miso_led -pg 1 -lvl 3 -x 630 -y 150 -defaultsOSRD
-preplace port mclk_pause_in -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
-preplace port PROG_SPIEN -pg 1 -lvl 0 -x 0 -y 820 -defaultsOSRD
-preplace port spien_led -pg 1 -lvl 3 -x 630 -y 820 -defaultsOSRD
-preplace port rst_n_out -pg 1 -lvl 3 -x 630 -y 250 -defaultsOSRD
-preplace port reset -pg 1 -lvl 0 -x 0 -y 660 -defaultsOSRD
-preplace port clksel -pg 1 -lvl 0 -x 0 -y 500 -defaultsOSRD
-preplace port rst_n_led -pg 1 -lvl 3 -x 630 -y 230 -defaultsOSRD
-preplace port sa_clk -pg 1 -lvl 3 -x 630 -y 490 -defaultsOSRD
-preplace portBus sc_led -pg 1 -lvl 3 -x 630 -y 680 -defaultsOSRD
-preplace portBus sa_do -pg 1 -lvl 0 -x 0 -y 180 -defaultsOSRD
-preplace portBus sc_out -pg 1 -lvl 3 -x 630 -y 700 -defaultsOSRD
-preplace portBus aclk -pg 1 -lvl 3 -x 630 -y 860 -defaultsOSRD
-preplace portBus bl_en -pg 1 -lvl 3 -x 630 -y 940 -defaultsOSRD
-preplace portBus wl_en -pg 1 -lvl 3 -x 630 -y 1020 -defaultsOSRD
-preplace portBus sl_en -pg 1 -lvl 3 -x 630 -y 1000 -defaultsOSRD
-preplace portBus read_dac_en -pg 1 -lvl 3 -x 630 -y 980 -defaultsOSRD
-preplace portBus bleed_en -pg 1 -lvl 3 -x 630 -y 960 -defaultsOSRD
-preplace portBus clamp_ref -pg 1 -lvl 3 -x 630 -y 1200 -defaultsOSRD
-preplace portBus di -pg 1 -lvl 3 -x 630 -y 170 -defaultsOSRD
-preplace portBus read_dac_config -pg 1 -lvl 3 -x 630 -y 1100 -defaultsOSRD
-preplace portBus read_ref -pg 1 -lvl 3 -x 630 -y 840 -defaultsOSRD
-preplace portBus rram_addr -pg 1 -lvl 3 -x 630 -y 190 -defaultsOSRD
-preplace portBus sa_en -pg 1 -lvl 3 -x 630 -y 660 -defaultsOSRD
-preplace portBus set_rst -pg 1 -lvl 3 -x 630 -y 900 -defaultsOSRD
-preplace portBus wl_dac_en -pg 1 -lvl 3 -x 630 -y 920 -defaultsOSRD
-preplace portBus bsl_dac_en -pg 1 -lvl 3 -x 630 -y 880 -defaultsOSRD
-preplace portBus sw -pg 1 -lvl 0 -x 0 -y 840 -defaultsOSRD
-preplace inst clk_wiz -pg 1 -lvl 1 -x 220 -y 650 -defaultsOSRD
-preplace inst util_vector_logic_0 -pg 1 -lvl 1 -x 220 -y 760 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 2 -x 510 -y 900 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 2 -x 510 -y 1000 -defaultsOSRD
-preplace inst ila_0 -pg 1 -lvl 2 -x 510 -y 380 -defaultsOSRD
-preplace inst xlconstant_2 -pg 1 -lvl 2 -x 510 -y 1100 -defaultsOSRD
-preplace inst xlconstant_3 -pg 1 -lvl 2 -x 510 -y 1200 -defaultsOSRD
-preplace inst clkmux_0 -pg 1 -lvl 1 -x 220 -y 490 -defaultsOSRD
-preplace inst rram_top_wrapper_0 -pg 1 -lvl 1 -x 220 -y 140 -defaultsOSRD
-preplace netloc mosi_in 1 0 3 50 270 NJ 270 610J
-preplace netloc sc_in 1 0 3 60 580 370 680 610J
-preplace netloc mclk_pause_in 1 0 3 70 20 NJ 20 NJ
-preplace netloc rram_busy_in_1 1 0 3 50 380 380 510 610J
-preplace netloc clkmux_0_sclk_out 1 0 3 70 390 370 550 610J
-preplace netloc sclk_in_1 1 0 1 NJ 460
-preplace netloc sa_rdy_1 1 0 2 20 370 NJ
-preplace netloc sa_do_1 1 0 2 30 350 NJ
-preplace netloc rram_top_wrapper_0_miso 1 1 2 NJ 130 610J
-preplace netloc rram_top_wrapper_0_rram_busy 1 1 2 NJ 110 NJ
-preplace netloc clk_wiz_clk_out1 1 0 3 70 400 390 490 NJ
-preplace netloc PROG_SPIEN_1 1 0 3 NJ 820 NJ 820 NJ
-preplace netloc reset_2 1 0 3 40 260 NJ 260 610J
-preplace netloc clksel_1 1 0 1 NJ 500
-preplace netloc PROG_SS_1 1 0 1 NJ 760
-preplace netloc xlconstant_0_dout 1 2 1 610J 860n
-preplace netloc xlconstant_0_dout1 1 2 1 610J 940n
-preplace netloc xlconstant_2_dout 1 2 1 NJ 1100
-preplace netloc sw_1 1 0 3 NJ 840 NJ 840 NJ
-preplace netloc xlconstant_3_dout 1 2 1 NJ 1200
-preplace netloc clk_wiz_clk_out2 1 1 2 NJ 660 NJ
-preplace netloc addr_loop_counter_0_rram_addr 1 1 2 400 190 NJ
-preplace netloc rram_top_wrapper_0_di 1 1 2 410 170 NJ
-preplace netloc sys_diff_clock_1 1 0 1 NJ 640
-levelinfo -pg 1 0 220 510 630
-pagesize -pg 1 -db -bbox -sgen -160 0 830 1260
+preplace port sys_diff_clock -pg 1 -lvl 0 -x -20 -y 610 -defaultsOSRD
+preplace port PROG_SS -pg 1 -lvl 0 -x -20 -y 730 -defaultsOSRD
+preplace port PROG_MOSI -pg 1 -lvl 0 -x -20 -y 80 -defaultsOSRD
+preplace port sclk_led -pg 1 -lvl 3 -x 670 -y 560 -defaultsOSRD
+preplace port mosi_led -pg 1 -lvl 3 -x 670 -y 80 -defaultsOSRD
+preplace port mosi_out -pg 1 -lvl 3 -x 670 -y 100 -defaultsOSRD
+preplace port sclk_out -pg 1 -lvl 3 -x 670 -y 580 -defaultsOSRD
+preplace port mclk_pause_out -pg 1 -lvl 3 -x 670 -y 20 -defaultsOSRD
+preplace port rram_busy_in -pg 1 -lvl 0 -x -20 -y 490 -defaultsOSRD
+preplace port rram_busy_led -pg 1 -lvl 3 -x 670 -y 520 -defaultsOSRD
+preplace port rram_busy_out -pg 1 -lvl 3 -x 670 -y 540 -defaultsOSRD
+preplace port PROG_SCK -pg 1 -lvl 0 -x -20 -y 430 -defaultsOSRD
+preplace port sa_rdy -pg 1 -lvl 0 -x -20 -y 260 -defaultsOSRD
+preplace port PROG_MISO -pg 1 -lvl 3 -x 670 -y 180 -defaultsOSRD
+preplace port rram_busy_fpga_led -pg 1 -lvl 3 -x 670 -y 160 -defaultsOSRD
+preplace port miso_led -pg 1 -lvl 3 -x 670 -y 200 -defaultsOSRD
+preplace port mclk_pause_in -pg 1 -lvl 0 -x -20 -y 20 -defaultsOSRD
+preplace port PROG_SPIEN -pg 1 -lvl 0 -x -20 -y 790 -defaultsOSRD
+preplace port spien_led -pg 1 -lvl 3 -x 670 -y 790 -defaultsOSRD
+preplace port rst_n_out -pg 1 -lvl 3 -x 670 -y 60 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x -20 -y 630 -defaultsOSRD
+preplace port clksel -pg 1 -lvl 0 -x -20 -y 470 -defaultsOSRD
+preplace port rst_n_led -pg 1 -lvl 3 -x 670 -y 40 -defaultsOSRD
+preplace port sa_clk -pg 1 -lvl 3 -x 670 -y 600 -defaultsOSRD
+preplace portBus sc_led -pg 1 -lvl 3 -x 670 -y 650 -defaultsOSRD
+preplace portBus sa_do -pg 1 -lvl 0 -x -20 -y 240 -defaultsOSRD
+preplace portBus sc_out -pg 1 -lvl 3 -x 670 -y 670 -defaultsOSRD
+preplace portBus aclk -pg 1 -lvl 3 -x 670 -y 810 -defaultsOSRD
+preplace portBus bl_en -pg 1 -lvl 3 -x 670 -y 890 -defaultsOSRD
+preplace portBus wl_en -pg 1 -lvl 3 -x 670 -y 970 -defaultsOSRD
+preplace portBus sl_en -pg 1 -lvl 3 -x 670 -y 950 -defaultsOSRD
+preplace portBus read_dac_en -pg 1 -lvl 3 -x 670 -y 930 -defaultsOSRD
+preplace portBus bleed_en -pg 1 -lvl 3 -x 670 -y 910 -defaultsOSRD
+preplace portBus clamp_ref -pg 1 -lvl 3 -x 670 -y 1150 -defaultsOSRD
+preplace portBus di -pg 1 -lvl 3 -x 670 -y 220 -defaultsOSRD
+preplace portBus read_dac_config -pg 1 -lvl 3 -x 670 -y 1050 -defaultsOSRD
+preplace portBus read_ref -pg 1 -lvl 3 -x 670 -y 500 -defaultsOSRD
+preplace portBus rram_addr -pg 1 -lvl 3 -x 670 -y 480 -defaultsOSRD
+preplace portBus sa_en -pg 1 -lvl 3 -x 670 -y 630 -defaultsOSRD
+preplace portBus set_rst -pg 1 -lvl 3 -x 670 -y 850 -defaultsOSRD
+preplace portBus wl_dac_en -pg 1 -lvl 3 -x 670 -y 870 -defaultsOSRD
+preplace portBus bsl_dac_en -pg 1 -lvl 3 -x 670 -y 830 -defaultsOSRD
+preplace inst clk_wiz -pg 1 -lvl 1 -x 220 -y 620 -defaultsOSRD
+preplace inst util_vector_logic_0 -pg 1 -lvl 1 -x 220 -y 730 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 2 -x 540 -y 850 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 2 -x 540 -y 950 -defaultsOSRD
+preplace inst ila_0 -pg 1 -lvl 2 -x 540 -y 360 -defaultsOSRD
+preplace inst xlconstant_2 -pg 1 -lvl 2 -x 540 -y 1050 -defaultsOSRD
+preplace inst xlconstant_3 -pg 1 -lvl 2 -x 540 -y 1150 -defaultsOSRD
+preplace inst clkmux_0 -pg 1 -lvl 1 -x 220 -y 460 -defaultsOSRD
+preplace inst rram_top_wrapper_0 -pg 1 -lvl 1 -x 220 -y 200 -defaultsOSRD
+preplace netloc mosi_in 1 0 3 40 60 NJ 60 640J
+preplace netloc sc_in 1 0 3 60 800 410 670 650J
+preplace netloc mclk_pause_in 1 0 3 30 20 NJ 20 NJ
+preplace netloc rram_busy_in_1 1 0 3 0 550 410 520 650J
+preplace netloc clkmux_0_sclk_out 1 0 3 70 320 370 490 640J
+preplace netloc sclk_in_1 1 0 1 NJ 430
+preplace netloc sa_rdy_1 1 0 2 50 80 430J
+preplace netloc sa_do_1 1 0 2 20 70 440J
+preplace netloc rram_top_wrapper_0_miso 1 1 2 NJ 180 650J
+preplace netloc rram_top_wrapper_0_rram_busy 1 1 2 NJ 160 NJ
+preplace netloc clk_wiz_clk_out1 1 0 3 70 370 400 600 NJ
+preplace netloc PROG_SPIEN_1 1 0 3 NJ 790 NJ 790 NJ
+preplace netloc reset_2 1 0 3 10 50 NJ 50 650J
+preplace netloc clksel_1 1 0 1 NJ 470
+preplace netloc PROG_SS_1 1 0 1 NJ 730
+preplace netloc xlconstant_0_dout 1 2 1 640J 810n
+preplace netloc xlconstant_0_dout1 1 2 1 650J 890n
+preplace netloc xlconstant_2_dout 1 2 1 NJ 1050
+preplace netloc xlconstant_3_dout 1 2 1 NJ 1150
+preplace netloc clk_wiz_clk_out2 1 1 2 NJ 630 NJ
+preplace netloc addr_loop_counter_0_rram_addr 1 1 2 390 480 NJ
+preplace netloc rram_top_wrapper_0_di 1 1 2 420 220 NJ
+preplace netloc rram_top_wrapper_0_read_ref 1 1 2 380 500 NJ
+preplace netloc sys_diff_clock_1 1 0 1 NJ 610
+levelinfo -pg 1 -20 220 540 670
+pagesize -pg 1 -db -bbox -sgen -180 0 870 1210
 "
 }
 {
