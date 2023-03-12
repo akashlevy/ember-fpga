@@ -1,7 +1,7 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Fri Feb 17 10:54:26 2023
+// Date        : Sun Mar 12 01:50:23 2023
 // Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 // Command     : write_verilog -force -mode synth_stub -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
 //               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ ember_fpga_rram_top_wrapper_0_0_stub.v
@@ -14,9 +14,9 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "rram_top_wrapper,Vivado 2020.2" *)
-module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix(mclk_pause, rst_n, rram_busy, sclk, sc, mosi, miso, 
-  sa_do, sa_rdy, address_start, address_stop, address_step)
-/* synthesis syn_black_box black_box_pad_pin="mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,sa_do[47:0],sa_rdy,address_start[15:0],address_stop[15:0],address_step[15:0]" */;
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix(mclk_pause, rst_n, rram_busy, sclk, sc, mosi, miso, di, 
+  rram_addr, sa_do, sa_rdy)
+/* synthesis syn_black_box black_box_pad_pin="mclk_pause,rst_n,rram_busy,sclk,sc,mosi,miso,di[47:0],rram_addr[15:0],sa_do[47:0],sa_rdy" */;
   input mclk_pause;
   input rst_n;
   output rram_busy;
@@ -24,9 +24,8 @@ module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix(mclk_pause, rst_n, rram_busy, s
   input sc;
   input mosi;
   output miso;
+  output [47:0]di;
+  output [15:0]rram_addr;
   input [47:0]sa_do;
   input sa_rdy;
-  output [15:0]address_start;
-  output [15:0]address_stop;
-  output [15:0]address_step;
 endmodule

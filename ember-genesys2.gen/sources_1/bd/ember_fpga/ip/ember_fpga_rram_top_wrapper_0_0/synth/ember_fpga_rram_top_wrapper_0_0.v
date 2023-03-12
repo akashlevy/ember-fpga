@@ -63,11 +63,10 @@ module ember_fpga_rram_top_wrapper_0_0 (
   sc,
   mosi,
   miso,
+  di,
+  rram_addr,
   sa_do,
-  sa_rdy,
-  address_start,
-  address_stop,
-  address_step
+  sa_rdy
 );
 
 input wire mclk_pause;
@@ -79,11 +78,10 @@ input wire sclk;
 input wire sc;
 input wire mosi;
 output wire miso;
+output wire [47 : 0] di;
+output wire [15 : 0] rram_addr;
 input wire [47 : 0] sa_do;
 input wire sa_rdy;
-output wire [15 : 0] address_start;
-output wire [15 : 0] address_stop;
-output wire [15 : 0] address_step;
 
   rram_top_wrapper inst (
     .mclk_pause(mclk_pause),
@@ -93,10 +91,9 @@ output wire [15 : 0] address_step;
     .sc(sc),
     .mosi(mosi),
     .miso(miso),
+    .di(di),
+    .rram_addr(rram_addr),
     .sa_do(sa_do),
-    .sa_rdy(sa_rdy),
-    .address_start(address_start),
-    .address_stop(address_stop),
-    .address_step(address_step)
+    .sa_rdy(sa_rdy)
   );
 endmodule

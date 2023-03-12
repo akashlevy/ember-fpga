@@ -2,8 +2,8 @@
 # Vivado v2020.2 (64-bit)
 # SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
 # IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
-# Start of session at: Fri Feb 17 10:52:46 2023
-# Process ID: 3360
+# Start of session at: Sun Mar 12 01:48:38 2023
+# Process ID: 14290
 # Current directory: /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1
 # Command line: vivado -log ember_fpga_ila_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source ember_fpga_ila_0_0.tcl
 # Log file: /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1/ember_fpga_ila_0_0.vds
@@ -18,9 +18,9 @@ INFO: [Common 17-1540] The version limit for your license is '2020.12' and has e
 INFO: [Device 21-403] Loading part xc7k325tffg900-2
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 3601
+INFO: [Synth 8-7075] Helper process launched with PID 14518
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:48 . Memory (MB): peak = 2547.887 ; gain = 0.000 ; free physical = 121776 ; free virtual = 228262
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:46 . Memory (MB): peak = 2519.203 ; gain = 5.973 ; free physical = 113461 ; free virtual = 226514
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'ember_fpga_ila_0_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:84]
 INFO: [Synth 8-6157] synthesizing module 'CFGLUT5' [/cad/xilinx/vivado/2020.2/Vivado/2020.2/scripts/rt/data/unisim_comp.v:1524]
@@ -35,28 +35,28 @@ INFO: [Synth 8-6157] synthesizing module 'SRLC16E' [/cad/xilinx/vivado/2020.2/Vi
 INFO: [Synth 8-6155] done synthesizing module 'SRLC16E' (23#1) [/cad/xilinx/vivado/2020.2/Vivado/2020.2/scripts/rt/data/unisim_comp.v:78123]
 INFO: [Synth 8-6157] synthesizing module 'FDRE' [/cad/xilinx/vivado/2020.2/Vivado/2020.2/scripts/rt/data/unisim_comp.v:13724]
 INFO: [Synth 8-6155] done synthesizing module 'FDRE' (28#1) [/cad/xilinx/vivado/2020.2/Vivado/2020.2/scripts/rt/data/unisim_comp.v:13724]
-WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7071] port 'trig_in' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
-WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3215]
+WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7071] port 'trig_in' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
+WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]
 INFO: [Synth 8-6155] done synthesizing module 'ember_fpga_ila_0_0' (48#1) [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:84]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:48 ; elapsed = 00:02:02 . Memory (MB): peak = 3064.355 ; gain = 516.469 ; free physical = 122777 ; free virtual = 229269
+Finished RTL Elaboration : Time (s): cpu = 00:01:04 ; elapsed = 00:02:16 . Memory (MB): peak = 3240.762 ; gain = 727.531 ; free physical = 114312 ; free virtual = 227372
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:50 ; elapsed = 00:02:04 . Memory (MB): peak = 3064.355 ; gain = 516.469 ; free physical = 122841 ; free virtual = 229333
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:06 ; elapsed = 00:02:19 . Memory (MB): peak = 3240.762 ; gain = 727.531 ; free physical = 114394 ; free virtual = 227454
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:50 ; elapsed = 00:02:04 . Memory (MB): peak = 3064.355 ; gain = 516.469 ; free physical = 122841 ; free virtual = 229333
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:06 ; elapsed = 00:02:19 . Memory (MB): peak = 3240.762 ; gain = 727.531 ; free physical = 114394 ; free virtual = 227454
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.25 . Memory (MB): peak = 3064.355 ; gain = 0.000 ; free physical = 122797 ; free virtual = 229288
-INFO: [Netlist 29-17] Analyzing 357 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.39 ; elapsed = 00:00:00.40 . Memory (MB): peak = 3240.762 ; gain = 0.000 ; free physical = 114332 ; free virtual = 227392
+INFO: [Netlist 29-17] Analyzing 593 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -70,29 +70,29 @@ Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0
 Finished Parsing XDC File [/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3128.375 ; gain = 0.000 ; free physical = 122690 ; free virtual = 229182
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3304.781 ; gain = 0.000 ; free physical = 114218 ; free virtual = 227278
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 87 instances were transformed.
-  CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 76 instances
-  CFGLUT5 => SRLC32E: 11 instances
+  A total of 137 instances were transformed.
+  CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 124 instances
+  CFGLUT5 => SRLC32E: 13 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.33 ; elapsed = 00:00:00.27 . Memory (MB): peak = 3128.379 ; gain = 0.004 ; free physical = 122691 ; free virtual = 229183
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.46 ; elapsed = 00:00:00.36 . Memory (MB): peak = 3304.785 ; gain = 0.004 ; free physical = 114218 ; free virtual = 227277
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:02 ; elapsed = 00:02:18 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122821 ; free virtual = 229313
+Finished Constraint Validation : Time (s): cpu = 00:01:21 ; elapsed = 00:02:36 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114379 ; free virtual = 227439
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:02 ; elapsed = 00:02:18 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122821 ; free virtual = 229313
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:21 ; elapsed = 00:02:36 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114379 ; free virtual = 227439
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for inst. (constraint file  /sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:02 ; elapsed = 00:02:18 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122821 ; free virtual = 229313
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:21 ; elapsed = 00:02:36 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114379 ; free virtual = 227439
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized0'
@@ -103,6 +103,8 @@ INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in modul
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized5'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized6'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized7'
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized8'
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized9'
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'ltlib_v1_0_0_generic_memrd'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -198,6 +200,26 @@ INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in m
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
 *
+                    IDLE |                             0001 |                             0001
+                     REG |                             0010 |                             0010
+                     P2S |                             0100 |                             0100
+                     S2P |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized8'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                             0001 |                             0001
+                     REG |                             0010 |                             0010
+                     P2S |                             0100 |                             0100
+                     S2P |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'xsdbs_v1_0_2_reg_p2s__parameterized9'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
               RESET_ADDR |                          0000001 |                          0000001
             REQUEST_READ |                          0000010 |                          0000010
            WAIT_READ_ACK |                          0000100 |                          0000100
@@ -208,7 +230,7 @@ INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in m
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'current_state_reg' in module 'ltlib_v1_0_0_generic_memrd'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:06 ; elapsed = 00:02:23 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122815 ; free virtual = 229309
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:27 ; elapsed = 00:02:42 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114390 ; free virtual = 227454
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -229,25 +251,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:02:40 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122779 ; free virtual = 229296
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:49 ; elapsed = 00:03:06 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114353 ; free virtual = 227446
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:29 ; elapsed = 00:02:48 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122671 ; free virtual = 229188
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:58 ; elapsed = 00:03:15 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114239 ; free virtual = 227332
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:30 ; elapsed = 00:02:49 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122655 ; free virtual = 229172
+Finished Timing Optimization : Time (s): cpu = 00:01:59 ; elapsed = 00:03:17 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114218 ; free virtual = 227311
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:32 ; elapsed = 00:02:51 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122662 ; free virtual = 229179
+Finished Technology Mapping : Time (s): cpu = 00:02:01 ; elapsed = 00:03:19 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114228 ; free virtual = 227321
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -305,37 +327,37 @@ INFO: [Synth 8-3295] tying undriven pin inst:sl_iport0[0] to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_in to constant 0
 INFO: [Synth 8-3295] tying undriven pin inst:trig_out_ack to constant 0
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:34 ; elapsed = 00:02:53 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122662 ; free virtual = 229179
+Finished IO Insertion : Time (s): cpu = 00:02:05 ; elapsed = 00:03:22 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114227 ; free virtual = 227319
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:34 ; elapsed = 00:02:54 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122662 ; free virtual = 229179
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:05 ; elapsed = 00:03:22 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114227 ; free virtual = 227319
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:35 ; elapsed = 00:02:54 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122660 ; free virtual = 229177
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:06 ; elapsed = 00:03:23 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114216 ; free virtual = 227309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:35 ; elapsed = 00:02:54 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122660 ; free virtual = 229177
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:06 ; elapsed = 00:03:24 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114216 ; free virtual = 227309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:35 ; elapsed = 00:02:54 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122660 ; free virtual = 229177
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:06 ; elapsed = 00:03:24 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114216 ; free virtual = 227309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:35 ; elapsed = 00:02:55 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122660 ; free virtual = 229177
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:06 ; elapsed = 00:03:24 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114216 ; free virtual = 227309
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -351,47 +373,47 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |CARRY4   |    44|
-|2     |CFGLUT5  |    87|
-|3     |LUT1     |    31|
-|4     |LUT2     |    91|
-|5     |LUT3     |    90|
-|6     |LUT4     |   274|
-|7     |LUT5     |    89|
-|8     |LUT6     |  1089|
-|9     |MUXF7    |   270|
-|10    |RAMB36E1 |   240|
-|13    |SRL16E   |    70|
+|1     |CARRY4   |    58|
+|2     |CFGLUT5  |   137|
+|3     |LUT1     |    33|
+|4     |LUT2     |   109|
+|5     |LUT3     |    99|
+|6     |LUT4     |   494|
+|7     |LUT5     |    97|
+|8     |LUT6     |  1554|
+|9     |MUXF7    |   466|
+|10    |RAMB36E1 |   412|
+|13    |SRL16E   |   118|
 |14    |SRLC16E  |     2|
 |15    |SRLC32E  |    17|
-|16    |FDRE     |  1789|
+|16    |FDRE     |  2277|
 |17    |FDSE     |    10|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:35 ; elapsed = 00:02:55 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122660 ; free virtual = 229177
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:06 ; elapsed = 00:03:24 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114216 ; free virtual = 227309
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:28 ; elapsed = 00:02:47 . Memory (MB): peak = 3128.379 ; gain = 516.469 ; free physical = 122711 ; free virtual = 229228
-Synthesis Optimization Complete : Time (s): cpu = 00:01:36 ; elapsed = 00:02:55 . Memory (MB): peak = 3128.379 ; gain = 580.492 ; free physical = 122711 ; free virtual = 229228
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:56 ; elapsed = 00:03:14 . Memory (MB): peak = 3304.785 ; gain = 727.531 ; free physical = 114268 ; free virtual = 227361
+Synthesis Optimization Complete : Time (s): cpu = 00:02:06 ; elapsed = 00:03:24 . Memory (MB): peak = 3304.785 ; gain = 791.555 ; free physical = 114269 ; free virtual = 227361
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.15 . Memory (MB): peak = 3128.379 ; gain = 0.000 ; free physical = 122795 ; free virtual = 229312
-INFO: [Netlist 29-17] Analyzing 641 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.24 . Memory (MB): peak = 3304.785 ; gain = 0.000 ; free physical = 114349 ; free virtual = 227442
+INFO: [Netlist 29-17] Analyzing 1073 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3128.379 ; gain = 0.000 ; free physical = 122734 ; free virtual = 229251
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 3304.785 ; gain = 0.000 ; free physical = 114293 ; free virtual = 227386
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 87 instances were transformed.
-  CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 76 instances
-  CFGLUT5 => SRLC32E: 11 instances
+  A total of 137 instances were transformed.
+  CFGLUT5 => CFGLUT5 (SRL16E, SRLC32E): 124 instances
+  CFGLUT5 => SRLC32E: 13 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-91 Infos, 7 Warnings, 0 Critical Warnings and 0 Errors encountered.
+95 Infos, 7 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:48 ; elapsed = 00:03:05 . Memory (MB): peak = 3128.379 ; gain = 588.727 ; free physical = 122897 ; free virtual = 229414
+synth_design: Time (s): cpu = 00:02:20 ; elapsed = 00:03:37 . Memory (MB): peak = 3304.785 ; gain = 799.789 ; free physical = 114478 ; free virtual = 227571
 INFO: [Common 17-1381] The checkpoint '/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1/ember_fpga_ila_0_0.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ember_fpga_ila_0_0, cache-ID = 80ffeb21688aeb97
-INFO: [Coretcl 2-1174] Renamed 604 cell refs.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP ember_fpga_ila_0_0, cache-ID = fbd546b62aa14b77
+INFO: [Coretcl 2-1174] Renamed 956 cell refs.
 INFO: [Common 17-1381] The checkpoint '/sim2/akashl/ember-fpga/ember-genesys2.runs/ember_fpga_ila_0_0_synth_1/ember_fpga_ila_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file ember_fpga_ila_0_0_utilization_synth.rpt -pb ember_fpga_ila_0_0_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Feb 17 10:56:25 2023...
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 12 01:53:05 2023...

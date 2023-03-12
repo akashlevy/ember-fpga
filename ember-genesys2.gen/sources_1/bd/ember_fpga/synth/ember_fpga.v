@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Fri Feb 17 11:31:37 2023
+//Date        : Sun Mar 12 01:48:24 2023
 //Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=11,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
+(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=9,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
 module ember_fpga
    (PROG_MISO,
     PROG_MOSI,
@@ -111,9 +111,7 @@ module ember_fpga
   wire mosi_in;
   wire reset_2;
   wire rram_busy_in_1;
-  wire [15:0]rram_top_wrapper_0_address_start;
-  wire [15:0]rram_top_wrapper_0_address_step;
-  wire [15:0]rram_top_wrapper_0_address_stop;
+  wire [47:0]rram_top_wrapper_0_di;
   wire rram_top_wrapper_0_miso;
   wire rram_top_wrapper_0_rram_busy;
   wire [47:0]sa_do_1;
@@ -127,7 +125,6 @@ module ember_fpga
   wire [0:0]xlconstant_0_dout1;
   wire [3:0]xlconstant_2_dout;
   wire [5:0]xlconstant_3_dout;
-  wire [47:0]xlconstant_4_dout;
 
   assign PROG_MISO = rram_top_wrapper_0_miso;
   assign PROG_SPIEN_1 = PROG_SPIEN;
@@ -138,7 +135,7 @@ module ember_fpga
   assign bsl_dac_en[0] = xlconstant_0_dout;
   assign clamp_ref[5:0] = xlconstant_3_dout;
   assign clksel_1 = clksel;
-  assign di[47:0] = xlconstant_4_dout;
+  assign di[47:0] = rram_top_wrapper_0_di;
   assign mclk_pause_out = mclk_pause_in;
   assign miso_led = rram_top_wrapper_0_miso;
   assign mosi_in = PROG_MOSI;
@@ -172,13 +169,6 @@ module ember_fpga
   assign sys_diff_clock_1_CLK_P = sys_diff_clock_clk_p;
   assign wl_dac_en[0] = xlconstant_0_dout;
   assign wl_en[0] = xlconstant_0_dout1;
-  ember_fpga_addr_loop_counter_0_0 addr_loop_counter_0
-       (.address_start(rram_top_wrapper_0_address_start),
-        .address_step(rram_top_wrapper_0_address_step),
-        .address_stop(rram_top_wrapper_0_address_stop),
-        .clk(clk_wiz_clk_out1),
-        .rram_addr(addr_loop_counter_0_rram_addr),
-        .rst_n(reset_2));
   ember_fpga_clk_wiz_0 clk_wiz
        (.clk_in1_n(sys_diff_clock_1_CLK_N),
         .clk_in1_p(sys_diff_clock_1_CLK_P),
@@ -196,14 +186,14 @@ module ember_fpga
         .probe0(sa_do_1),
         .probe1(sa_rdy_1),
         .probe2(rram_busy_in_1),
-        .probe3(addr_loop_counter_0_rram_addr));
+        .probe3(addr_loop_counter_0_rram_addr),
+        .probe4(rram_top_wrapper_0_di));
   ember_fpga_rram_top_wrapper_0_0 rram_top_wrapper_0
-       (.address_start(rram_top_wrapper_0_address_start),
-        .address_step(rram_top_wrapper_0_address_step),
-        .address_stop(rram_top_wrapper_0_address_stop),
+       (.di(rram_top_wrapper_0_di),
         .mclk_pause(mclk_pause_in),
         .miso(rram_top_wrapper_0_miso),
         .mosi(mosi_in),
+        .rram_addr(addr_loop_counter_0_rram_addr),
         .rram_busy(rram_top_wrapper_0_rram_busy),
         .rst_n(reset_2),
         .sa_do(sa_do_1),
@@ -221,6 +211,4 @@ module ember_fpga
        (.dout(xlconstant_2_dout));
   ember_fpga_xlconstant_3_0 xlconstant_3
        (.dout(xlconstant_3_dout));
-  ember_fpga_xlconstant_4_0 xlconstant_4
-       (.dout(xlconstant_4_dout));
 endmodule

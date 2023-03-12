@@ -12,11 +12,11 @@ module rram_top_wrapper (
 //  bsl_dac_config,
 //  bsl_dac_en,
 //  clamp_ref,
-//  di,
+  di,
 //  read_dac_config,
 //  read_dac_en,
 //  read_ref,
-//  rram_addr,
+  rram_addr,
 //  sa_clk,
 //  sa_en,
 //  set_rst,
@@ -26,11 +26,7 @@ module rram_top_wrapper (
 //  wl_dac_en,
 //  wl_en,
   sa_do,
-  sa_rdy,
-  
-  address_start,
-  address_stop,
-  address_step
+  sa_rdy
 );
 
 input wire mclk_pause;
@@ -46,11 +42,11 @@ output wire miso;
 //output wire [4 : 0] bsl_dac_config;
 //output wire bsl_dac_en;
 //output wire [5 : 0] clamp_ref;
-//output wire [47 : 0] di;
+output wire [47 : 0] di;
 //output wire [3 : 0] read_dac_config;
 //output wire read_dac_en;
 //output wire [5 : 0] read_ref;
-//output wire [15 : 0] rram_addr;
+output wire [15 : 0] rram_addr;
 //output wire sa_clk;
 //output wire sa_en;
 //output wire set_rst;
@@ -61,10 +57,6 @@ output wire miso;
 //output wire wl_en;
 input wire [47 : 0] sa_do;
 input wire sa_rdy;
-
-output wire [15 : 0] address_start;
-output wire [15 : 0] address_stop;
-output wire [15 : 0] address_step;
 
   rram_top inst (
     .mclk_pause(mclk_pause),
@@ -80,7 +72,7 @@ output wire [15 : 0] address_step;
 //    .bsl_dac_config(bsl_dac_config),
 //    .bsl_dac_en(bsl_dac_en),
 //    .clamp_ref(clamp_ref),
-//    .di(di),
+    .di(di),
 //    .read_dac_config(read_dac_config),
 //    .read_dac_en(read_dac_en),
 //    .read_ref(read_ref),
@@ -94,10 +86,6 @@ output wire [15 : 0] address_step;
 //    .wl_dac_en(wl_dac_en),
 //    .wl_en(wl_en),
     .sa_do(sa_do),
-    .sa_rdy(sa_rdy),
-    
-    .address_start(address_start),
-    .address_stop(address_stop),
-    .address_step(address_step)
+    .sa_rdy(sa_rdy)
   );
 endmodule

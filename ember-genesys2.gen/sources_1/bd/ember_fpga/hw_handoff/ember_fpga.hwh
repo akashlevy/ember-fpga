@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Feb 17 11:31:39 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar 12 01:48:27 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -61,8 +61,8 @@
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
-        <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
         <CONNECTION INSTANCE="ila_0" PORT="probe2"/>
+        <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="rram_busy_led" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
@@ -128,7 +128,6 @@
         <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
         <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
-        <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rst_n"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="clksel" SIGIS="undef" SIGNAME="External_Ports_clksel">
@@ -176,9 +175,9 @@
         <CONNECTION INSTANCE="xlconstant_3" PORT="dout"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="47" NAME="di" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_4_dout">
+    <PORT DIR="O" LEFT="47" NAME="di" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_di">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="xlconstant_4" PORT="dout"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="di"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="3" NAME="read_dac_config" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_2_dout">
@@ -191,9 +190,9 @@
         <CONNECTION INSTANCE="External_Ports" PORT="sw"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
+    <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rram_addr"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_addr"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="clk_wiz_clk_out1">
@@ -250,47 +249,6 @@
   </EXTERNALINTERFACES>
 
   <MODULES>
-    <MODULE COREREVISION="1" FULLNAME="/addr_loop_counter_0" HWVERSION="1.0" INSTANCE="addr_loop_counter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="addr_loop_counter" VLNV="xilinx.com:module_ref:addr_loop_counter:1.0">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_addr_loop_counter_0_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clk" SIGIS="clk" SIGNAME="clk_wiz_clk_out1">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="clk_wiz" PORT="clk_out1"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="address_start" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_start">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_start"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="address_stop" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_stop">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_stop"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="15" NAME="address_step" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_step">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="address_step"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
-            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
     <MODULE COREREVISION="6" FULLNAME="/clk_wiz" HWVERSION="6.0" INSTANCE="clk_wiz" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:6.0">
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v6_0;d=pg065-clk-wiz.pdf"/>
@@ -886,10 +844,9 @@
         </PORT>
         <PORT CLKFREQUENCY="100000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_clk_out1">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="clkmux_0" PORT="fastclk"/>
             <CONNECTION INSTANCE="ila_0" PORT="clk"/>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
-            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="clk"/>
+            <CONNECTION INSTANCE="clkmux_0" PORT="fastclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out2" SIGIS="clk" SIGNAME="clk_wiz_clk_out2">
@@ -966,7 +923,7 @@
         <PARAMETER NAME="C_SLOT_0_AXI_PROTOCOL" VALUE="AXI4"/>
         <PARAMETER NAME="C_NUM_MONITOR_SLOTS" VALUE="1"/>
         <PARAMETER NAME="C_ENABLE_ILA_AXI_MON" VALUE="0"/>
-        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="4"/>
+        <PARAMETER NAME="C_NUM_OF_PROBES" VALUE="5"/>
         <PARAMETER NAME="C_DATA_DEPTH" VALUE="131072"/>
         <PARAMETER NAME="C_MAJOR_VERSION" VALUE="2020"/>
         <PARAMETER NAME="C_MINOR_VERSION" VALUE="2"/>
@@ -994,7 +951,7 @@
         <PARAMETER NAME="C_PROBE1_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE2_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE3_WIDTH" VALUE="16"/>
-        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE4_WIDTH" VALUE="48"/>
         <PARAMETER NAME="C_PROBE5_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_WIDTH" VALUE="1"/>
@@ -3042,7 +2999,7 @@
         <PARAMETER NAME="C_PROBE1_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE2_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE3_MU_CNT" VALUE="2"/>
-        <PARAMETER NAME="C_PROBE4_MU_CNT" VALUE="1"/>
+        <PARAMETER NAME="C_PROBE4_MU_CNT" VALUE="2"/>
         <PARAMETER NAME="C_PROBE5_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE6_MU_CNT" VALUE="1"/>
         <PARAMETER NAME="C_PROBE7_MU_CNT" VALUE="1"/>
@@ -4106,9 +4063,14 @@
             <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="addr_loop_counter_0_rram_addr">
+        <PORT DIR="I" LEFT="15" NAME="probe3" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="rram_addr"/>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_addr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="47" NAME="probe4" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_di">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="di"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -4157,6 +4119,18 @@
             <CONNECTION INSTANCE="External_Ports" PORT="miso_led"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="47" NAME="di" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_di">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="di"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe4"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="15" NAME="rram_addr" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_addr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
+            <CONNECTION INSTANCE="ila_0" PORT="probe3"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="I" LEFT="47" NAME="sa_do" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_sa_do">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_do"/>
@@ -4165,21 +4139,6 @@
         <PORT DIR="I" NAME="sa_rdy" SIGIS="undef" SIGNAME="External_Ports_sa_rdy">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_rdy"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="address_start" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_start">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_start"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="address_stop" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_stop">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_stop"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="15" NAME="address_step" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_address_step">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="addr_loop_counter_0" PORT="address_step"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -4280,23 +4239,6 @@
         <PORT DIR="O" LEFT="5" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_3_dout">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="clamp_ref"/>
-          </CONNECTIONS>
-        </PORT>
-      </PORTS>
-      <BUSINTERFACES/>
-    </MODULE>
-    <MODULE COREREVISION="7" FULLNAME="/xlconstant_4" HWVERSION="1.1" INSTANCE="xlconstant_4" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="xlconstant" VLNV="xilinx.com:ip:xlconstant:1.1">
-      <DOCUMENTS/>
-      <PARAMETERS>
-        <PARAMETER NAME="CONST_WIDTH" VALUE="48"/>
-        <PARAMETER NAME="CONST_VAL" VALUE="0xFFFFFFFFFFFF"/>
-        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_xlconstant_4_0"/>
-        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
-      </PARAMETERS>
-      <PORTS>
-        <PORT DIR="O" LEFT="47" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_4_dout">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="di"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

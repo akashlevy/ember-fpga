@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1676662990">
+<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1678617565">
   <File Type="VDS-TIMING-PB" Name="ember_fpga_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="ember_fpga_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="ember_fpga_wrapper.dcp"/>
@@ -82,13 +82,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/addr_loop_counter.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../emblem-digital/rtl/globals.v">
       <FileInfo SFType="VHeader">
         <Attr Name="IsGlobalInclude" Val="1"/>
@@ -154,10 +147,9 @@
       <Option Id="FsmExtraction">1</Option>
     </Step>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clkmux_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_rram_top_wrapper_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_ila_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_util_vector_logic_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_addr_loop_counter_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clkmux_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="ember_fpga_clk_wiz_0"/>
 </GenRun>

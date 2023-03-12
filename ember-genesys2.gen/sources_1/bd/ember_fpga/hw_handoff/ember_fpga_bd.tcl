@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# addr_loop_counter, clkmux, rram_top_wrapper
+# clkmux, rram_top_wrapper
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -216,17 +216,6 @@ proc create_root_design { parentCell } {
   set wl_dac_en [ create_bd_port -dir O -from 0 -to 0 wl_dac_en ]
   set wl_en [ create_bd_port -dir O -from 0 -to 0 wl_en ]
 
-  # Create instance: addr_loop_counter_0, and set properties
-  set block_name addr_loop_counter
-  set block_cell_name addr_loop_counter_0
-  if { [catch {set addr_loop_counter_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $addr_loop_counter_0 eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
   # Create instance: clk_wiz, and set properties
   set clk_wiz [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz ]
   set_property -dict [ list \
@@ -317,7 +306,7 @@ proc create_root_design { parentCell } {
    CONFIG.C_ENABLE_ILA_AXI_MON {false} \
    CONFIG.C_EN_STRG_QUAL {1} \
    CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {4} \
+   CONFIG.C_NUM_OF_PROBES {5} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE0_TYPE {1} \
    CONFIG.C_PROBE0_WIDTH {48} \
@@ -325,6 +314,8 @@ proc create_root_design { parentCell } {
    CONFIG.C_PROBE2_MU_CNT {2} \
    CONFIG.C_PROBE3_MU_CNT {2} \
    CONFIG.C_PROBE3_WIDTH {16} \
+   CONFIG.C_PROBE4_MU_CNT {2} \
+   CONFIG.C_PROBE4_WIDTH {48} \
  ] $ila_0
 
   # Create instance: rram_top_wrapper_0, and set properties
@@ -374,31 +365,22 @@ proc create_root_design { parentCell } {
    CONFIG.CONST_WIDTH {6} \
  ] $xlconstant_3
 
-  # Create instance: xlconstant_4, and set properties
-  set xlconstant_4 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_4 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {281474976710655} \
-   CONFIG.CONST_WIDTH {48} \
- ] $xlconstant_4
-
   # Create interface connections
   connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports sys_diff_clock] [get_bd_intf_pins clk_wiz/CLK_IN1_D]
 
   # Create port connections
   connect_bd_net -net PROG_SPIEN_1 [get_bd_ports PROG_SPIEN] [get_bd_ports spien_led]
   connect_bd_net -net PROG_SS_1 [get_bd_ports PROG_SS] [get_bd_pins util_vector_logic_0/Op1]
-  connect_bd_net -net addr_loop_counter_0_rram_addr [get_bd_ports rram_addr] [get_bd_pins addr_loop_counter_0/rram_addr] [get_bd_pins ila_0/probe3]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports sa_clk] [get_bd_pins addr_loop_counter_0/clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
+  connect_bd_net -net addr_loop_counter_0_rram_addr [get_bd_ports rram_addr] [get_bd_pins ila_0/probe3] [get_bd_pins rram_top_wrapper_0/rram_addr]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_ports sa_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
   connect_bd_net -net clk_wiz_clk_out2 [get_bd_ports sa_en] [get_bd_pins clk_wiz/clk_out2]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net clksel_1 [get_bd_ports clksel] [get_bd_pins clkmux_0/clksel]
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
   connect_bd_net -net mosi_in [get_bd_ports PROG_MOSI] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
-  connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins addr_loop_counter_0/rst_n] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
+  connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
   connect_bd_net -net rram_busy_in_1 [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led] [get_bd_ports rram_busy_out] [get_bd_pins clkmux_0/rram_busy] [get_bd_pins ila_0/probe2]
-  connect_bd_net -net rram_top_wrapper_0_address_start [get_bd_pins addr_loop_counter_0/address_start] [get_bd_pins rram_top_wrapper_0/address_start]
-  connect_bd_net -net rram_top_wrapper_0_address_step [get_bd_pins addr_loop_counter_0/address_step] [get_bd_pins rram_top_wrapper_0/address_step]
-  connect_bd_net -net rram_top_wrapper_0_address_stop [get_bd_pins addr_loop_counter_0/address_stop] [get_bd_pins rram_top_wrapper_0/address_stop]
+  connect_bd_net -net rram_top_wrapper_0_di [get_bd_ports di] [get_bd_pins ila_0/probe4] [get_bd_pins rram_top_wrapper_0/di]
   connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports PROG_MISO] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins rram_top_wrapper_0/rram_busy]
   connect_bd_net -net sa_do_1 [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
@@ -410,7 +392,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconstant_0_dout1 [get_bd_ports bl_en] [get_bd_ports bleed_en] [get_bd_ports read_dac_en] [get_bd_ports sl_en] [get_bd_ports wl_en] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_ports read_dac_config] [get_bd_pins xlconstant_2/dout]
   connect_bd_net -net xlconstant_3_dout [get_bd_ports clamp_ref] [get_bd_pins xlconstant_3/dout]
-  connect_bd_net -net xlconstant_4_dout [get_bd_ports di] [get_bd_pins xlconstant_4/dout]
 
   # Create address segments
 

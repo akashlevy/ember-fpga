@@ -468,3 +468,102 @@ report_timing -delay_type min_max -max_paths 10 -sort_by group -input_pins -rout
 report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
 close_design
 open_run impl_1
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+set_msg_config -suppress -id {Route 35-468} -string {{WARNING: [Route 35-468] The router encountered 51 pins that are both setup-critical and hold-critical and tried to fix hold violations at the expense of setup slack. Such pins are:
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][4]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][28]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][38]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][7]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][1]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][5]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][21]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][18]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][26]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][44]_i_2/I1
+	.. and 41 more pins.} } 
+delete_bd_objs [get_bd_nets rram_top_wrapper_0_address_start] [get_bd_nets rram_top_wrapper_0_address_stop] [get_bd_nets rram_top_wrapper_0_address_step] [get_bd_cells addr_loop_counter_0]
+update_compile_order -fileset sources_1
+undo
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+update_compile_order -fileset sources_1
+update_module_reference ember_fpga_addr_loop_counter_0_0
+update_module_reference ember_fpga_clkmux_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+delete_bd_objs [get_bd_nets rram_top_wrapper_0_address_start] [get_bd_nets rram_top_wrapper_0_address_stop] [get_bd_nets rram_top_wrapper_0_address_step] [get_bd_cells addr_loop_counter_0]
+update_compile_order -fileset sources_1
+export_ip_user_files -of_objects  [get_files /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/new/addr_loop_counter.v] -no_script -reset -force -quiet
+remove_files  /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/new/addr_loop_counter.v
+file delete -force /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/new/addr_loop_counter.v
+update_module_reference ember_fpga_addr_loop_counter_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+delete_bd_objs [get_bd_nets xlconstant_4_dout] [get_bd_cells xlconstant_4]
+connect_bd_net [get_bd_ports rram_addr] [get_bd_pins rram_top_wrapper_0/rram_addr]
+connect_bd_net [get_bd_ports di] [get_bd_pins rram_top_wrapper_0/di]
+startgroup
+set_property -dict [list CONFIG.C_PROBE4_WIDTH {48} CONFIG.C_NUM_OF_PROBES {5} CONFIG.C_PROBE4_MU_CNT {2}] [get_bd_cells ila_0]
+endgroup
+connect_bd_net [get_bd_pins ila_0/probe4] [get_bd_pins rram_top_wrapper_0/di]
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+reset_run ember_fpga_ila_0_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'rram_top' has 28 connections declared, but only 11 given [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]} } 
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+close_design
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+close_design
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+report_drc -name drc_1 -ruledecks {default}
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'trig_in' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7071} -string {{WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+set_msg_config -suppress -id {Synth 8-7023} -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]} } 
+reset_run impl_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+reset_run synth_1
+launch_runs impl_1 -jobs 48
+wait_on_run impl_1
+close_design
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+close_design
+reset_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+open_run synth_1 -name synth_1
+report_timing_summary -delay_type min_max -report_unconstrained -check_timing_verbose -max_paths 10 -input_pins -routable_nets -name timing_1
+report_methodology -name ultrafast_methodology_1
+report_methodology -name ultrafast_methodology_2
+close_design
+open_run impl_1
+report_methodology -name ultrafast_methodology_1
+report_drc -name drc_1 -ruledecks {default}

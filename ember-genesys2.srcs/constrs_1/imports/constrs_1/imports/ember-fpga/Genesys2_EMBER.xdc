@@ -608,9 +608,8 @@ set_input_delay -clock [get_clocks sclk] -min -add_delay 1.200 [get_ports {{sa_d
 set_input_delay -clock [get_clocks sclk] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
 set_input_delay -clock [get_clocks sclk] -clock_fall -max -add_delay 3.000 [get_ports PROG_MOSI]
-set _xlnx_shared_i0 [all_outputs]
-set_output_delay -clock [get_clocks sclk] -min -add_delay 0.000 $_xlnx_shared_i0
-set_output_delay -clock [get_clocks sclk] -max -add_delay 2.000 $_xlnx_shared_i0
+set_output_delay -clock [get_clocks sclk] -min -add_delay 0.000 [all_outputs]
+set_output_delay -clock [get_clocks sclk] -max -add_delay 2.000 [all_outputs]
 
 ## Add 100 MHz MCMM clock constraints
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 1.000 [get_ports {PROG_SS mclk_pause_in rram_busy_in reset clksel}]
@@ -619,8 +618,8 @@ set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/c
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -max -add_delay 3.000 [get_ports PROG_MOSI]
-set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 0.000 $_xlnx_shared_i0
-set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 2.000 $_xlnx_shared_i0
+set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 0.000 [all_outputs]
+set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 2.000 [all_outputs]
 
 ## Mark clocks as physically exclusive
 set_clock_groups -physically_exclusive -group sclk -group [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]]
@@ -630,7 +629,7 @@ set_max_delay -to [get_ports PROG_MISO] 20.000
 
 ## Mark {reset, clock multiplexing, LED indicator, out signal} paths as false
 set_false_path -from [get_ports {reset PROG_SS clksel}]
-set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out sa_en sa_clk {read_ref[*]} {rram_addr[*]}}]
+set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out sa_en sa_clk {read_ref[*]} {rram_addr[*]} {di[*]}}]
 
 ## Create waivers
 create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
