@@ -886,13 +886,12 @@
           "rram_top_wrapper_0/mclk_pause"
         ]
       },
-      "rram_busy_in_1": {
+      "rram_busy": {
         "ports": [
           "rram_busy_in",
           "rram_busy_led",
           "rram_busy_out",
-          "ila_0/probe2",
-          "clkmux_0/rram_busy"
+          "ila_0/probe2"
         ]
       },
       "clkmux_0_sclk_out": {
@@ -909,14 +908,14 @@
           "clkmux_0/sclk"
         ]
       },
-      "sa_rdy_1": {
+      "sa_rdy": {
         "ports": [
           "sa_rdy",
           "ila_0/probe1",
           "rram_top_wrapper_0/sa_rdy"
         ]
       },
-      "sa_do_1": {
+      "sa_do": {
         "ports": [
           "sa_do",
           "ila_0/probe0",
@@ -933,10 +932,11 @@
       "rram_top_wrapper_0_rram_busy": {
         "ports": [
           "rram_top_wrapper_0/rram_busy",
-          "rram_busy_fpga_led"
+          "rram_busy_fpga_led",
+          "clkmux_0/rram_busy"
         ]
       },
-      "clk_wiz_clk_out1": {
+      "clk": {
         "ports": [
           "clk_wiz/clk_out1",
           "ila_0/clk",
@@ -1008,21 +1008,21 @@
           "sa_en"
         ]
       },
-      "addr_loop_counter_0_rram_addr": {
+      "rram_addr": {
         "ports": [
           "rram_top_wrapper_0/rram_addr",
           "rram_addr",
           "ila_0/probe3"
         ]
       },
-      "rram_top_wrapper_0_di": {
+      "di": {
         "ports": [
           "rram_top_wrapper_0/di",
           "di",
           "ila_0/probe4"
         ]
       },
-      "rram_top_wrapper_0_read_ref": {
+      "read_ref": {
         "ports": [
           "rram_top_wrapper_0/read_ref",
           "read_ref",

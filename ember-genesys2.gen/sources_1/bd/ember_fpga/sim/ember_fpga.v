@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Mar 12 06:14:36 2023
+//Date        : Sun Mar 12 22:23:45 2023
 //Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -100,21 +100,21 @@ module ember_fpga
 
   wire PROG_SPIEN_1;
   wire PROG_SS_1;
-  wire [15:0]addr_loop_counter_0_rram_addr;
-  wire clk_wiz_clk_out1;
+  wire clk;
   wire clk_wiz_clk_out2;
   wire clkmux_0_sclk_out;
   wire clksel_1;
+  wire [47:0]di;
   wire mclk_pause_in;
   wire mosi_in;
+  wire [5:0]read_ref;
   wire reset_2;
-  wire rram_busy_in_1;
-  wire [47:0]rram_top_wrapper_0_di;
+  wire [15:0]rram_addr;
+  wire rram_busy;
   wire rram_top_wrapper_0_miso;
-  wire [5:0]rram_top_wrapper_0_read_ref;
   wire rram_top_wrapper_0_rram_busy;
-  wire [47:0]sa_do_1;
-  wire sa_rdy_1;
+  wire [47:0]sa_do;
+  wire sa_rdy;
   wire [0:0]sc_in;
   wire sclk_in_1;
   wire sys_diff_clock_1_CLK_N;
@@ -133,7 +133,6 @@ module ember_fpga
   assign bsl_dac_en[0] = xlconstant_0_dout;
   assign clamp_ref[5:0] = xlconstant_3_dout;
   assign clksel_1 = clksel;
-  assign di[47:0] = rram_top_wrapper_0_di;
   assign mclk_pause_out = mclk_pause_in;
   assign miso_led = rram_top_wrapper_0_miso;
   assign mosi_in = PROG_MOSI;
@@ -141,19 +140,15 @@ module ember_fpga
   assign mosi_out = mosi_in;
   assign read_dac_config[3:0] = xlconstant_2_dout;
   assign read_dac_en[0] = xlconstant_0_dout1;
-  assign read_ref[5:0] = rram_top_wrapper_0_read_ref;
   assign reset_2 = reset;
-  assign rram_addr[15:0] = addr_loop_counter_0_rram_addr;
+  assign rram_busy = rram_busy_in;
   assign rram_busy_fpga_led = rram_top_wrapper_0_rram_busy;
-  assign rram_busy_in_1 = rram_busy_in;
-  assign rram_busy_led = rram_busy_in_1;
-  assign rram_busy_out = rram_busy_in_1;
+  assign rram_busy_led = rram_busy;
+  assign rram_busy_out = rram_busy;
   assign rst_n_led = reset_2;
   assign rst_n_out = reset_2;
-  assign sa_clk = clk_wiz_clk_out1;
-  assign sa_do_1 = sa_do[47:0];
+  assign sa_clk = clk;
   assign sa_en[0] = clk_wiz_clk_out2;
-  assign sa_rdy_1 = sa_rdy;
   assign sc_led[0] = sc_in;
   assign sc_out[0] = sc_in;
   assign sclk_in_1 = PROG_SCK;
@@ -169,34 +164,34 @@ module ember_fpga
   ember_fpga_clk_wiz_0 clk_wiz
        (.clk_in1_n(sys_diff_clock_1_CLK_N),
         .clk_in1_p(sys_diff_clock_1_CLK_P),
-        .clk_out1(clk_wiz_clk_out1),
+        .clk_out1(clk),
         .clk_out2(clk_wiz_clk_out2),
         .resetn(reset_2));
   ember_fpga_clkmux_0_0 clkmux_0
        (.clk_out(clkmux_0_sclk_out),
         .clksel(clksel_1),
-        .fastclk(clk_wiz_clk_out1),
-        .rram_busy(rram_busy_in_1),
+        .fastclk(clk),
+        .rram_busy(rram_top_wrapper_0_rram_busy),
         .sclk(sclk_in_1));
   ember_fpga_ila_0_0 ila_0
-       (.clk(clk_wiz_clk_out1),
-        .probe0(sa_do_1),
-        .probe1(sa_rdy_1),
-        .probe2(rram_busy_in_1),
-        .probe3(addr_loop_counter_0_rram_addr),
-        .probe4(rram_top_wrapper_0_di),
-        .probe5(rram_top_wrapper_0_read_ref));
+       (.clk(clk),
+        .probe0(sa_do),
+        .probe1(sa_rdy),
+        .probe2(rram_busy),
+        .probe3(rram_addr),
+        .probe4(di),
+        .probe5(read_ref));
   ember_fpga_rram_top_wrapper_0_0 rram_top_wrapper_0
-       (.di(rram_top_wrapper_0_di),
+       (.di(di),
         .mclk_pause(mclk_pause_in),
         .miso(rram_top_wrapper_0_miso),
         .mosi(mosi_in),
-        .read_ref(rram_top_wrapper_0_read_ref),
-        .rram_addr(addr_loop_counter_0_rram_addr),
+        .read_ref(read_ref),
+        .rram_addr(rram_addr),
         .rram_busy(rram_top_wrapper_0_rram_busy),
         .rst_n(reset_2),
-        .sa_do(sa_do_1),
-        .sa_rdy(sa_rdy_1),
+        .sa_do(sa_do),
+        .sa_rdy(sa_rdy),
         .sc(sc_in),
         .sclk(clkmux_0_sclk_out));
   ember_fpga_util_vector_logic_0_0 util_vector_logic_0

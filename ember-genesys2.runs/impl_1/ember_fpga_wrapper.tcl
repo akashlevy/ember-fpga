@@ -277,6 +277,10 @@ set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 8 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'rram_top' has 28 connections declared, but only 12 given [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Route 35-468}  -string {{WARNING: [Route 35-468] The router encountered 3 pins that are both setup-critical and hold-critical and tried to fix hold violations at the expense of setup slack. Such pins are:
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][38]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][10]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][39]_i_2/I1}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
@@ -369,42 +373,16 @@ set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 10
-OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xc7k325tffg900-2
-  set_property board_part_repo_paths {/home/akashl/.Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]
-  set_property board_part digilentinc.com:genesys2:part0:1.1 [current_project]
-  set_property design_mode GateLvl [current_fileset]
-  set_param project.singleFileAddWarning.threshold 0
-OPTRACE "create in-memory project" END { }
-OPTRACE "set parameters" START { }
+  reset_param project.defaultXPMLibraries 
+  open_checkpoint /sim2/akashl/ember-fpga/ember-genesys2.runs/impl_1/ember_fpga_wrapper.dcp
   set_property webtalk.parent_dir /sim2/akashl/ember-fpga/ember-genesys2.cache/wt [current_project]
   set_property parent.project_path /sim2/akashl/ember-fpga/ember-genesys2.xpr [current_project]
   set_property ip_output_repo /sim2/akashl/ember-fpga/ember-genesys2.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-OPTRACE "set parameters" END { }
-OPTRACE "add files" START { }
-  add_files -quiet /sim2/akashl/ember-fpga/ember-genesys2.runs/synth_1/ember_fpga_wrapper.dcp
-  set_msg_config -source 4 -id {BD 41-1661} -limit 0
-  set_param project.isImplRun true
-  add_files /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd
-  set_param project.isImplRun false
-OPTRACE "read constraints: implementation" START { }
-  read_xdc /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/imports/constrs_1/imports/ember-fpga/Genesys2_EMBER.xdc
-  read_xdc /sim2/akashl/ember-fpga/ember-genesys2.srcs/constrs_1/new/Genesys2_EMBER_Impl.xdc
-OPTRACE "read constraints: implementation" END { }
-OPTRACE "add files" END { }
-OPTRACE "link_design" START { }
-  set_param project.isImplRun true
-  link_design -top ember_fpga_wrapper -part xc7k325tffg900-2
-OPTRACE "link_design" END { }
-  set_param project.isImplRun false
-OPTRACE "gray box cells" START { }
-OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }
-  write_hwdef -force -file ember_fpga_wrapper.hwdef
 OPTRACE "init_design_write_hwdef" END { }
   close_msg_db -file init_design.pb
 } RESULT]

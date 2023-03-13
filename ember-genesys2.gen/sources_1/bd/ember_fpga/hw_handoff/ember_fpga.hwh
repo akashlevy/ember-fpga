@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar 12 06:14:38 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Mar 12 22:23:46 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -62,7 +62,6 @@
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_led"/>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
         <CONNECTION INSTANCE="ila_0" PORT="probe2"/>
-        <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="rram_busy_led" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
@@ -883,9 +882,9 @@
             <CONNECTION INSTANCE="External_Ports" PORT="clksel"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="rram_busy" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+        <PORT DIR="I" NAME="rram_busy" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_busy"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="clk_out" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
@@ -4096,6 +4095,7 @@
         <PORT DIR="O" NAME="rram_busy" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_fpga_led"/>
+            <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sclk" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
