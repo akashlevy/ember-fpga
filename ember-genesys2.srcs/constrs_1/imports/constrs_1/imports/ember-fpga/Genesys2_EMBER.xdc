@@ -602,8 +602,8 @@ set_clock_uncertainty -setup 0.300 [get_clocks sclk]
 set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 
 ## Add sclk constraints
-set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {{sw[*]} PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
-set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {{sw[*]} PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
 set_input_delay -clock [get_clocks sclk] -min -add_delay 1.200 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
