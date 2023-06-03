@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed May 31 21:41:28 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun  2 23:55:51 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -191,9 +191,9 @@
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_addr"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_clk">
+    <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_clk"/>
+        <CONNECTION INSTANCE="clkmux_0" PORT="clk_out"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="0" NAME="sa_en" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_en">
@@ -897,6 +897,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="sclk_out"/>
             <CONNECTION INSTANCE="External_Ports" PORT="sclk_led"/>
             <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sclk"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1001,11 +1002,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="sa_clk" SIGIS="clk" SIGNAME="rram_top_wrapper_0_sa_clk">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="sa_clk" SIGIS="clk"/>
         <PORT DIR="O" NAME="sa_en" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_en">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_en"/>
