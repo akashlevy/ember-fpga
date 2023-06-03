@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun  2 23:55:51 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat Jun  3 02:58:10 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -59,7 +59,6 @@
     <PORT DIR="I" NAME="rram_busy_in" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
       <CONNECTIONS>
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_led"/>
-        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" NAME="rram_busy_led" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
@@ -67,9 +66,9 @@
         <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="rram_busy_out" SIGIS="undef" SIGNAME="External_Ports_rram_busy_in">
+    <PORT DIR="O" NAME="rram_busy_out" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_in"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_busy"/>
       </CONNECTIONS>
     </PORT>
     <PORT CLKFREQUENCY="33000000" DIR="I" NAME="PROG_SCK" SIGIS="clk" SIGNAME="External_Ports_PROG_SCK">
@@ -191,9 +190,9 @@
         <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rram_addr"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
+    <PORT DIR="O" NAME="sa_clk" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="clkmux_0" PORT="clk_out"/>
+        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sa_clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="0" NAME="sa_en" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_en">
@@ -897,7 +896,6 @@
             <CONNECTION INSTANCE="External_Ports" PORT="sclk_out"/>
             <CONNECTION INSTANCE="External_Ports" PORT="sclk_led"/>
             <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sclk"/>
-            <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -924,6 +922,7 @@
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_fpga_led"/>
             <CONNECTION INSTANCE="clkmux_0" PORT="rram_busy"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="rram_busy_out"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="sclk" SIGIS="undef" SIGNAME="clkmux_0_clk_out">
@@ -1002,7 +1001,11 @@
             <CONNECTION INSTANCE="External_Ports" PORT="rram_addr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="sa_clk" SIGIS="clk"/>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="sa_clk" SIGIS="clk" SIGNAME="rram_top_wrapper_0_sa_clk">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="sa_clk"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="sa_en" SIGIS="undef" SIGNAME="rram_top_wrapper_0_sa_en">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="sa_en"/>

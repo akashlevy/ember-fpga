@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Fri Jun  2 23:55:50 2023
+//Date        : Sat Jun  3 02:58:10 2023
 //Host        : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -126,6 +126,7 @@ module ember_fpga
   wire [3:0]rram_top_wrapper_0_read_dac_config;
   wire rram_top_wrapper_0_read_dac_en;
   wire rram_top_wrapper_0_rram_busy;
+  wire rram_top_wrapper_0_sa_clk;
   wire rram_top_wrapper_0_sa_en;
   wire rram_top_wrapper_0_set_rst;
   wire rram_top_wrapper_0_sl_en;
@@ -161,10 +162,10 @@ module ember_fpga
   assign rram_busy = rram_busy_in;
   assign rram_busy_fpga_led = rram_top_wrapper_0_rram_busy;
   assign rram_busy_led = rram_busy;
-  assign rram_busy_out = rram_busy;
+  assign rram_busy_out = rram_top_wrapper_0_rram_busy;
   assign rst_n_led = reset_2;
   assign rst_n_out = reset_2;
-  assign sa_clk = clkmux_0_sclk_out;
+  assign sa_clk = rram_top_wrapper_0_sa_clk;
   assign sa_en[0] = rram_top_wrapper_0_sa_en;
   assign sc_led[0] = sc_in;
   assign sc_out[0] = sc_in;
@@ -208,6 +209,7 @@ module ember_fpga
         .rram_addr(rram_addr),
         .rram_busy(rram_top_wrapper_0_rram_busy),
         .rst_n(reset_2),
+        .sa_clk(rram_top_wrapper_0_sa_clk),
         .sa_do(sa_do),
         .sa_en(rram_top_wrapper_0_sa_en),
         .sa_rdy(sa_rdy),

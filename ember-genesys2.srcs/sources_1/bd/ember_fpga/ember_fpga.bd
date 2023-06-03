@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5CF7F86CD303A55F",
+      "boundary_crc": "0x5CF7F86C124BE35C",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -302,8 +302,8 @@
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
-            "value": "33000000",
-            "value_src": "user_prop"
+            "value": "100000000",
+            "value_src": "default_prop"
           },
           "PHASE": {
             "value": "0.000",
@@ -883,8 +883,7 @@
       "rram_busy": {
         "ports": [
           "rram_busy_in",
-          "rram_busy_led",
-          "rram_busy_out"
+          "rram_busy_led"
         ]
       },
       "clkmux_0_sclk_out": {
@@ -892,8 +891,7 @@
           "clkmux_0/clk_out",
           "sclk_out",
           "sclk_led",
-          "rram_top_wrapper_0/sclk",
-          "sa_clk"
+          "rram_top_wrapper_0/sclk"
         ]
       },
       "sclk_in_1": {
@@ -925,7 +923,8 @@
         "ports": [
           "rram_top_wrapper_0/rram_busy",
           "rram_busy_fpga_led",
-          "clkmux_0/rram_busy"
+          "clkmux_0/rram_busy",
+          "rram_busy_out"
         ]
       },
       "clk": {
@@ -1067,6 +1066,12 @@
         "ports": [
           "rram_top_wrapper_0/wl_dac_config",
           "wl_dac_config"
+        ]
+      },
+      "rram_top_wrapper_0_sa_clk": {
+        "ports": [
+          "rram_top_wrapper_0/sa_clk",
+          "sa_clk"
         ]
       }
     }
