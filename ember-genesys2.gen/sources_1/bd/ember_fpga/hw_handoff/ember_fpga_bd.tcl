@@ -178,6 +178,7 @@ proc create_root_design { parentCell } {
   set aclk [ create_bd_port -dir O -from 0 -to 0 aclk ]
   set bl_en [ create_bd_port -dir O -from 0 -to 0 bl_en ]
   set bleed_en [ create_bd_port -dir O -from 0 -to 0 bleed_en ]
+  set bsl_dac_config [ create_bd_port -dir O -from 4 -to 0 bsl_dac_config ]
   set bsl_dac_en [ create_bd_port -dir O -from 0 -to 0 bsl_dac_en ]
   set clamp_ref [ create_bd_port -dir O -from 5 -to 0 clamp_ref ]
   set clksel [ create_bd_port -dir I clksel ]
@@ -212,6 +213,8 @@ proc create_root_design { parentCell } {
   set set_rst [ create_bd_port -dir O -from 0 -to 0 set_rst ]
   set sl_en [ create_bd_port -dir O -from 0 -to 0 sl_en ]
   set spien_led [ create_bd_port -dir O spien_led ]
+  set we [ create_bd_port -dir O we ]
+  set wl_dac_config [ create_bd_port -dir O -from 7 -to 0 wl_dac_config ]
   set wl_dac_en [ create_bd_port -dir O -from 0 -to 0 wl_dac_en ]
   set wl_en [ create_bd_port -dir O -from 0 -to 0 wl_en ]
 
@@ -235,7 +238,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT2_REQUESTED_DUTY_CYCLE {80} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {50} \
    CONFIG.CLKOUT2_REQUESTED_PHASE {-54} \
-   CONFIG.CLKOUT2_USED {true} \
+   CONFIG.CLKOUT2_USED {false} \
    CONFIG.CLKOUT3_DRIVES {BUFG} \
    CONFIG.CLKOUT3_JITTER {129.198} \
    CONFIG.CLKOUT3_PHASE_ERROR {89.971} \
@@ -260,7 +263,7 @@ proc create_root_design { parentCell } {
    CONFIG.MMCM_CLKIN1_PERIOD {5.000} \
    CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
    CONFIG.MMCM_CLKOUT0_DIVIDE_F {10.000} \
-   CONFIG.MMCM_CLKOUT1_DIVIDE {20} \
+   CONFIG.MMCM_CLKOUT1_DIVIDE {1} \
    CONFIG.MMCM_CLKOUT1_DUTY_CYCLE {0.800} \
    CONFIG.MMCM_CLKOUT1_PHASE {-54.000} \
    CONFIG.MMCM_CLKOUT2_DIVIDE {1} \
@@ -268,7 +271,7 @@ proc create_root_design { parentCell } {
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
    CONFIG.MMCM_REF_JITTER2 {0.010} \
-   CONFIG.NUM_OUT_CLKS {2} \
+   CONFIG.NUM_OUT_CLKS {1} \
    CONFIG.PHASE_DUTY_CONFIG {false} \
    CONFIG.PRIMITIVE {MMCM} \
    CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} \
@@ -297,28 +300,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  # Create instance: ila_0, and set properties
-  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
-  set_property -dict [ list \
-   CONFIG.ALL_PROBE_SAME_MU_CNT {2} \
-   CONFIG.C_DATA_DEPTH {131072} \
-   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
-   CONFIG.C_EN_STRG_QUAL {1} \
-   CONFIG.C_MONITOR_TYPE {Native} \
-   CONFIG.C_NUM_OF_PROBES {6} \
-   CONFIG.C_PROBE0_MU_CNT {2} \
-   CONFIG.C_PROBE0_TYPE {1} \
-   CONFIG.C_PROBE0_WIDTH {48} \
-   CONFIG.C_PROBE1_MU_CNT {2} \
-   CONFIG.C_PROBE2_MU_CNT {2} \
-   CONFIG.C_PROBE3_MU_CNT {2} \
-   CONFIG.C_PROBE3_WIDTH {16} \
-   CONFIG.C_PROBE4_MU_CNT {2} \
-   CONFIG.C_PROBE4_WIDTH {48} \
-   CONFIG.C_PROBE5_MU_CNT {2} \
-   CONFIG.C_PROBE5_WIDTH {6} \
- ] $ila_0
-
   # Create instance: rram_top_wrapper_0, and set properties
   set block_name rram_top_wrapper
   set block_cell_name rram_top_wrapper_0
@@ -338,61 +319,44 @@ proc create_root_design { parentCell } {
    CONFIG.LOGO_FILE {data/sym_notgate.png} \
  ] $util_vector_logic_0
 
-  # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {0} \
-   CONFIG.CONST_WIDTH {1} \
- ] $xlconstant_0
-
-  # Create instance: xlconstant_1, and set properties
-  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {1} \
-   CONFIG.CONST_WIDTH {1} \
- ] $xlconstant_1
-
-  # Create instance: xlconstant_2, and set properties
-  set xlconstant_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_2 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {1} \
-   CONFIG.CONST_WIDTH {4} \
- ] $xlconstant_2
-
-  # Create instance: xlconstant_3, and set properties
-  set xlconstant_3 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_3 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {1} \
-   CONFIG.CONST_WIDTH {6} \
- ] $xlconstant_3
-
   # Create interface connections
   connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports sys_diff_clock] [get_bd_intf_pins clk_wiz/CLK_IN1_D]
 
   # Create port connections
   connect_bd_net -net PROG_SPIEN_1 [get_bd_ports PROG_SPIEN] [get_bd_ports spien_led]
   connect_bd_net -net PROG_SS_1 [get_bd_ports PROG_SS] [get_bd_pins util_vector_logic_0/Op1]
-  connect_bd_net -net clk [get_bd_ports sa_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk] [get_bd_pins ila_0/clk]
-  connect_bd_net -net clk_wiz_clk_out2 [get_bd_ports sa_en] [get_bd_pins clk_wiz/clk_out2]
+  connect_bd_net -net clk [get_bd_pins clk_wiz/clk_out1] [get_bd_pins clkmux_0/fastclk]
   connect_bd_net -net clkmux_0_sclk_out [get_bd_ports sclk_led] [get_bd_ports sclk_out] [get_bd_pins clkmux_0/clk_out] [get_bd_pins rram_top_wrapper_0/sclk]
   connect_bd_net -net clksel_1 [get_bd_ports clksel] [get_bd_pins clkmux_0/clksel]
-  connect_bd_net -net di [get_bd_ports di] [get_bd_pins ila_0/probe4] [get_bd_pins rram_top_wrapper_0/di]
+  connect_bd_net -net di [get_bd_ports di] [get_bd_pins rram_top_wrapper_0/di]
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
   connect_bd_net -net mosi_in [get_bd_ports PROG_MOSI] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
-  connect_bd_net -net read_ref [get_bd_ports read_ref] [get_bd_pins ila_0/probe5] [get_bd_pins rram_top_wrapper_0/read_ref]
+  connect_bd_net -net read_ref [get_bd_ports read_ref] [get_bd_pins rram_top_wrapper_0/read_ref]
   connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
-  connect_bd_net -net rram_addr [get_bd_ports rram_addr] [get_bd_pins ila_0/probe3] [get_bd_pins rram_top_wrapper_0/rram_addr]
-  connect_bd_net -net rram_busy [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led] [get_bd_ports rram_busy_out] [get_bd_pins ila_0/probe2]
+  connect_bd_net -net rram_addr [get_bd_ports rram_addr] [get_bd_pins rram_top_wrapper_0/rram_addr]
+  connect_bd_net -net rram_busy [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led] [get_bd_ports rram_busy_out]
+  connect_bd_net -net rram_top_wrapper_0_aclk [get_bd_ports aclk] [get_bd_pins rram_top_wrapper_0/aclk]
+  connect_bd_net -net rram_top_wrapper_0_bl_en [get_bd_ports bl_en] [get_bd_pins rram_top_wrapper_0/bl_en]
+  connect_bd_net -net rram_top_wrapper_0_bleed_en [get_bd_ports bleed_en] [get_bd_pins rram_top_wrapper_0/bleed_en]
+  connect_bd_net -net rram_top_wrapper_0_bsl_dac_config [get_bd_ports bsl_dac_config] [get_bd_pins rram_top_wrapper_0/bsl_dac_config]
+  connect_bd_net -net rram_top_wrapper_0_bsl_dac_en [get_bd_ports bsl_dac_en] [get_bd_pins rram_top_wrapper_0/bsl_dac_en]
+  connect_bd_net -net rram_top_wrapper_0_clamp_ref [get_bd_ports clamp_ref] [get_bd_pins rram_top_wrapper_0/clamp_ref]
   connect_bd_net -net rram_top_wrapper_0_miso [get_bd_ports PROG_MISO] [get_bd_ports miso_led] [get_bd_pins rram_top_wrapper_0/miso]
+  connect_bd_net -net rram_top_wrapper_0_read_dac_config [get_bd_ports read_dac_config] [get_bd_pins rram_top_wrapper_0/read_dac_config]
+  connect_bd_net -net rram_top_wrapper_0_read_dac_en [get_bd_ports read_dac_en] [get_bd_pins rram_top_wrapper_0/read_dac_en]
   connect_bd_net -net rram_top_wrapper_0_rram_busy [get_bd_ports rram_busy_fpga_led] [get_bd_pins clkmux_0/rram_busy] [get_bd_pins rram_top_wrapper_0/rram_busy]
-  connect_bd_net -net sa_do [get_bd_ports sa_do] [get_bd_pins ila_0/probe0] [get_bd_pins rram_top_wrapper_0/sa_do]
-  connect_bd_net -net sa_rdy [get_bd_ports sa_rdy] [get_bd_pins ila_0/probe1] [get_bd_pins rram_top_wrapper_0/sa_rdy]
+  connect_bd_net -net rram_top_wrapper_0_sa_clk [get_bd_ports sa_clk] [get_bd_pins rram_top_wrapper_0/sa_clk]
+  connect_bd_net -net rram_top_wrapper_0_sa_en [get_bd_ports sa_en] [get_bd_pins rram_top_wrapper_0/sa_en]
+  connect_bd_net -net rram_top_wrapper_0_set_rst [get_bd_ports set_rst] [get_bd_pins rram_top_wrapper_0/set_rst]
+  connect_bd_net -net rram_top_wrapper_0_sl_en [get_bd_ports sl_en] [get_bd_pins rram_top_wrapper_0/sl_en]
+  connect_bd_net -net rram_top_wrapper_0_we [get_bd_ports we] [get_bd_pins rram_top_wrapper_0/we]
+  connect_bd_net -net rram_top_wrapper_0_wl_dac_config [get_bd_ports wl_dac_config] [get_bd_pins rram_top_wrapper_0/wl_dac_config]
+  connect_bd_net -net rram_top_wrapper_0_wl_dac_en [get_bd_ports wl_dac_en] [get_bd_pins rram_top_wrapper_0/wl_dac_en]
+  connect_bd_net -net rram_top_wrapper_0_wl_en [get_bd_ports wl_en] [get_bd_pins rram_top_wrapper_0/wl_en]
+  connect_bd_net -net sa_do [get_bd_ports sa_do] [get_bd_pins rram_top_wrapper_0/sa_do]
+  connect_bd_net -net sa_rdy [get_bd_ports sa_rdy] [get_bd_pins rram_top_wrapper_0/sa_rdy]
   connect_bd_net -net sc_in [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net sclk_in_1 [get_bd_ports PROG_SCK] [get_bd_pins clkmux_0/sclk]
-  connect_bd_net -net xlconstant_0_dout [get_bd_ports aclk] [get_bd_ports bsl_dac_en] [get_bd_ports set_rst] [get_bd_ports wl_dac_en] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net xlconstant_0_dout1 [get_bd_ports bl_en] [get_bd_ports bleed_en] [get_bd_ports read_dac_en] [get_bd_ports sl_en] [get_bd_ports wl_en] [get_bd_pins xlconstant_1/dout]
-  connect_bd_net -net xlconstant_2_dout [get_bd_ports read_dac_config] [get_bd_pins xlconstant_2/dout]
-  connect_bd_net -net xlconstant_3_dout [get_bd_ports clamp_ref] [get_bd_pins xlconstant_3/dout]
 
   # Create address segments
 

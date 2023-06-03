@@ -11,28 +11,13 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga 
 # IP: bd/ember_fpga/ip/ember_fpga_clk_wiz_0/ember_fpga_clk_wiz_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_clk_wiz_0 || ORIG_REF_NAME==ember_fpga_clk_wiz_0} -quiet] -quiet
 
-# IP: bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_clkmux_0_0 || ORIG_REF_NAME==ember_fpga_clkmux_0_0} -quiet] -quiet
-
 # IP: bd/ember_fpga/ip/ember_fpga_util_vector_logic_0_0/ember_fpga_util_vector_logic_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_util_vector_logic_0_0 || ORIG_REF_NAME==ember_fpga_util_vector_logic_0_0} -quiet] -quiet
 
-# IP: bd/ember_fpga/ip/ember_fpga_xlconstant_0_0/ember_fpga_xlconstant_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_xlconstant_0_0 || ORIG_REF_NAME==ember_fpga_xlconstant_0_0} -quiet] -quiet
-
-# IP: bd/ember_fpga/ip/ember_fpga_xlconstant_0_1/ember_fpga_xlconstant_0_1.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_xlconstant_0_1 || ORIG_REF_NAME==ember_fpga_xlconstant_0_1} -quiet] -quiet
+# IP: bd/ember_fpga/ip/ember_fpga_clkmux_0_0/ember_fpga_clkmux_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_clkmux_0_0 || ORIG_REF_NAME==ember_fpga_clkmux_0_0} -quiet] -quiet
 
 # IP: bd/ember_fpga/ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_rram_top_wrapper_0_0 || ORIG_REF_NAME==ember_fpga_rram_top_wrapper_0_0} -quiet] -quiet
-
-# IP: bd/ember_fpga/ip/ember_fpga_ila_0_0/ember_fpga_ila_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_ila_0_0 || ORIG_REF_NAME==ember_fpga_ila_0_0} -quiet] -quiet
-
-# IP: bd/ember_fpga/ip/ember_fpga_xlconstant_2_0/ember_fpga_xlconstant_2_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_xlconstant_2_0 || ORIG_REF_NAME==ember_fpga_xlconstant_2_0} -quiet] -quiet
-
-# IP: bd/ember_fpga/ip/ember_fpga_xlconstant_3_0/ember_fpga_xlconstant_3_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==ember_fpga_xlconstant_3_0 || ORIG_REF_NAME==ember_fpga_xlconstant_3_0} -quiet] -quiet
 
 # XDC: /sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ember_fpga_ooc.xdc

@@ -1,8 +1,8 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Sun Mar 12 22:30:18 2023
-| Host         : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
+| Date         : Fri Jun  2 00:35:22 2023
+| Host         : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_drc -file ember_fpga_wrapper_drc_opted.rpt -pb ember_fpga_wrapper_drc_opted.pb -rpx ember_fpga_wrapper_drc_opted.rpx
 | Design       : ember_fpga_wrapper
 | Device       : xc7k325tffg900-2
@@ -20,7 +20,7 @@ Table of Contents
 1. REPORT SUMMARY
 -----------------
             Netlist: netlist
-          Floorplan: checkpoint_ember_fpga_wrapper
+          Floorplan: design_1
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>

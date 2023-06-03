@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "ember_fpga_rram_top_wrapper_0_0_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 10
 set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL-1065} -limit 10000
 set_msg_config  -id {Common 17-576}  -suppress 
@@ -224,7 +223,19 @@ set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'peri
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3217]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'clk_nobuf' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'clkdiv_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_in' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_in_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'trig_out_ack' of module 'ila_v6_2_11_ila' is unconnected for instance 'inst' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'ila_v6_2_11_ila' has 1033 connections declared, but only 1027 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/ip/ember_fpga_ila_0_0/synth/ember_fpga_ila_0_0.v:3219]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 8 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:183]}}  -suppress 
+set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'inst' of module 'rram_top' has 28 connections declared, but only 12 given [/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/imports/new/rram_top_wrapper.v:61]}}  -suppress 
+set_msg_config  -id {Route 35-468}  -string {{WARNING: [Route 35-468] The router encountered 3 pins that are both setup-critical and hold-critical and tried to fix hold violations at the expense of setup slack. Such pins are:
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][38]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][10]_i_2/I1
+	ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/read_data_bits[1][39]_i_2/I1}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'jtag_axi_0' of module 'ember_fpga_jtag_axi_0_1' has 21 connections declared, but only 19 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
 set_msg_config  -id {Synth 8-7023}  -string {{WARNING: [Synth 8-7023] instance 'proc_sys_reset_1' of module 'ember_fpga_proc_sys_reset_1_0' has 10 connections declared, but only 7 given [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:182]}}  -suppress 
 set_msg_config  -id {Synth 8-7071}  -string {{WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'ember_fpga_jtag_axi_0_1' is unconnected for instance 'jtag_axi_0' [/sim2/akashl/ember-fpga/ember-genesys2.gen/sources_1/bd/ember_fpga/synth/ember_fpga.v:162]}}  -suppress 
@@ -319,7 +330,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /sim2/akashl/ember-fpga/ember-genesys2.cache/wt [current_project]
 set_property parent.project_path /sim2/akashl/ember-fpga/ember-genesys2.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES XPM_CDC [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {/home/akashl/.Xilinx/Vivado/2020.2/xhub/board_store/xilinx_board_store} [current_project]

@@ -39,6 +39,16 @@ set_property src_info {type:XDC file:1 line:197 export:INPUT save:INPUT read:REA
 set_property -dict {PACKAGE_PIN C15 IOSTANDARD LVCMOS25} [get_ports bl_en]
 set_property src_info {type:XDC file:1 line:198 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS25} [get_ports bleed_en]
+set_property src_info {type:XDC file:1 line:199 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN G20   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[0] }]; #IO_L2N_T0_17 Sch=fmc_la_n
+set_property src_info {type:XDC file:1 line:200 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN F11   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[1] }]; #IO_L16P_T2_18 Sch=fmc_hb_p
+set_property src_info {type:XDC file:1 line:201 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN J14   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[2] }]; #IO_L5N_T0_18 Sch=fmc_hb_n
+set_property src_info {type:XDC file:1 line:202 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN J12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[3] }]; #IO_L8N_T1_18 Sch=fmc_hb_n
+set_property src_info {type:XDC file:1 line:203 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN L12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[4] }]; #IO_L3P_T0_DQS_18 Sch=fmc_hb_p
 set_property src_info {type:XDC file:1 line:204 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN A13 IOSTANDARD LVCMOS25} [get_ports bsl_dac_en]
 set_property src_info {type:XDC file:1 line:205 export:INPUT save:INPUT read:READ} [current_design]
@@ -309,35 +319,49 @@ set_property src_info {type:XDC file:1 line:337 export:INPUT save:INPUT read:REA
 set_property -dict {PACKAGE_PIN M29 IOSTANDARD LVCMOS25} [get_ports set_rst]
 set_property src_info {type:XDC file:1 line:338 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN P21 IOSTANDARD LVCMOS25} [get_ports sl_en]
+set_property src_info {type:XDC file:1 line:339 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN B27   IOSTANDARD LVCMOS25 } [get_ports { we }]; #IO_L7P_T1_16 Sch=fmc_la_p[10]
+set_property src_info {type:XDC file:1 line:340 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN A28   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[0] }]; #IO_L9N_T1_DQS_16 Sch=fmc_la_n
+set_property src_info {type:XDC file:1 line:341 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN A26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[1] }]; #IO_L10N_T1_16 Sch=fmc_la_n
+set_property src_info {type:XDC file:1 line:342 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN A25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[2] }]; #IO_L10P_T1_16 Sch=fmc_la_p
+set_property src_info {type:XDC file:1 line:343 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN M22   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[3] }]; #IO_L24P_T3_RS1_15 Sch=fmc_ha_p
+set_property src_info {type:XDC file:1 line:344 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN B25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[4] }]; #IO_L12N_T1_MRCC_16 Sch=fmc_ha_n
+set_property src_info {type:XDC file:1 line:345 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN F26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[5] }]; #IO_L5P_T0_16 Sch=fmc_la_p
+set_property src_info {type:XDC file:1 line:346 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN E23   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[6] }]; #IO_L2P_T0_16 Sch=fmc_la_p
 set_property src_info {type:XDC file:1 line:347 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS25} [get_ports wl_dac_en]
+set_property -dict { PACKAGE_PIN M27   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[7] }]; #IO_L16N_T2_A27_15 Sch=fmc_ha_n
 set_property src_info {type:XDC file:1 line:348 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS25} [get_ports wl_dac_en]
+set_property src_info {type:XDC file:1 line:349 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN G28 IOSTANDARD LVCMOS25} [get_ports wl_en]
-set_property src_info {type:XDC file:1 line:531 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN Y29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
 set_property src_info {type:XDC file:1 line:532 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict {PACKAGE_PIN Y29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
+set_property src_info {type:XDC file:1 line:533 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN Y28 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
-set_property src_info {type:XDC file:1 line:545 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN AD29 IOSTANDARD LVCMOS33} [get_ports PROG_SPIEN]
 set_property src_info {type:XDC file:1 line:546 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN AD27 IOSTANDARD LVCMOS33} [get_ports PROG_SCK]
+set_property -dict {PACKAGE_PIN AD29 IOSTANDARD LVCMOS33} [get_ports PROG_SPIEN]
 set_property src_info {type:XDC file:1 line:547 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN W27 IOSTANDARD LVCMOS33} [get_ports PROG_MOSI]
+set_property -dict {PACKAGE_PIN AD27 IOSTANDARD LVCMOS33} [get_ports PROG_SCK]
 set_property src_info {type:XDC file:1 line:548 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN W28 IOSTANDARD LVCMOS33} [get_ports PROG_MISO]
+set_property -dict {PACKAGE_PIN W27 IOSTANDARD LVCMOS33} [get_ports PROG_MOSI]
 set_property src_info {type:XDC file:1 line:549 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict {PACKAGE_PIN W28 IOSTANDARD LVCMOS33} [get_ports PROG_MISO]
+set_property src_info {type:XDC file:1 line:550 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN W29 IOSTANDARD LVCMOS33} [get_ports PROG_SS]
-set_property src_info {type:XDC file:1 line:601 export:INPUT save:INPUT read:READ} [current_design]
-set_clock_uncertainty -setup 0.300 [get_clocks sclk]
 set_property src_info {type:XDC file:1 line:602 export:INPUT save:INPUT read:READ} [current_design]
+set_clock_uncertainty -setup 0.300 [get_clocks sclk]
+set_property src_info {type:XDC file:1 line:603 export:INPUT save:INPUT read:READ} [current_design]
 set_clock_uncertainty -hold 0.200 [get_clocks sclk]
-set_property src_info {type:XDC file:1 line:635 export:INPUT save:INPUT read:READ} [current_design]
-create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
 set_property src_info {type:XDC file:1 line:636 export:INPUT save:INPUT read:READ} [current_design]
 create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 set_property src_info {type:XDC file:1 line:637 export:INPUT save:INPUT read:READ} [current_design]
 create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 set_property src_info {type:XDC file:1 line:638 export:INPUT save:INPUT read:READ} [current_design]
-create_waiver -type METHODOLOGY -id {TIMING-17} -user "akashl" -desc "Debug core has low visibility" -objects [get_pins {ember_fpga_i/ila_0/inst/* ember_fpga_i/ila_0/inst/*/* ember_fpga_i/ila_0/inst/*/*/* ember_fpga_i/ila_0/inst/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/*/*}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
-set_property src_info {type:XDC file:1 line:639 export:INPUT save:INPUT read:READ} [current_design]
 create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"

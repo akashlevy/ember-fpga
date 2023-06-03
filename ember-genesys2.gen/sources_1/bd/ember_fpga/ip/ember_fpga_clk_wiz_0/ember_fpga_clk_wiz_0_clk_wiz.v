@@ -57,7 +57,6 @@
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
 // clk_out1__100.00000______0.000______50.0______112.316_____89.971
-// clk_out2__50.00000____-54.000______80.0______129.198_____89.971
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -71,7 +70,6 @@ module ember_fpga_clk_wiz_0_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk_out1,
-  output        clk_out2,
   // Status and control signals
   input         resetn,
   input         clk_in1_p,
@@ -112,6 +110,7 @@ wire clk_in2_ember_fpga_clk_wiz_0;
   wire        clkfbout_buf_ember_fpga_clk_wiz_0;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
+   wire clkout1_unused;
    wire clkout1b_unused;
    wire clkout2_unused;
    wire clkout2b_unused;
@@ -137,10 +136,6 @@ wire clk_in2_ember_fpga_clk_wiz_0;
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (20),
-    .CLKOUT1_PHASE        (-54.000),
-    .CLKOUT1_DUTY_CYCLE   (0.800),
-    .CLKOUT1_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (5.000))
   mmcm_adv_inst
     // Output clocks
@@ -149,7 +144,7 @@ wire clk_in2_ember_fpga_clk_wiz_0;
     .CLKFBOUTB           (clkfboutb_unused),
     .CLKOUT0             (clk_out1_ember_fpga_clk_wiz_0),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clk_out2_ember_fpga_clk_wiz_0),
+    .CLKOUT1             (clkout1_unused),
     .CLKOUT1B            (clkout1b_unused),
     .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
@@ -203,10 +198,6 @@ wire clk_in2_ember_fpga_clk_wiz_0;
    (.O   (clk_out1),
     .I   (clk_out1_ember_fpga_clk_wiz_0));
 
-
-  BUFG clkout2_buf
-   (.O   (clk_out2),
-    .I   (clk_out2_ember_fpga_clk_wiz_0));
 
 
 

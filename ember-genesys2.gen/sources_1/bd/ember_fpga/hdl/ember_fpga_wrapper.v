@@ -1,8 +1,8 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Sun Mar 12 22:23:46 2023
-//Host        : r7cad-tsmc40r3 running 64-bit CentOS Linux release 7.6.1810 (Core)
+//Date        : Wed May 31 21:41:28 2023
+//Host        : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga_wrapper.bd
 //Design      : ember_fpga_wrapper
 //Purpose     : IP block netlist
@@ -18,6 +18,7 @@ module ember_fpga_wrapper
     aclk,
     bl_en,
     bleed_en,
+    bsl_dac_config,
     bsl_dac_en,
     clamp_ref,
     clksel,
@@ -51,6 +52,8 @@ module ember_fpga_wrapper
     spien_led,
     sys_diff_clock_clk_n,
     sys_diff_clock_clk_p,
+    we,
+    wl_dac_config,
     wl_dac_en,
     wl_en);
   output PROG_MISO;
@@ -61,6 +64,7 @@ module ember_fpga_wrapper
   output [0:0]aclk;
   output [0:0]bl_en;
   output [0:0]bleed_en;
+  output [4:0]bsl_dac_config;
   output [0:0]bsl_dac_en;
   output [5:0]clamp_ref;
   input clksel;
@@ -94,6 +98,8 @@ module ember_fpga_wrapper
   output spien_led;
   input sys_diff_clock_clk_n;
   input sys_diff_clock_clk_p;
+  output we;
+  output [7:0]wl_dac_config;
   output [0:0]wl_dac_en;
   output [0:0]wl_en;
 
@@ -105,6 +111,7 @@ module ember_fpga_wrapper
   wire [0:0]aclk;
   wire [0:0]bl_en;
   wire [0:0]bleed_en;
+  wire [4:0]bsl_dac_config;
   wire [0:0]bsl_dac_en;
   wire [5:0]clamp_ref;
   wire clksel;
@@ -138,6 +145,8 @@ module ember_fpga_wrapper
   wire spien_led;
   wire sys_diff_clock_clk_n;
   wire sys_diff_clock_clk_p;
+  wire we;
+  wire [7:0]wl_dac_config;
   wire [0:0]wl_dac_en;
   wire [0:0]wl_en;
 
@@ -150,6 +159,7 @@ module ember_fpga_wrapper
         .aclk(aclk),
         .bl_en(bl_en),
         .bleed_en(bleed_en),
+        .bsl_dac_config(bsl_dac_config),
         .bsl_dac_en(bsl_dac_en),
         .clamp_ref(clamp_ref),
         .clksel(clksel),
@@ -183,6 +193,8 @@ module ember_fpga_wrapper
         .spien_led(spien_led),
         .sys_diff_clock_clk_n(sys_diff_clock_clk_n),
         .sys_diff_clock_clk_p(sys_diff_clock_clk_p),
+        .we(we),
+        .wl_dac_config(wl_dac_config),
         .wl_dac_en(wl_dac_en),
         .wl_en(wl_en));
 endmodule

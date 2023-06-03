@@ -196,11 +196,11 @@ set_property -dict {PACKAGE_PIN U22 IOSTANDARD LVCMOS25} [get_ports mosi_out]
 set_property -dict {PACKAGE_PIN G13 IOSTANDARD LVCMOS25} [get_ports aclk]
 set_property -dict {PACKAGE_PIN C15 IOSTANDARD LVCMOS25} [get_ports bl_en]
 set_property -dict {PACKAGE_PIN D19 IOSTANDARD LVCMOS25} [get_ports bleed_en]
-#set_property -dict { PACKAGE_PIN G20   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[0] }]; #IO_L2N_T0_17 Sch=fmc_la_n
-#set_property -dict { PACKAGE_PIN F11   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[1] }]; #IO_L16P_T2_18 Sch=fmc_hb_p
-#set_property -dict { PACKAGE_PIN J14   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[2] }]; #IO_L5N_T0_18 Sch=fmc_hb_n
-#set_property -dict { PACKAGE_PIN J12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[3] }]; #IO_L8N_T1_18 Sch=fmc_hb_n
-#set_property -dict { PACKAGE_PIN L12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[4] }]; #IO_L3P_T0_DQS_18 Sch=fmc_hb_p
+set_property -dict { PACKAGE_PIN G20   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[0] }]; #IO_L2N_T0_17 Sch=fmc_la_n
+set_property -dict { PACKAGE_PIN F11   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[1] }]; #IO_L16P_T2_18 Sch=fmc_hb_p
+set_property -dict { PACKAGE_PIN J14   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[2] }]; #IO_L5N_T0_18 Sch=fmc_hb_n
+set_property -dict { PACKAGE_PIN J12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[3] }]; #IO_L8N_T1_18 Sch=fmc_hb_n
+set_property -dict { PACKAGE_PIN L12   IOSTANDARD LVCMOS25 } [get_ports { bsl_dac_config[4] }]; #IO_L3P_T0_DQS_18 Sch=fmc_hb_p
 set_property -dict {PACKAGE_PIN A13 IOSTANDARD LVCMOS25} [get_ports bsl_dac_en]
 set_property -dict {PACKAGE_PIN H12 IOSTANDARD LVCMOS25} [get_ports {clamp_ref[0]}]
 set_property -dict {PACKAGE_PIN B13 IOSTANDARD LVCMOS25} [get_ports {clamp_ref[1]}]
@@ -336,14 +336,15 @@ set_property -dict {PACKAGE_PIN H29 IOSTANDARD LVCMOS25} [get_ports sa_en]
 set_property -dict {PACKAGE_PIN D16 IOSTANDARD LVCMOS25} [get_ports sa_rdy]
 set_property -dict {PACKAGE_PIN M29 IOSTANDARD LVCMOS25} [get_ports set_rst]
 set_property -dict {PACKAGE_PIN P21 IOSTANDARD LVCMOS25} [get_ports sl_en]
-#set_property -dict { PACKAGE_PIN A28   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[0] }]; #IO_L9N_T1_DQS_16 Sch=fmc_la_n
-#set_property -dict { PACKAGE_PIN A26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[1] }]; #IO_L10N_T1_16 Sch=fmc_la_n
-#set_property -dict { PACKAGE_PIN A25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[2] }]; #IO_L10P_T1_16 Sch=fmc_la_p
-#set_property -dict { PACKAGE_PIN M22   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[3] }]; #IO_L24P_T3_RS1_15 Sch=fmc_ha_p
-#set_property -dict { PACKAGE_PIN B25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[4] }]; #IO_L12N_T1_MRCC_16 Sch=fmc_ha_n
-#set_property -dict { PACKAGE_PIN F26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[5] }]; #IO_L5P_T0_16 Sch=fmc_la_p
-#set_property -dict { PACKAGE_PIN E23   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[6] }]; #IO_L2P_T0_16 Sch=fmc_la_p
-#set_property -dict { PACKAGE_PIN M27   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[7] }]; #IO_L16N_T2_A27_15 Sch=fmc_ha_n
+set_property -dict { PACKAGE_PIN B27   IOSTANDARD LVCMOS25 } [get_ports { we }]; #IO_L7P_T1_16 Sch=fmc_la_p[10]
+set_property -dict { PACKAGE_PIN A28   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[0] }]; #IO_L9N_T1_DQS_16 Sch=fmc_la_n
+set_property -dict { PACKAGE_PIN A26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[1] }]; #IO_L10N_T1_16 Sch=fmc_la_n
+set_property -dict { PACKAGE_PIN A25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[2] }]; #IO_L10P_T1_16 Sch=fmc_la_p
+set_property -dict { PACKAGE_PIN M22   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[3] }]; #IO_L24P_T3_RS1_15 Sch=fmc_ha_p
+set_property -dict { PACKAGE_PIN B25   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[4] }]; #IO_L12N_T1_MRCC_16 Sch=fmc_ha_n
+set_property -dict { PACKAGE_PIN F26   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[5] }]; #IO_L5P_T0_16 Sch=fmc_la_p
+set_property -dict { PACKAGE_PIN E23   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[6] }]; #IO_L2P_T0_16 Sch=fmc_la_p
+set_property -dict { PACKAGE_PIN M27   IOSTANDARD LVCMOS25 } [get_ports { wl_dac_config[7] }]; #IO_L16N_T2_A27_15 Sch=fmc_ha_n
 set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS25} [get_ports wl_dac_en]
 set_property -dict {PACKAGE_PIN G28 IOSTANDARD LVCMOS25} [get_ports wl_en]
 
@@ -604,11 +605,11 @@ set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 ## Add sclk constraints
 set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
-set_input_delay -clock [get_clocks sclk] -min -add_delay 1.200 [get_ports {{sa_do[*]} sa_rdy}]
+set_input_delay -clock [get_clocks sclk] -min -add_delay 2.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
 set_input_delay -clock [get_clocks sclk] -clock_fall -max -add_delay 3.000 [get_ports PROG_MOSI]
-set_output_delay -clock [get_clocks sclk] -min -add_delay 0.000 [all_outputs]
+set_output_delay -clock [get_clocks sclk] -min -add_delay 1.000 [all_outputs]
 set_output_delay -clock [get_clocks sclk] -max -add_delay 2.000 [all_outputs]
 
 ## Add 100 MHz MCMM clock constraints
@@ -618,7 +619,7 @@ set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/c
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -max -add_delay 3.000 [get_ports PROG_MOSI]
-set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 0.000 [all_outputs]
+set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 1.000 [all_outputs]
 set_output_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 2.000 [all_outputs]
 
 ## Mark clocks as physically exclusive
@@ -629,11 +630,9 @@ set_max_delay -to [get_ports PROG_MISO] 20.000
 
 ## Mark {reset, clock multiplexing, LED indicator, out signal} paths as false
 set_false_path -from [get_ports {reset PROG_SS clksel}]
-set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out sa_en sa_clk {read_ref[*]} {rram_addr[*]} {di[*]}}]
+set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out  aclk bl_en bleed_en {bsl_dac_config[*]} bsl_dac_en {clamp_ref[*]} {di[*]} {read_dac_config[*]} read_dac_en {read_ref[*]} {rram_addr[*]} sa_clk sa_en set_rst sl_en we {wl_dac_config[*]} wl_dac_en wl_en}]
 
 ## Create waivers
-create_waiver -type METHODOLOGY -id {CKLD-1} -user "akashl" -desc "Debug core has low visibility" -objects [get_nets {sl_iport0[1]}] -objects [get_pins {{dbg_hub/sl_iport0_o[1]} {ember_fpga_i/sl_iport0[1]}}] -strings { "512" } -timestamp "Sat Feb 11 03:21:15 GMT 2023"
 create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
-create_waiver -type METHODOLOGY -id {TIMING-17} -user "akashl" -desc "Debug core has low visibility" -objects [get_pins {ember_fpga_i/ila_0/inst/* ember_fpga_i/ila_0/inst/*/* ember_fpga_i/ila_0/inst/*/*/* ember_fpga_i/ila_0/inst/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/* ember_fpga_i/ila_0/inst/*/*/*/*/*/*/*/*/*/*/*}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"
