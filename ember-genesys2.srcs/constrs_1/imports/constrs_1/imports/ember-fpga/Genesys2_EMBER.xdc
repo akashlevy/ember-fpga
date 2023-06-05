@@ -26,7 +26,7 @@ set_property -dict {PACKAGE_PIN W24 IOSTANDARD LVCMOS25} [get_ports spien_led]
 set_property -dict {PACKAGE_PIN W23 IOSTANDARD LVCMOS25} [get_ports rst_n_led]
 
 ## Switches
-set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS25} [get_ports clksel]
+#set_property -dict {PACKAGE_PIN G19 IOSTANDARD LVCMOS25} [get_ports clksel]
 #set_property -dict {PACKAGE_PIN G25 IOSTANDARD LVCMOS25} [get_ports {clksel[1]}]
 #set_property -dict {PACKAGE_PIN H24 IOSTANDARD LVCMOS25} [get_ports {sw[0]}]
 #set_property -dict {PACKAGE_PIN K19 IOSTANDARD LVCMOS25} [get_ports {sw[1]}]
@@ -531,7 +531,7 @@ set_property -dict {PACKAGE_PIN G28 IOSTANDARD LVCMOS25} [get_ports wl_en]
 #set_property -dict { PACKAGE_PIN W29   IOSTANDARD LVCMOS33 } [get_ports { PROG_D[3] }]; #IO_L4P_T0_13 Sch=prog_d3/ss
 set_property -dict {PACKAGE_PIN Y29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
 set_property -dict {PACKAGE_PIN Y28 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
-#set_property -dict { PACKAGE_PIN AA28  IOSTANDARD LVCMOS33 } [get_ports { PROG_D[6] }]; #IO_L3N_T0_DQS_13 Sch=prog_d[6]
+set_property -dict {PACKAGE_PIN AA28 IOSTANDARD LVCMOS33} [get_ports clksel]
 #set_property -dict { PACKAGE_PIN AA26  IOSTANDARD LVCMOS33 } [get_ports { PROG_D[7] }]; #IO_L1N_T0_13 Sch=prog_d[7]
 #set_property -dict { PACKAGE_PIN AC30  IOSTANDARD LVCMOS33 } [get_ports { PROG_OEN }]; #IO_L7N_T1_13 Sch=prog_oen
 #set_property -dict { PACKAGE_PIN AB25  IOSTANDARD LVCMOS33 } [get_ports { PROG_RDN }]; #IO_L6N_T0_VREF_13 Sch=prog_rdn
