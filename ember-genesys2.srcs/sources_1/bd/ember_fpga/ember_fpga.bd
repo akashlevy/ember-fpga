@@ -923,8 +923,8 @@
         "ports": [
           "rram_top_wrapper_0/rram_busy",
           "rram_busy_fpga_led",
-          "clkmux_0/rram_busy",
-          "rram_busy_out"
+          "rram_busy_out",
+          "clkmux_0/rram_busy"
         ]
       },
       "clk": {
