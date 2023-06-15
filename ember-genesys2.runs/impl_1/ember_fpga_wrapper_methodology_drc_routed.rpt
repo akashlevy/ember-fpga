@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Thu Jun 15 04:08:27 2023
+| Date         : Thu Jun 15 06:06:22 2023
 | Host         : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_methodology -file ember_fpga_wrapper_methodology_drc_routed.rpt -pb ember_fpga_wrapper_methodology_drc_routed.pb -rpx ember_fpga_wrapper_methodology_drc_routed.rpx
 | Design       : ember_fpga_wrapper
