@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date         : Thu Jun 15 05:53:35 2023
+| Date         : Sat Jun 17 12:53:08 2023
 | Host         : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command      : report_utilization -file ember_fpga_rram_top_wrapper_0_0_utilization_synth.rpt -pb ember_fpga_rram_top_wrapper_0_0_utilization_synth.pb
 | Design       : ember_fpga_rram_top_wrapper_0_0
@@ -30,14 +30,14 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             | 3740 |     0 |    203800 |  1.84 |
-|   LUT as Logic          | 3740 |     0 |    203800 |  1.84 |
+| Slice LUTs*             | 3668 |     0 |    203800 |  1.80 |
+|   LUT as Logic          | 3668 |     0 |    203800 |  1.80 |
 |   LUT as Memory         |    0 |     0 |     64000 |  0.00 |
-| Slice Registers         | 3684 |     0 |    407600 |  0.90 |
-|   Register as Flip Flop | 3684 |     0 |    407600 |  0.90 |
+| Slice Registers         | 3685 |     0 |    407600 |  0.90 |
+|   Register as Flip Flop | 3685 |     0 |    407600 |  0.90 |
 |   Register as Latch     |    0 |     0 |    407600 |  0.00 |
 | F7 Muxes                |  619 |     0 |    101900 |  0.61 |
-| F8 Muxes                |  226 |     0 |     50950 |  0.44 |
+| F8 Muxes                |  225 |     0 |     50950 |  0.44 |
 +-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
@@ -55,7 +55,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 9     |          Yes |           - |          Set |
-| 3675  |          Yes |           - |        Reset |
+| 3676  |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -151,14 +151,14 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     | 3675 |        Flop & Latch |
-| LUT6     | 2846 |                 LUT |
+| FDCE     | 3676 |        Flop & Latch |
+| LUT6     | 2830 |                 LUT |
 | MUXF7    |  619 |               MuxFx |
-| LUT5     |  399 |                 LUT |
-| LUT4     |  385 |                 LUT |
-| LUT2     |  277 |                 LUT |
-| MUXF8    |  226 |               MuxFx |
-| LUT3     |  181 |                 LUT |
+| LUT5     |  370 |                 LUT |
+| LUT4     |  330 |                 LUT |
+| LUT2     |  280 |                 LUT |
+| LUT3     |  226 |                 LUT |
+| MUXF8    |  225 |               MuxFx |
 | CARRY4   |   69 |          CarryLogic |
 | FDPE     |    9 |        Flop & Latch |
 | LUT1     |    5 |                 LUT |
