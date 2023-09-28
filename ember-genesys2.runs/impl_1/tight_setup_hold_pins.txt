@@ -1,50 +1,5 @@
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
 |       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[10]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[40]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[43]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[42]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[32]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[34]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[33]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[18]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[14]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[1]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[23]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[0]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[45]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[7]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[46]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[2]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[39]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[28]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[26]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[35]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[16]/D|
-| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |   ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[5]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[3]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[41]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[6]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[37]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/state_reg[0]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[15]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[17]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[27]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[4]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[30]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[31]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/state_reg[1]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[19]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[44]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[25]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[29]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[36]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[47]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[12]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[5]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |   ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[7]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[21]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                             ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[8]/D|
-|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                            ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/mask_reg[24]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |   ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[8]/D|
 +--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
