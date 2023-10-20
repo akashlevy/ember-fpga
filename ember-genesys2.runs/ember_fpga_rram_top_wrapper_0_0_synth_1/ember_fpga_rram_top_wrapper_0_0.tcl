@@ -347,6 +347,7 @@ read_verilog {
 set_property file_type "Verilog Header" [get_files /sim2/akashl/emblem-digital/rtl/globals.v]
 set_property is_global_include true [get_files /sim2/akashl/emblem-digital/rtl/globals.v]
 read_verilog -library xil_defaultlib -sv {
+  /sim2/akashl/emblem-digital/rtl/cb.v
   /sim2/akashl/emblem-digital/rtl/fsm.v
   /sim2/akashl/emblem-digital/rtl/rram_top.v
   /sim2/akashl/emblem-digital/rtl/spi_slave_rram.v

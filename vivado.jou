@@ -56,3 +56,71 @@ update_module_reference ember_fpga_rram_top_wrapper_0_0
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 48
 wait_on_run impl_1
+update_module_reference ember_fpga_clkmux_0_0
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+reset_run synth_1
+reset_run ember_fpga_clkmux_0_0_synth_1
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+regenerate_bd_layout -routing
+regenerate_bd_layout
+regenerate_bd_layout
+add_files -norecurse -scan_for_includes /sim2/akashl/emblem-digital/rtl/cb.v
+update_compile_order -fileset sources_1
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+regenerate_bd_layout
+regenerate_bd_layout -routing
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout -routing
+regenerate_bd_layout
+regenerate_bd_layout -routing
+regenerate_bd_layout
+regenerate_bd_layout -routing
+regenerate_bd_layout
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+wait_on_run ember_fpga_clkmux_0_0_synth_1
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+launch_runs ember_fpga_rram_top_wrapper_0_0_synth_1
+wait_on_run ember_fpga_rram_top_wrapper_0_0_synth_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+launch_runs ember_fpga_rram_top_wrapper_0_0_synth_1
+wait_on_run ember_fpga_rram_top_wrapper_0_0_synth_1
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 48
+wait_on_run synth_1
+reset_run synth_1
+reset_run ember_fpga_rram_top_wrapper_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+set_property file_type SystemVerilog [get_files  /sim2/akashl/emblem-digital/rtl/cb.v]
+update_compile_order -fileset sources_1
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+report_methodology -name ultrafast_methodology_2
+report_drc -name drc_2 -ruledecks {default}
+create_ip_run [get_files -of_objects [get_fileset sources_1] /sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd]
+refresh_design
+set_property needs_refresh false [get_runs synth_1]
+set_property needs_refresh false [get_runs impl_1]
+set_property needs_refresh false [get_runs ember_fpga_clk_wiz_0_synth_1]
+set_property needs_refresh false [get_runs ember_fpga_util_vector_logic_0_0_synth_1]
+set_property needs_refresh false [get_runs ember_fpga_clkmux_0_0_synth_1]
+set_property needs_refresh false [get_runs ember_fpga_rram_top_wrapper_0_0_synth_1]
+close_design
+update_module_reference ember_fpga_rram_top_wrapper_0_0
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+open_run impl_1
+report_methodology -name ultrafast_methodology_1
+report_methodology -name ultrafast_methodology_2
+report_drc -name drc_1 -ruledecks {default}
