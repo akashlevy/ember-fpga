@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Oct 20 05:46:31 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Nov  6 18:17:25 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -112,17 +112,15 @@
         <CONNECTION INSTANCE="External_Ports" PORT="PROG_SPIEN"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="rst_n_out" POLARITY="ACTIVE_LOW" SIGIS="undef" SIGNAME="External_Ports_reset">
+    <PORT DIR="O" LEFT="0" NAME="rst_n_out" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_1_Res">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
+        <CONNECTION INSTANCE="util_vector_logic_1" PORT="Res"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="reset" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clk_wiz" PORT="resetn"/>
-        <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
-        <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
-        <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
+        <CONNECTION INSTANCE="util_vector_logic_1" PORT="Op1"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="clksel" SIGIS="undef" SIGNAME="External_Ports_clksel">
@@ -130,9 +128,9 @@
         <CONNECTION INSTANCE="clkmux_0" PORT="clksel"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="rst_n_led" POLARITY="ACTIVE_LOW" SIGIS="undef" SIGNAME="External_Ports_reset">
+    <PORT DIR="O" LEFT="0" NAME="rst_n_led" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_1_Res">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
+        <CONNECTION INSTANCE="util_vector_logic_1" PORT="Res"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="O" LEFT="0" NAME="aclk" RIGHT="0" SIGIS="undef" SIGNAME="rram_top_wrapper_0_aclk">
@@ -238,6 +236,11 @@
     <PORT CLKFREQUENCY="100000000" DIR="I" NAME="sys_diff_clock_clk_p" SIGIS="clk" SIGNAME="clk_wiz_clk_in1_p">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clk_wiz" PORT="clk_in1_p"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="user_rst" POLARITY="ACTIVE_HIGH" SIGIS="rst" SIGNAME="External_Ports_user_rst">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="util_vector_logic_2" PORT="Op1"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -913,9 +916,9 @@
             <CONNECTION INSTANCE="External_Ports" PORT="mclk_pause_in"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="External_Ports_reset">
+        <PORT DIR="I" NAME="rst_n" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="util_vector_logic_1_Res">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
+            <CONNECTION INSTANCE="util_vector_logic_1" PORT="Res"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="rram_busy" SIGIS="undef" SIGNAME="rram_top_wrapper_0_rram_busy">
@@ -1074,6 +1077,59 @@
             <CONNECTION INSTANCE="External_Ports" PORT="sc_led"/>
             <CONNECTION INSTANCE="External_Ports" PORT="sc_out"/>
             <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="sc"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/util_vector_logic_1" HWVERSION="2.0" INSTANCE="util_vector_logic_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_vector_logic" VLNV="xilinx.com:ip:util_vector_logic:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="C_OPERATION" VALUE="and"/>
+        <PARAMETER NAME="C_SIZE" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_util_vector_logic_1_0"/>
+        <PARAMETER NAME="LOGO_FILE" VALUE="data/sym_andgate.png"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="Op1" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_reset">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="Op2" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_2_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="util_vector_logic_2" PORT="Res"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Res" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_1_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+    <MODULE COREREVISION="1" FULLNAME="/util_vector_logic_2" HWVERSION="2.0" INSTANCE="util_vector_logic_2" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="util_vector_logic" VLNV="xilinx.com:ip:util_vector_logic:2.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="C_OPERATION" VALUE="not"/>
+        <PARAMETER NAME="C_SIZE" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="ember_fpga_util_vector_logic_0_1"/>
+        <PARAMETER NAME="LOGO_FILE" VALUE="data/sym_notgate.png"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" LEFT="0" NAME="Op1" POLARITY="ACTIVE_HIGH" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_user_rst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="user_rst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="Res" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_2_Res">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="util_vector_logic_1" PORT="Op2"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

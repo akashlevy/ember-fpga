@@ -194,6 +194,9 @@
         <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_rram_top_wrapper_0_0/ember_fpga_rram_top_wrapper_0_0.xci">
           <Proxy FileSetName="ember_fpga_rram_top_wrapper_0_0"/>
         </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="ember_fpga.bd" FileRelPathName="ip/ember_fpga_util_vector_logic_1_0/ember_fpga_util_vector_logic_1_0.xci">
+          <Proxy FileSetName="ember_fpga_util_vector_logic_1_0"/>
+        </CompFileExtendedInfo>
       </File>
       <File Path="$PGENDIR/sources_1/bd/ember_fpga/hdl/ember_fpga_wrapper.v">
         <FileInfo>
@@ -273,6 +276,12 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="ember_fpga_util_vector_logic_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/ember_fpga_util_vector_logic_1_0" RelGenDir="$PGENDIR/ember_fpga_util_vector_logic_1_0">
+      <Config>
+        <Option Name="TopModule" Val="ember_fpga_util_vector_logic_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -349,6 +358,18 @@
       <RQSFiles/>
     </Run>
     <Run Id="ember_fpga_rram_top_wrapper_0_0_synth_1" Type="Ft3:Synth" SrcSet="ember_fpga_rram_top_wrapper_0_0" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_rram_top_wrapper_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ember_fpga_rram_top_wrapper_0_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_rram_top_wrapper_0_0_synth_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="ember_fpga_util_vector_logic_1_0_synth_1" Type="Ft3:Synth" SrcSet="ember_fpga_util_vector_logic_1_0" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_util_vector_logic_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/ember_fpga_util_vector_logic_1_0_synth_1" IncludeInArchive="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_util_vector_logic_1_0_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2020">
           <Desc>Vivado Synthesis Defaults</Desc>
@@ -440,6 +461,25 @@
       <RQSFiles/>
     </Run>
     <Run Id="ember_fpga_rram_top_wrapper_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_rram_top_wrapper_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ember_fpga_rram_top_wrapper_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_rram_top_wrapper_0_0_impl_1">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2020"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="ember_fpga_util_vector_logic_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="ember_fpga_util_vector_logic_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="ember_fpga_util_vector_logic_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/ember_fpga_util_vector_logic_1_0_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2020">
           <Desc>Default settings for Implementation.</Desc>

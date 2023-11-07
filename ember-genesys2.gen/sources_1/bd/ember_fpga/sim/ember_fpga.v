@@ -1,7 +1,7 @@
 //Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-//Date        : Fri Oct 20 05:46:31 2023
+//Date        : Mon Nov  6 18:17:24 2023
 //Host        : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 //Command     : generate_target ember_fpga.bd
 //Design      : ember_fpga
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=4,numReposBlks=4,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
+(* CORE_GENERATION_INFO = "ember_fpga,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=ember_fpga,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=6,numReposBlks=6,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_board_cnt=5,da_clkrst_cnt=5,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "ember_fpga.hwdef" *) 
 module ember_fpga
    (PROG_MISO,
     PROG_MOSI,
@@ -53,6 +53,7 @@ module ember_fpga
     spien_led,
     sys_diff_clock_clk_n,
     sys_diff_clock_clk_p,
+    user_rst,
     we,
     wl_dac_config,
     wl_dac_en,
@@ -84,8 +85,8 @@ module ember_fpga
   input rram_busy_in;
   output rram_busy_led;
   output rram_busy_out;
-  output rst_n_led;
-  output rst_n_out;
+  output [0:0]rst_n_led;
+  output [0:0]rst_n_out;
   output sa_clk;
   input [47:0]sa_do;
   output [0:0]sa_en;
@@ -99,6 +100,7 @@ module ember_fpga
   output spien_led;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 sys_diff_clock CLK_N" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME sys_diff_clock, CAN_DEBUG false, FREQ_HZ 200000000" *) input sys_diff_clock_clk_n;
   (* X_INTERFACE_INFO = "xilinx.com:interface:diff_clock:1.0 sys_diff_clock CLK_P" *) input sys_diff_clock_clk_p;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.USER_RST RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.USER_RST, INSERT_VIP 0, POLARITY ACTIVE_HIGH" *) input user_rst;
   output we;
   output [7:0]wl_dac_config;
   output [0:0]wl_dac_en;
@@ -113,7 +115,7 @@ module ember_fpga
   wire mclk_pause_in;
   wire mosi_in;
   wire [5:0]read_ref;
-  wire reset_2;
+  wire reset_1;
   wire [15:0]rram_addr;
   wire rram_busy;
   wire rram_top_wrapper_0_aclk;
@@ -140,6 +142,9 @@ module ember_fpga
   wire sclk_in_1;
   wire sys_diff_clock_1_CLK_N;
   wire sys_diff_clock_1_CLK_P;
+  wire user_rst_1;
+  wire [0:0]util_vector_logic_1_Res;
+  wire [0:0]util_vector_logic_2_Res;
 
   assign PROG_MISO = rram_top_wrapper_0_miso;
   assign PROG_SPIEN_1 = PROG_SPIEN;
@@ -158,13 +163,13 @@ module ember_fpga
   assign mosi_out = mosi_in;
   assign read_dac_config[3:0] = rram_top_wrapper_0_read_dac_config;
   assign read_dac_en[0] = rram_top_wrapper_0_read_dac_en;
-  assign reset_2 = reset;
+  assign reset_1 = reset;
   assign rram_busy = rram_busy_in;
   assign rram_busy_fpga_led = rram_top_wrapper_0_rram_busy;
   assign rram_busy_led = rram_busy;
   assign rram_busy_out = rram_top_wrapper_0_rram_busy;
-  assign rst_n_led = reset_2;
-  assign rst_n_out = reset_2;
+  assign rst_n_led[0] = util_vector_logic_1_Res;
+  assign rst_n_out[0] = util_vector_logic_1_Res;
   assign sa_clk = rram_top_wrapper_0_sa_clk;
   assign sa_en[0] = rram_top_wrapper_0_sa_en;
   assign sc_led[0] = sc_in;
@@ -177,6 +182,7 @@ module ember_fpga
   assign spien_led = PROG_SPIEN_1;
   assign sys_diff_clock_1_CLK_N = sys_diff_clock_clk_n;
   assign sys_diff_clock_1_CLK_P = sys_diff_clock_clk_p;
+  assign user_rst_1 = user_rst;
   assign we = rram_top_wrapper_0_we;
   assign wl_dac_config[7:0] = rram_top_wrapper_0_wl_dac_config;
   assign wl_dac_en[0] = rram_top_wrapper_0_wl_dac_en;
@@ -185,7 +191,7 @@ module ember_fpga
        (.clk_in1_n(sys_diff_clock_1_CLK_N),
         .clk_in1_p(sys_diff_clock_1_CLK_P),
         .clk_out1(clk),
-        .resetn(reset_2));
+        .resetn(reset_1));
   ember_fpga_clkmux_0_0 clkmux_0
        (.clk_out(clkmux_0_sclk_out),
         .clksel(clksel_1),
@@ -208,7 +214,7 @@ module ember_fpga
         .read_ref(read_ref),
         .rram_addr(rram_addr),
         .rram_busy(rram_top_wrapper_0_rram_busy),
-        .rst_n(reset_2),
+        .rst_n(util_vector_logic_1_Res),
         .sa_clk(rram_top_wrapper_0_sa_clk),
         .sa_do(sa_do),
         .sa_en(rram_top_wrapper_0_sa_en),
@@ -224,4 +230,11 @@ module ember_fpga
   ember_fpga_util_vector_logic_0_0 util_vector_logic_0
        (.Op1(PROG_SS_1),
         .Res(sc_in));
+  ember_fpga_util_vector_logic_1_0 util_vector_logic_1
+       (.Op1(reset_1),
+        .Op2(util_vector_logic_2_Res),
+        .Res(util_vector_logic_1_Res));
+  ember_fpga_util_vector_logic_0_1 util_vector_logic_2
+       (.Op1(user_rst_1),
+        .Res(util_vector_logic_2_Res));
 endmodule

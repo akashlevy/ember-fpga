@@ -532,7 +532,7 @@ set_property -dict {PACKAGE_PIN G28 IOSTANDARD LVCMOS25} [get_ports wl_en]
 set_property -dict {PACKAGE_PIN Y29 IOSTANDARD LVCMOS33} [get_ports mclk_pause_in]
 set_property -dict {PACKAGE_PIN Y28 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
 set_property -dict {PACKAGE_PIN AA28 IOSTANDARD LVCMOS33} [get_ports clksel]
-#set_property -dict { PACKAGE_PIN AA26  IOSTANDARD LVCMOS33 } [get_ports { PROG_D[7] }]; #IO_L1N_T0_13 Sch=prog_d[7]
+set_property -dict { PACKAGE_PIN AA26  IOSTANDARD LVCMOS33 } [get_ports { user_rst }]; #IO_L1N_T0_13 Sch=prog_d[7]
 #set_property -dict { PACKAGE_PIN AC30  IOSTANDARD LVCMOS33 } [get_ports { PROG_OEN }]; #IO_L7N_T1_13 Sch=prog_oen
 #set_property -dict { PACKAGE_PIN AB25  IOSTANDARD LVCMOS33 } [get_ports { PROG_RDN }]; #IO_L6N_T0_VREF_13 Sch=prog_rdn
 #set_property -dict { PACKAGE_PIN AB29  IOSTANDARD LVCMOS33 } [get_ports { PROG_RXFN }]; #IO_L10P_T1_13 Sch=prog_rxfn
@@ -603,8 +603,8 @@ set_clock_uncertainty -setup 0.300 [get_clocks sclk]
 set_clock_uncertainty -hold 0.200 [get_clocks sclk]
 
 ## Add sclk constraints
-set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
-set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks sclk] -min -add_delay 1.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset user_rst clksel}]
+set_input_delay -clock [get_clocks sclk] -max -add_delay 3.000 [get_ports {PROG_SPIEN PROG_SS mclk_pause_in rram_busy_in reset user_rst clksel}]
 set_input_delay -clock [get_clocks sclk] -min -add_delay 2.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks sclk] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
@@ -613,8 +613,8 @@ set_output_delay -clock [get_clocks sclk] -min -add_delay 1.000 [all_outputs]
 set_output_delay -clock [get_clocks sclk] -max -add_delay 2.000 [all_outputs]
 
 ## Add 100 MHz MCMM clock constraints
-set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 1.000 [get_ports {PROG_SS mclk_pause_in rram_busy_in reset clksel}]
-set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 3.000 [get_ports {PROG_SS mclk_pause_in rram_busy_in reset clksel}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 1.000 [get_ports {PROG_SS mclk_pause_in rram_busy_in reset user_rst clksel}]
+set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 3.000 [get_ports {PROG_SS mclk_pause_in rram_busy_in reset user_rst clksel}]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -min -add_delay 1.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -max -add_delay 4.000 [get_ports {{sa_do[*]} sa_rdy}]
 set_input_delay -clock [get_clocks -of_objects [get_pins -hierarchical clk_wiz/clk_out1]] -clock_fall -min -add_delay 1.000 [get_ports PROG_MOSI]
@@ -629,10 +629,10 @@ set_clock_groups -physically_exclusive -group sclk -group [get_clocks -of_object
 set_max_delay -to [get_ports PROG_MISO] 20.000
 
 ## Mark {reset, clock multiplexing, LED indicator, out signal} paths as false
-set_false_path -from [get_ports {reset PROG_SS clksel}]
+set_false_path -from [get_ports {reset user_rst PROG_SS clksel}]
 set_false_path -to [get_ports {*_led mclk_pause_out rram_busy_out mosi_out sclk_out  aclk bl_en bleed_en {bsl_dac_config[*]} bsl_dac_en {clamp_ref[*]} {di[*]} {read_dac_config[*]} read_dac_en {read_ref[*]} {rram_addr[*]} sa_clk sa_en set_rst sl_en we {wl_dac_config[*]} wl_dac_en wl_en}]
 
 ## Create waivers
 create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct IO intentionally" -objects [get_nets PROG_SCK_IBUF] -objects [get_pins {ember_fpga_i/PROG_SCK PROG_SCK_IBUF_inst/O}] -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
-create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"
+create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset user_rst }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"

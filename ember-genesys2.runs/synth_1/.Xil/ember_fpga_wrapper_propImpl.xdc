@@ -345,6 +345,8 @@ set_property src_info {type:XDC file:1 line:533 export:INPUT save:INPUT read:REA
 set_property -dict {PACKAGE_PIN Y28 IOSTANDARD LVCMOS33} [get_ports rram_busy_out]
 set_property src_info {type:XDC file:1 line:534 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN AA28 IOSTANDARD LVCMOS33} [get_ports clksel]
+set_property src_info {type:XDC file:1 line:535 export:INPUT save:INPUT read:READ} [current_design]
+set_property -dict { PACKAGE_PIN AA26  IOSTANDARD LVCMOS33 } [get_ports { user_rst }]; #IO_L1N_T0_13 Sch=prog_d[7]
 set_property src_info {type:XDC file:1 line:546 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN AD29 IOSTANDARD LVCMOS33} [get_ports PROG_SPIEN]
 set_property src_info {type:XDC file:1 line:547 export:INPUT save:INPUT read:READ} [current_design]
@@ -364,4 +366,4 @@ create_waiver -type METHODOLOGY -id {CKLD-2} -user "akashl" -desc "SCK is direct
 set_property src_info {type:XDC file:1 line:637 export:INPUT save:INPUT read:READ} [current_design]
 create_waiver -type METHODOLOGY -id {LUTAR-1} -user "akashl" -desc "Signal fsm_go triggers async reset (should have been synchronous...)" -timestamp "Wed Feb  8 02:08:50 GMT 2023"
 set_property src_info {type:XDC file:1 line:638 export:INPUT save:INPUT read:READ} [current_design]
-create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"
+create_waiver -type METHODOLOGY -id {XDCC-2} -user "akashl" -desc "Override reset IOSTANDARD so that it works" -objects [get_ports { reset user_rst }] -strings { "IOSTANDARD" } -timestamp "Fri Feb 17 19:40:24 GMT 2023"

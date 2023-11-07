@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x5CF7F86C124BE35C",
+      "boundary_crc": "0x4D33AA114064A3F",
       "device": "xc7k325tffg900-2",
       "gen_directory": "../../../../ember-genesys2.gen/sources_1/bd/ember_fpga",
       "name": "ember_fpga",
@@ -14,7 +14,9 @@
       "clk_wiz": "",
       "util_vector_logic_0": "",
       "clkmux_0": "",
-      "rram_top_wrapper_0": ""
+      "rram_top_wrapper_0": "",
+      "util_vector_logic_1": "",
+      "util_vector_logic_2": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -193,10 +195,20 @@
       },
       "rst_n_out": {
         "direction": "O",
+        "left": "0",
+        "right": "0",
         "parameters": {
           "POLARITY": {
             "value": "ACTIVE_LOW",
             "value_src": "user_prop"
+          },
+          "PortType": {
+            "value": "rst",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
           }
         }
       },
@@ -218,10 +230,20 @@
       },
       "rst_n_led": {
         "direction": "O",
+        "left": "0",
+        "right": "0",
         "parameters": {
           "POLARITY": {
             "value": "ACTIVE_LOW",
             "value_src": "user_prop"
+          },
+          "PortType": {
+            "value": "rst",
+            "value_src": "ip_prop"
+          },
+          "PortType.PROP_SRC": {
+            "value": "false",
+            "value_src": "ip_prop"
           }
         }
       },
@@ -371,6 +393,19 @@
         "direction": "O",
         "left": "7",
         "right": "0"
+      },
+      "user_rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
       }
     },
     "components": {
@@ -846,6 +881,34 @@
             }
           }
         }
+      },
+      "util_vector_logic_1": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_1_0",
+        "xci_path": "ip/ember_fpga_util_vector_logic_1_0/ember_fpga_util_vector_logic_1_0.xci",
+        "inst_hier_path": "util_vector_logic_1",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "and"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "util_vector_logic_2": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_0_1",
+        "xci_path": "ip/ember_fpga_util_vector_logic_0_1/ember_fpga_util_vector_logic_0_1.xci",
+        "inst_hier_path": "util_vector_logic_2",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -937,15 +1000,6 @@
         "ports": [
           "PROG_SPIEN",
           "spien_led"
-        ]
-      },
-      "reset_2": {
-        "ports": [
-          "reset",
-          "clk_wiz/resetn",
-          "rst_n_out",
-          "rst_n_led",
-          "rram_top_wrapper_0/rst_n"
         ]
       },
       "clksel_1": {
@@ -1072,6 +1126,33 @@
         "ports": [
           "rram_top_wrapper_0/sa_clk",
           "sa_clk"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz/resetn",
+          "util_vector_logic_1/Op1"
+        ]
+      },
+      "util_vector_logic_1_Res": {
+        "ports": [
+          "util_vector_logic_1/Res",
+          "rram_top_wrapper_0/rst_n",
+          "rst_n_led",
+          "rst_n_out"
+        ]
+      },
+      "user_rst_1": {
+        "ports": [
+          "user_rst",
+          "util_vector_logic_2/Op1"
+        ]
+      },
+      "util_vector_logic_2_Res": {
+        "ports": [
+          "util_vector_logic_2/Res",
+          "util_vector_logic_1/Op2"
         ]
       }
     }

@@ -1,0 +1,19 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |   ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[5]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                         ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/bsl_loop_reg[1]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                         ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/bsl_loop_reg[4]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                         ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/bsl_loop_reg[3]/D|
+| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 | ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[154]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[5]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                         ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/bsl_loop_reg[0]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[3]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                         ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/bsl_loop_reg[2]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[7]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[4]/D|
+| clk_out1_ember_fpga_clk_wiz_0 |clk_out1_ember_fpga_clk_wiz_0 |   ember_fpga_i/rram_top_wrapper_0/inst/inst/u_spi_slave_rram/u_itrx_apbm_spi/u_spi_fsm/prdata_sr_reg[6]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[0]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[2]/D|
+|                     sclk |clk_out1_ember_fpga_clk_wiz_0 |                                          ember_fpga_i/rram_top_wrapper_0/inst/inst/u_fsm/pw_loop_reg[6]/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

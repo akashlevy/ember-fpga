@@ -133,3 +133,69 @@ wait_on_run impl_1
 open_run impl_1
 report_methodology -name ultrafast_methodology_1
 report_drc -name drc_1 -ruledecks {default}
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_1
+endgroup
+set_property -dict [list CONFIG.C_SIZE {1} CONFIG.C_OPERATION {or} CONFIG.LOGO_FILE {data/sym_orgate.png}] [get_bd_cells util_vector_logic_1]
+set_property location {2 382 625} [get_bd_cells util_vector_logic_1]
+delete_bd_objs [get_bd_nets reset_2]
+connect_bd_net [get_bd_ports reset] [get_bd_pins clk_wiz/resetn]
+connect_bd_net [get_bd_pins util_vector_logic_1/Res] [get_bd_pins rram_top_wrapper_0/rst_n]
+connect_bd_net [get_bd_ports rst_n_led] [get_bd_pins util_vector_logic_1/Res]
+connect_bd_net [get_bd_ports rst_n_out] [get_bd_pins util_vector_logic_1/Res]
+connect_bd_net [get_bd_ports reset] [get_bd_pins util_vector_logic_1/Op1]
+create_bd_port -dir I rst
+connect_bd_net [get_bd_ports rst] [get_bd_pins util_vector_logic_1/Op2]
+set_property name user_rst [get_bd_nets rst_1]
+delete_bd_objs [get_bd_nets user_rst] [get_bd_ports rst]
+create_bd_port -dir I -type rst user_rst
+set_property CONFIG.POLARITY ACTIVE_HIGH [get_bd_ports user_rst]
+connect_bd_net [get_bd_ports user_rst] [get_bd_pins util_vector_logic_1/Op2]
+set_property -dict [list CONFIG.POLARITY {ACTIVE_LOW}] [get_bd_ports user_rst]
+startgroup
+set_property -dict [list CONFIG.C_OPERATION {and} CONFIG.LOGO_FILE {data/sym_andgate.png}] [get_bd_cells util_vector_logic_1]
+endgroup
+set_property location {1 109 619} [get_bd_cells util_vector_logic_1]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_2
+endgroup
+set_property -dict [list CONFIG.C_OPERATION {not} CONFIG.LOGO_FILE {data/sym_notgate.png}] [get_bd_cells util_vector_logic_2]
+set_property location {2 449 610} [get_bd_cells util_vector_logic_2]
+connect_bd_net [get_bd_pins util_vector_logic_2/Op1] [get_bd_pins util_vector_logic_1/Res]
+delete_bd_objs [get_bd_cells util_vector_logic_2]
+set_property location {2 413 614} [get_bd_cells util_vector_logic_1]
+regenerate_bd_layout
+regenerate_bd_layout
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+copy_bd_objs /  [get_bd_cells {util_vector_logic_0}]
+set_property location {1 141 213} [get_bd_cells util_vector_logic_2]
+delete_bd_objs [get_bd_nets user_rst_1]
+connect_bd_net [get_bd_ports user_rst] [get_bd_pins util_vector_logic_2/Op1]
+connect_bd_net [get_bd_pins util_vector_logic_2/Res] [get_bd_pins util_vector_logic_1/Op2]
+regenerate_bd_layout
+open_run synth_1 -name synth_1
+check_timing -verbose -name timing_1
+report_methodology -name ultrafast_methodology_1
+close_design
+close_design
+open_bd_design {/sim2/akashl/ember-fpga/ember-genesys2.srcs/sources_1/bd/ember_fpga/ember_fpga.bd}
+regenerate_bd_layout
+set_property -dict [list CONFIG.POLARITY {ACTIVE_HIGH}] [get_bd_ports user_rst]
+save_bd_design
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+regenerate_bd_layout
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 48
+wait_on_run impl_1
+open_run impl_1
+report_methodology -name ultrafast_methodology_1
+report_drc -name drc_1 -ruledecks {default}

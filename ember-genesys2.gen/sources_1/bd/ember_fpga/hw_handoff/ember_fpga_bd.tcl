@@ -200,8 +200,8 @@ proc create_root_design { parentCell } {
   set rram_busy_in [ create_bd_port -dir I rram_busy_in ]
   set rram_busy_led [ create_bd_port -dir O rram_busy_led ]
   set rram_busy_out [ create_bd_port -dir O rram_busy_out ]
-  set rst_n_led [ create_bd_port -dir O rst_n_led ]
-  set rst_n_out [ create_bd_port -dir O rst_n_out ]
+  set rst_n_led [ create_bd_port -dir O -from 0 -to 0 rst_n_led ]
+  set rst_n_out [ create_bd_port -dir O -from 0 -to 0 rst_n_out ]
   set sa_clk [ create_bd_port -dir O sa_clk ]
   set sa_do [ create_bd_port -dir I -from 47 -to 0 sa_do ]
   set sa_en [ create_bd_port -dir O -from 0 -to 0 sa_en ]
@@ -213,6 +213,10 @@ proc create_root_design { parentCell } {
   set set_rst [ create_bd_port -dir O -from 0 -to 0 set_rst ]
   set sl_en [ create_bd_port -dir O -from 0 -to 0 sl_en ]
   set spien_led [ create_bd_port -dir O spien_led ]
+  set user_rst [ create_bd_port -dir I -type rst user_rst ]
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_HIGH} \
+ ] $user_rst
   set we [ create_bd_port -dir O we ]
   set wl_dac_config [ create_bd_port -dir O -from 7 -to 0 wl_dac_config ]
   set wl_dac_en [ create_bd_port -dir O -from 0 -to 0 wl_dac_en ]
@@ -319,6 +323,22 @@ proc create_root_design { parentCell } {
    CONFIG.LOGO_FILE {data/sym_notgate.png} \
  ] $util_vector_logic_0
 
+  # Create instance: util_vector_logic_1, and set properties
+  set util_vector_logic_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_1 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {and} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_andgate.png} \
+ ] $util_vector_logic_1
+
+  # Create instance: util_vector_logic_2, and set properties
+  set util_vector_logic_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_vector_logic:2.0 util_vector_logic_2 ]
+  set_property -dict [ list \
+   CONFIG.C_OPERATION {not} \
+   CONFIG.C_SIZE {1} \
+   CONFIG.LOGO_FILE {data/sym_notgate.png} \
+ ] $util_vector_logic_2
+
   # Create interface connections
   connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports sys_diff_clock] [get_bd_intf_pins clk_wiz/CLK_IN1_D]
 
@@ -332,7 +352,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net mclk_pause_in [get_bd_ports mclk_pause_in] [get_bd_ports mclk_pause_out] [get_bd_pins rram_top_wrapper_0/mclk_pause]
   connect_bd_net -net mosi_in [get_bd_ports PROG_MOSI] [get_bd_ports mosi_led] [get_bd_ports mosi_out] [get_bd_pins rram_top_wrapper_0/mosi]
   connect_bd_net -net read_ref [get_bd_ports read_ref] [get_bd_pins rram_top_wrapper_0/read_ref]
-  connect_bd_net -net reset_2 [get_bd_ports reset] [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins clk_wiz/resetn] [get_bd_pins rram_top_wrapper_0/rst_n]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz/resetn] [get_bd_pins util_vector_logic_1/Op1]
   connect_bd_net -net rram_addr [get_bd_ports rram_addr] [get_bd_pins rram_top_wrapper_0/rram_addr]
   connect_bd_net -net rram_busy [get_bd_ports rram_busy_in] [get_bd_ports rram_busy_led]
   connect_bd_net -net rram_top_wrapper_0_aclk [get_bd_ports aclk] [get_bd_pins rram_top_wrapper_0/aclk]
@@ -357,6 +377,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net sa_rdy [get_bd_ports sa_rdy] [get_bd_pins rram_top_wrapper_0/sa_rdy]
   connect_bd_net -net sc_in [get_bd_ports sc_led] [get_bd_ports sc_out] [get_bd_pins rram_top_wrapper_0/sc] [get_bd_pins util_vector_logic_0/Res]
   connect_bd_net -net sclk_in_1 [get_bd_ports PROG_SCK] [get_bd_pins clkmux_0/sclk]
+  connect_bd_net -net user_rst_1 [get_bd_ports user_rst] [get_bd_pins util_vector_logic_2/Op1]
+  connect_bd_net -net util_vector_logic_1_Res [get_bd_ports rst_n_led] [get_bd_ports rst_n_out] [get_bd_pins rram_top_wrapper_0/rst_n] [get_bd_pins util_vector_logic_1/Res]
+  connect_bd_net -net util_vector_logic_2_Res [get_bd_pins util_vector_logic_1/Op2] [get_bd_pins util_vector_logic_2/Res]
 
   # Create address segments
 

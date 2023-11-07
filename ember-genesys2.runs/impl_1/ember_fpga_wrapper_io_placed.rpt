@@ -1,7 +1,7 @@
 Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-| Date                      : Fri Oct 20 05:51:01 2023
+| Date                      : Mon Nov  6 18:19:56 2023
 | Host                      : r7cad-tsmc40r2 running 64-bit CentOS Linux release 7.6.1810 (Core)
 | Command                   : report_io -file ember_fpga_wrapper_io_placed.rpt
 | Design                    : ember_fpga_wrapper
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           179 |
+|           180 |
 +---------------+
 
 
@@ -90,7 +90,7 @@ Table of Contents
 | AA23       |                      | High Range       | IO_L4N_T0_12                 | User IO       |             |      12 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
 | AA24       |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
 | AA25       |                      | High Range       | IO_L6P_T0_13                 | User IO       |             |      13 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
-| AA26       |                      | High Range       | IO_L1N_T0_13                 | User IO       |             |      13 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
+| AA26       | user_rst             | High Range       | IO_L1N_T0_13                 | INPUT         | LVCMOS33    |      13 |            |      |                     |                 NONE |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | AA27       |                      | High Range       | IO_L5P_T0_13                 | User IO       |             |      13 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
 | AA28       | clksel               | High Range       | IO_L3N_T0_DQS_13             | INPUT         | LVCMOS33    |      13 |            |      |                     |                 NONE |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | AA29       |                      | High Range       | VCCO_13                      | VCCO          |             |      13 |            |      |                     |                      |      3.30 |            |           |          |      |                  |              |                   |              |
@@ -873,7 +873,7 @@ Table of Contents
 | V26        | rram_busy_fpga_led   | High Range       | IO_L16P_T2_CSI_B_14          | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | V27        |                      | High Range       | IO_L16N_T2_A15_D31_14        | User IO       |             |      14 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
 | V28        |                      | High Range       | VCCO_14                      | VCCO          |             |      14 |            |      |                     |                      |      2.50 |            |           |          |      |                  |              |                   |              |
-| V29        | rst_n_out            | High Range       | IO_L17P_T2_A14_D30_14        | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
+| V29        | rst_n_out[0]         | High Range       | IO_L17P_T2_A14_D30_14        | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | V30        | rram_busy_in         | High Range       | IO_L17N_T2_A13_D29_14        | INPUT         | LVCMOS25    |      14 |            |      |                     |                 NONE |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | W1         |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
 | W2         |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
@@ -897,7 +897,7 @@ Table of Contents
 | W20        |                      |                  | GND                          | GND           |             |         |            |      |                     |                      |       0.0 |            |           |          |      |                  |              |                   |              |
 | W21        |                      | High Range       | IO_L24P_T3_A01_D17_14        | User IO       |             |      14 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
 | W22        |                      | High Range       | IO_L24N_T3_A00_D16_14        | User IO       |             |      14 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
-| W23        | rst_n_led            | High Range       | IO_L20P_T3_A08_D24_14        | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
+| W23        | rst_n_led[0]         | High Range       | IO_L20P_T3_A08_D24_14        | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | W24        | spien_led            | High Range       | IO_L20N_T3_A07_D23_14        | OUTPUT        | LVCMOS25    |      14 |         12 | SLOW |                     |            FP_VTT_50 |           | FIXED      |           |          |      | NONE             |              |                   |              |
 | W25        |                      | High Range       | VCCO_14                      | VCCO          |             |      14 |            |      |                     |                      |      2.50 |            |           |          |      |                  |              |                   |              |
 | W26        |                      | High Range       | IO_L18N_T2_A11_D27_14        | User IO       |             |      14 |            |      |                     |                      |           |            |           |          |      |                  |              |                   |              |
