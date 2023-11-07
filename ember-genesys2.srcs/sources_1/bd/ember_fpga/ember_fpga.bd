@@ -14,9 +14,9 @@
       "clk_wiz": "",
       "util_vector_logic_0": "",
       "clkmux_0": "",
-      "rram_top_wrapper_0": "",
       "util_vector_logic_1": "",
-      "util_vector_logic_2": ""
+      "util_vector_logic_2": "",
+      "rram_top_wrapper_0": ""
     },
     "interface_ports": {
       "sys_diff_clock": {
@@ -699,6 +699,34 @@
           }
         }
       },
+      "util_vector_logic_1": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_1_0",
+        "xci_path": "ip/ember_fpga_util_vector_logic_1_0/ember_fpga_util_vector_logic_1_0.xci",
+        "inst_hier_path": "util_vector_logic_1",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "and"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "util_vector_logic_2": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "xci_name": "ember_fpga_util_vector_logic_0_1",
+        "xci_path": "ip/ember_fpga_util_vector_logic_0_1/ember_fpga_util_vector_logic_0_1.xci",
+        "inst_hier_path": "util_vector_logic_2",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "not"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
       "rram_top_wrapper_0": {
         "vlnv": "xilinx.com:module_ref:rram_top_wrapper:1.0",
         "xci_name": "ember_fpga_rram_top_wrapper_0_0",
@@ -879,34 +907,6 @@
                 "value_src": "ip_prop"
               }
             }
-          }
-        }
-      },
-      "util_vector_logic_1": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "xci_name": "ember_fpga_util_vector_logic_1_0",
-        "xci_path": "ip/ember_fpga_util_vector_logic_1_0/ember_fpga_util_vector_logic_1_0.xci",
-        "inst_hier_path": "util_vector_logic_1",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "and"
-          },
-          "C_SIZE": {
-            "value": "1"
-          }
-        }
-      },
-      "util_vector_logic_2": {
-        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
-        "xci_name": "ember_fpga_util_vector_logic_0_1",
-        "xci_path": "ip/ember_fpga_util_vector_logic_0_1/ember_fpga_util_vector_logic_0_1.xci",
-        "inst_hier_path": "util_vector_logic_2",
-        "parameters": {
-          "C_OPERATION": {
-            "value": "not"
-          },
-          "C_SIZE": {
-            "value": "1"
           }
         }
       }
@@ -1138,9 +1138,9 @@
       "util_vector_logic_1_Res": {
         "ports": [
           "util_vector_logic_1/Res",
-          "rram_top_wrapper_0/rst_n",
           "rst_n_led",
-          "rst_n_out"
+          "rst_n_out",
+          "rram_top_wrapper_0/rst_n"
         ]
       },
       "user_rst_1": {

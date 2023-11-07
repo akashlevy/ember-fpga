@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Nov  6 18:17:25 2023" VIVADOVERSION="2020.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Nov  7 14:24:26 2023" VIVADOVERSION="2020.2">
 
   <SYSTEMINFO ARCH="kintex7" BOARD="digilentinc.com:genesys2:part0:1.1" DEVICE="7k325t" NAME="ember_fpga" PACKAGE="ffg900" SPEEDGRADE="-2"/>
 
@@ -1104,9 +1104,9 @@
         </PORT>
         <PORT DIR="O" LEFT="0" NAME="Res" POLARITY="ACTIVE_LOW" RIGHT="0" SIGIS="undef" SIGNAME="util_vector_logic_1_Res">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
             <CONNECTION INSTANCE="External_Ports" PORT="rst_n_led"/>
             <CONNECTION INSTANCE="External_Ports" PORT="rst_n_out"/>
+            <CONNECTION INSTANCE="rram_top_wrapper_0" PORT="rst_n"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
